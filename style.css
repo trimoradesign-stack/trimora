@@ -185,23 +185,23 @@ body {
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: 0 36px;
+  padding: 0 30px;
 }
 
 .services-track {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   transition: transform .35s ease;
   will-change: transform;
 }
 
 .service-card {
-  flex: 0 0 calc(25% - 8px);
+  flex: 0 0 calc((100vw - 60px - 24px) / 4);
   min-width: 0;
   background: rgba(255,255,255,0.04);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 16px 10px;
+  padding: 14px 8px;
   text-align: center;
   transition: border-color .2s, background .2s;
   cursor: pointer;
@@ -243,11 +243,11 @@ body {
   background: rgba(212,175,106,0.15);
   border: 1px solid var(--border);
   color: var(--gold);
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1;
   display: flex;
   align-items: center;
@@ -257,8 +257,8 @@ body {
   flex-shrink: 0;
 }
 .slider-btn:hover { background: rgba(212,175,106,0.3); }
-.slider-prev { left: 4px; }
-.slider-next { right: 4px; }
+.slider-prev { left: 3px; }
+.slider-next { right: 3px; }
 
 .slider-dots {
   display: flex;
