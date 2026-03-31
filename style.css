@@ -588,6 +588,32 @@ body {
   color: var(--text-muted);
 }
 
+/* ---- WHATSAPP BUTON ---- */
+.whatsapp-btn {
+  position: fixed;
+  bottom: 22px;
+  right: 18px;
+  z-index: 999;
+  background: #25d366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px 12px 14px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(37,211,102,.45);
+  transition: transform .2s, box-shadow .2s;
+}
+.whatsapp-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37,211,102,.6);
+}
+.whatsapp-btn:active { transform: scale(.96); }
+
 /* ---- DESKTOP ---- */
 @media (min-width: 600px) {
   .footer-top {
