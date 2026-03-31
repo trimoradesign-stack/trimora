@@ -35,15 +35,15 @@ body {
 
 .header-top {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   padding: 4px 16px 2px;
 }
 
 .header-logo img {
-  height: 52px;
+  height: 56px;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 0 8px rgba(212,175,106,0.35));
+  filter: drop-shadow(0 0 8px rgba(212,175,106,0.3));
 }
 
 /* NAV — her ekranda görünür */
