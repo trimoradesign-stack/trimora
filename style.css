@@ -537,7 +537,7 @@ body {
   gap: 10px;
 }
 .footer-logo {
-  height: 80px;
+  height: 65px;
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 2px 8px rgba(212,175,106,0.2));
@@ -608,17 +608,17 @@ body {
 /* ---- FOOTER SOSYAL BUTONLAR ---- */
 .footer-social {
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+  gap: 5px;
+  flex-wrap: nowrap;
 }
 
 .fsoc-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
   text-decoration: none;
   transition: transform .2s, box-shadow .2s;
   box-shadow: 0 2px 8px rgba(0,0,0,.3);
