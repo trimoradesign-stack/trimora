@@ -630,6 +630,22 @@ body {
 }
 .fsoc-btn:active { transform: scale(.93); }
 
+/* ---- SEO ETİKETLERİ ---- */
+.seo-tags {
+  background: var(--green-dark);
+  padding: 10px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  border-top: 1px solid rgba(212,175,106,0.08);
+}
+.seo-tags span {
+  font-size: 10px;
+  color: rgba(168,181,160,0.35);
+  letter-spacing: .3px;
+}
+
 /* ---- DESKTOP ---- */
 @media (min-width: 600px) {
   .footer-top {
