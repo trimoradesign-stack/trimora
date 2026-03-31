@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://trimoradesign.com/sitemap.xml

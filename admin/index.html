@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trimora Admin Panel</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #0d2218;
+      --green-mid: #153a26;
+      --gold: #d4af6a;
+      --gold-light: #e8c97e;
+      --text: #f0ede6;
+      --muted: #8a9e8a;
+      --border: rgba(212,175,106,0.2);
+      --red: #e05555;
+      --card: #1a3828;
+    }
+    body { background: var(--green); color: var(--text); font-family: 'Segoe UI', sans-serif; min-height: 100vh; }
+
+    /* LOGIN */
+    #loginScreen {
+      display: flex; align-items: center; justify-content: center; min-height: 100vh;
+    }
+    .login-box {
+      background: var(--green-mid); border: 1px solid var(--border); border-radius: 14px;
+      padding: 40px 32px; width: 340px; text-align: center;
+    }
+    .login-box img { height: 70px; margin-bottom: 20px; }
+    .login-box h2 { font-size: 18px; color: var(--gold); margin-bottom: 24px; letter-spacing: 1px; }
+    .login-box input {
+      width: 100%; background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px 14px; color: var(--text); font-size: 14px; margin-bottom: 12px; outline: none;
+    }
+    .login-box input:focus { border-color: var(--gold); }
+    .btn { background: var(--gold); color: var(--green); border: none; border-radius: 8px;
+      padding: 12px 24px; font-weight: 700; font-size: 14px; cursor: pointer; width: 100%;
+      transition: background .2s; letter-spacing: .5px; }
+    .btn:hover { background: var(--gold-light); }
+    .err { color: var(--red); font-size: 12px; margin-top: 8px; }
+
+    /* DASHBOARD */
+    #dashboard { display: none; }
+    .topbar {
+      background: var(--green-mid); border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between; padding: 12px 24px; position: sticky; top: 0; z-index: 10;
+    }
+    .topbar-left { display: flex; align-items: center; gap: 12px; }
+    .topbar img { height: 40px; }
+    .topbar h1 { font-size: 15px; color: var(--gold); letter-spacing: 1px; }
+    .topbar-actions { display: flex; gap: 10px; align-items: center; }
+    .btn-sm { padding: 8px 16px; font-size: 12px; border-radius: 6px; background: var(--gold); color: var(--green); border: none; cursor: pointer; font-weight: 700; transition: background .2s; }
+    .btn-sm:hover { background: var(--gold-light); }
+    .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--muted); }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); background: transparent; }
+    .btn-danger { background: var(--red); color: white; }
+    .btn-danger:hover { background: #c44; }
+
+    .content { max-width: 900px; margin: 0 auto; padding: 28px 20px; }
+
+    /* TABS */
+    .tabs { display: flex; gap: 4px; margin-bottom: 24px; border-bottom: 1px solid var(--border); }
+    .tab { padding: 10px 18px; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer;
+      border-bottom: 2px solid transparent; transition: color .2s; }
+    .tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+    /* CARDS */
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 16px; }
+    .card h3 { font-size: 13px; color: var(--gold); letter-spacing: .5px; margin-bottom: 14px; text-transform: uppercase; }
+
+    /* FORM */
+    .field { margin-bottom: 14px; }
+    .field label { display: block; font-size: 11px; color: var(--muted); margin-bottom: 5px; font-weight: 600; text-transform: uppercase; }
+    .field input, .field textarea {
+      width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      border-radius: 6px; padding: 10px 12px; color: var(--text); font-size: 13px; outline: none; transition: border-color .2s;
+    }
+    .field input:focus, .field textarea:focus { border-color: var(--gold); }
+    .field textarea { resize: vertical; min-height: 70px; }
+
+    /* GALLERY */
+    #galleryTab { display: none; }
+    #settingsTab { display: none; }
+    #infoTab { display: block; }
+
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-bottom: 16px;
+    }
+    .gallery-item {
+      position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 1; background: var(--green-mid);
+    }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-item .del-btn {
+      position: absolute; top: 5px; right: 5px; background: rgba(224,85,85,.85); border: none;
+      color: white; border-radius: 50%; width: 26px; height: 26px; cursor: pointer; font-size: 14px;
+      display: flex; align-items: center; justify-content: center; transition: background .2s;
+    }
+    .gallery-item .del-btn:hover { background: var(--red); }
+
+    .upload-area {
+      border: 2px dashed var(--border); border-radius: 10px; padding: 28px 20px; text-align: center;
+      cursor: pointer; transition: border-color .2s; position: relative;
+    }
+    .upload-area:hover { border-color: var(--gold); }
+    .upload-area input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    .upload-area p { color: var(--muted); font-size: 13px; }
+    .upload-area strong { color: var(--gold); display: block; font-size: 15px; margin-bottom: 6px; }
+
+    /* TOAST */
+    .toast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
+      background: var(--green-mid); border: 1px solid var(--gold); color: var(--text);
+      padding: 12px 24px; border-radius: 8px; font-size: 13px; z-index: 999;
+      transition: transform .3s; white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .toast.error { border-color: var(--red); }
+
+    /* LOADER */
+    .loader { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(212,175,106,.3); border-top-color: var(--gold); border-radius: 50%; animation: spin .6s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .setup-note { background: rgba(212,175,106,.08); border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-size: 12px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
+    .setup-note strong { color: var(--gold); }
+
+    .site-link { color: var(--gold); font-size: 12px; text-decoration: none; }
+    .site-link:hover { text-decoration: underline; }
+
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #4caf50; display: inline-block; margin-right: 6px; }
+    .status-dot.red { background: var(--red); }
+  </style>
+</head>
+<body>
+
+<!-- GİRİŞ EKRANI -->
+<div id="loginScreen">
+  <div class="login-box">
+    <img src="../logo-header.png" alt="Trimora" />
+    <h2>YÖNETİM PANELİ</h2>
+    <input type="password" id="passInput" placeholder="Şifre" onkeydown="if(event.key==='Enter')login()" />
+    <button class="btn" onclick="login()">GİRİŞ YAP</button>
+    <div class="err" id="loginErr"></div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <div class="topbar">
+    <div class="topbar-left">
+      <img src="../logo-header.png" alt="Trimora" />
+      <h1>YÖNETİM PANELİ</h1>
+    </div>
+    <div class="topbar-actions">
+      <a href="https://trimoradesign.com" target="_blank" class="site-link">🌐 Siteyi Gör</a>
+      <button class="btn-sm btn-outline" onclick="logout()">Çıkış</button>
+    </div>
+  </div>
+
+  <div class="content">
+    <!-- TABS -->
+    <div class="tabs">
+      <div class="tab active" onclick="showTab('info', this)">İletişim Bilgileri</div>
+      <div class="tab" onclick="showTab('gallery', this)">Galeri</div>
+      <div class="tab" onclick="showTab('settings', this)">Ayarlar</div>
+    </div>
+
+    <!-- BİLGİLER TAB -->
+    <div id="infoTab">
+      <div class="card">
+        <h3>İletişim Bilgileri</h3>
+        <div class="field">
+          <label>Telefon</label>
+          <input type="text" id="cfgPhone" placeholder="0530 235 45 23" />
+        </div>
+        <div class="field">
+          <label>WhatsApp Numarası (ülke kodu ile, başında + olmadan)</label>
+          <input type="text" id="cfgWa" placeholder="905302354523" />
+        </div>
+        <div class="field">
+          <label>E-posta</label>
+          <input type="email" id="cfgEmail" placeholder="trimoradesign@gmail.com" />
+        </div>
+        <div class="field">
+          <label>Adres</label>
+          <textarea id="cfgAddress"></textarea>
+        </div>
+        <button class="btn" onclick="saveInfo()">KAYDET</button>
+      </div>
+
+      <div class="card">
+        <h3>Site Başlığı</h3>
+        <div class="field">
+          <label>Slogan (hero yazısı)</label>
+          <input type="text" id="cfgSlogan" />
+        </div>
+        <button class="btn" onclick="saveInfo()">KAYDET</button>
+      </div>
+    </div>
+
+    <!-- GALERİ TAB -->
+    <div id="galleryTab">
+      <div class="card">
+        <h3>Galeri Fotoğrafları</h3>
+        <div class="gallery-grid" id="galleryGrid"></div>
+        <div class="upload-area" id="uploadArea">
+          <input type="file" accept="image/*" multiple onchange="handleUpload(this)" />
+          <strong>+ Fotoğraf Ekle</strong>
+          <p>Tıklayın veya sürükleyin (JPG, PNG, WEBP)</p>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin-top:10px;">Fotoğraflar GitHub'a yüklenir. Her dosya max 5 MB olmalı.</p>
+      </div>
+    </div>
+
+    <!-- AYARLAR TAB -->
+    <div id="settingsTab">
+      <div class="card">
+        <div class="setup-note">
+          <strong>GitHub Token Nedir?</strong><br>
+          Fotoğraf yüklemek ve bilgileri kaydetmek için GitHub hesabından alınan özel bir anahtardır.
+          Bir kez girilir, tarayıcıda güvenli şekilde saklanır.<br><br>
+          <strong>Nasıl Alınır?</strong> github.com → Profil → Settings → Developer Settings → Personal Access Tokens → Tokens (classic) → Generate → <em>repo</em> kutusunu işaretle → Kopyala
+        </div>
+        <div class="field">
+          <label>GitHub Token</label>
+          <input type="password" id="cfgToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" />
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:14px;">
+          <span class="status-dot" id="tokenDot"></span>
+          <span id="tokenStatus">Token girilmedi</span>
+        </div>
+        <button class="btn" onclick="saveToken()">TOKEN KAYDET</button>
+      </div>
+
+      <div class="card">
+        <h3>Şifre Değiştir</h3>
+        <div class="field">
+          <label>Mevcut Şifre</label>
+          <input type="password" id="oldPass" />
+        </div>
+        <div class="field">
+          <label>Yeni Şifre</label>
+          <input type="password" id="newPass" />
+        </div>
+        <div class="field">
+          <label>Yeni Şifre (Tekrar)</label>
+          <input type="password" id="newPass2" />
+        </div>
+        <button class="btn" onclick="changePass()">ŞİFREYİ DEĞİŞTİR</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const REPO   = 'trimoradesign-stack/trimora';
+const BRANCH = 'main';
+const DEFAULT_PASS_HASH = '8c3f0e9c7a2b4d1e6f5a3c2b9d8e7f4a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6'; // trimora2024
+
+// ── UTILS ──
+async function sha256(msg) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+function getToken() { return localStorage.getItem('tr_token') || ''; }
+function getPassHash() { return localStorage.getItem('tr_pass') || DEFAULT_PASS_HASH; }
+function showToast(msg, isErr = false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (isErr ? ' error' : '');
+  setTimeout(() => t.className = 'toast', 3000);
+}
+
+// ── AUTH ──
+async function login() {
+  const val = document.getElementById('passInput').value;
+  const hash = await sha256(val);
+  if (hash === getPassHash()) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    loadConfig();
+    checkToken();
+  } else {
+    document.getElementById('loginErr').textContent = 'Şifre hatalı!';
+  }
+}
+function logout() {
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('passInput').value = '';
+}
+
+// ── TABS ──
+function showTab(name, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('infoTab').style.display = name === 'info' ? 'block' : 'none';
+  document.getElementById('galleryTab').style.display = name === 'gallery' ? 'block' : 'none';
+  document.getElementById('settingsTab').style.display = name === 'settings' ? 'block' : 'none';
+}
+
+// ── GITHUB API ──
+async function getFile(path) {
+  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+    headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' }
+  });
+  if (!r.ok) throw new Error('Dosya okunamadı');
+  return r.json();
+}
+
+async function putFile(path, content, message, sha = null) {
+  const body = { message, content: btoa(unescape(encodeURIComponent(content))), branch: BRANCH };
+  if (sha) body.sha = sha;
+  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+    method: 'PUT',
+    headers: { Authorization: `token ${getToken()}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  if (!r.ok) { const e = await r.json(); throw new Error(e.message || 'Kayıt hatası'); }
+  return r.json();
+}
+
+async function putBinaryFile(path, base64Content, message, sha = null) {
+  const body = { message, content: base64Content, branch: BRANCH };
+  if (sha) body.sha = sha;
+  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+    method: 'PUT',
+    headers: { Authorization: `token ${getToken()}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  if (!r.ok) { const e = await r.json(); throw new Error(e.message || 'Yükleme hatası'); }
+  return r.json();
+}
+
+// ── CONFIG ──
+let _configSha = null;
+let _config = null;
+
+async function loadConfig() {
+  try {
+    if (!getToken()) return;
+    const file = await getFile('config.json');
+    _configSha = file.sha;
+    _config = JSON.parse(decodeURIComponent(escape(atob(file.content.replace(/\n/g,'')))));
+    fillForm();
+    renderGallery();
+  } catch(e) {
+    showToast('Config yüklenemedi: ' + e.message, true);
+  }
+}
+
+function fillForm() {
+  if (!_config) return;
+  document.getElementById('cfgPhone').value   = _config.contact.phone || '';
+  document.getElementById('cfgWa').value      = _config.contact.whatsapp || '';
+  document.getElementById('cfgEmail').value   = _config.contact.email || '';
+  document.getElementById('cfgAddress').value = _config.contact.address || '';
+  document.getElementById('cfgSlogan').value  = _config.site.slogan || '';
+}
+
+async function saveInfo() {
+  if (!getToken()) { showToast('Önce Ayarlar > Token girin', true); return; }
+  _config.contact.phone    = document.getElementById('cfgPhone').value.trim();
+  _config.contact.whatsapp = document.getElementById('cfgWa').value.trim();
+  _config.contact.email    = document.getElementById('cfgEmail').value.trim();
+  _config.contact.address  = document.getElementById('cfgAddress').value.trim();
+  _config.site.slogan      = document.getElementById('cfgSlogan').value.trim();
+  try {
+    const res = await putFile('config.json', JSON.stringify(_config, null, 2), 'admin: bilgiler güncellendi', _configSha);
+    _configSha = res.content.sha;
+    showToast('✓ Kaydedildi! Site 1-2 dk içinde güncellenir.');
+  } catch(e) { showToast(e.message, true); }
+}
+
+// ── GALLERY ──
+function renderGallery() {
+  const grid = document.getElementById('galleryGrid');
+  grid.innerHTML = '';
+  if (!_config) return;
+  _config.gallery.forEach((img, i) => {
+    const div = document.createElement('div');
+    div.className = 'gallery-item';
+    div.innerHTML = `<img src="${img.src}" alt="${img.alt}" loading="lazy" />
+      <button class="del-btn" onclick="deleteGalleryItem(${i})" title="Sil">×</button>`;
+    grid.appendChild(div);
+  });
+}
+
+async function deleteGalleryItem(i) {
+  if (!confirm('Bu fotoğrafı silmek istediğinize emin misiniz?')) return;
+  _config.gallery.splice(i, 1);
+  try {
+    const res = await putFile('config.json', JSON.stringify(_config, null, 2), 'admin: galeri fotoğrafı silindi', _configSha);
+    _configSha = res.content.sha;
+    renderGallery();
+    showToast('✓ Fotoğraf silindi');
+  } catch(e) { showToast(e.message, true); }
+}
+
+async function handleUpload(input) {
+  if (!getToken()) { showToast('Önce Ayarlar > Token girin', true); return; }
+  const files = Array.from(input.files);
+  if (!files.length) return;
+  showToast('Yükleniyor...');
+
+  for (const file of files) {
+    if (file.size > 5 * 1024 * 1024) { showToast(file.name + ' 5MB\'den büyük!', true); continue; }
+    const base64 = await fileToBase64(file);
+    const filename = `gallery/${Date.now()}_${file.name.replace(/[^a-zA-Z0-9._-]/g,'_')}`;
+    try {
+      const res = await putBinaryFile(filename, base64, `admin: galeri fotoğrafı eklendi - ${file.name}`);
+      const url = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${filename}`;
+      _config.gallery.push({ src: url, alt: file.name.replace(/\.[^.]+$/, '') });
+      const cfgRes = await putFile('config.json', JSON.stringify(_config, null, 2), 'admin: galeri güncellendi', _configSha);
+      _configSha = cfgRes.content.sha;
+      renderGallery();
+      showToast('✓ ' + file.name + ' yüklendi');
+    } catch(e) { showToast(file.name + ': ' + e.message, true); }
+  }
+  input.value = '';
+}
+
+function fileToBase64(file) {
+  return new Promise((res, rej) => {
+    const reader = new FileReader();
+    reader.onload = () => res(reader.result.split(',')[1]);
+    reader.onerror = rej;
+    reader.readAsDataURL(file);
+  });
+}
+
+// ── SETTINGS ──
+function checkToken() {
+  const t = getToken();
+  const dot = document.getElementById('tokenDot');
+  const status = document.getElementById('tokenStatus');
+  if (t) {
+    dot.classList.remove('red');
+    status.textContent = 'Token kayıtlı ✓';
+    document.getElementById('cfgToken').value = t;
+    loadConfig();
+  } else {
+    dot.classList.add('red');
+    status.textContent = 'Token girilmedi — fotoğraf yüklenemez';
+  }
+}
+
+function saveToken() {
+  const t = document.getElementById('cfgToken').value.trim();
+  if (!t.startsWith('ghp_')) { showToast('Geçersiz token formatı', true); return; }
+  localStorage.setItem('tr_token', t);
+  checkToken();
+  showToast('✓ Token kaydedildi');
+}
+
+async function changePass() {
+  const old = document.getElementById('oldPass').value;
+  const n1  = document.getElementById('newPass').value;
+  const n2  = document.getElementById('newPass2').value;
+  if (n1 !== n2) { showToast('Yeni şifreler eşleşmiyor', true); return; }
+  if (n1.length < 6) { showToast('Şifre en az 6 karakter olmalı', true); return; }
+  const oldHash = await sha256(old);
+  if (oldHash !== getPassHash()) { showToast('Mevcut şifre hatalı', true); return; }
+  const newHash = await sha256(n1);
+  localStorage.setItem('tr_pass', newHash);
+  document.getElementById('oldPass').value = '';
+  document.getElementById('newPass').value = '';
+  document.getElementById('newPass2').value = '';
+  showToast('✓ Şifre değiştirildi');
+}
+
+// ── INIT ──
+window.onload = () => {
+  if (localStorage.getItem('tr_token')) checkToken();
+};
+</script>
+</body>
+</html>

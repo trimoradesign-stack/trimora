@@ -5,6 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trimora Design – Lüks Araç İçi Kaplama | Konya</title>
   <meta name="description" content="Konya'da oto döşeme, direksiyon kaplama, Recaro & Vader dönüşüm, torpido kaplama. Trimora Design Garage – 0530 235 45 23" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo-header.png" />
+  <link rel="apple-touch-icon" href="logo-header.png" />
+
+  <!-- Open Graph / Sosyal Medya -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://trimoradesign.com/" />
+  <meta property="og:title" content="Trimora Design – Lüks Araç İçi Kaplama | Konya" />
+  <meta property="og:description" content="Konya'da oto döşeme, direksiyon kaplama, Recaro & Vader dönüşüm, torpido kaplama. Trimora Design Garage – 0530 235 45 23" />
+  <meta property="og:image" content="https://trimoradesign.com/hero.jpeg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Trimora Design – Lüks Araç İçi Kaplama | Konya" />
+  <meta name="twitter:description" content="Konya'da oto döşeme, direksiyon kaplama, Recaro & Vader dönüşüm. 0530 235 45 23" />
+  <meta name="twitter:image" content="https://trimoradesign.com/hero.jpeg" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://trimoradesign.com/" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
@@ -138,24 +157,24 @@
   <!-- GALERİ -->
   <section class="gallery" id="galeri">
     <h2 class="section-title">GALERİDEN SEÇKİLER</h2>
-    <div class="gallery-grid">
+    <div class="gallery-grid" id="galleryGrid">
       <!-- Sol sütun: 2 kart -->
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1547038577-da80abbc4f19?w=400&q=80" alt="Direksiyon kaplama" />
+        <img src="https://images.unsplash.com/photo-1547038577-da80abbc4f19?w=400&q=80" alt="Direksiyon kaplama" loading="lazy" />
       </div>
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1617531653332-bd46c16f4d68?w=400&q=80" alt="Araç koltuk döşeme" />
+        <img src="https://images.unsplash.com/photo-1617531653332-bd46c16f4d68?w=400&q=80" alt="Araç koltuk döşeme" loading="lazy" />
       </div>
       <!-- Orta sütun: 2 kart -->
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Deri kaplama" />
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Deri kaplama" loading="lazy" />
       </div>
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=400&q=80" alt="Vites topuzu" />
+        <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=400&q=80" alt="Vites topuzu" loading="lazy" />
       </div>
       <!-- Sağ sütun: tall (2 satır yüksek) -->
       <div class="gallery-item gallery-item-tall">
-        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&q=80" alt="Klasik araç iç mekan" />
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&q=80" alt="Klasik araç iç mekan" loading="lazy" />
       </div>
     </div>
   </section>
@@ -180,7 +199,7 @@
             </div>
             <div>
               <p class="info-label">E-posta</p>
-              <p class="info-value">trimoradesign@gmail.com</p>
+              <p class="info-value" data-cfg="email">trimoradesign@gmail.com</p>
             </div>
           </div>
           <div class="contact-info-item">
@@ -189,7 +208,7 @@
             </div>
             <div>
               <p class="info-label">Telefon</p>
-              <p class="info-value">0530 235 45 23</p>
+              <p class="info-value" data-cfg="phone">0530 235 45 23</p>
             </div>
           </div>
           <div class="contact-info-item contact-info-item--wide">
@@ -198,7 +217,7 @@
             </div>
             <div>
               <p class="info-label">Adres</p>
-              <p class="info-value">Musalla Bağları Mah. Sırrı Acar Sk. No:10, Selçuklu/Konya</p>
+              <p class="info-value" data-cfg="address">Musalla Bağları Mah. Sırrı Acar Sk. No:10, Selçuklu/Konya</p>
             </div>
           </div>
         </div>
@@ -257,15 +276,15 @@
         <h4>Trimora Design</h4>
         <p>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.7 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z" fill="#d4af6a"/></svg>
-          Musalla Bağları Mah. Sırrı Acar Sk. No:10, Selçuklu/Konya
+          <span data-cfg="address">Musalla Bağları Mah. Sırrı Acar Sk. No:10, Selçuklu/Konya</span>
         </p>
         <p>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C9.6 21 3 14.4 3 6c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" fill="#d4af6a"/></svg>
-          <a href="tel:05302354523">0530 235 45 23</a>
+          <a href="tel:05302354523" data-cfg="phone">0530 235 45 23</a>
         </p>
         <p>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="#d4af6a"/></svg>
-          <a href="mailto:trimoradesign@gmail.com">trimoradesign@gmail.com</a>
+          <a href="mailto:trimoradesign@gmail.com" data-cfg="email">trimoradesign@gmail.com</a>
         </p>
       </div>
 
