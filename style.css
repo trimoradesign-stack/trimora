@@ -32,7 +32,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 16px;
+  padding: 8px 16px;
   background: var(--green-dark);
   border-bottom: 1px solid var(--border);
 }
@@ -55,25 +55,61 @@ body {
   transition: .3s;
 }
 
-.lang-selector {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  border: 1px solid var(--gold);
-  border-radius: 4px;
-  padding: 4px 10px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-white);
-  cursor: pointer;
-  letter-spacing: .5px;
+/* Masaüstü nav — mobilde gizli */
+.desktop-nav {
+  display: none;
 }
 
 .header-logo img {
-  height: 44px;
+  height: 62px;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 0 6px rgba(212,175,106,0.3));
+  filter: drop-shadow(0 0 8px rgba(212,175,106,0.35));
+}
+
+/* Masaüstünde hamburger gizle, nav göster */
+@media (min-width: 768px) {
+  .menu-btn { display: none; }
+
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .desktop-nav a {
+    color: var(--text-white);
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    transition: color .2s;
+  }
+  .desktop-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0; right: 0;
+    height: 1px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform .2s;
+  }
+  .desktop-nav a:hover { color: var(--gold); }
+  .desktop-nav a:hover::after { transform: scaleX(1); }
+
+  .desktop-nav .nav-cta {
+    background: var(--gold);
+    color: var(--green-dark);
+    padding: 7px 16px;
+    border-radius: 4px;
+    font-weight: 700;
+    transition: background .2s;
+  }
+  .desktop-nav .nav-cta:hover { background: var(--gold-light); }
+  .desktop-nav .nav-cta::after { display: none; }
 }
 
 /* ---- NAV DRAWER ---- */
@@ -163,13 +199,13 @@ body {
 
 .hero-content h1 {
   font-family: 'Cinzel', serif;
-  font-size: clamp(13px, 4vw, 20px);
-  font-weight: 700;
+  font-size: clamp(16px, 5vw, 26px);
+  font-weight: 600;
   color: var(--gold);
-  line-height: 1.45;
+  line-height: 1.5;
   text-shadow: 0 2px 14px rgba(0,0,0,.95);
-  letter-spacing: .5px;
-  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-style: italic;
 }
 
 @media (min-width: 600px) {
@@ -521,9 +557,10 @@ body {
   gap: 10px;
 }
 .footer-logo {
-  height: 48px;
+  height: 80px;
   width: auto;
   object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(212,175,106,0.2));
 }
 
 .footer-social {

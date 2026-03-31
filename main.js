@@ -1,5 +1,5 @@
 // ---- NAV DRAWER ----
-const menuBtn = document.querySelector('.menu-btn');
+const menuBtn = document.getElementById('menuBtn');
 const navDrawer = document.getElementById('navDrawer');
 const navOverlay = document.getElementById('navOverlay');
 

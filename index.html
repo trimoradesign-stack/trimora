@@ -14,37 +14,44 @@
 
   <!-- HEADER -->
   <header class="header">
-    <button class="menu-btn" aria-label="Menü">
+    <!-- Mobil hamburger -->
+    <button class="menu-btn" id="menuBtn" aria-label="Menü">
       <span></span><span></span><span></span>
     </button>
-    <div class="lang-selector">
-      <span>TR</span>
-      <svg width="12" height="8" viewBox="0 0 12 8"><path d="M1 1l5 5 5-5" stroke="#d4af6a" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
-    </div>
+    <!-- Masaüstü nav -->
+    <nav class="desktop-nav">
+      <a href="#anasayfa">ANASAYFA</a>
+      <a href="#hizmetler">HİZMETLERİMİZ</a>
+      <a href="#galeri">GALERİ</a>
+      <a href="#hakkimizda">HAKKIMIZDA</a>
+      <a href="#iletisim" class="nav-cta">İLETİŞİM</a>
+    </nav>
     <div class="header-logo">
       <img src="logo.png" alt="Trimora Design" />
     </div>
   </header>
 
-  <!-- NAV DRAWER -->
+  <!-- MOBİL NAV DRAWER -->
   <nav class="nav-drawer" id="navDrawer">
     <ul>
+      <li><a href="#anasayfa">Anasayfa</a></li>
       <li><a href="#hizmetler">Hizmetlerimiz</a></li>
       <li><a href="#galeri">Galeri</a></li>
+      <li><a href="#hakkimizda">Hakkımızda</a></li>
       <li><a href="#iletisim">İletişim</a></li>
     </ul>
   </nav>
   <div class="nav-overlay" id="navOverlay"></div>
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="anasayfa">
     <div class="hero-bg">
       <img src="hero.jpeg" alt="Trimora Design – Usta işçilik" />
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <img src="logo.png" alt="Trimora Design" class="hero-logo" />
-      <h1>HASSASİYET VE ÖZVERI:<br />MÜKEMMELLİĞE OLAN<br />BAĞLILIĞIMIZ</h1>
+      <h1>Lüks Konfor Yenilenen Sürüş Keyfi</h1>
     </div>
   </section>
 
