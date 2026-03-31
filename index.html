@@ -3,2831 +3,1103 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trimora Design Garage — OTO Döşeme, Recaro & Vader Dönüşüm | Konya</title>
-  <meta name="description" content="Konya Selçuklu'da OTO döşeme, Recaro & Vader dönüşüm, orijinal direksiyon kaplama, vites topuzu ve dikişli torpido kaplama. Trimora Design Garage — 0530 235 45 23">
-  <meta property="og:title" content="Trimora Design Garage — OTO Döşeme & Kaplama | Konya">
-  <meta property="og:description" content="Konya'da Recaro dönüşüm, Vader dönüşüm, hakiki deri döşeme ve orijinal direksiyon kaplama hizmetleri. 0530 235 45 23">
+  <title>Trimora Design — OTO Döşeme, Recaro & Vader Dönüşüm | Konya</title>
+  <meta name="description" content="Konya Selçuklu'da OTO döşeme, Recaro & Vader dönüşüm, orijinal direksiyon kaplama. Trimora Design — 0530 235 45 23">
+  <meta property="og:title" content="Trimora Design — Crafting Excellence | Konya">
   <meta property="og:type" content="website">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23111'/><text y='72' x='12' font-size='68' font-family='serif' fill='white'>T</text></svg>">
-
-  <!-- Fonts -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230b1a0b'/><text y='72' x='12' font-size='68' font-family='serif' fill='%23c9a84c'>T</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-  <!-- AOS -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
 
   <style>
-    /* ── ROOT ──────────────────────────────────────────────── */
     :root {
-      --white:   #ffffff;
-      --light:   #1a2e1a;
-      --border:  rgba(201,168,76,0.2);
-      --muted:   rgba(255,255,255,0.5);
-      --gray:    rgba(255,255,255,0.7);
-      --dark:    #e8e8e8;
-      --black:   #0d1a0d;
-      --accent:  #c9a84c;
-      --accent2: #a88030;
-      --bg-secondary: #122212;
-      --bg-surface:   #1a2e1a;
-      --shadow-color: 0,0,0;
+      --bg:    #0b1a0b;
+      --bg2:   #0e200e;
+      --bg3:   #152515;
+      --surf:  #1c2e1c;
+      --gold:  #c9a84c;
+      --gold2: #e8c97a;
+      --gold3: #a88030;
+      --text:  rgba(255,255,255,0.88);
+      --muted: rgba(255,255,255,0.5);
+      --bord:  rgba(201,168,76,0.22);
     }
-
-    /* ── RESET ─────────────────────────────────────────────── */
     *, ::before, ::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
-
-    @media (min-width: 992px) { html { font-size: 18px; } }
-    @media (min-width: 1200px) { html { font-size: 20px; } }
-
+    html { scroll-behavior: smooth; }
     body {
-      font-family: "Inter", sans-serif;
-      font-weight: 300;
-      color: var(--gray);
-      background-color: var(--black);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      color: var(--text);
+      background: var(--bg);
       line-height: 1.7;
       overflow-x: hidden;
     }
     img { display: block; max-width: 100%; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
+    .container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 1.5rem; }
 
-    /* ── CONTAINER ─────────────────────────────────────────── */
-    .container {
-      width: 100%;
-      max-width: 1280px;
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-
-    /* ── GRID ──────────────────────────────────────────────── */
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      margin-left: -15px;
-      margin-right: -15px;
-    }
-    [class*="col-"] {
-      position: relative;
-      width: 100%;
-      padding-left: 15px;
-      padding-right: 15px;
-    }
-    .col-12 { flex: 0 0 100%; max-width: 100%; }
-    @media (min-width: 576px) {
-      .col-sm-6 { flex: 0 0 50%; max-width: 50%; }
-    }
-    @media (min-width: 768px) {
-      .col-md-4 { flex: 0 0 33.333%; max-width: 33.333%; }
-      .col-md-6 { flex: 0 0 50%; max-width: 50%; }
-      .col-md-8 { flex: 0 0 66.666%; max-width: 66.666%; }
-    }
-    @media (min-width: 992px) {
-      .col-lg-3 { flex: 0 0 25%; max-width: 25%; }
-      .col-lg-4 { flex: 0 0 33.333%; max-width: 33.333%; }
-      .col-lg-6 { flex: 0 0 50%; max-width: 50%; }
-      .col-lg-8 { flex: 0 0 66.666%; max-width: 66.666%; }
-    }
-
-    /* ── NAV ───────────────────────────────────────────────── */
+    /* ─── NAVBAR ───────────────────────────── */
     .navbar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      background: rgba(13,26,13,0.97);
-      border-bottom: 1px solid rgba(201,168,76,0.12);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
       padding: 0 2rem;
-      height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: height 0.3s ease, background 0.3s ease;
-      backdrop-filter: blur(8px);
+      background: rgba(11,26,11,0.97);
+      border-bottom: 1px solid var(--bord);
+      backdrop-filter: blur(12px);
+      transition: height .3s;
     }
-    .navbar.scrolled {
-      height: 64px;
-      background: rgba(13,26,13,1);
-      border-bottom-color: rgba(201,168,76,0.2);
-    }
-    .navbar-brand {
-      font-weight: 700;
-      font-size: 1.1rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--white);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .navbar-brand img {
-      height: 56px;
-      width: auto;
-      object-fit: contain;
-      mix-blend-mode: screen;
-      transition: transform 0.25s ease, opacity 0.25s;
-    }
-    .navbar-brand:hover img { opacity: 0.85; transform: scale(1.05); }
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
+    .navbar.scrolled { height: 60px; }
+    .navbar-brand { display: flex; align-items: center; gap: 12px; }
+    .navbar-brand img { height: 48px; width: auto; object-fit: contain; mix-blend-mode: screen; }
+    .brand-text { display: flex; flex-direction: column; gap: 2px; }
     .brand-name {
       font-family: "Playfair Display", serif;
-      font-size: 0.95rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      line-height: 1;
+      font-size: .9rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--gold); line-height: 1;
     }
     .brand-sub {
-      font-family: "Inter", sans-serif;
-      font-size: 0.52rem;
-      font-weight: 400;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(201,168,76,0.55);
-      line-height: 1;
+      font-size: .48rem; font-weight: 500;
+      letter-spacing: .26em; text-transform: uppercase;
+      color: rgba(201,168,76,.5); line-height: 1;
     }
-    .brand-dot {
-      width: 5px; height: 5px;
-      background: var(--accent);
-      border-radius: 50%;
-      opacity: 0.7;
-    }
-    .navbar-nav {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
+    .navbar-nav { display: flex; align-items: center; gap: 2rem; }
     .nav-link {
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
-      position: relative;
-      transition: color 0.2s;
+      font-size: .62rem; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(255,255,255,.6);
+      position: relative; transition: color .2s;
     }
     .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 0; right: 100%;
-      height: 1px;
-      background: var(--accent);
-      transition: right 0.3s ease;
+      content: ''; position: absolute;
+      bottom: -2px; left: 0; right: 100%;
+      height: 1px; background: var(--gold);
+      transition: right .3s;
     }
-    .nav-link:hover { color: var(--white); }
+    .nav-link:hover { color: #fff; }
     .nav-link:hover::after { right: 0; }
     .nav-btn {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      font-size: .62rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
       padding: 9px 20px;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      background: transparent;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
+      background: var(--gold); color: var(--bg);
+      border: none; cursor: pointer;
+      transition: background .2s;
     }
-    .nav-btn:hover { background: var(--accent); color: #0d1a0d; }
+    .nav-btn:hover { background: var(--gold2); }
     .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
     }
-    .hamburger span {
-      display: block;
-      width: 22px; height: 1.5px;
-      background: var(--white);
-      transition: transform 0.3s, opacity 0.3s;
-    }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: #fff; transition: transform .3s, opacity .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ─── MOBILE MENU ───────────────────────── */
     .mobile-menu {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 999;
-      background: #080f08;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: #060f06;
+      flex-direction: column; align-items: center; justify-content: center; gap: 1.8rem;
     }
     .mobile-menu.open { display: flex; }
-    .mobile-menu .nav-link {
-      font-size: 1.5rem;
-      letter-spacing: 0.04em;
-      color: rgba(255,255,255,0.7);
-    }
-    .mobile-menu .nav-link:hover { color: var(--accent); }
+    .mobile-menu img { height: 64px; mix-blend-mode: screen; margin-bottom: .5rem; }
+    .mobile-menu .nav-link { font-size: 1.3rem; letter-spacing: .04em; color: rgba(255,255,255,.7); }
+    .mobile-menu .nav-link:hover { color: var(--gold); }
+    .mobile-menu .nav-btn { font-size: .68rem; padding: 12px 28px; margin-top: .5rem; }
 
-    /* ── HERO VIDEO ────────────────────────────────────────── */
+    /* ─── HERO — SPLIT ──────────────────────── */
     .hero {
       position: relative;
-      height: 100svh;
-      min-height: 600px;
+      height: 100svh; min-height: 580px;
+      display: grid; grid-template-columns: 1fr 1fr;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
-    .hero-video-wrap {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-    .hero-video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(0.55) saturate(0.8);
-    }
-    .hero-poster {
-      position: absolute;
-      inset: 0;
+    .hero-panel { position: relative; overflow: hidden; }
+    .hero-panel img {
       width: 100%; height: 100%;
       object-fit: cover;
-      filter: brightness(0.55) saturate(0.8);
-      z-index: -1;
+      filter: brightness(0.68) saturate(0.8);
     }
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(to bottom, rgba(13,26,13,0.25) 0%, rgba(13,26,13,0.72) 100%),
-        radial-gradient(ellipse at 50% 80%, rgba(13,26,13,0.5) 0%, transparent 60%);
-      z-index: 1;
+    .hero-panel::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(11,26,11,0) 0%, rgba(11,26,11,0.1) 40%, rgba(11,26,11,0.88) 100%);
     }
-    .hero-center-logo {
-      display: block;
-      width: 600px;
-      max-width: 90vw;
-      margin: 0 auto 0;
-      filter: drop-shadow(0 4px 16px rgba(0,0,0,0.7));
-      mix-blend-mode: screen;
-      opacity: 1;
+    .hero-divider {
+      position: absolute; left: 50%; top: 0; bottom: 0;
+      width: 1px; z-index: 5;
+      background: linear-gradient(to bottom, transparent 5%, rgba(201,168,76,.45) 40%, rgba(201,168,76,.45) 70%, transparent 95%);
+      transform: translateX(-50%);
     }
+    #heroVideo { display: none; }
+    .hero-center-logo { display: none; }
     .hero-watermark {
-      position: absolute;
-      bottom: 3rem;
-      right: 3rem;
-      z-index: 2;
-      width: 120px;
-      opacity: 0.18;
-      filter: brightness(10) sepia(1) saturate(3) hue-rotate(10deg) drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+      position: absolute; bottom: 2rem; right: 2rem;
+      z-index: 4; width: 80px; opacity: .12;
+      filter: brightness(10) sepia(1) saturate(3) hue-rotate(10deg);
       pointer-events: none;
     }
     .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      color: var(--white);
-      padding: 80px 1.5rem 0;
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 10;
+      text-align: center; padding: 0 1.5rem 3.5rem;
     }
     .hero-eyebrow {
       display: inline-block;
-      font-size: 0.62rem;
-      font-weight: 500;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.5rem;
+      font-size: .55rem; font-weight: 600; letter-spacing: .3em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem; opacity: .9;
     }
     .hero-title {
       font-family: "Playfair Display", serif;
-      font-size: clamp(2.6rem, 7vw, 5.8rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.08;
-      margin-bottom: 1.5rem;
-      color: var(--white);
+      font-size: clamp(1.5rem, 4vw, 3.6rem);
+      font-weight: 900; line-height: 1.12;
+      letter-spacing: .02em; text-transform: uppercase;
+      color: var(--gold);
+      text-shadow: 0 2px 20px rgba(0,0,0,0.7);
+      margin-bottom: 1.2rem;
     }
-    .hero-title strong {
-      font-weight: 900;
-      display: block;
-      color: var(--accent);
-    }
+    .hero-title strong { color: var(--gold2); font-weight: 900; display: inline; }
     .hero-subtitle {
-      font-size: clamp(0.85rem, 2vw, 1rem);
-      font-weight: 300;
-      color: rgba(255,255,255,0.72);
-      max-width: 520px;
-      margin: 0 auto 2.5rem;
-      line-height: 1.8;
+      font-size: .8rem; font-weight: 300;
+      color: rgba(255,255,255,.65);
+      max-width: 440px; margin: 0 auto 1.8rem; line-height: 1.8;
     }
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .video-ctrl {
-      position: absolute;
-      bottom: 2rem;
-      right: 2rem;
-      z-index: 3;
-      width: 44px; height: 44px;
-      background: rgba(201,168,76,0.15);
-      border: 1px solid rgba(201,168,76,0.4);
-      color: var(--accent);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-      transition: background 0.2s, border-color 0.2s;
-      backdrop-filter: blur(4px);
-    }
-    .video-ctrl:hover { background: rgba(201,168,76,0.28); border-color: var(--accent); }
-    .video-ctrl svg { pointer-events: none; }
+    .hero-actions { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
 
+    /* ─── BUTTONS ───────────────────────────── */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: "Inter", sans-serif;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      padding: 14px 32px;
-      cursor: pointer;
-      border: none;
-      transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: .62rem; font-weight: 700;
+      letter-spacing: .16em; text-transform: uppercase;
+      padding: 13px 28px; cursor: pointer; border: none;
+      transition: background .2s, color .2s, transform .15s;
     }
-    .btn-primary {
-      background: var(--accent);
-      color: #0d1a0d;
-    }
-    .btn-primary:hover { background: var(--accent2); color: var(--white); transform: translateY(-2px); }
-    .btn-outline {
-      background: transparent;
-      border: 1px solid rgba(201,168,76,0.55);
-      color: var(--accent);
-    }
-    .btn-outline:hover { background: var(--accent); color: #0d1a0d; transform: translateY(-2px); }
-    .btn svg { transition: transform 0.2s ease; }
-    .btn:hover svg { transform: translateX(4px); }
+    .btn-primary { background: var(--gold); color: var(--bg); }
+    .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+    .btn-outline { background: transparent; border: 1px solid rgba(201,168,76,.5); color: var(--gold); }
+    .btn-outline:hover { background: var(--gold); color: var(--bg); transform: translateY(-2px); }
 
-    /* ── QUICK NAV CARDS (wrapstyle bottom strip) ─────────── */
-    .quicknav {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      height: 200px;
+    /* ─── SECTION COMMON ────────────────────── */
+    .sec-label {
+      display: block; text-align: center;
+      font-size: .58rem; font-weight: 700; letter-spacing: .3em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: .5rem;
     }
-    @media (max-width: 768px) {
-      .quicknav { grid-template-columns: repeat(2, 1fr); height: 320px; }
-    }
-    @media (max-width: 480px) {
-      .quicknav { grid-template-columns: 1fr 1fr; height: 280px; }
-    }
-    .qn-card {
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      cursor: pointer;
-      text-decoration: none;
-    }
-    .qn-card::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: rgba(13,26,13,0.55);
-      transition: background 0.35s ease;
-      z-index: 1;
-    }
-    .qn-card:hover::before { background: rgba(13,26,13,0.3); }
-    .qn-bg {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-      filter: brightness(0.75) saturate(0.65);
-    }
-    .qn-card:hover .qn-bg { transform: scale(1.06); filter: brightness(0.85) saturate(0.8); }
-    .qn-icon {
-      position: relative; z-index: 2;
-      width: 54px; height: 54px;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--accent);
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
-    }
-    .qn-icon svg { width: 100%; height: 100%; }
-    .qn-label {
-      position: relative; z-index: 2;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--white);
-      text-shadow: 0 1px 8px rgba(0,0,0,0.7);
-    }
-
-    /* ── STRIP ─────────────────────────────────────────────── */
-    .stats-strip {
-      background: #122212;
-      border-top: 1px solid rgba(201,168,76,0.15);
-      border-bottom: 1px solid rgba(201,168,76,0.15);
-      padding: 2.5rem 0;
-    }
-    .stats-strip .row { align-items: center; }
-    .stat-item {
+    .sec-title {
       text-align: center;
-      padding: 0.75rem 1rem;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(1.2rem, 3vw, 1.9rem);
+      font-weight: 900; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 2.2rem;
     }
-    .stat-item + .stat-item {
-      border-left: 1px solid rgba(201,168,76,0.12);
+    section { padding: 4rem 0; }
+    .s-light { background: var(--bg2); }
+    .s-dark  { background: var(--bg3); }
+
+    /* ─── STATS STRIP ───────────────────────── */
+    .stats-strip {
+      background: var(--surf);
+      border-top: 1px solid var(--bord);
+      border-bottom: 1px solid var(--bord);
+      padding: 2rem 0;
+    }
+    .stats-inner {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 1px; background: var(--bord);
+    }
+    .stat-item {
+      text-align: center; padding: 1.4rem 1rem;
+      background: var(--surf);
     }
     .stat-number {
       font-family: "Playfair Display", serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: -0.03em;
-      line-height: 1;
-      margin-bottom: 0.25rem;
-      font-feature-settings: "tnum";
+      font-size: 2.2rem; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: .3rem;
     }
-    .stat-number span { color: var(--accent); }
     .stat-label {
-      font-size: 0.62rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
+      font-size: .6rem; font-weight: 600; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--muted);
     }
 
-    /* ── SECTION COMMON ────────────────────────────────────── */
-    section { padding: 5rem 0; background: var(--black); }
-    .section-light { background: #122212; }
-    .section-dark { background: #0d1a0d; color: var(--white); }
-    .section-dark .section-sub { color: rgba(255,255,255,0.45); }
-    .section-dark p { color: rgba(255,255,255,0.55); }
-
-    .section-label {
-      display: inline-block;
-      font-size: 0.6rem;
-      font-weight: 600;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1rem;
+    /* ─── SERVICES SLIDER ───────────────────── */
+    .svc-wrap { position: relative; padding: 0 3rem; }
+    .svc-track-outer { overflow: hidden; }
+    .svc-track {
+      display: flex; gap: 14px;
+      transition: transform .4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-    .section-title {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(1.75rem, 3.5vw, 2.6rem);
-      font-weight: 700;
-      color: var(--dark);
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin-bottom: 1.2rem;
-    }
-    .section-title strong { font-weight: 900; color: var(--accent); }
-    .section-sub {
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.5);
-      max-width: 540px;
-      line-height: 1.8;
-      margin-bottom: 2.5rem;
-    }
-    .section-dark .section-title { color: var(--white); }
-    .divider {
-      width: 40px; height: 2px;
-      background: var(--accent);
-      margin-bottom: 1.5rem;
-      opacity: 0.8;
-    }
-
-    /* ── ABOUT ─────────────────────────────────────────────── */
-    .about-img-wrap {
-      position: relative;
-      height: 480px;
-    }
-    .about-img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      filter: brightness(0.9) saturate(0.85);
-    }
-    .about-img-wrap::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(13,26,13,0.5) 0%, transparent 50%);
-      pointer-events: none;
-    }
-    .about-img-badge {
-      position: absolute;
-      bottom: -1.5rem;
-      right: -1.5rem;
-      background: #122212;
-      border: 1px solid rgba(201,168,76,0.3);
-      color: var(--white);
-      padding: 1.2rem 1.5rem;
-      text-align: center;
-      min-width: 140px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      z-index: 2;
-    }
-    .about-img-badge img {
-      width: 64px;
-      height: auto;
-      object-fit: contain;
-      mix-blend-mode: screen;
-    }
-    .badge-num {
-      font-family: "Playfair Display", serif;
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: var(--accent);
-      line-height: 1;
-      display: block;
-    }
-    .badge-text {
-      font-size: 0.6rem;
-      font-weight: 500;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      margin-top: 4px;
-      display: block;
-    }
-    .about-content { padding-left: 3rem; display: flex; flex-direction: column; justify-content: center; }
-    @media (max-width: 991px) {
-      .about-content { padding-left: 0; padding-top: 3rem; }
-      .about-img-badge { right: 1rem; }
-    }
-    .about-list { margin-top: 1.5rem; }
-    .about-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.65);
-      margin-bottom: 0.75rem;
-    }
-    .about-list li::before {
-      content: '';
-      width: 16px; height: 1px;
-      background: var(--accent);
-      margin-top: 11px;
-      flex-shrink: 0;
-    }
-
-    /* ── SERVICES ──────────────────────────────────────────── */
     .service-card {
-      background: #122212;
-      border: 1px solid rgba(201,168,76,0.15);
-      padding: 2.5rem 2rem;
-      height: 100%;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.35s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .service-card::before {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 100%;
-      height: 2px;
-      background: var(--accent);
-      transition: right 0.4s ease;
+      flex: 0 0 calc(25% - 10.5px);
+      min-width: 0;
+      background: var(--bg2);
+      border: 1px solid var(--gold);
+      border-radius: 6px;
+      padding: 1.4rem 1.2rem;
+      display: flex; flex-direction: column; gap: .7rem;
+      transition: background .2s, box-shadow .2s;
     }
     .service-card:hover {
-      transform: translateY(-6px);
-      box-shadow:
-        0 1px 2px rgba(0,0,0,0.12),
-        0 8px 24px rgba(0,0,0,0.25),
-        0 20px 48px rgba(201,168,76,0.06);
-      border-color: rgba(201,168,76,0.35);
+      background: var(--bg3);
+      box-shadow: 0 4px 20px rgba(201,168,76,0.12);
     }
-    .service-card:hover::before { right: 0; }
     .service-icon {
       width: 48px; height: 48px;
-      margin-bottom: 1.5rem;
-      color: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold);
     }
     .service-icon svg { width: 100%; height: 100%; }
     .service-name {
-      font-family: "Playfair Display", serif;
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--dark);
-      letter-spacing: -0.01em;
-      margin-bottom: 0.75rem;
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--gold); line-height: 1.3;
     }
-    .service-text {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.75;
-    }
+    .service-text { font-size: .75rem; color: var(--muted); line-height: 1.7; }
     .service-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.63rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-top: 1.2rem;
-      transition: gap 0.2s ease, opacity 0.2s;
+      display: none; /* hidden, kept for admin compat */
     }
-    .service-card:hover .service-link { gap: 10px; opacity: 1; }
+    .svc-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 36px; height: 36px;
+      border: 1px solid var(--bord); border-radius: 50%;
+      background: var(--bg2);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); cursor: pointer;
+      transition: background .2s, border-color .2s;
+      z-index: 5;
+    }
+    .svc-arrow:hover { background: var(--gold); color: var(--bg); border-color: var(--gold); }
+    .svc-arrow.prev { left: 0; }
+    .svc-arrow.next { right: 0; }
+    .svc-dots {
+      display: flex; justify-content: center; gap: 7px; margin-top: 1.4rem;
+    }
+    .svc-dot {
+      width: 28px; height: 4px; border-radius: 2px;
+      background: var(--bord); cursor: pointer;
+      transition: background .25s;
+    }
+    .svc-dot.on { background: var(--gold); }
 
-    /* ── PROCESS ───────────────────────────────────────────── */
-    .process-step {
-      display: flex;
-      gap: 1.5rem;
-      margin-bottom: 3rem;
+    /* ─── ABOUT ─────────────────────────────── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
     }
-    .process-step:last-child { margin-bottom: 0; }
-    .step-num-wrap {
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
+    .about-img-wrap { position: relative; }
+    .about-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+    .about-img-badge {
+      position: absolute; bottom: -1.2rem; right: -1.2rem;
+      background: var(--surf); border: 1px solid var(--bord);
+      padding: 1rem 1.2rem;
+      display: flex; align-items: center; gap: 10px;
     }
-    .step-circle {
-      width: 44px; height: 44px;
-      border: 1px solid var(--accent);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: "Playfair Display", serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--accent);
-      flex-shrink: 0;
-      background: rgba(201,168,76,0.06);
+    .about-img-badge img { height: 30px; width: auto; mix-blend-mode: screen; }
+    .badge-text {
+      font-size: .52rem; font-weight: 600; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--muted);
     }
-    .step-line {
-      width: 1px;
-      flex: 1;
-      min-height: 40px;
-      background: rgba(201,168,76,0.18);
-      margin: 8px 0;
-    }
-    .process-step:last-child .step-line { display: none; }
-    .step-body { padding-top: 8px; padding-bottom: 2rem; }
-    .step-title {
-      font-family: "Playfair Display", serif;
-      font-size: 0.98rem;
-      font-weight: 600;
-      color: var(--dark);
-      margin-bottom: 0.4rem;
-    }
-    .step-text {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.75;
-    }
+    .about-content .sec-label { text-align: left; }
+    .about-content .sec-title { text-align: left; font-size: 1.6rem; }
+    .divider { width: 36px; height: 1px; background: var(--gold); opacity: .6; margin: 0 0 1.2rem; }
+    .about-list { display: flex; flex-direction: column; gap: .5rem; margin-top: 1.2rem; }
+    .about-list li { display: flex; align-items: flex-start; gap: 10px; font-size: .8rem; color: var(--muted); }
+    .about-list li::before { content: ''; display: block; width: 14px; height: 1px; background: var(--gold); margin-top: .65em; flex-shrink: 0; }
 
-    /* ── GALLERY ───────────────────────────────────────────── */
-    .gallery-filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 2.5rem;
-    }
-    .filter-btn {
-      font-size: 0.63rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      padding: 8px 18px;
-      background: transparent;
-      color: rgba(255,255,255,0.5);
-      border: 1px solid rgba(201,168,76,0.2);
-      cursor: pointer;
-      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-    }
-    .filter-btn.active, .filter-btn:hover {
-      background: var(--accent);
-      color: #0d1a0d;
-      border-color: var(--accent);
-    }
+    /* ─── GALLERY ───────────────────────────── */
     .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 5px;
     }
-    @media (max-width: 768px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 480px) { .gallery-grid { grid-template-columns: 1fr; } }
-    .gallery-item {
-      position: relative;
-      aspect-ratio: 4/3;
-      overflow: hidden;
-      background: #122212;
-    }
-    .gallery-item.featured { grid-column: span 2; aspect-ratio: 2/1; }
+    .gallery-item { position: relative; overflow: hidden; aspect-ratio: 4/3; }
     .gallery-item img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease, filter 0.4s ease;
-      filter: grayscale(15%) brightness(0.9);
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(.85) saturate(.75);
+      transition: transform .55s ease, filter .35s;
     }
-    .gallery-item:hover img { transform: scale(1.06); filter: grayscale(0%) brightness(1); }
+    .gallery-item:hover img { transform: scale(1.07); filter: brightness(1) saturate(1); }
     .gallery-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(13,26,13,0);
-      display: flex;
-      align-items: flex-end;
-      padding: 1.5rem;
-      transition: background 0.3s ease;
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(11,26,11,.75) 0%, transparent 55%);
+      opacity: 0; transition: opacity .3s;
+      display: flex; align-items: flex-end; padding: 1rem;
     }
-    .gallery-item:hover .gallery-overlay {
-      background: linear-gradient(to top, rgba(13,26,13,0.65) 0%, transparent 60%);
-    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
     .gallery-caption {
-      color: var(--white);
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      font-size: .58rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--gold);
     }
-    .gallery-item:hover .gallery-caption { opacity: 1; transform: translateY(0); }
 
-    /* ── MATERIALS ─────────────────────────────────────────── */
-    .materials-section {
-      padding: 3.5rem 0;
-      border-top: 1px solid rgba(201,168,76,0.15);
-      border-bottom: 1px solid rgba(201,168,76,0.15);
-      background: #122212;
+    /* ─── PROCESS ───────────────────────────── */
+    .process-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 2px; background: var(--bord);
+      border: 1px solid var(--bord); margin-top: 2.5rem;
     }
-    .materials-inner {
-      display: flex;
-      align-items: center;
-      gap: 3rem;
-      flex-wrap: wrap;
+    .process-step { background: var(--bg3); padding: 2.2rem 1.8rem; }
+    .step-num {
+      font-family: "Playfair Display", serif;
+      font-size: 3rem; font-weight: 900; color: rgba(201,168,76,.1); line-height: 1; margin-bottom: .5rem;
     }
-    .materials-title {
-      font-size: 0.62rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .materials-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .mat-tag {
-      font-size: 0.62rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 6px 14px;
-      border: 1px solid rgba(201,168,76,0.2);
-      color: rgba(255,255,255,0.55);
-      background: transparent;
-      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
-      cursor: default;
-    }
-    .mat-tag:hover { border-color: var(--accent); color: var(--accent); background: rgba(201,168,76,0.06); }
+    .step-title { font-size: .85rem; font-weight: 700; color: var(--gold); margin-bottom: .5rem; }
+    .step-text { font-size: .78rem; color: var(--muted); line-height: 1.75; }
 
-    /* ── TESTIMONIALS ──────────────────────────────────────── */
+    /* ─── TESTIMONIALS ──────────────────────── */
+    .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; margin-top: 2.5rem; }
     .testimonial-card {
-      background: #122212;
-      border: 1px solid rgba(201,168,76,0.15);
-      padding: 2rem 1.75rem;
-      height: 100%;
-      position: relative;
-      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+      background: var(--bg3); border: 1px solid var(--bord);
+      padding: 1.8rem; position: relative;
     }
     .testimonial-card::before {
-      content: '\201C';
-      position: absolute;
-      top: 1rem; right: 1.5rem;
-      font-family: "Playfair Display", serif;
-      font-size: 4rem;
-      font-weight: 900;
-      color: var(--accent);
-      opacity: 0.25;
-      line-height: 1;
-      pointer-events: none;
+      content: '"'; position: absolute; top: .8rem; right: 1.2rem;
+      font-family: "Playfair Display", serif; font-size: 4.5rem; line-height: 1;
+      color: rgba(201,168,76,.1);
     }
-    .testimonial-card:hover {
-      border-color: rgba(201,168,76,0.3);
-      box-shadow:
-        0 4px 12px rgba(0,0,0,0.2),
-        0 12px 40px rgba(201,168,76,0.05);
-    }
-    .stars {
-      display: flex;
-      gap: 3px;
-      margin-bottom: 1rem;
-      color: var(--accent);
-    }
-    .testimonial-text {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.65);
-      line-height: 1.8;
-      font-style: italic;
-      margin-bottom: 1.5rem;
-    }
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(201,168,76,0.15);
-    }
-    .author-avatar {
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-      flex-shrink: 0;
-      filter: grayscale(20%) brightness(0.9);
-      border: 1px solid rgba(201,168,76,0.3);
-    }
-    .author-name {
-      font-family: "Playfair Display", serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--dark);
-    }
-    .author-car {
-      font-size: 0.68rem;
-      color: rgba(255,255,255,0.4);
-    }
+    .star-row { display: flex; gap: 2px; margin-bottom: .8rem; }
+    .star-row svg { color: var(--gold); }
+    .testimonial-text { font-size: .8rem; color: var(--muted); line-height: 1.8; font-style: italic; margin-bottom: 1.2rem; }
+    .author-row { display: flex; align-items: center; gap: 10px; }
+    .author-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 1px solid var(--bord); }
+    .author-name { font-size: .75rem; font-weight: 700; color: #fff; line-height: 1.2; }
+    .author-car { font-size: .6rem; color: var(--gold); }
 
-    /* ── FAQ ───────────────────────────────────────────────── */
-    .faq-item {
-      border-bottom: 1px solid rgba(201,168,76,0.15);
-    }
+    /* ─── FAQ ───────────────────────────────── */
+    .faq-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
+    .faq-list { display: flex; flex-direction: column; gap: 1px; margin-top: 0; }
+    .faq-item { background: var(--bg3); border: 1px solid var(--bord); }
     .faq-question {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.3rem 0;
-      font-family: "Inter", sans-serif;
-      font-size: 0.88rem;
-      font-weight: 500;
-      color: var(--dark);
-      background: none;
-      border: none;
-      cursor: pointer;
-      text-align: left;
-      transition: color 0.2s;
+      width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      padding: 1.3rem 1.6rem; background: none; border: none;
+      color: #fff; font-family: "Plus Jakarta Sans", sans-serif; font-size: .84rem; font-weight: 600;
+      text-align: left; cursor: pointer; transition: color .2s;
     }
-    .faq-question:hover { color: var(--accent); }
+    .faq-question:hover { color: var(--gold); }
     .faq-icon {
-      width: 24px; height: 24px;
-      border: 1px solid rgba(201,168,76,0.3);
-      border-radius: 50%;
+      width: 20px; height: 20px; border: 1px solid var(--bord); border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      color: var(--accent);
-      transition: transform 0.3s ease, border-color 0.2s, background 0.2s;
+      flex-shrink: 0; color: var(--gold); font-size: .95rem; transition: transform .3s;
     }
-    .faq-item.open .faq-icon {
-      transform: rotate(45deg);
-      border-color: var(--accent);
-      background: rgba(201,168,76,0.12);
-    }
-    .faq-answer {
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.4s ease;
-    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height .4s ease; padding: 0 1.6rem; }
+    .faq-answer p { padding-bottom: 1.2rem; font-size: .8rem; color: var(--muted); line-height: 1.8; }
     .faq-item.open .faq-answer { max-height: 300px; }
-    .faq-answer p {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.8;
-      padding-bottom: 1.3rem;
-    }
 
-    /* ── CONTACT ───────────────────────────────────────────── */
-    .contact-info { padding-right: 3rem; }
-    @media (max-width: 991px) { .contact-info { padding-right: 0; margin-bottom: 2.5rem; } }
-    .contact-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
+    /* ─── CONTACT ───────────────────────────── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
+    .contact-info .sec-label { text-align: left; }
+    .contact-info .sec-title { text-align: left; font-size: 1.5rem; }
+    .contact-items { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1.8rem; }
+    .contact-item { display: flex; align-items: flex-start; gap: 12px; }
     .contact-icon {
-      width: 40px; height: 40px;
-      background: rgba(201,168,76,0.08);
-      border: 1px solid rgba(201,168,76,0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      color: var(--accent);
-    }
-    .contact-label {
-      font-size: 0.6rem;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
-      margin-bottom: 2px;
-    }
-    .contact-value {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--dark);
-    }
-    .form-group { margin-bottom: 1rem; }
-    .form-label {
-      display: block;
-      font-size: 0.6rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 6px;
-    }
-    .form-control {
-      width: 100%;
-      padding: 11px 14px;
-      font-family: "Inter", sans-serif;
-      font-size: 0.82rem;
-      font-weight: 300;
-      color: var(--white);
-      background: #122212;
-      border: 1px solid rgba(201,168,76,0.2);
-      outline: none;
-      transition: border-color 0.2s;
-      appearance: none;
-    }
-    .form-control::placeholder { color: rgba(255,255,255,0.3); }
-    .form-control:focus { border-color: var(--accent); }
-    select.form-control {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 12px center;
-      background-color: #122212;
-      padding-right: 36px;
-    }
-    select.form-control option { background: #122212; color: var(--white); }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    @media (max-width: 576px) { .form-row { grid-template-columns: 1fr; } }
-    .btn-submit {
-      width: 100%;
-      padding: 14px;
-      background: var(--accent);
-      color: #0d1a0d;
-      font-family: "Inter", sans-serif;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      transition: background 0.25s ease, transform 0.2s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 0.5rem;
-    }
-    .btn-submit:hover { background: var(--accent2); color: var(--white); transform: translateY(-2px); }
-    .btn-submit svg { transition: transform 0.2s ease; }
-    .btn-submit:hover svg { transform: translateX(4px); }
-
-    /* ── MARQUEE ───────────────────────────────────────────── */
-    .marquee-wrap {
-      background: #080f08;
-      border-top: 1px solid rgba(201,168,76,0.12);
-      border-bottom: 1px solid rgba(201,168,76,0.12);
-      padding: 1.1rem 0;
-      overflow: hidden;
-    }
-    .marquee-track {
-      display: flex;
-      white-space: nowrap;
-      animation: marquee 30s linear infinite;
-    }
-    .marquee-track:hover { animation-play-state: paused; }
-    @keyframes marquee {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .marquee-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 24px;
-      font-size: 0.58rem;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.3);
-      padding: 0 28px;
-    }
-    .marquee-item::after {
-      content: '◆';
-      color: var(--accent);
-      font-size: 0.4rem;
-      opacity: 0.7;
-    }
-
-    /* ── FOOTER ────────────────────────────────────────────── */
-    footer {
-      background: #080f08;
-      color: rgba(255,255,255,0.45);
-      padding: 4rem 0 0;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 3rem;
-      padding-bottom: 3rem;
-      border-bottom: 1px solid rgba(201,168,76,0.12);
-    }
-    @media (max-width: 992px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; } }
-    @media (max-width: 576px) { .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; } }
-    .footer-logo {
-      font-family: "Playfair Display", serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .footer-logo img {
-      height: 40px;
-      width: auto;
-      object-fit: contain;
-      mix-blend-mode: screen;
-      opacity: 0.85;
-    }
-    .footer-tagline {
-      font-size: 0.8rem;
-      line-height: 1.75;
-      color: rgba(255,255,255,0.4);
-      margin-bottom: 1.5rem;
-    }
-    .footer-social {
-      display: flex;
-      gap: 0.5rem;
-    }
-    .social-btn {
-      width: 34px; height: 34px;
-      border: 1px solid rgba(201,168,76,0.2);
+      width: 38px; height: 38px; border: 1px solid var(--bord);
       display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.35);
-      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      color: var(--gold); flex-shrink: 0;
     }
-    .social-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(201,168,76,0.08); }
-    .footer-col-title {
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.2rem;
-    }
-    .footer-links { }
-    .footer-links li { margin-bottom: 0.6rem; }
-    .footer-links a {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.35);
-      transition: color 0.2s, padding-left 0.2s;
-    }
-    .footer-links a:hover { color: var(--accent); padding-left: 4px; }
-    .footer-contact-line {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      font-size: 0.8rem;
-      margin-bottom: 0.75rem;
-      color: rgba(255,255,255,0.4);
-    }
-    .footer-contact-line svg { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
-    .footer-bottom {
-      padding: 1.25rem 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .footer-copy {
-      font-size: 0.7rem;
-      color: rgba(255,255,255,0.18);
-    }
-    .footer-legal {
-      display: flex;
-      gap: 1.5rem;
-    }
-    .footer-legal a {
-      font-size: 0.7rem;
-      color: rgba(255,255,255,0.18);
-      transition: color 0.2s;
-    }
-    .footer-legal a:hover { color: rgba(201,168,76,0.6); }
+    .contact-value { font-size: .8rem; color: var(--muted); line-height: 1.6; }
+    .contact-value a { color: var(--gold); transition: opacity .2s; }
+    .contact-value a:hover { opacity: .75; }
+    .contact-label { font-size: .55rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: .15rem; }
 
-    /* ── UTILITY ───────────────────────────────────────────── */
-    .text-center { text-align: center; }
-    .mb-1 { margin-bottom: 0.5rem; }
-    .mb-2 { margin-bottom: 1rem; }
-    .mb-3 { margin-bottom: 1.5rem; }
-    .mb-4 { margin-bottom: 2rem; }
-    .mb-5 { margin-bottom: 3rem; }
-    .mt-2 { margin-top: 1rem; }
-    .mt-3 { margin-top: 1.5rem; }
-    .mt-4 { margin-top: 2rem; }
-    .mt-5 { margin-top: 3rem; }
-    .align-items-center { align-items: center; }
-    .justify-content-center { justify-content: center; }
-    .h-100 { height: 100%; }
-    .d-flex { display: flex; }
-    .flex-column { flex-direction: column; }
+    /* Contact form */
+    .contact-form { display: flex; flex-direction: column; gap: .9rem; }
+    .form-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+    .form-row3 { display: grid; grid-template-columns: 1fr auto; gap: .9rem; align-items: start; }
+    .form-input, .form-textarea {
+      width: 100%; background: var(--bg3); border: 1px solid var(--bord);
+      color: #fff; font-family: "Plus Jakarta Sans", sans-serif; font-size: .8rem;
+      padding: 12px 14px; outline: none; transition: border-color .2s;
+      border-radius: 2px;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,.28); }
+    .form-input:focus, .form-textarea:focus { border-color: rgba(201,168,76,.5); }
+    .form-textarea { resize: vertical; min-height: 100px; }
+    .btn-teklif {
+      font-size: .65rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+      padding: 13px 22px; background: var(--gold); color: var(--bg);
+      border: none; cursor: pointer; white-space: nowrap;
+      transition: background .2s;
+    }
+    .btn-teklif:hover { background: var(--gold2); }
 
+    /* ─── FOOTER ────────────────────────────── */
+    footer { background: #060f06; border-top: 1px solid var(--bord); padding: 3.5rem 0 2rem; }
+    .footer-top {
+      display: grid; grid-template-columns: 1.4fr 1.2fr 1fr 1fr;
+      gap: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--bord);
+    }
+    .footer-logo { margin-bottom: 1rem; }
+    .footer-logo img { height: 48px; width: auto; mix-blend-mode: screen; object-fit: contain; }
+    .footer-tagline { font-size: .75rem; color: var(--muted); line-height: 1.7; max-width: 200px; }
+    .footer-contact-line { display: flex; align-items: flex-start; gap: 8px; margin-top: 1rem; }
+    .footer-contact-line svg { color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+    .footer-contact-line span { font-size: .72rem; color: var(--muted); line-height: 1.5; }
+    .footer-col-title { font-size: .56rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .footer-links { display: flex; flex-direction: column; gap: .5rem; }
+    .footer-links a { font-size: .75rem; color: var(--muted); transition: color .2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 1.5rem; flex-wrap: wrap; gap: .6rem; }
+    .footer-copy { font-size: .6rem; color: rgba(255,255,255,.28); letter-spacing: .06em; }
+    .social-links { display: flex; gap: .6rem; }
+    .social-link {
+      width: 32px; height: 32px; border: 1px solid var(--bord);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); transition: border-color .2s, color .2s;
+    }
+    .social-link:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ─── RESPONSIVE ────────────────────────── */
     @media (max-width: 992px) {
-      .navbar-nav { display: none; }
-      .nav-btn { display: none; }
+      .navbar-nav, .nav-btn { display: none; }
       .hamburger { display: flex; }
-      section { padding: 3.5rem 0; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .faq-layout { grid-template-columns: 1fr; gap: 2rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .process-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      /* hero stays 2 columns on mobile — matches reference */
+      .hero { height: 56svh; min-height: 380px; }
+      .hero-title { font-size: clamp(1rem, 4.5vw, 1.6rem); }
+      .hero-content { padding: 0 1rem 2rem; }
+      .service-card { flex: 0 0 calc(50% - 7px); }
+      .stats-inner { grid-template-columns: repeat(2,1fr); }
+      .gallery-grid { grid-template-columns: repeat(2,1fr); }
+      .footer-top { grid-template-columns: 1fr; }
+      .form-row2 { grid-template-columns: 1fr; }
+      .form-row3 { grid-template-columns: 1fr; }
+      section { padding: 3rem 0; }
+    }
+    @media (max-width: 480px) {
+      .service-card { flex: 0 0 calc(50% - 7px); }
+      .svc-wrap { padding: 0 2.2rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav class="navbar" id="navbar">
-    <a href="#" class="navbar-brand">
-      <img src="logo.png" alt="Trimora Design Logo">
-      <div class="brand-text">
-        <div class="brand-name">TRIMORA DESIGN</div>
-        <div class="brand-sub">— CRAFTING EXCELLENCE —</div>
-      </div>
-    </a>
-    <ul class="navbar-nav">
-      <li><a href="#hizmetler" class="nav-link">Hizmetler</a></li>
-      <li><a href="#galeri" class="nav-link">Galeri</a></li>
-      <li><a href="#surec" class="nav-link">Süreç</a></li>
-      <li><a href="#referanslar" class="nav-link">Referanslar</a></li>
-      <li><a href="#iletisim" class="nav-link">İletişim</a></li>
-    </ul>
-    <a href="#iletisim" class="nav-btn">Teklif Al</a>
-    <button class="hamburger" id="hamburger" aria-label="Menü">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobileMenu">
-    <img src="logo.png" alt="Trimora Design" style="height:80px;width:auto;margin-bottom:1rem;opacity:0.9;">
-    <a href="#hizmetler" class="nav-link" onclick="closeMobile()">Hizmetler</a>
-    <a href="#galeri" class="nav-link" onclick="closeMobile()">Galeri</a>
-    <a href="#surec" class="nav-link" onclick="closeMobile()">Süreç</a>
-    <a href="#referanslar" class="nav-link" onclick="closeMobile()">Referanslar</a>
-    <a href="#iletisim" class="nav-link" onclick="closeMobile()">Teklif Al</a>
-  </div>
-
-  <!-- HERO VIDEO -->
-  <section class="hero" id="heroSection">
-    <div class="hero-video-wrap">
-      <!-- Autoplay muted video — falls back to poster image -->
-      <video
-        id="heroVideo"
-        class="hero-video"
-        autoplay muted loop playsinline
-        poster="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80"
-      >
-        <!-- Pexels leather craft / upholstery video -->
-        <source src="https://videos.pexels.com/video-files/4812208/4812208-uhd_2560_1440_25fps.mp4" type="video/mp4">
-      </video>
-      <img
-        src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80"
-        alt="" class="hero-poster" aria-hidden="true"
-      >
+<!-- ═══ NAVBAR ══════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+  <a href="#" class="navbar-brand">
+    <img src="logo.png" alt="Trimora Design Logo">
+    <div class="brand-text">
+      <div class="brand-name">Trimora Design</div>
+      <div class="brand-sub">— Crafting Excellence —</div>
     </div>
-    <div class="hero-overlay"></div>
+  </a>
+  <ul class="navbar-nav">
+    <li><a href="#hizmetler"   class="nav-link">Hizmetler</a></li>
+    <li><a href="#galeri"      class="nav-link">Galeri</a></li>
+    <li><a href="#surec"       class="nav-link">Süreç</a></li>
+    <li><a href="#referanslar" class="nav-link">Referanslar</a></li>
+    <li><a href="#iletisim"    class="nav-link">İletişim</a></li>
+  </ul>
+  <a href="#iletisim" class="nav-btn">İletişim</a>
+  <button class="hamburger" id="hamburger" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-    <div class="hero-content">
-      <img src="logo.png" alt="Trimora Design" class="hero-center-logo" aria-hidden="true">
-      <span class="hero-eyebrow">Konya Selçuklu · Atiker 3. Sanayi</span>
-      <h1 class="hero-title">
-        Orijinal Sınırların<br>
-        <strong>Dışına Çıkmayan Döşeme</strong>
-      </h1>
-      <p class="hero-subtitle">
-        Recaro & Vader dönüşüm, hakiki deri döşeme, orijinal direksiyon kaplama.
-        Arabasını sevenler Trimora Design Garage'a geliyor.
-      </p>
-      <div class="hero-actions">
-        <a href="tel:05302354523" class="btn btn-primary">
-          Hemen Ara — 0530 235 45 23
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        </a>
-        <a href="#galeri" class="btn btn-outline">
-          Çalışmaları Gör
-        </a>
-      </div>
-    </div>
+<!-- ═══ MOBILE MENU ══════════════════════════════ -->
+<div class="mobile-menu" id="mobileMenu">
+  <img src="logo.png" alt="Trimora Design">
+  <a href="#hizmetler"   class="nav-link" onclick="closeMobile()">Hizmetler</a>
+  <a href="#galeri"      class="nav-link" onclick="closeMobile()">Galeri</a>
+  <a href="#surec"       class="nav-link" onclick="closeMobile()">Süreç</a>
+  <a href="#referanslar" class="nav-link" onclick="closeMobile()">Referanslar</a>
+  <a href="#iletisim"    class="nav-link" onclick="closeMobile()">İletişim</a>
+  <a href="#iletisim" class="nav-btn" onclick="closeMobile()">Teklif Al</a>
+</div>
 
-    <!-- Watermark logo -->
-    <img src="logo.png" alt="" class="hero-watermark" aria-hidden="true">
-
-    <!-- Pause/Play button — bottom right, exactly like wrapstyle -->
-    <button class="video-ctrl" id="videoCtrl" aria-label="Video duraklat">
-      <svg id="iconPause" width="16" height="16" viewBox="0 0 24 24" fill="white"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-      <svg id="iconPlay" width="16" height="16" viewBox="0 0 24 24" fill="white" style="display:none"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-    </button>
-  </section>
-
-  <!-- QUICK NAV CARDS — hero alt kart şeridi (wrapstyle konsepti) -->
-  <div class="quicknav">
-    <a href="#hizmetler" class="qn-card">
-      <img
-        src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=70"
-        alt="Hizmetler" class="qn-bg" loading="lazy"
-      >
-      <!-- Car seat / upholstery icon -->
-      <div class="qn-icon">
-        <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="7" y="15" width="40" height="22" rx="4" stroke="white" stroke-width="2"/>
-          <path d="M7 26h40" stroke="white" stroke-width="2"/>
-          <path d="M15 37v5M39 37v5" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="27" cy="10" r="4" stroke="white" stroke-width="2"/>
-          <path d="M23 14l4 7 4-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <span class="qn-label">Hizmetler</span>
-    </a>
-    <a href="#galeri" class="qn-card">
-      <img
-        src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&q=70"
-        alt="Galeri" class="qn-bg" loading="lazy"
-      >
-      <!-- Gallery / photos icon -->
-      <div class="qn-icon">
-        <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="4" y="10" width="32" height="26" rx="2" stroke="white" stroke-width="2"/>
-          <rect x="18" y="18" width="32" height="26" rx="2" stroke="white" stroke-width="2"/>
-          <circle cx="14" cy="20" r="3" stroke="white" stroke-width="2"/>
-          <path d="M4 28l8-7 6 6 5-4 9 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <span class="qn-label">Galeri</span>
-    </a>
-    <a href="#iletisim" class="qn-card">
-      <img
-        src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=70"
-        alt="Başvuru" class="qn-bg" loading="lazy"
-      >
-      <!-- Inquiry / clipboard icon -->
-      <div class="qn-icon">
-        <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="10" y="6" width="34" height="42" rx="2" stroke="white" stroke-width="2"/>
-          <path d="M20 6v-2a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2" stroke="white" stroke-width="2"/>
-          <path d="M18 20h18M18 28h18M18 36h10" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="40" cy="42" r="7" fill="none" stroke="white" stroke-width="2"/>
-          <path d="M37 42l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <span class="qn-label">Teklif Al</span>
-    </a>
-    <a href="#referanslar" class="qn-card">
-      <img
-        src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&q=70"
-        alt="Referanslar" class="qn-bg" loading="lazy"
-      >
-      <!-- Star / award icon -->
-      <div class="qn-icon">
-        <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="27" cy="27" r="22" stroke="white" stroke-width="2"/>
-          <polygon points="27,12 30.9,21.8 41.5,21.8 33.1,28 36.1,37.8 27,32 17.9,37.8 20.9,28 12.5,21.8 23.1,21.8" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.15)"/>
-        </svg>
-      </div>
-      <span class="qn-label">Referanslar</span>
-    </a>
+<!-- ═══ HERO — SPLIT CRAFTSMAN ════════════════════ -->
+<section class="hero" id="heroSection">
+  <div class="hero-panel">
+    <img
+      src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85"
+      class="hero-poster"
+      alt="Trimora Design atölyesi deri döşeme"
+      aria-hidden="true"
+    >
   </div>
+  <div class="hero-panel">
+    <img
+      src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=1200&q=85"
+      alt="Trimora Design deri kaplama atölyesi"
+      aria-hidden="true"
+    >
+  </div>
+  <div class="hero-divider"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Konya Selçuklu · Atiker 3. Sanayi</span>
+    <h1 class="hero-title">
+      Precision And Dedication:<br>
+      Our Commitment To<br>
+      <strong>Crafting Excellence</strong>
+    </h1>
+    <p class="hero-subtitle">
+      Recaro &amp; Vader dönüşüm, hakiki deri döşeme, orijinal direksiyon kaplama.
+    </p>
+    <div class="hero-actions">
+      <a href="tel:05302354523" class="btn btn-primary">
+        Hemen Ara
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1 19.79 19.79 0 0 1 1.62 4.43 2 2 0 0 1 3.6 2.24h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </a>
+      <a href="#galeri" class="btn btn-outline">Çalışmaları Gör</a>
+    </div>
+  </div>
+  <img src="logo.png" alt="" class="hero-watermark" aria-hidden="true">
+  <video id="heroVideo" style="display:none" poster="" muted></video>
+</section>
 
-  <!-- STATS -->
-  <div class="stats-strip">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-          <div class="stat-item">
-            <div class="stat-number"><span class="count" data-to="850">0</span><span>+</span></div>
-            <div class="stat-label">Tamamlanan Proje</div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-          <div class="stat-item">
-            <div class="stat-number"><span class="count" data-to="12">0</span><span> yıl</span></div>
-            <div class="stat-label">Sektör Deneyimi</div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-          <div class="stat-item">
-            <div class="stat-number"><span class="count" data-to="48">0</span><span> sa</span></div>
-            <div class="stat-label">Ortalama Teslim</div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-          <div class="stat-item">
-            <div class="stat-number"><span class="count" data-to="98">0</span><span>%</span></div>
-            <div class="stat-label">Müşteri Memnuniyeti</div>
-          </div>
-        </div>
+<!-- ═══ STATS STRIP ══════════════════════════════ -->
+<div class="stats-strip">
+  <div class="container">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <div class="stat-number"><span class="count" data-to="850">0</span><span>+</span></div>
+        <div class="stat-label">Tamamlanan Proje</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number"><span class="count" data-to="12">0</span><span> yıl</span></div>
+        <div class="stat-label">Sektör Deneyimi</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number"><span class="count" data-to="48">0</span><span> sa</span></div>
+        <div class="stat-label">Ortalama Teslim</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number"><span class="count" data-to="98">0</span><span>%</span></div>
+        <div class="stat-label">Müşteri Memnuniyeti</div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- ABOUT -->
-  <section>
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6">
-          <div class="about-img-wrap" data-aos="fade-right" data-aos-duration="800" data-aos-easing="ease">
-            <img
-              src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=900&q=80"
-              alt="Trimora Design atölyesi - araç döşeme ustası"
-              class="about-img"
-              loading="lazy"
-            >
-            <div class="about-img-badge">
-              <img src="logo.png" alt="Trimora Design">
-              <span class="badge-text" style="font-size:0.6rem;letter-spacing:0.12em;">KONYA · ATİKER 3. SANAYİ</span>
+<!-- ═══ SERVICES ═════════════════════════════════ -->
+<section class="s-light" id="hizmetler">
+  <div class="container">
+    <span class="sec-label">Hizmetlerimiz</span>
+    <h2 class="sec-title">Hizmetlerimiz</h2>
+    <div class="svc-wrap">
+      <button class="svc-arrow prev" id="svcPrev" onclick="svcSlide(-1)" aria-label="Geri">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="svc-track-outer">
+        <div class="svc-track" id="svcTrack">
+
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="8" y="16" width="32" height="18" rx="3"/>
+                <path d="M16 34v4M32 34v4M12 24h24"/>
+                <path d="M8 20c0-3 3-6 8-6h16c5 0 8 3 8 6"/>
+              </svg>
             </div>
+            <div class="service-name">Sandıköy Döşeme</div>
+            <p class="service-text">Geleneksel mobilya döşeme hizmetlerimiz.</p>
+            <a href="#iletisim" class="service-link">Detay</a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M4 34h40M8 34c0-6 3-14 8-18h12c5 4 8 12 8 18"/>
+                <path d="M16 16c0-4 4-8 8-8s8 4 8 8"/>
+                <circle cx="14" cy="36" r="4"/><circle cx="34" cy="36" r="4"/>
+                <path d="M18 36h12"/>
+              </svg>
+            </div>
+            <div class="service-name">Oto Döşeme</div>
+            <p class="service-text">Klasik ve modern araç iç kaplama.</p>
+            <a href="#iletisim" class="service-link">Detay</a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="24" cy="24" r="17"/>
+                <circle cx="24" cy="24" r="5"/>
+                <path d="M24 7v6M24 35v6M7 24h6M35 24h6"/>
+                <path d="M12.5 12.5l4.2 4.2M31.3 31.3l4.2 4.2M12.5 35.5l4.2-4.2M31.3 16.7l4.2-4.2"/>
+              </svg>
+            </div>
+            <div class="service-name">Direksiyon Kaplama</div>
+            <p class="service-text">Deri direksiyon kılıfı ve onarımı.</p>
+            <a href="#iletisim" class="service-link">Detay</a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="4" y="8" width="40" height="32" rx="2"/>
+                <path d="M4 18h40M14 8v10M34 8v10"/>
+                <path d="M4 28h40M14 28v12M34 28v12"/>
+              </svg>
+            </div>
+            <div class="service-name">Tavan ve Taban</div>
+            <p class="service-text">Araç tavan, taban ve yan panelleri.</p>
+            <a href="#iletisim" class="service-link">Detay</a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="6" y="14" width="36" height="20" rx="3"/>
+                <path d="M14 34v4M34 34v4M10 22h28M20 14v-4a4 4 0 0 1 8 0v4"/>
+              </svg>
+            </div>
+            <div class="service-name">Recaro & Vader</div>
+            <p class="service-text">Orijinal Recaro ve Vader koltuk dönüşümü.</p>
+            <a href="#iletisim" class="service-link">Detay</a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="4" y="10" width="40" height="28" rx="2"/>
+                <path d="M4 20h40M14 10v10M34 10v10"/>
+                <path d="M12 30h8M28 30h8"/>
+              </svg>
+            </div>
+            <div class="service-name">Torpido Kaplama</div>
+            <p class="service-text">Torpido ve kapı paneli deri kaplama.</p>
+            <a href="#iletisim" class="service-link">Detay</a>
+          </div>
+
+        </div><!-- /svc-track -->
+      </div><!-- /outer -->
+      <button class="svc-arrow next" id="svcNext" onclick="svcSlide(1)" aria-label="İleri">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div><!-- /svc-wrap -->
+    <div class="svc-dots" id="svcDots"></div>
+  </div>
+</section>
+
+<!-- ═══ GALLERY ═══════════════════════════════════ -->
+<section class="s-dark" id="galeri">
+  <div class="container">
+    <span class="sec-label">Galeri</span>
+    <h2 class="sec-title">Galeriden Seçkiler</h2>
+    <div class="gallery-grid" data-aos="fade-up">
+      <div class="gallery-item" data-cat="deri">
+        <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&q=80" alt="Klasik araç iç mekan döşeme" loading="lazy">
+        <div class="gallery-overlay"><span class="gallery-caption">Klasik İç Mekan</span></div>
+      </div>
+      <div class="gallery-item" data-cat="deri">
+        <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80" alt="Lüks araç direksiyon kaplama" loading="lazy">
+        <div class="gallery-overlay"><span class="gallery-caption">Direksiyon Kaplama</span></div>
+      </div>
+      <div class="gallery-item" data-cat="tavan">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80" alt="SUV araç deri döşeme" loading="lazy">
+        <div class="gallery-overlay"><span class="gallery-caption">SUV İç Döşeme</span></div>
+      </div>
+      <div class="gallery-item" data-cat="recaro">
+        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&q=80" alt="Klasik spor araç döşeme" loading="lazy">
+        <div class="gallery-overlay"><span class="gallery-caption">Klasik Spor — Recaro</span></div>
+      </div>
+      <div class="gallery-item" data-cat="deri">
+        <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&q=80" alt="Hakiki deri koltuk döşeme" loading="lazy">
+        <div class="gallery-overlay"><span class="gallery-caption">Hakiki Deri Koltuk</span></div>
+      </div>
+      <div class="gallery-item" data-cat="deri">
+        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&q=80" alt="Vader dönüşüm lüks iç mekan" loading="lazy">
+        <div class="gallery-overlay"><span class="gallery-caption">Vader Dönüşüm</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROCESS ════════════════════════════════════ -->
+<section id="surec">
+  <div class="container">
+    <span class="sec-label">Nasıl Çalışırız</span>
+    <h2 class="sec-title">3 Adımda Kusursuz Sonuç</h2>
+    <div class="process-grid" data-aos="fade-up">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <div class="step-title">Keşif & Teklif</div>
+        <p class="step-text">Aracınızı getirin veya fotoğraf gönderin. İhtiyacınıza göre özel fiyat teklifi hazırlıyoruz.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <div class="step-title">Malzeme Seçimi</div>
+        <p class="step-text">Deri rengi ve doku seçimi yapılır. Orijinal kalıp hazırlanır, kesim ve dikiş başlar.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <div class="step-title">Teslim & Garanti</div>
+        <p class="step-text">Ortalama 48 saatte teslim. İşçilik garantisi ile araç sahibine teslim edilir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ══════════════════════════════════════ -->
+<section class="s-light">
+  <div class="container">
+    <div class="about-grid" data-aos="fade-up">
+      <div class="about-img-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=900&q=80"
+          alt="Trimora Design atölyesi"
+          class="about-img"
+          loading="lazy"
+        >
+        <div class="about-img-badge">
+          <img src="logo.png" alt="Trimora Design">
+          <span class="badge-text">Konya · Atiker 3. Sanayi</span>
+        </div>
+      </div>
+      <div class="about-content">
+        <span class="sec-label" style="text-align:left">Hakkımızda</span>
+        <div class="divider"></div>
+        <h2 class="sec-title" style="text-align:left;font-size:1.5rem">İddialıyız — <span style="color:var(--gold2)">OTO döşemede üstün işçilik</span></h2>
+        <p style="font-size:.82rem;line-height:1.85;margin-bottom:1rem;color:var(--muted)">
+          Konya Selçuklu, Atiker 3. Sanayi'nde faaliyet gösteren Trimora Design olarak araç iç döşeme
+          ve kaplama alanında orijinal kalıplar çerçevesinde en iyi sonucu sunuyoruz.
+        </p>
+        <p style="font-size:.82rem;line-height:1.85;color:var(--muted)">
+          Recaro ve Vader koltuk dönüşümünden hakiki deri döşemeye, direksiyon kaplamadan
+          dikişli torpido kaplamasına kadar aracınıza değer katıyoruz.
+        </p>
+        <ul class="about-list">
+          <li>Hakiki deri, orijinal kalıp ile döşeme</li>
+          <li>Recaro &amp; Vader dönüşümünün Konya adresi</li>
+          <li>BMW, Mercedes, Volvo ve tüm markalar</li>
+          <li>İletişim: <a href="tel:05302354523" style="color:var(--gold);font-weight:600">0530 235 45 23</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══════════════════════════════ -->
+<section id="referanslar">
+  <div class="container">
+    <span class="sec-label">Referanslar</span>
+    <h2 class="sec-title">Müşterilerimiz Ne Diyor?</h2>
+    <div class="testi-grid" data-aos="fade-up">
+      <div class="testimonial-card">
+        <div class="star-row">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-text">BMW'mi Recaro'ya dönüştürdüler. Orijinal fabrika kalitesinde, hatta daha güzel. Kesinlikle tavsiye ediyorum.</p>
+        <div class="author-row">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Murat Kaya" class="author-avatar">
+          <div>
+            <div class="author-name">Murat Kaya</div>
+            <div class="author-car">BMW 5 Serisi — Recaro Dönüşüm</div>
           </div>
         </div>
-        <div class="col-lg-6">
-          <div class="about-content" data-aos="fade-left" data-aos-duration="800" data-aos-easing="ease" data-aos-delay="200">
-            <span class="section-label">Hakkımızda</span>
-            <div class="divider"></div>
-            <h2 class="section-title">İddialıyız — <strong>OTO döşemede üstün işçilik</strong></h2>
-            <p style="font-size:0.88rem;line-height:1.85;margin-bottom:1rem;">
-              Konya Selçuklu, Atiker 3. Sanayi'nde faaliyet gösteren Trimora Design Garage olarak
-              araç iç döşeme ve kaplama alanında orijinal kalıplar çerçevesinde en iyi sonucu sunuyoruz.
-            </p>
-            <p style="font-size:0.88rem;line-height:1.85;">
-              Recaro ve Vader koltuk dönüşümünden hakiki deri döşemeye, orijinal direksiyon
-              kaplamadan dikişli torpido kaplamasına kadar aracınıza değer katıyoruz.
-              Aracına önem veren herkes bizimle iletişime geçiyor.
-            </p>
-            <ul class="about-list mt-3">
-              <li>Hakiki deri, orijinal kalıp ile döşeme</li>
-              <li>Recaro & Vader dönüşümünün Konya adresi</li>
-              <li>BMW, Mercedes, Volvo, Honda ve tüm markalar</li>
-              <li>İletişim: <a href="tel:05302354523" style="color:var(--accent2);font-weight:600;">0530 235 45 23</a></li>
-            </ul>
+      </div>
+      <div class="testimonial-card">
+        <div class="star-row">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-text">Direksiyonum ve vites topuzum tamamen yenilendi. Profesyonel ekip, zamanında teslim. Çok memnunum.</p>
+        <div class="author-row">
+          <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&q=80" alt="Selin Arslan" class="author-avatar">
+          <div>
+            <div class="author-name">Selin Arslan</div>
+            <div class="author-car">Mercedes C180 — Direksiyon Kaplama</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="star-row">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-text">Volvo'mun komple iç döşemesini yaptırdım. 48 saat içinde teslim söz verip tuttular. İnanılmaz işçilik.</p>
+        <div class="author-row">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="Ahmet Doğan" class="author-avatar">
+          <div>
+            <div class="author-name">Ahmet Doğan</div>
+            <div class="author-car">Volvo S60 — Komple İç Yenileme</div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- SERVICES -->
-  <section class="section-light" id="hizmetler">
-    <div class="container">
-      <div class="text-center mb-5" data-aos="fade-up" data-aos-duration="600" data-aos-easing="ease">
-        <span class="section-label">Hizmetlerimiz</span>
-        <div class="divider" style="margin:0 auto 1.2rem;"></div>
-        <h2 class="section-title">Her araç için <strong>orijinal çözüm</strong></h2>
-        <p class="section-sub" style="margin:0 auto;">
-          Orijinal sınırların dışına çıkmayan döşemenin adresi Trimora Design Garage.
-          Recaro, Vader, hakiki deri ve daha fazlası için 0530 235 45 23'ü arayın.
+<!-- ═══ FAQ ════════════════════════════════════════ -->
+<section class="s-light" id="sss">
+  <div class="container">
+    <div class="faq-layout">
+      <div data-aos="fade-right">
+        <span class="sec-label" style="text-align:left">S.S.S.</span>
+        <div class="divider"></div>
+        <h2 class="sec-title" style="text-align:left;font-size:1.5rem">Sık Sorulan Sorular</h2>
+        <p style="font-size:.8rem;color:var(--muted);line-height:1.8;margin-top:1rem">
+          Bulamadığınız bir soru için:<br>
+          <a href="tel:05302354523" style="color:var(--gold);font-weight:600">0530 235 45 23</a>
         </p>
       </div>
-      <div class="row">
-        <div class="col-lg-4 col-md-6 col-12 mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-easing="ease" data-aos-delay="0">
-          <div class="service-card h-100">
-            <div class="service-icon">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="14" width="36" height="20" rx="3"/><path d="M14 34v4M34 34v4"/><path d="M10 22h28"/></svg>
-            </div>
-            <div class="service-name">OTO Döşeme — Hakiki Deri</div>
-            <p class="service-text">Hakiki deri ile araç koltuk döşeme. Orijinal kalıp kullanılarak yapılan kesim ve dikiş ile fabrika kalitesinde sonuç. Tüm marka ve modeller için.</p>
-            <a href="#iletisim" class="service-link">
-              Detay
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
+      <div class="faq-list" data-aos="fade-left" data-aos-delay="100">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">Orijinal koltuk kalıplarını bozuyor musunuz? <span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Hayır. Tüm işlemlerimiz orijinal koltuk kalıpları korunarak yapılmaktadır. Yalnızca kaplama yenilenir.</p></div>
         </div>
-        <div class="col-lg-4 col-md-6 col-12 mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-easing="ease" data-aos-delay="100">
-          <div class="service-card h-100">
-            <div class="service-icon">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="6"/><path d="M24 6v6M24 36v6M6 24h6M36 24h6"/></svg>
-            </div>
-            <div class="service-name">Orijinal Direksiyon Kaplama</div>
-            <p class="service-text">Direksiyonunuzu orijinal görünümüyle yenileyin. Vites topuzu ve körük yenileme de dahil. Dikişli, perforasyonlu veya düz seçenekler mevcuttur.</p>
-            <a href="#iletisim" class="service-link">
-              Detay
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">Recaro dönüşüm ne kadar sürer? <span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Standart Recaro dönüşüm 24-48 saat arasında tamamlanmaktadır.</p></div>
         </div>
-        <div class="col-lg-4 col-md-6 col-12 mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-easing="ease" data-aos-delay="200">
-          <div class="service-card h-100">
-            <div class="service-icon">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="10" width="40" height="28" rx="2"/><path d="M4 18h40"/><path d="M4 26h40"/></svg>
-            </div>
-            <div class="service-name">Tavan & Direk Döşeme</div>
-            <p class="service-text">Araç tavanı ve direk döşemelerinin yenilenmesi. BMW E65, Mercedes çift sunroof ve tüm model araçlar için deneyimli uygulama. Tamamen yenileniyor.</p>
-            <a href="#iletisim" class="service-link">
-              Detay
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">Hakiki deri mi kullanıyorsunuz? <span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Müşteri talebine göre hakiki veya suni deri seçeneği mevcuttur. Hakiki deri için premium İtalyan dericilerle çalışıyoruz.</p></div>
         </div>
-        <div class="col-lg-4 col-md-6 col-12 mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-easing="ease" data-aos-delay="0">
-          <div class="service-card h-100">
-            <div class="service-icon">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="8" width="40" height="32" rx="2"/><path d="M4 20h18v8H4z"/><path d="M26 20h18v8H26z"/></svg>
-            </div>
-            <div class="service-name">Dikişli Torpido & Kapı İçi</div>
-            <p class="service-text">Torpido (dashboard) kaplamada dikişli yüzey işçiliği. Kapı içi döşeme yenileme. Volvo, BMW, Mercedes ve daha pek çok araç için orijinal kalıp uygulaması.</p>
-            <a href="#iletisim" class="service-link">
-              Detay
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">İşçilikte garanti veriyor musunuz? <span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Evet. Tüm işlemlerde işçilik garantisi verilmektedir. Sorunlar ücretsiz düzeltilir.</p></div>
         </div>
-        <div class="col-lg-4 col-md-6 col-12 mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-easing="ease" data-aos-delay="100">
-          <div class="service-card h-100">
-            <div class="service-icon">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 32l8-12 8 8 8-10 8 6"/><rect x="4" y="8" width="40" height="32" rx="2"/></svg>
-            </div>
-            <div class="service-name">Recaro Koltuk Dönüşümü</div>
-            <p class="service-text">Recaro koltuk dönüşümünün Konya adresi Trimora Design. Sporcu koltuk yerleşimi ve deri kaplama ile aracınıza tam performans iç mekan konforu.</p>
-            <a href="#iletisim" class="service-link">
-              Detay
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-12 mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-easing="ease" data-aos-delay="200">
-          <div class="service-card h-100">
-            <div class="service-icon">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="24,4 30,18 44,18 33,28 37,42 24,34 11,42 15,28 4,18 18,18"/></svg>
-            </div>
-            <div class="service-name">Vader Koltuk Dönüşümü</div>
-            <p class="service-text">Vader koltuk dönüşümünün Konya adresi Trimora Design. Orijinal sınırlar içinde özel döşeme ile aracınızı farklı bir seviyeye taşıyın.</p>
-            <a href="#iletisim" class="service-link">
-              Detay
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MARQUEE -->
-  <div class="marquee-wrap" aria-hidden="true">
-    <div class="marquee-track">
-      <span class="marquee-item">OTO Döşeme</span>
-      <span class="marquee-item">Recaro Dönüşüm</span>
-      <span class="marquee-item">Vader Dönüşüm</span>
-      <span class="marquee-item">Hakiki Deri</span>
-      <span class="marquee-item">Orijinal Direksiyon Kaplama</span>
-      <span class="marquee-item">Vites Topuzu Yenileme</span>
-      <span class="marquee-item">Tavan Döşeme</span>
-      <span class="marquee-item">Dikişli Torpido</span>
-      <span class="marquee-item">Konya Selçuklu</span>
-      <span class="marquee-item">0530 235 45 23</span>
-      <span class="marquee-item">OTO Döşeme</span>
-      <span class="marquee-item">Recaro Dönüşüm</span>
-      <span class="marquee-item">Vader Dönüşüm</span>
-      <span class="marquee-item">Hakiki Deri</span>
-      <span class="marquee-item">Orijinal Direksiyon Kaplama</span>
-      <span class="marquee-item">Vites Topuzu Yenileme</span>
-      <span class="marquee-item">Tavan Döşeme</span>
-      <span class="marquee-item">Dikişli Torpido</span>
-      <span class="marquee-item">Konya Selçuklu</span>
-      <span class="marquee-item">0530 235 45 23</span>
-    </div>
-  </div>
-
-  <!-- GALLERY -->
-  <section id="galeri">
-    <div class="container">
-      <div class="row align-items-end mb-5">
-        <div class="col-lg-6" data-aos="fade-right" data-aos-duration="600" data-aos-easing="ease">
-          <span class="section-label">Çalışmalarımız</span>
-          <div class="divider"></div>
-          <h2 class="section-title">Her proje bir <strong>referans</strong></h2>
-        </div>
-        <div class="col-lg-6 d-flex" style="justify-content:flex-end;align-items:flex-end;gap:0.5rem;flex-wrap:wrap;" data-aos="fade-left" data-aos-duration="600" data-aos-easing="ease">
-          <div class="gallery-filters" style="margin-bottom:0;">
-            <button class="filter-btn active" onclick="filterGallery(this,'all')">Tümü</button>
-            <button class="filter-btn" onclick="filterGallery(this,'deri')">Deri Döşeme</button>
-            <button class="filter-btn" onclick="filterGallery(this,'recaro')">Recaro / Vader</button>
-            <button class="filter-btn" onclick="filterGallery(this,'tavan')">Tavan & Direk</button>
-          </div>
-        </div>
-      </div>
-      <div class="gallery-grid" data-aos="fade-up" data-aos-duration="700" data-aos-easing="ease">
-        <div class="gallery-item featured" data-cat="deri">
-          <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1000&q=80" alt="BMW E65 deri koltuk döşeme" loading="lazy">
-          <div class="gallery-overlay">
-            <span class="gallery-caption">BMW E65 — Tavan & Direk Döşeme</span>
-          </div>
-        </div>
-        <div class="gallery-item" data-cat="deri">
-          <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&q=80" alt="Orijinal direksiyon kaplama" loading="lazy">
-          <div class="gallery-overlay">
-            <span class="gallery-caption">Orijinal Direksiyon Kaplama</span>
-          </div>
-        </div>
-        <div class="gallery-item" data-cat="recaro">
-          <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&q=80" alt="Recaro dönüşüm koltuk" loading="lazy">
-          <div class="gallery-overlay">
-            <span class="gallery-caption">Recaro Dönüşüm — Hakiki Deri</span>
-          </div>
-        </div>
-        <div class="gallery-item" data-cat="tavan">
-          <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80" alt="Mercedes çift sunroof tavan döşeme" loading="lazy">
-          <div class="gallery-overlay">
-            <span class="gallery-caption">Mercedes W211 — Tavan & Direk</span>
-          </div>
-        </div>
-        <div class="gallery-item" data-cat="deri">
-          <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&q=80" alt="Volvo S60 komple iç döşeme" loading="lazy">
-          <div class="gallery-overlay">
-            <span class="gallery-caption">Volvo S60 — Komple İç Yenileme</span>
-          </div>
-        </div>
-        <div class="gallery-item" data-cat="recaro">
-          <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&q=80" alt="Vader dönüşüm koltuk" loading="lazy">
-          <div class="gallery-overlay">
-            <span class="gallery-caption">Vader Dönüşüm — Özel Deri</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MATERIALS -->
-  <div class="materials-section">
-    <div class="container">
-      <div class="materials-inner">
-        <span class="materials-title">Kullandığımız Malzemeler</span>
-        <div class="materials-list">
-          <span class="mat-tag">Hakiki Deri</span>
-          <span class="mat-tag">Orijinal Kalıp</span>
-          <span class="mat-tag">Recaro Koltuk</span>
-          <span class="mat-tag">Vader Koltuk</span>
-          <span class="mat-tag">Direksiyon Kaplama</span>
-          <span class="mat-tag">Vites Topuzu</span>
-          <span class="mat-tag">Körük Yenileme</span>
-          <span class="mat-tag">Dikişli Torpido</span>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">Konya dışından araç kabul ediyor musunuz? <span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Evet. Türkiye'nin farklı şehirlerinden müşterilerimiz bulunmaktadır. Önceden randevu almanızı öneririz.</p></div>
         </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- PROCESS -->
-  <section class="section-light" id="surec">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4" data-aos="fade-right" data-aos-duration="700" data-aos-easing="ease">
-          <span class="section-label">Nasıl Çalışır</span>
-          <div class="divider"></div>
-          <h2 class="section-title">Fikirden <strong>teslimata</strong> 4 adım</h2>
-          <p style="font-size:0.85rem;line-height:1.8;">
-            Her projeyi belirlenmiş bir süreç içinde yönetiyoruz. Şeffaflık ve
-            zamanında teslim önceliklerimizden.
-          </p>
-        </div>
-        <div class="col-lg-8" data-aos="fade-left" data-aos-duration="700" data-aos-easing="ease" data-aos-delay="150">
-          <div style="padding-left:2.5rem;">
-            <div class="process-step">
-              <div class="step-num-wrap">
-                <div class="step-circle">01</div>
-                <div class="step-line"></div>
-              </div>
-              <div class="step-body">
-                <div class="step-title">Danışma & Ölçüm</div>
-                <p class="step-text">Aracınız atölyemize gelir, beklentilerinizi dinler, malzeme ve renk seçeneklerini birlikte değerlendiririz. Ön keşif ve ölçüm tamamen ücretsizdir.</p>
-              </div>
+<!-- ═══ CONTACT ════════════════════════════════════ -->
+<section class="s-dark" id="iletisim">
+  <div class="container">
+    <span class="sec-label">İletişim</span>
+    <h2 class="sec-title">Teklif Alın</h2>
+    <div class="contact-grid" data-aos="fade-up">
+      <div class="contact-info">
+        <p style="font-size:.82rem;color:var(--muted);line-height:1.8;margin-bottom:1.5rem">
+          Aracınızın fotoğrafını gönderin veya arayın. Hemen teklif hazırlayalım.
+        </p>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1 19.79 19.79 0 0 1 1.62 4.43 2 2 0 0 1 3.6 2.24h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             </div>
-            <div class="process-step">
-              <div class="step-num-wrap">
-                <div class="step-circle">02</div>
-                <div class="step-line"></div>
-              </div>
-              <div class="step-body">
-                <div class="step-title">Tasarım & Teklif</div>
-                <p class="step-text">Seçilen malzeme, renk ve dikiş deseni için dijital tasarım sunarız. Onayınızın ardından net fiyat ve teslim tarihi belirlenir.</p>
-              </div>
+            <div class="contact-value">
+              <span class="contact-label">Telefon</span>
+              <a href="tel:05302354523">0530 235 45 23</a>
             </div>
-            <div class="process-step">
-              <div class="step-num-wrap">
-                <div class="step-circle">03</div>
-                <div class="step-line"></div>
-              </div>
-              <div class="step-body">
-                <div class="step-title">El İşçiliği</div>
-                <p class="step-text">Deneyimli ustalarımız her parçayı özenle keser, diker ve monte eder. Kalite kontrol aşamaları süreç boyunca uygulanır.</p>
-              </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
-            <div class="process-step">
-              <div class="step-num-wrap">
-                <div class="step-circle">04</div>
-                <div class="step-line"></div>
-              </div>
-              <div class="step-body">
-                <div class="step-title">Teslim & Garanti</div>
-                <p class="step-text">Titiz son kontrol sonrası aracınız teslim edilir. Tüm işçilik ve malzeme için 2 yıl garanti sunuyoruz.</p>
-              </div>
+            <div class="contact-value">
+              <span class="contact-label">Adres</span>
+              Atiker 3. Sanayi Sitesi, Konya Selçuklu
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-value">
+              <span class="contact-label">E-posta</span>
+              info@trimoradesign.com
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="contact-value">
+              <span class="contact-label">Çalışma Saatleri</span>
+              Pzt–Cmt: 09:00–18:00
             </div>
           </div>
         </div>
       </div>
+      <form class="contact-form" onsubmit="submitForm(event)">
+        <div class="form-row2">
+          <input type="text"  class="form-input" placeholder="Adınız Soyadınız" required>
+          <textarea class="form-textarea" placeholder="Mesajınız" style="min-height:70px"></textarea>
+        </div>
+        <div class="form-row3">
+          <input type="email" class="form-input" placeholder="E-posta Adresiniz">
+          <button type="submit" class="btn-teklif">TEKLİF AL</button>
+        </div>
+        <input type="text" class="form-input" placeholder="Aracınız (Marka / Model)">
+        <div id="formMsg" style="font-size:.75rem;color:var(--gold);display:none">Mesajınız alındı. En kısa sürede dönüş yapacağız!</div>
+      </form>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- TESTIMONIALS -->
-  <section id="referanslar">
-    <div class="container">
-      <div class="text-center mb-5" data-aos="fade-up" data-aos-duration="600" data-aos-easing="ease">
-        <span class="section-label">Referanslar</span>
-        <div class="divider" style="margin:0 auto 1.2rem;"></div>
-        <h2 class="section-title">Müşteriler <strong>anlatıyor</strong></h2>
-      </div>
-      <div class="row">
-        <div class="col-lg-4 col-md-6 col-12 mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-easing="ease" data-aos-delay="0">
-          <div class="testimonial-card h-100">
-            <div class="stars">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            </div>
-            <p class="testimonial-text">"BMW 5 serim için tam deri döşeme yaptırdım. Kalite beklentimin çok üzerinde çıktı. Özellikle dikiş detayları inanılmaz titiz. Araç bambaşka bir hal aldı."</p>
-            <div class="testimonial-author">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Murat Kaya" class="author-avatar">
-              <div>
-                <div class="author-name">Murat Kaya</div>
-                <div class="author-car">BMW 5 Serisi — Tam Deri Döşeme</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-12 mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-easing="ease" data-aos-delay="100">
-          <div class="testimonial-card h-100">
-            <div class="stars">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            </div>
-            <p class="testimonial-text">"Direksiyon ve vites topuzu için Alcantara sarım yaptırdım. 48 saat içinde teslim dediler, söz tuttular. Hem görünüş hem tutuş mükemmel. Teşekkürler Trimora."</p>
-            <div class="testimonial-author">
-              <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&q=80" alt="Selin Arslan" class="author-avatar">
-              <div>
-                <div class="author-name">Selin Arslan</div>
-                <div class="author-car">Volkswagen Golf — Alcantara Direksiyon</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-12 mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-easing="ease" data-aos-delay="200">
-          <div class="testimonial-card h-100">
-            <div class="stars">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            </div>
-            <p class="testimonial-text">"Şirketimize ait 3 ticari araç için döşeme yenileme yaptırdık. Hem hız hem kalite beklentileri karşıladı. Sürücülerimiz çok memnun. Teşekkürler Trimora Design."</p>
-            <div class="testimonial-author">
-              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="Ahmet Doğan" class="author-avatar">
-              <div>
-                <div class="author-name">Ahmet Doğan</div>
-                <div class="author-car">Konya Nakliyat A.Ş. — Filo Döşeme</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="section-light">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4" data-aos="fade-right" data-aos-duration="700" data-aos-easing="ease">
-          <span class="section-label">Sıkça Sorulanlar</span>
-          <div class="divider"></div>
-          <h2 class="section-title">Aklınızdaki <strong>sorular</strong></h2>
-          <p style="font-size:0.85rem;line-height:1.8;">
-            Yanıtlayamadığımız bir soru olursa bize ulaşın, 24 saat içinde cevap verelim.
-          </p>
-          <a href="#iletisim" class="btn btn-primary mt-3" style="background:var(--black);color:var(--white);display:inline-flex;">
-            Bize Sorun
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-        <div class="col-lg-8" data-aos="fade-left" data-aos-duration="700" data-aos-easing="ease" data-aos-delay="100">
-          <div style="padding-left:1.5rem;" id="faqList">
-            <div class="faq-item">
-              <button class="faq-question">
-                Döşeme süreci ne kadar sürer?
-                <div class="faq-icon">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
-                </div>
-              </button>
-              <div class="faq-answer">
-                <p>Projenin kapsamına bağlı olmakla birlikte tek koltuk onarımı 1 gün, tam araç döşeme yenileme ise ortalama 2–4 gün sürmektedir. Ticari araç ve filo projeleri için ayrıca planlama yapılmaktadır.</p>
-              </div>
-            </div>
-            <div class="faq-item">
-              <button class="faq-question">
-                Hangi araç markaları için hizmet veriyorsunuz?
-                <div class="faq-icon">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
-                </div>
-              </button>
-              <div class="faq-answer">
-                <p>Tüm marka ve model araçlara hizmet veriyoruz. BMW, Mercedes, Audi, Volkswagen, Toyota, Ford, Renault, Fiat ve dahası. Klasik araçlar için restorasyon, ticari araçlar için özel çözümler de sunmaktayız.</p>
-              </div>
-            </div>
-            <div class="faq-item">
-              <button class="faq-question">
-                Malzeme kalitesi için garanti veriyor musunuz?
-                <div class="faq-icon">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
-                </div>
-              </button>
-              <div class="faq-answer">
-                <p>Evet. Kullandığımız tüm malzemeler Avrupa kaynaklı, sertifikalı tedarikçilerden temin edilmektedir. İşçilik ve malzeme için 2 yıl garanti sunuyoruz. Herhangi bir kusur durumunda ücretsiz onarım yapıyoruz.</p>
-              </div>
-            </div>
-            <div class="faq-item">
-              <button class="faq-question">
-                Fiyatlar neye göre belirleniyor?
-                <div class="faq-icon">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
-                </div>
-              </button>
-              <div class="faq-answer">
-                <p>Fiyatlar; seçilen malzeme türü, koltuk sayısı, ek işlemler ve araç modeline göre değişmektedir. Net fiyat teklifi için ücretsiz keşif randevusu almanızı öneririz.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="section-dark" id="iletisim">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-5">
-          <div class="contact-info" data-aos="fade-right" data-aos-duration="700" data-aos-easing="ease">
-            <span class="section-label">İletişim</span>
-            <div class="divider"></div>
-            <h2 class="section-title">Hemen <strong>teklif alın</strong></h2>
-            <p style="font-size:0.85rem;line-height:1.85;margin-bottom:2rem;">
-              Arayın veya formu doldurun. Recaro, Vader, direksiyon kaplama ve diğer tüm
-              hizmetlerimiz için sizi bekliyoruz.
-            </p>
-            <div class="contact-item">
-              <div class="contact-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              </div>
-              <div>
-                <div class="contact-label">Adres</div>
-                <div class="contact-value">Musalla Bağları Mah., Sırrı Acar Sk. No:10<br>Atiker 3. Sanayi, Selçuklu / Konya</div>
-              </div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              </div>
-              <div>
-                <div class="contact-label">Telefon</div>
-                <div class="contact-value"><a href="tel:05302354523" style="color:var(--accent);font-weight:600;">0530 235 45 23</a></div>
-              </div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-              </div>
-              <div>
-                <div class="contact-label">WhatsApp</div>
-                <div class="contact-value"><a href="https://wa.me/905302354523" target="_blank" style="color:var(--accent);font-weight:600;">WhatsApp ile Yaz</a></div>
-              </div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              </div>
-              <div>
-                <div class="contact-label">Çalışma Saatleri</div>
-                <div class="contact-value">Hft içi 08:00–18:00</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-7" data-aos="fade-left" data-aos-duration="700" data-aos-easing="ease" data-aos-delay="150">
-          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);padding:2.5rem;">
-            <h3 style="font-size:1rem;font-weight:600;color:var(--white);margin-bottom:0.3rem;">Teklif Talep Et</h3>
-            <p style="font-size:0.78rem;color:rgba(255,255,255,0.3);margin-bottom:1.5rem;">Formu doldurun, 24 saat içinde sizi arayalım.</p>
-            <form onsubmit="handleSubmit(event)">
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label" style="color:rgba(255,255,255,0.3);">Ad Soyad</label>
-                  <input type="text" class="form-control" placeholder="Ahmet Yılmaz"
-                    style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.08);color:var(--white);" required>
-                </div>
-                <div class="form-group">
-                  <label class="form-label" style="color:rgba(255,255,255,0.3);">Telefon</label>
-                  <input type="tel" class="form-control" placeholder="0532 000 00 00"
-                    style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.08);color:var(--white);" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label" style="color:rgba(255,255,255,0.3);">Araç Modeli</label>
-                <input type="text" class="form-control" placeholder="BMW 3 Serisi 2020"
-                  style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.08);color:var(--white);">
-              </div>
-              <div class="form-group">
-                <label class="form-label" style="color:rgba(255,255,255,0.3);">İstenen Hizmet</label>
-                <select class="form-control"
-                  style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.08);color:var(--white);">
-                  <option value="" style="background:#111">Seçiniz...</option>
-                  <option style="background:#111">OTO Döşeme — Hakiki Deri</option>
-                  <option style="background:#111">Recaro Dönüşüm</option>
-                  <option style="background:#111">Vader Dönüşüm</option>
-                  <option style="background:#111">Orijinal Direksiyon Kaplama</option>
-                  <option style="background:#111">Vites Topuzu & Körük Yenileme</option>
-                  <option style="background:#111">Tavan & Direk Döşeme</option>
-                  <option style="background:#111">Dikişli Torpido & Kapı İçi</option>
-                  <option style="background:#111">Birden Fazla Hizmet</option>
-                </select>
-              </div>
-              <button type="submit" class="btn-submit">
-                Teklif İste
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <div class="footer-logo" style="margin-bottom:1rem;">
-            <img src="logo.png" alt="Trimora Design" style="height:52px;width:auto;object-fit:contain;mix-blend-mode:screen;opacity:0.9;">
-          </div>
-          <p class="footer-tagline">Orijinal sınırların dışına çıkmayan döşemenin adresi. Recaro & Vader dönüşüm, hakiki deri, direksiyon kaplama — Konya Atiker 3. Sanayi.</p>
-          <div class="footer-social">
-            <a href="https://www.instagram.com/trimoradesign" target="_blank" class="social-btn" aria-label="Instagram">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            </a>
-            <a href="#" class="social-btn" aria-label="YouTube">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58a2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
-            </a>
-            <a href="https://wa.me/905302354523" target="_blank" class="social-btn" aria-label="WhatsApp">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-            </a>
-          </div>
-        </div>
-        <div>
-          <div class="footer-col-title">Hizmetler</div>
-          <ul class="footer-links">
-            <li><a href="#hizmetler">OTO Döşeme</a></li>
-            <li><a href="#hizmetler">Recaro Dönüşüm</a></li>
-            <li><a href="#hizmetler">Vader Dönüşüm</a></li>
-            <li><a href="#hizmetler">Direksiyon Kaplama</a></li>
-            <li><a href="#hizmetler">Tavan & Direk</a></li>
-            <li><a href="#hizmetler">Dikişli Torpido</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-title">Bilgi</div>
-          <ul class="footer-links">
-            <li><a href="#surec">Nasıl Çalışır</a></li>
-            <li><a href="#galeri">Galeri</a></li>
-            <li><a href="#referanslar">Referanslar</a></li>
-            <li><a href="#">Malzeme Kataloğu</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">SSS</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-title">İletişim</div>
-          <div class="footer-contact-line">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>Musalla Bağları Mah., Sırrı Acar Sk. No:10<br>Atiker 3. Sanayi, Selçuklu / Konya</span>
-          </div>
-          <div class="footer-contact-line">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <a href="tel:05302354523" style="color:var(--accent);">0530 235 45 23</a>
-          </div>
-          <div class="footer-contact-line">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-            <a href="https://wa.me/905302354523" target="_blank" style="color:var(--accent);">WhatsApp ile Yaz</a>
-          </div>
-          <div class="footer-contact-line">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span>Hft içi 08:00–18:00</span>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span class="footer-copy">© 2025 Trimora Design Garage. Tüm hakları saklıdır. | Selçuklu, Konya | 0530 235 45 23</span>
-        <div class="footer-legal">
-          <a href="#">Gizlilik Politikası</a>
-          <a href="#">KVKK</a>
-          <a href="#">Çerez Politikası</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- AOS -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-  <script>
-    // AOS init
-    AOS.init({ once: true, offset: 60 });
-
-    // Video pause/play
-    const videoEl = document.getElementById('heroVideo');
-    const videoCtrl = document.getElementById('videoCtrl');
-    const iconPause = document.getElementById('iconPause');
-    const iconPlay = document.getElementById('iconPlay');
-    if (videoCtrl && videoEl) {
-      videoCtrl.addEventListener('click', () => {
-        if (videoEl.paused) {
-          videoEl.play();
-          iconPause.style.display = '';
-          iconPlay.style.display = 'none';
-        } else {
-          videoEl.pause();
-          iconPause.style.display = 'none';
-          iconPlay.style.display = '';
-        }
-      });
-    }
-
-    // Nav scroll
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 50);
-    });
-
-    // Mobile menu
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
-    function closeMobile() { mobileMenu.classList.remove('open'); }
-
-    // Counter
-    const countEls = document.querySelectorAll('.count');
-    const countIO = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        const el = e.target;
-        const to = parseInt(el.dataset.to);
-        const dur = 1600;
-        const start = performance.now();
-        function tick(now) {
-          const p = Math.min((now - start) / dur, 1);
-          const ease = 1 - Math.pow(1 - p, 3);
-          el.textContent = Math.round(ease * to);
-          if (p < 1) requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
-        countIO.unobserve(el);
-      });
-    }, { threshold: 0.5 });
-    countEls.forEach(el => countIO.observe(el));
-
-    // FAQ
-    document.getElementById('faqList').addEventListener('click', e => {
-      const btn = e.target.closest('.faq-question');
-      if (!btn) return;
-      const item = btn.closest('.faq-item');
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
-    });
-
-    // Gallery filter
-    function filterGallery(btn, cat) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('.gallery-item').forEach(item => {
-        const show = cat === 'all' || item.dataset.cat === cat;
-        item.style.display = show ? '' : 'none';
-      });
-    }
-
-    // Form
-    function handleSubmit(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('.btn-submit');
-      btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Talebiniz Alındı';
-      btn.style.background = '#2d6a4f';
-      setTimeout(() => {
-        btn.innerHTML = 'Teklif İste <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
-        btn.style.background = '';
-        e.target.reset();
-      }, 3000);
-    }
-  </script>
-
-  <!-- ═══════════════════════════════════════════════════════════════
-       SİTE EDİTÖRÜ — Floating panel, gerçek zamanlı düzenleme
-       Açmak için: Sol alttaki "Düzenle" butonuna tıkla
-       ═══════════════════════════════════════════════════════════════ -->
-  <style id="__eds">
-    :root {
-      --ew: 400px;
-      --ebg: #111111;
-      --ebg2: #191919;
-      --ebg3: #0d0d0d;
-      --ebo: #252525;
-      --etxt: #d8d8d8;
-      --emut: #555;
-      --eacc: #c0a060;
-      --einp: #0a0a0a;
-    }
-    #__edt {
-      position: fixed; bottom: 24px; left: 24px; z-index: 99997;
-      display: none; align-items: center; gap: 8px;
-      padding: 10px 18px;
-      background: var(--ebg); border: 1px solid var(--ebo);
-      color: var(--eacc); font-family: 'Inter', sans-serif;
-      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; cursor: pointer;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.5);
-      transition: border-color 0.2s, background 0.2s;
-    }
-    #__edt:hover { background: #1a1a1a; border-color: var(--eacc); }
-    #__edt svg { flex-shrink: 0; }
-
-    #__edp {
-      position: fixed; top: 0; right: 0; bottom: 0;
-      width: var(--ew); z-index: 99998;
-      background: var(--ebg); border-left: 1px solid var(--ebo);
-      display: flex; flex-direction: column;
-      font-family: 'Inter', sans-serif;
-      transform: translateX(100%);
-      transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
-      box-shadow: -6px 0 48px rgba(0,0,0,0.6);
-    }
-    #__edp.open { transform: translateX(0); }
-
-    #__edh {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 18px; border-bottom: 1px solid var(--ebo);
-      flex-shrink: 0;
-    }
-    #__edhttl { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--eacc); }
-    #__edhsub { font-size: 9px; color: var(--emut); margin-top: 2px; letter-spacing: 0.06em; text-transform: uppercase; }
-    #__edcls, #__edout {
-      background: none; border: 1px solid var(--ebo);
-      color: var(--emut); height: 28px;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; font-size: 18px; line-height: 1;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    #__edcls { width: 28px; }
-    #__edout { padding: 0 10px; font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
-    #__edcls:hover, #__edout:hover { color: var(--etxt); border-color: #444; }
-
-    #__edtabs {
-      display: flex; overflow-x: auto; border-bottom: 1px solid var(--ebo);
-      flex-shrink: 0; scrollbar-width: none; padding: 0 4px;
-      background: var(--ebg3);
-    }
-    #__edtabs::-webkit-scrollbar { display: none; }
-    .ed-tab {
-      flex-shrink: 0; padding: 9px 13px;
-      font-size: 9px; font-weight: 700; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--emut); cursor: pointer;
-      border: none; border-bottom: 2px solid transparent;
-      background: none; white-space: nowrap;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .ed-tab:hover { color: var(--etxt); }
-    .ed-tab.active { color: var(--eacc); border-bottom-color: var(--eacc); }
-
-    #__edc {
-      flex: 1; overflow-y: auto; padding: 0;
-      scrollbar-width: thin; scrollbar-color: #2a2a2a transparent;
-    }
-    #__edc::-webkit-scrollbar { width: 3px; }
-    #__edc::-webkit-scrollbar-thumb { background: #2a2a2a; }
-
-    .ed-sec { display: none; padding: 14px 16px; }
-    .ed-sec.active { display: block; }
-
-    .ed-grp {
-      margin-bottom: 16px;
-      background: var(--ebg2); border: 1px solid var(--ebo);
-      padding: 11px 13px;
-    }
-    .ed-gtitle {
-      font-size: 8px; font-weight: 700; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--eacc);
-      margin-bottom: 9px; padding-bottom: 7px;
-      border-bottom: 1px solid var(--ebo);
-    }
-    .ed-f { margin-bottom: 8px; }
-    .ed-f:last-child { margin-bottom: 0; }
-    .ed-lbl {
-      display: block; font-size: 9px; font-weight: 500;
-      letter-spacing: 0.06em; color: var(--emut);
-      margin-bottom: 3px; text-transform: uppercase;
-    }
-    .ed-inp {
-      width: 100%; background: var(--einp); border: 1px solid var(--ebo);
-      color: var(--etxt); padding: 6px 9px;
-      font-family: 'Inter', sans-serif; font-size: 11px; line-height: 1.5;
-      outline: none; transition: border-color 0.2s;
-      resize: vertical; box-sizing: border-box;
-    }
-    .ed-inp:focus { border-color: var(--eacc); }
-    textarea.ed-inp { min-height: 56px; }
-
-    .ed-crow { display: flex; align-items: center; gap: 7px; }
-    .ed-cinp { width: 34px; height: 34px; padding: 2px; border: 1px solid var(--ebo); background: var(--einp); cursor: pointer; flex-shrink: 0; }
-    .ed-chex { flex: 1; }
-
-    .ed-imgprev {
-      width: 100%; height: 72px; object-fit: cover;
-      display: block; margin-top: 5px;
-      background: #0a0a0a; border: 1px solid var(--ebo);
-    }
-    .ed-ulink {
-      display: inline-block; margin-top: 3px;
-      font-size: 9px; color: var(--emut);
-      text-decoration: none; letter-spacing: 0.05em;
-      transition: color 0.2s;
-    }
-    .ed-ulink:hover { color: var(--eacc); }
-
-    #__edft {
-      padding: 12px 16px; border-top: 1px solid var(--ebo);
-      display: flex; gap: 8px; flex-shrink: 0;
-    }
-    .ed-btn {
-      flex: 1; padding: 10px 8px;
-      font-family: 'Inter', sans-serif; font-size: 10px;
-      font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-      cursor: pointer; border: 1px solid; transition: background 0.2s, color 0.2s;
-    }
-    .ed-bp { background: var(--eacc); color: #111; border-color: var(--eacc); }
-    .ed-bp:hover { background: #d4b070; }
-    .ed-bs { background: transparent; color: var(--emut); border-color: var(--ebo); }
-    .ed-bs:hover { color: var(--etxt); border-color: #444; }
-
-    #__edn {
-      position: fixed; bottom: 72px; left: 24px; z-index: 100000;
-      background: #0f1f0f; border: 1px solid #2a4a2a;
-      color: #6bcf6b; padding: 8px 16px;
-      font-family: 'Inter', sans-serif; font-size: 10px;
-      font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-      opacity: 0; transform: translateY(8px);
-      transition: opacity 0.2s, transform 0.2s; pointer-events: none;
-    }
-    #__edn.show { opacity: 1; transform: translateY(0); }
-  </style>
-
-  <button id="__edt" onclick="__edToggle()">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-    Düzenle
-  </button>
-
-  <div id="__edn">✓ HTML İndirildi</div>
-
-  <div id="__edp">
-    <div id="__edh">
+<!-- ═══ FOOTER ═════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
       <div>
-        <div id="__edhttl">Site Editörü</div>
-        <div id="__edhsub">Gerçek zamanlı · Tüm içerik</div>
-      </div>
-      <div style="display:flex;gap:6px;align-items:center;">
-          <button id="__edout" onclick="__edLogout()">Çıkış</button>
-          <button id="__edcls" onclick="__edToggle()">✕</button>
+        <div class="footer-logo">
+          <img src="logo.png" alt="Trimora Design">
         </div>
+        <p class="footer-tagline">Orijinal sınırların dışına çıkmayan döşemenin Konya'daki adresi.</p>
+        <div class="footer-contact-line">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Atiker 3. Sanayi Sitesi, Konya Selçuklu</span>
+        </div>
+        <div class="footer-contact-line">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1 19.79 19.79 0 0 1 1.62 4.43 2 2 0 0 1 3.6 2.24h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>0530 235 45 23</span>
+        </div>
+        <div class="footer-contact-line">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>iletisim@trimoradesign.com</span>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Hizmetler</div>
+        <nav class="footer-links">
+          <a href="#hizmetler">Sandıköy Döşeme</a>
+          <a href="#hizmetler">Oto Döşeme</a>
+          <a href="#hizmetler">Direksiyon Kaplama</a>
+          <a href="#hizmetler">Tavan ve Taban</a>
+          <a href="#hizmetler">Recaro &amp; Vader</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer-col-title">Portföy</div>
+        <nav class="footer-links">
+          <a href="#galeri">Galeri</a>
+          <a href="#referanslar">Referanslar</a>
+          <a href="#surec">Süreç</a>
+          <a href="#sss">S.S.S.</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer-col-title">İletişim</div>
+        <nav class="footer-links">
+          <a href="tel:05302354523">0530 235 45 23</a>
+          <a href="#iletisim">Teklif Al</a>
+          <a href="#iletisim">Randevu</a>
+          <a href="#">Instagram</a>
+        </nav>
+      </div>
     </div>
-    <div id="__edtabs"></div>
-    <div id="__edc"></div>
-    <div id="__edft">
-      <button class="ed-btn ed-bs" onclick="__edReload()" style="flex:0 0 auto;padding:10px 14px;">↺</button>
-      <button class="ed-btn ed-bs" onclick="__edExport()" style="flex:1;">↓ İndir</button>
-      <button class="ed-btn ed-bp" id="__eddeploy" onclick="__edDeploy()">☁ Kaydet</button>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Trimora Design. Tüm hakları saklıdır.</p>
+      <div class="social-links">
+        <a href="#" class="social-link" aria-label="Instagram">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" class="social-link" aria-label="Facebook">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
     </div>
   </div>
+</footer>
 
-  <script id="__edscript">
-  (function() {
-    'use strict';
-    var q  = function(s){ return document.querySelector(s); };
-    var qa = function(s){ return document.querySelectorAll(s); };
-    var nth = function(s,n){ return qa(s)[n] || null; };
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({ once: true, duration: 650, easing: 'ease', offset: 50 });
 
-    // ── Tab definitions ─────────────────────────────────────────
-    var TABS = [
-      { id:'genel',      lbl:'Genel' },
-      { id:'renkler',    lbl:'Renkler' },
-      { id:'menu',       lbl:'Menü' },
-      { id:'hero',       lbl:'Hero' },
-      { id:'stats',      lbl:'İstatistik' },
-      { id:'hakkinda',   lbl:'Hakkında' },
-      { id:'hizmetler',  lbl:'Hizmetler' },
-      { id:'galeri',     lbl:'Galeri' },
-      { id:'referanslar',lbl:'Referanslar' },
-      { id:'sss',        lbl:'SSS' },
-      { id:'iletisim',   lbl:'İletişim' },
-      { id:'footer',     lbl:'Footer' },
-    ];
+/* ── NAVBAR ── */
+var nb = document.getElementById('navbar');
+window.addEventListener('scroll', function(){ nb.classList.toggle('scrolled', scrollY > 50); }, {passive:true});
 
-    // ── Field definitions ───────────────────────────────────────
-    // type: input | textarea | color | image
-    var F = [];
+/* ── MOBILE MENU ── */
+var ham = document.getElementById('hamburger');
+var mob = document.getElementById('mobileMenu');
+ham.addEventListener('click', function(){
+  ham.classList.toggle('open');
+  mob.classList.toggle('open');
+  document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
+});
+function closeMobile(){
+  ham.classList.remove('open'); mob.classList.remove('open');
+  document.body.style.overflow = '';
+}
 
-    // GENEL
-    F.push({ tab:'genel', grp:'Sayfa', id:'eg_title', lbl:'Sayfa Başlığı', type:'input',
-      get:function(){ return document.title; },
-      set:function(v){ document.title = v; } });
-    F.push({ tab:'genel', grp:'Sayfa', id:'eg_desc', lbl:'Meta Açıklama', type:'textarea',
-      get:function(){ var e=q('meta[name="description"]'); return e?e.content:''; },
-      set:function(v){ var e=q('meta[name="description"]'); if(e) e.content=v; } });
-    F.push({ tab:'genel', grp:'İletişim Bilgisi', id:'eg_phone', lbl:'Telefon', type:'input',
-      get:function(){
-        var e=q('.contact-value a[href^="tel:"]');
-        return e ? e.textContent.trim() : '0530 235 45 23';
-      },
-      set:function(v){
-        var raw = v.replace(/\s/g,'');
-        qa('a[href^="tel:"]').forEach(function(e){
-          if(e.textContent.trim().match(/^0[0-9]/)) { e.textContent=v; e.href='tel:'+raw; }
-        });
-        var cv = q('.contact-value a[href^="tel:"]');
-        if(cv){ cv.textContent=v; cv.href='tel:'+raw; }
-      } });
-    F.push({ tab:'genel', grp:'İletişim Bilgisi', id:'eg_addr', lbl:'Adres', type:'textarea',
-      get:function(){ var e=nth('.contact-value',0); return e?e.innerHTML:''; },
-      set:function(v){ var e=nth('.contact-value',0); if(e) e.innerHTML=v; } });
-    F.push({ tab:'genel', grp:'İletişim Bilgisi', id:'eg_hours', lbl:'Çalışma Saatleri', type:'input',
-      get:function(){ var e=nth('.contact-value',3); return e?e.textContent.trim():''; },
-      set:function(v){ var e=nth('.contact-value',3); if(e) e.textContent=v;
-        var fe=q('.footer-contact-line:last-child span');
-        if(fe) fe.textContent=v; } });
+/* ── SERVICES SLIDER ── */
+var track = document.getElementById('svcTrack');
+var cards = track.querySelectorAll('.service-card');
+var dotsEl = document.getElementById('svcDots');
+var currentSlide = 0;
+var perSlide = 4;
 
-    // RENKLER
-    var colorDefs = [
-      { id:'ec_acc',  lbl:'Ana Renk (Altın)', def:'#c0a060', prop:'--accent' },
-      { id:'ec_acc2', lbl:'İkincil Renk',     def:'#8a6a30', prop:'--accent2' },
-      { id:'ec_blk',  lbl:'Siyah',            def:'#111111', prop:'--black' },
-      { id:'ec_drk',  lbl:'Koyu Gri',         def:'#212529', prop:'--dark' },
-      { id:'ec_gry',  lbl:'Metin Rengi',      def:'#666666', prop:'--gray' },
-      { id:'ec_mut',  lbl:'Soluk Metin',      def:'#adb5bd', prop:'--muted' },
-      { id:'ec_bdr',  lbl:'Kenarlık',         def:'#e9ecef', prop:'--border' },
-      { id:'ec_lgt',  lbl:'Açık Arka Plan',   def:'#f8f9fa', prop:'--light' },
-    ];
-    colorDefs.forEach(function(c){
-      F.push({ tab:'renkler', grp:'Marka Renkleri', id:c.id, lbl:c.lbl, type:'color', _def:c.def, _prop:c.prop,
-        get:function(){
-          var v=getComputedStyle(document.documentElement).getPropertyValue(c.prop).trim();
-          return v||c.def;
-        },
-        set:function(v){ document.documentElement.style.setProperty(c.prop,v); } });
-    });
+function getPerSlide(){
+  return window.innerWidth < 480 ? 2 : window.innerWidth < 700 ? 2 : window.innerWidth < 1024 ? 3 : 4;
+}
 
-    // MENÜ
-    F.push({ tab:'menu', grp:'Logo', id:'em_logo', lbl:'Logo URL', type:'image',
-      get:function(){ var e=q('.navbar-brand img'); return e?e.getAttribute('src'):''; },
-      set:function(v){
-        qa('.navbar-brand img,.mobile-menu>img,.hero-center-logo,.hero-watermark').forEach(function(e){e.src=v;});
-        var ab=q('.about-img-badge img'); if(ab) ab.src=v;
-        var fl=q('.footer-logo img'); if(fl) fl.src=v;
-      } });
-    [0,1,2,3,4].forEach(function(i){
-      F.push({ tab:'menu', grp:'Nav Linkleri', id:'em_nl'+i, lbl:'Link '+(i+1)+' Metin', type:'input',
-        get:function(){ var e=nth('.navbar-nav .nav-link',i); return e?e.textContent.trim():''; },
-        set:function(v){
-          var nb=nth('.navbar-nav .nav-link',i); if(nb) nb.textContent=v;
-          var mb=nth('.mobile-menu .nav-link',i); if(mb) mb.textContent=v;
-        } });
-      F.push({ tab:'menu', grp:'Nav Linkleri', id:'em_nh'+i, lbl:'Link '+(i+1)+' URL', type:'input',
-        get:function(){ var e=nth('.navbar-nav .nav-link',i); return e?e.getAttribute('href'):''; },
-        set:function(v){
-          var nb=nth('.navbar-nav .nav-link',i); if(nb) nb.href=v;
-          var mb=nth('.mobile-menu .nav-link',i); if(mb) mb.href=v;
-        } });
-    });
-    F.push({ tab:'menu', grp:'CTA Butonu', id:'em_cta', lbl:'CTA Metin', type:'input',
-      get:function(){ var e=q('.nav-btn'); return e?e.textContent.trim():''; },
-      set:function(v){ var e=q('.nav-btn'); if(e) e.textContent=v; } });
+function buildDots(){
+  perSlide = getPerSlide();
+  var total = Math.ceil(cards.length / perSlide);
+  dotsEl.innerHTML = '';
+  for(var i=0;i<total;i++){
+    var d = document.createElement('div');
+    d.className = 'svc-dot' + (i===currentSlide?' on':'');
+    d.setAttribute('data-i', i);
+    d.onclick = function(){ goSlide(+this.dataset.i); };
+    dotsEl.appendChild(d);
+  }
+}
 
-    // HERO
-    F.push({ tab:'hero', grp:'Hero Görseli & Video', id:'eh_poster', lbl:'Arka Plan Görsel URL', type:'image',
-      get:function(){ var e=q('#heroVideo'); return e?e.getAttribute('poster'):''; },
-      set:function(v){
-        var vd=q('#heroVideo'); if(vd) vd.poster=v;
-        var ps=q('.hero-poster'); if(ps) ps.src=v;
-      } });
-    F.push({ tab:'hero', grp:'Hero İçerik', id:'eh_eyebrow', lbl:'Üst Küçük Metin', type:'input',
-      get:function(){ var e=q('.hero-eyebrow'); return e?e.textContent.trim():''; },
-      set:function(v){ var e=q('.hero-eyebrow'); if(e) e.textContent=v; } });
-    F.push({ tab:'hero', grp:'Hero İçerik', id:'eh_title', lbl:'Ana Başlık (HTML)', type:'textarea',
-      get:function(){ var e=q('.hero-title'); return e?e.innerHTML:''; },
-      set:function(v){ var e=q('.hero-title'); if(e) e.innerHTML=v; } });
-    F.push({ tab:'hero', grp:'Hero İçerik', id:'eh_sub', lbl:'Alt Başlık', type:'textarea',
-      get:function(){ var e=q('.hero-subtitle'); return e?e.textContent.trim():''; },
-      set:function(v){ var e=q('.hero-subtitle'); if(e) e.textContent=v; } });
-    F.push({ tab:'hero', grp:'Hero Butonlar', id:'eh_b1', lbl:'Buton 1 Metin', type:'input',
-      get:function(){
-        var b=q('.hero-actions .btn-primary'); if(!b) return '';
-        return Array.from(b.childNodes).filter(function(n){return n.nodeType===3;}).map(function(n){return n.textContent.trim();}).join(' ').trim();
-      },
-      set:function(v){
-        var b=q('.hero-actions .btn-primary'); if(!b) return;
-        var svg=b.querySelector('svg'); b.textContent=v; if(svg) b.appendChild(svg);
-      } });
-    F.push({ tab:'hero', grp:'Hero Butonlar', id:'eh_b1h', lbl:'Buton 1 Link', type:'input',
-      get:function(){ var e=q('.hero-actions .btn-primary'); return e?e.getAttribute('href'):''; },
-      set:function(v){ var e=q('.hero-actions .btn-primary'); if(e) e.href=v; } });
-    F.push({ tab:'hero', grp:'Hero Butonlar', id:'eh_b2', lbl:'Buton 2 Metin', type:'input',
-      get:function(){ var e=q('.hero-actions .btn-outline'); return e?e.textContent.trim():''; },
-      set:function(v){ var e=q('.hero-actions .btn-outline'); if(e) e.textContent=v; } });
-    F.push({ tab:'hero', grp:'Hero Butonlar', id:'eh_b2h', lbl:'Buton 2 Link', type:'input',
-      get:function(){ var e=q('.hero-actions .btn-outline'); return e?e.getAttribute('href'):''; },
-      set:function(v){ var e=q('.hero-actions .btn-outline'); if(e) e.href=v; } });
+function goSlide(idx){
+  perSlide = getPerSlide();
+  var total = Math.ceil(cards.length / perSlide);
+  currentSlide = Math.max(0, Math.min(idx, total-1));
+  var cardW = track.querySelector('.service-card').offsetWidth + 14;
+  track.style.transform = 'translateX(-' + (currentSlide * perSlide * cardW) + 'px)';
+  dotsEl.querySelectorAll('.svc-dot').forEach(function(d,i){ d.classList.toggle('on', i===currentSlide); });
+}
 
-    // HIZLI NAV KARTLARI
-    [0,1,2,3].forEach(function(i){
-      var labels=['Hizmetler','Galeri','Teklif Al','Referanslar'];
-      F.push({ tab:'hero', grp:'Hızlı Kart '+(i+1), id:'eqn_lbl'+i, lbl:'Kart Etiketi', type:'input',
-        get:function(){ var e=nth('.qn-label',i); return e?e.textContent.trim():''; },
-        set:function(v){ var e=nth('.qn-label',i); if(e) e.textContent=v; } });
-      F.push({ tab:'hero', grp:'Hızlı Kart '+(i+1), id:'eqn_img'+i, lbl:'Kart Görseli URL', type:'image',
-        get:function(){ var e=nth('.qn-bg',i); return e?e.getAttribute('src'):''; },
-        set:function(v){ var e=nth('.qn-bg',i); if(e) e.src=v; } });
-    });
+function svcSlide(dir){
+  perSlide = getPerSlide();
+  var total = Math.ceil(cards.length / perSlide);
+  goSlide(currentSlide + dir);
+}
 
-    // İSTATİSTİKLER
-    [0,1,2,3].forEach(function(i){
-      F.push({ tab:'stats', grp:'İstatistik '+(i+1), id:'es_n'+i, lbl:'Sayı', type:'input',
-        get:function(){ var e=nth('.count',i); return e?e.dataset.to:''; },
-        set:function(v){ var e=nth('.count',i); if(e){e.dataset.to=v;e.textContent=v;} } });
-      F.push({ tab:'stats', grp:'İstatistik '+(i+1), id:'es_sx'+i, lbl:'Suffix (+, yıl, sa, %)', type:'input',
-        get:function(){
-          var sn=nth('.stat-number',i); if(!sn) return '';
-          var spans=sn.querySelectorAll('span:not(.count)');
-          return spans.length?spans[0].textContent.trim():'';
-        },
-        set:function(v){
-          var sn=nth('.stat-number',i); if(!sn) return;
-          var spans=sn.querySelectorAll('span:not(.count)');
-          if(spans.length) spans[0].textContent=v;
-        } });
-      F.push({ tab:'stats', grp:'İstatistik '+(i+1), id:'es_lbl'+i, lbl:'Etiket', type:'input',
-        get:function(){ var e=nth('.stat-label',i); return e?e.textContent.trim():''; },
-        set:function(v){ var e=nth('.stat-label',i); if(e) e.textContent=v; } });
-    });
+buildDots();
+window.addEventListener('resize', function(){ buildDots(); goSlide(currentSlide); });
 
-    // HAKKINDA
-    F.push({ tab:'hakkinda', grp:'Hakkında Bölümü', id:'eab_lbl', lbl:'Bölüm Etiketi', type:'input',
-      get:function(){ var e=q('.about-content .section-label'); return e?e.textContent.trim():''; },
-      set:function(v){ var e=q('.about-content .section-label'); if(e) e.textContent=v; } });
-    F.push({ tab:'hakkinda', grp:'Hakkında Bölümü', id:'eab_ttl', lbl:'Başlık (HTML)', type:'textarea',
-      get:function(){ var e=q('.about-content .section-title'); return e?e.innerHTML:''; },
-      set:function(v){ var e=q('.about-content .section-title'); if(e) e.innerHTML=v; } });
-    F.push({ tab:'hakkinda', grp:'Hakkında Bölümü', id:'eab_p1', lbl:'Paragraf 1', type:'textarea',
-      get:function(){ var e=nth('.about-content p',0); return e?e.textContent.trim():''; },
-      set:function(v){ var e=nth('.about-content p',0); if(e) e.textContent=v; } });
-    F.push({ tab:'hakkinda', grp:'Hakkında Bölümü', id:'eab_p2', lbl:'Paragraf 2', type:'textarea',
-      get:function(){ var e=nth('.about-content p',1); return e?e.textContent.trim():''; },
-      set:function(v){ var e=nth('.about-content p',1); if(e) e.textContent=v; } });
-    F.push({ tab:'hakkinda', grp:'Hakkında Görsel', id:'eab_img', lbl:'Görsel URL', type:'image',
-      get:function(){ var e=q('.about-img'); return e?e.getAttribute('src'):''; },
-      set:function(v){ var e=q('.about-img'); if(e) e.src=v; } });
-    [0,1,2,3].forEach(function(i){
-      F.push({ tab:'hakkinda', grp:'Madde Listesi', id:'eab_li'+i, lbl:'Madde '+(i+1), type:'input',
-        get:function(){ var e=nth('.about-list li',i); return e?e.innerHTML:''; },
-        set:function(v){ var e=nth('.about-list li',i); if(e) e.innerHTML=v; } });
-    });
+/* ── STATS COUNTER ── */
+var counted = false;
+function animateCounters(){
+  document.querySelectorAll('.count').forEach(function(el){
+    var target = parseInt(el.dataset.to, 10);
+    var start = 0, step = target / (1800/16);
+    var t = setInterval(function(){
+      start += step;
+      if(start >= target){ el.textContent = target; clearInterval(t); return; }
+      el.textContent = Math.floor(start);
+    }, 16);
+  });
+}
+var obs = new IntersectionObserver(function(e){ if(e[0].isIntersecting && !counted){ counted=true; animateCounters(); }}, {threshold:.4});
+var st = document.querySelector('.stats-strip');
+if(st) obs.observe(st);
 
-    // HİZMETLER — 6 kart
-    [0,1,2,3,4,5].forEach(function(i){
-      F.push({ tab:'hizmetler', grp:'Hizmet '+(i+1), id:'esvc_n'+i, lbl:'Başlık', type:'input',
-        get:function(){ var e=nth('.service-name',i); return e?e.textContent.trim():''; },
-        set:function(v){ var e=nth('.service-name',i); if(e) e.textContent=v; } });
-      F.push({ tab:'hizmetler', grp:'Hizmet '+(i+1), id:'esvc_t'+i, lbl:'Açıklama', type:'textarea',
-        get:function(){ var e=nth('.service-text',i); return e?e.textContent.trim():''; },
-        set:function(v){ var e=nth('.service-text',i); if(e) e.textContent=v; } });
-      F.push({ tab:'hizmetler', grp:'Hizmet '+(i+1), id:'esvc_l'+i, lbl:'Link Metni', type:'input',
-        get:function(){
-          var e=nth('.service-link',i); if(!e) return '';
-          return Array.from(e.childNodes).filter(function(n){return n.nodeType===3;}).map(function(n){return n.textContent.trim();}).join('').trim();
-        },
-        set:function(v){
-          var e=nth('.service-link',i); if(!e) return;
-          var svg=e.querySelector('svg'); e.textContent=v; if(svg) e.appendChild(svg);
-        } });
-    });
+/* ── FAQ ── */
+function toggleFaq(btn){
+  var item = btn.closest('.faq-item');
+  var open = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(el){ el.classList.remove('open'); });
+  if(!open) item.classList.add('open');
+}
 
-    // GALERİ — 6 görsel
-    [0,1,2,3,4,5].forEach(function(i){
-      F.push({ tab:'galeri', grp:'Görsel '+(i+1), id:'egal_img'+i, lbl:'Görsel URL', type:'image',
-        get:function(){ var e=nth('.gallery-item img',i); return e?e.getAttribute('src'):''; },
-        set:function(v){ var e=nth('.gallery-item img',i); if(e) e.src=v; } });
-      F.push({ tab:'galeri', grp:'Görsel '+(i+1), id:'egal_cap'+i, lbl:'Açıklama', type:'input',
-        get:function(){ var e=nth('.gallery-caption',i); return e?e.textContent.trim():''; },
-        set:function(v){ var e=nth('.gallery-caption',i); if(e) e.textContent=v; } });
-      F.push({ tab:'galeri', grp:'Görsel '+(i+1), id:'egal_cat'+i, lbl:'Kategori (deri/recaro/tavan/all)', type:'input',
-        get:function(){ var e=nth('.gallery-item',i); return e?e.dataset.cat:''; },
-        set:function(v){ var e=nth('.gallery-item',i); if(e) e.dataset.cat=v; } });
-    });
-
-    // REFERANSLAR — 3 kart
-    [0,1,2].forEach(function(i){
-      F.push({ tab:'referanslar', grp:'Referans '+(i+1), id:'etst_av'+i, lbl:'Avatar URL', type:'image',
-        get:function(){ var e=nth('.author-avatar',i); return e?e.getAttribute('src'):''; },
-        set:function(v){ var e=nth('.author-avatar',i); if(e) e.src=v; } });
-      F.push({ tab:'referanslar', grp:'Referans '+(i+1), id:'etst_nm'+i, lbl:'İsim', type:'input',
-        get:function(){ var e=nth('.author-name',i); return e?e.textContent.trim():''; },
-        set:function(v){ var e=nth('.author-name',i); if(e) e.textContent=v; } });
-      F.push({ tab:'referanslar', grp:'Referans '+(i+1), id:'etst_rl'+i, lbl:'Araç / Unvan', type:'input',
-        get:function(){ var e=nth('.author-car',i); return e?e.textContent.trim():''; },
-        set:function(v){ var e=nth('.author-car',i); if(e) e.textContent=v; } });
-      F.push({ tab:'referanslar', grp:'Referans '+(i+1), id:'etst_tx'+i, lbl:'Yorum Metni', type:'textarea',
-        get:function(){ var e=nth('.testimonial-text',i); return e?e.textContent.trim():''; },
-        set:function(v){ var e=nth('.testimonial-text',i); if(e) e.textContent=v; } });
-    });
-
-    // SSS — 4 soru
-    [0,1,2,3].forEach(function(i){
-      F.push({ tab:'sss', grp:'Soru '+(i+1), id:'efaq_q'+i, lbl:'Soru', type:'input',
-        get:function(){
-          var b=nth('.faq-question',i); if(!b) return '';
-          return Array.from(b.childNodes).filter(function(n){return n.nodeType===3;}).map(function(n){return n.textContent.trim();}).filter(Boolean).join(' ');
-        },
-        set:function(v){
-          var b=nth('.faq-question',i); if(!b) return;
-          var icon=b.querySelector('.faq-icon'); b.textContent=v+' '; if(icon) b.appendChild(icon);
-        } });
-      F.push({ tab:'sss', grp:'Soru '+(i+1), id:'efaq_a'+i, lbl:'Cevap', type:'textarea',
-        get:function(){ var e=nth('.faq-answer p',i); return e?e.textContent.trim():''; },
-        set:function(v){ var e=nth('.faq-answer p',i); if(e) e.textContent=v; } });
-    });
-
-    // İLETİŞİM
-    F.push({ tab:'iletisim', grp:'İletişim Bölümü', id:'ect_lbl', lbl:'Bölüm Etiketi', type:'input',
-      get:function(){ var e=q('.contact-info .section-label'); return e?e.textContent.trim():''; },
-      set:function(v){ var e=q('.contact-info .section-label'); if(e) e.textContent=v; } });
-    F.push({ tab:'iletisim', grp:'İletişim Bölümü', id:'ect_ttl', lbl:'Başlık (HTML)', type:'textarea',
-      get:function(){ var e=q('.contact-info .section-title'); return e?e.innerHTML:''; },
-      set:function(v){ var e=q('.contact-info .section-title'); if(e) e.innerHTML=v; } });
-    F.push({ tab:'iletisim', grp:'İletişim Bölümü', id:'ect_sub', lbl:'Alt Metin', type:'textarea',
-      get:function(){
-        var ps=qa('.contact-info > div > p');
-        return ps.length?ps[0].textContent.trim():'';
-      },
-      set:function(v){
-        var e=q('.contact-info p[style]'); if(e) e.textContent=v;
-      } });
-    F.push({ tab:'iletisim', grp:'WhatsApp', id:'ect_wa', lbl:'WhatsApp Link (wa.me/...)', type:'input',
-      get:function(){ var e=q('a[href^="https://wa.me"]'); return e?e.getAttribute('href'):''; },
-      set:function(v){ qa('a[href^="https://wa.me"]').forEach(function(e){e.href=v;}); } });
-
-    // FOOTER
-    F.push({ tab:'footer', grp:'Footer', id:'eft_logo', lbl:'Logo URL', type:'image',
-      get:function(){ var e=q('.footer-logo img'); return e?e.getAttribute('src'):''; },
-      set:function(v){ var e=q('.footer-logo img'); if(e) e.src=v; } });
-    F.push({ tab:'footer', grp:'Footer', id:'eft_tag', lbl:'Slogan', type:'textarea',
-      get:function(){ var e=q('.footer-tagline'); return e?e.textContent.trim():''; },
-      set:function(v){ var e=q('.footer-tagline'); if(e) e.textContent=v; } });
-    F.push({ tab:'footer', grp:'Footer', id:'eft_copy', lbl:'Telif Metni', type:'input',
-      get:function(){ var e=q('.footer-copy'); return e?e.textContent.trim():''; },
-      set:function(v){ var e=q('.footer-copy'); if(e) e.textContent=v; } });
-    F.push({ tab:'footer', grp:'Footer İletişim', id:'eft_faddr', lbl:'Adres (Footer)', type:'textarea',
-      get:function(){
-        var lines=qa('.footer-contact-line span');
-        return lines.length?lines[0].innerHTML:'';
-      },
-      set:function(v){
-        var lines=qa('.footer-contact-line span');
-        if(lines.length) lines[0].innerHTML=v;
-      } });
-    F.push({ tab:'footer', grp:'Footer İletişim', id:'eft_fhours', lbl:'Saatler (Footer)', type:'input',
-      get:function(){
-        var lines=qa('.footer-contact-line span');
-        return lines.length>1?lines[lines.length-1].textContent.trim():'';
-      },
-      set:function(v){
-        var lines=qa('.footer-contact-line span');
-        if(lines.length>1) lines[lines.length-1].textContent=v;
-      } });
-
-    // ── Helper: normalize hex ────────────────────────────────────
-    function normHex(s){
-      s=(s||'').replace(/\s/g,'');
-      if(/^#[0-9a-fA-F]{6}$/.test(s)) return s;
-      if(/^#[0-9a-fA-F]{3}$/.test(s)) return '#'+s[1]+s[1]+s[2]+s[2]+s[3]+s[3];
-      return s;
-    }
-
-    // ── Build field HTML ─────────────────────────────────────────
-    function fieldHtml(f){
-      if(f.type==='color'){
-        var def=f._def||'#c0a060';
-        return '<div class="ed-f"><label class="ed-lbl">'+f.lbl+'</label>'
-          +'<div class="ed-crow">'
-          +'<input type="color" id="'+f.id+'" class="ed-cinp" value="'+def+'">'
-          +'<input type="text"  id="'+f.id+'_h" class="ed-inp ed-chex" placeholder="'+def+'" value="'+def+'">'
-          +'</div></div>';
-      }
-      if(f.type==='image'){
-        return '<div class="ed-f"><label class="ed-lbl">'+f.lbl+'</label>'
-          +'<input type="text" id="'+f.id+'" class="ed-inp" placeholder="https://...">'
-          +'<img id="'+f.id+'_p" class="ed-imgprev" src="" alt="" onerror="this.style.display=\'none\'" onload="this.style.display=\'block\'">'
-          +'<a href="https://unsplash.com/s/photos/car-interior" target="_blank" class="ed-ulink">↗ Unsplash\'tan Görsel Bul</a>'
-          +'</div>';
-      }
-      if(f.type==='textarea'){
-        return '<div class="ed-f"><label class="ed-lbl">'+f.lbl+'</label>'
-          +'<textarea id="'+f.id+'" class="ed-inp"></textarea>'
-          +'</div>';
-      }
-      return '<div class="ed-f"><label class="ed-lbl">'+f.lbl+'</label>'
-        +'<input type="text" id="'+f.id+'" class="ed-inp">'
-        +'</div>';
-    }
-
-    // ── Build UI ─────────────────────────────────────────────────
-    function buildUI(){
-      var tabsEl=document.getElementById('__edtabs');
-      var contEl=document.getElementById('__edc');
-      if(!tabsEl||!contEl) return;
-
-      // Tab buttons
-      var tabHtml='';
-      TABS.forEach(function(t,i){
-        tabHtml+='<button class="ed-tab'+(i===0?' active':'')+'" data-tab="'+t.id+'" onclick="__edTab(\''+t.id+'\')">'+t.lbl+'</button>';
-      });
-      tabsEl.innerHTML=tabHtml;
-
-      // Sections
-      var secHtml='';
-      TABS.forEach(function(t,i){
-        var tabFields=F.filter(function(f){return f.tab===t.id;});
-        // Group by grp
-        var grpOrder=[];
-        var grpMap={};
-        tabFields.forEach(function(f){
-          var g=f.grp||'Genel';
-          if(!grpMap[g]){grpMap[g]=[];grpOrder.push(g);}
-          grpMap[g].push(f);
-        });
-        var grpHtml='';
-        grpOrder.forEach(function(g){
-          var fHtml=grpMap[g].map(fieldHtml).join('');
-          grpHtml+='<div class="ed-grp"><div class="ed-gtitle">'+g+'</div>'+fHtml+'</div>';
-        });
-        secHtml+='<div class="ed-sec'+(i===0?' active':'')+'" data-tab="'+t.id+'">'+grpHtml+'</div>';
-      });
-      contEl.innerHTML=secHtml;
-
-      // Bind events
-      F.forEach(function(f){
-        if(!f.id) return;
-        var inp=document.getElementById(f.id);
-        if(!inp) return;
-
-        if(f.type==='color'){
-          var hexInp=document.getElementById(f.id+'_h');
-          inp.addEventListener('input',function(){
-            if(hexInp) hexInp.value=inp.value;
-            try{f.set(inp.value);}catch(e){}
-          });
-          if(hexInp){
-            hexInp.addEventListener('input',function(){
-              var v=hexInp.value.trim();
-              if(/^#[0-9a-fA-F]{6}$/.test(v)){
-                inp.value=v;
-                try{f.set(v);}catch(e){}
-              }
-            });
-          }
-        } else {
-          inp.addEventListener('input',function(){
-            try{f.set(inp.value);}catch(e){}
-            if(f.type==='image'){
-              var prev=document.getElementById(f.id+'_p');
-              if(prev){prev.src=inp.value;prev.style.display='block';}
-            }
-          });
-        }
-      });
-    }
-
-    // ── Load current values into fields ─────────────────────────
-    function syncLoad(){
-      F.forEach(function(f){
-        if(!f.id) return;
-        var inp=document.getElementById(f.id);
-        if(!inp) return;
-        var val='';
-        try{val=f.get()||'';}catch(e){}
-        if(f.type==='color'){
-          var h=normHex(val);
-          inp.value=h;
-          var hi=document.getElementById(f.id+'_h');
-          if(hi) hi.value=h;
-        } else {
-          inp.value=val;
-          if(f.type==='image'&&val){
-            var prev=document.getElementById(f.id+'_p');
-            if(prev){prev.src=val;prev.style.display='block';}
-          }
-        }
-      });
-    }
-    window.__edReload=syncLoad;
-
-    // ── Tab switch ───────────────────────────────────────────────
-    window.__edTab=function(id){
-      qa('.ed-tab').forEach(function(b){b.classList.toggle('active',b.dataset.tab===id);});
-      qa('.ed-sec').forEach(function(s){s.classList.toggle('active',s.dataset.tab===id);});
-    };
-
-    // ── Toggle panel ─────────────────────────────────────────────
-    window.__edToggle=function(){
-      var p=document.getElementById('__edp');
-      var wasOpen=p.classList.contains('open');
-      p.classList.toggle('open');
-      if(!wasOpen) setTimeout(syncLoad,50);
-    };
-
-    // ── Export clean HTML ────────────────────────────────────────
-    window.__edExport=function(){
-      var els=['__edp','__edt','__edn','__eds','__edscript'].map(function(id){return document.getElementById(id);}).filter(Boolean);
-      // Remove from DOM
-      var parents=els.map(function(el){return {el:el,parent:el.parentNode,next:el.nextSibling};});
-      parents.forEach(function(x){x.parent.removeChild(x.el);});
-      // Capture
-      var html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
-      // Restore
-      parents.forEach(function(x){
-        if(x.next) x.parent.insertBefore(x.el,x.next);
-        else x.parent.appendChild(x.el);
-      });
-      // Download
-      var blob=new Blob([html],{type:'text/html;charset=utf-8'});
-      var url=URL.createObjectURL(blob);
-      var a=document.createElement('a');
-      a.href=url; a.download='index.html'; a.click();
-      setTimeout(function(){URL.revokeObjectURL(url);},1000);
-      // Notify
-      var n=document.getElementById('__edn');
-      if(n){n.classList.add('show');setTimeout(function(){n.classList.remove('show');},2500);}
-    };
-
-    // ── Netlify deploy ───────────────────────────────────────────
-    function loadScript(src){
-      return new Promise(function(res,rej){
-        var s=document.createElement('script');
-        s.src=src; s.onload=res; s.onerror=rej;
-        document.head.appendChild(s);
-      });
-    }
-
-    window.__edDeploy=async function(){
-      var token=localStorage.getItem('__ntok');
-      var siteId=localStorage.getItem('__nsid');
-      var btn=document.getElementById('__eddeploy');
-
-      if(!token||!siteId){
-        alert('Netlify bağlantısı yok. Lütfen admin.html üzerinden tekrar giriş yapın.');
-        return;
-      }
-
-      btn.textContent='⏳ Yükleniyor...';
-      btn.disabled=true;
-
-      try{
-        // JSZip yükle
-        if(!window.JSZip) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js');
-
-        // Editör elemanlarını geçici kaldır
-        var ids=['__edp','__edt','__edn','__eds','__edscript'];
-        var saved=ids.map(function(id){var el=document.getElementById(id);return{el:el,parent:el&&el.parentNode,next:el&&el.nextSibling};});
-        saved.forEach(function(x){if(x.el&&x.parent)x.parent.removeChild(x.el);});
-
-        var html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
-
-        // Geri ekle
-        saved.forEach(function(x){
-          if(!x.el||!x.parent)return;
-          if(x.next)x.parent.insertBefore(x.el,x.next);
-          else x.parent.appendChild(x.el);
-        });
-
-        // Zip oluştur
-        var zip=new JSZip();
-        zip.file('index.html',html);
-
-        try{var lr=await fetch('logo.png');zip.file('logo.png',await lr.blob());}catch(e){}
-        try{var ar=await fetch('admin.html');zip.file('admin.html',await ar.text());}catch(e){}
-
-        var zipBlob=await zip.generateAsync({type:'blob'});
-
-        // Netlify'a gönder
-        var resp=await fetch('https://api.netlify.com/api/v1/sites/'+siteId+'/deploys',{
-          method:'POST',
-          headers:{'Authorization':'Bearer '+token,'Content-Type':'application/zip'},
-          body:zipBlob
-        });
-
-        if(!resp.ok) throw new Error('HTTP '+resp.status);
-
-        btn.textContent='✓ Gönderildi! ~30sn';
-        btn.style.cssText='background:#1a4a2a;border-color:#1a4a2a;color:#6bcf6b;';
-        setTimeout(function(){
-          btn.textContent='☁ Kaydet';
-          btn.style.cssText='';
-          btn.disabled=false;
-        },4000);
-
-      }catch(err){
-        btn.textContent='✗ Hata — Tekrar dene';
-        btn.style.cssText='background:#4a1a1a;border-color:#4a1a1a;color:#cf6b6b;';
-        btn.disabled=false;
-        setTimeout(function(){btn.textContent='☁ Kaydet';btn.style.cssText='';},3000);
-      }
-    };
-
-    // ── Auth: sadece admin.html üzerinden giriş yapılınca açılır ─
-    function checkAuth(){
-      var btn=document.getElementById('__edt');
-      if(localStorage.getItem('__edauth')==='1'){
-        if(btn) btn.style.display='flex';
-        if(localStorage.getItem('__edauto')==='1'){
-          localStorage.removeItem('__edauto');
-          setTimeout(function(){window.__edToggle();},400);
-        }
-      } else {
-        if(btn) btn.style.display='none';
-      }
-    }
-
-    window.__edLogout=function(){
-      localStorage.removeItem('__edauth');
-      localStorage.removeItem('__edauto');
-      var btn=document.getElementById('__edt');
-      if(btn) btn.style.display='none';
-      var p=document.getElementById('__edp');
-      if(p) p.classList.remove('open');
-    };
-
-    // ── Keyboard shortcut: Ctrl+Shift+E ─────────────────────────
-    document.addEventListener('keydown',function(e){
-      if(e.ctrlKey&&e.shiftKey&&e.key==='E'){
-        e.preventDefault();
-        if(localStorage.getItem('__edauth')==='1') window.__edToggle();
-      }
-    });
-
-    // ── Init ─────────────────────────────────────────────────────
-    buildUI();
-    checkAuth();
-  })();
-  </script>
+/* ── FORM ── */
+function submitForm(e){
+  e.preventDefault();
+  document.getElementById('formMsg').style.display = 'block';
+  e.target.reset();
+}
+</script>
 </body>
 </html>
