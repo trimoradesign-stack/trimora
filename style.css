@@ -526,8 +526,8 @@ body {
 
 .footer-top {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px 14px;
+  grid-template-columns: auto 1fr;
+  gap: 16px 18px;
 }
 
 .footer-brand {
@@ -537,7 +537,7 @@ body {
   gap: 10px;
 }
 .footer-logo {
-  height: 65px;
+  height: 42px;
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 2px 8px rgba(212,175,106,0.2));
