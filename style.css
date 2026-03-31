@@ -36,11 +36,11 @@ body {
 .header-top {
   display: flex;
   justify-content: center;
-  padding: 8px 16px 4px;
+  padding: 4px 16px 2px;
 }
 
 .header-logo img {
-  height: 68px;
+  height: 52px;
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 0 8px rgba(212,175,106,0.35));
@@ -138,7 +138,7 @@ body {
 /* ---- HERO ---- */
 .hero {
   position: relative;
-  height: 520px;
+  height: 420px;
   overflow: hidden;
 }
 
@@ -172,14 +172,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 24px 20px;
+  justify-content: flex-end;
+  padding: 0 20px 36px;
   text-align: center;
-  gap: 16px;
+  gap: 12px;
 }
 
 .hero-logo {
-  width: min(280px, 72vw);
+  width: min(240px, 62vw);
   height: auto;
   object-fit: contain;
   mix-blend-mode: screen;
@@ -614,51 +614,30 @@ body {
   color: var(--text-muted);
 }
 
-/* ---- SOSYAL MEDYA FLOATING BAR ---- */
-.social-float {
-  position: fixed;
-  right: 14px;
-  bottom: 24px;
-  z-index: 999;
+/* ---- FOOTER SOSYAL BUTONLAR ---- */
+.footer-social {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-.social-icon {
+.fsoc-btn {
   display: flex;
   align-items: center;
-  gap: 8px;
-  background: var(--bg);
-  color: #fff;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
   text-decoration: none;
-  border-radius: 50px;
-  padding: 10px;
-  width: 44px;
-  overflow: hidden;
-  box-shadow: 0 3px 12px rgba(0,0,0,.35);
-  transition: width .3s ease, box-shadow .2s, transform .2s;
-  white-space: nowrap;
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,.3);
+  flex-shrink: 0;
 }
-.social-icon span {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  opacity: 0;
-  transition: opacity .2s;
-  pointer-events: none;
+.fsoc-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 14px rgba(0,0,0,.4);
 }
-.social-icon:hover {
-  width: 140px;
-  box-shadow: 0 5px 18px rgba(0,0,0,.45);
-  transform: translateX(-4px);
-}
-.social-icon:hover span { opacity: 1; }
-.social-icon:active { transform: scale(.95) translateX(-4px); }
-
-/* TikTok özel arka plan */
-.tiktok-icon { background: #010101; }
+.fsoc-btn:active { transform: scale(.93); }
 
 /* ---- DESKTOP ---- */
 @media (min-width: 600px) {
