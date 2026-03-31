@@ -93,6 +93,28 @@ dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
 
 window.addEventListener('resize', () => goTo(current));
 
+// ---- SLIDER SWIPE (dokunmatik + mouse sürükle) ----
+let dragStart = null;
+let dragging = false;
+
+track.addEventListener('mousedown', e => { dragStart = e.clientX; dragging = false; });
+track.addEventListener('mousemove', e => { if (dragStart !== null) dragging = true; });
+track.addEventListener('mouseup', e => {
+  if (dragStart === null) return;
+  const diff = dragStart - e.clientX;
+  if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+  dragStart = null;
+});
+track.addEventListener('mouseleave', () => { dragStart = null; });
+
+track.addEventListener('touchstart', e => { dragStart = e.touches[0].clientX; }, { passive: true });
+track.addEventListener('touchend', e => {
+  if (dragStart === null) return;
+  const diff = dragStart - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+  dragStart = null;
+});
+
 // ---- CONTACT FORM (Formspree) ----
 document.getElementById('contactForm').addEventListener('submit', async (e) => {
   e.preventDefault();
