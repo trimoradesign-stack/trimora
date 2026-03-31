@@ -614,31 +614,51 @@ body {
   color: var(--text-muted);
 }
 
-/* ---- WHATSAPP BUTON ---- */
-.whatsapp-btn {
+/* ---- SOSYAL MEDYA FLOATING BAR ---- */
+.social-float {
   position: fixed;
-  bottom: 22px;
-  right: 18px;
+  right: 14px;
+  bottom: 24px;
   z-index: 999;
-  background: #25d366;
-  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.social-icon {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 18px 12px 14px;
-  border-radius: 50px;
+  background: var(--bg);
+  color: #fff;
   text-decoration: none;
+  border-radius: 50px;
+  padding: 10px;
+  width: 44px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(0,0,0,.35);
+  transition: width .3s ease, box-shadow .2s, transform .2s;
+  white-space: nowrap;
+}
+.social-icon span {
   font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  box-shadow: 0 4px 16px rgba(37,211,102,.45);
-  transition: transform .2s, box-shadow .2s;
+  opacity: 0;
+  transition: opacity .2s;
+  pointer-events: none;
 }
-.whatsapp-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(37,211,102,.6);
+.social-icon:hover {
+  width: 140px;
+  box-shadow: 0 5px 18px rgba(0,0,0,.45);
+  transform: translateX(-4px);
 }
-.whatsapp-btn:active { transform: scale(.96); }
+.social-icon:hover span { opacity: 1; }
+.social-icon:active { transform: scale(.95) translateX(-4px); }
+
+/* TikTok özel arka plan */
+.tiktok-icon { background: #010101; }
 
 /* ---- DESKTOP ---- */
 @media (min-width: 600px) {
