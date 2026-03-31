@@ -256,7 +256,7 @@
     <button class="hbtn hbtn-ghost" onclick="reloadPreview()">↺ Yenile</button>
     <button class="hbtn hbtn-acc" id="deployBtn" onclick="doDeploy()">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline;vertical-align:middle;margin-right:5px"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
-      Netlify'a Yayınla
+      GitHub'a Yayınla
     </button>
     <button class="hbtn hbtn-danger" onclick="doLogout()">Çıkış</button>
   </header>
@@ -305,10 +305,11 @@
 var ADMIN_PASS = 'Trimora2024';
 
 // ════════════════════════════════════════════════════════════
-//  NETLIFY BİLGİLERİ — satışta müşteriye göre güncelle
+//  GITHUB BİLGİLERİ — satışta müşteriye göre güncelle
 // ════════════════════════════════════════════════════════════
-var NETLIFY_TOKEN   = 'nfp_gSsUT6Lmy4cGzDfPt6zroLDu9uL5F7Q51ad1';
-var NETLIFY_SITE_ID = '7ae3402f-b0f0-4ddb-8dfc-df8fe84a08f9';
+var GITHUB_TOKEN = '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';
+var GITHUB_OWNER = 'trimoradesign-stack';
+var GITHUB_REPO  = 'trimora';
 
 // ── Auth / rate-limit ────────────────────────────────────────
 var MAX_ATTEMPTS = 3;
@@ -885,11 +886,12 @@ function clearUnsaved() {
 
 // ── Deploy ───────────────────────────────────────────────────
 async function doDeploy() {
-  var token  = localStorage.getItem('__netlify_tok')  || NETLIFY_TOKEN;
-  var siteId = localStorage.getItem('__netlify_sid')  || NETLIFY_SITE_ID;
+  var token = localStorage.getItem('__gh_tok') || GITHUB_TOKEN;
+  var owner = GITHUB_OWNER;
+  var repo  = GITHUB_REPO;
 
-  if (!token || !siteId || token === 'BURAYA_TOKEN_YAZ') {
-    showToast('Önce Ayarlar sekmesinden Netlify bilgilerini kaydet.', 'fail');
+  if (!token || token === 'BURAYA_TOKEN_YAZ') {
+    showToast('Önce Ayarlar sekmesinden GitHub token kaydet.', 'fail');
     switchTab('ayarlar');
     return;
   }
@@ -900,11 +902,6 @@ async function doDeploy() {
   setStatus('Yayınlanıyor...', true);
 
   try {
-    // JSZip yükle
-    if (!window.JSZip) {
-      await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js');
-    }
-
     // Editör UI elemanlarını iframe'den geçici kaldır
     var edIds = ['__edp','__edt','__edn','__eds','__edscript'];
     var saved = edIds.map(function(id) {
@@ -912,60 +909,48 @@ async function doDeploy() {
       return { el: el, parent: el && el.parentNode, next: el && el.nextSibling };
     });
     saved.forEach(function(x) { if (x.el && x.parent) x.parent.removeChild(x.el); });
-
     var html = '<!DOCTYPE html>\n' + iDoc.documentElement.outerHTML;
-
-    // Geri ekle
     saved.forEach(function(x) {
       if (!x.el || !x.parent) return;
       if (x.next) x.parent.insertBefore(x.el, x.next);
       else x.parent.appendChild(x.el);
     });
 
-    // Zip oluştur
-    var zip = new JSZip();
-    zip.file('index.html', html);
-    try { var lr = await fetch('logo.png'); zip.file('logo.png', await lr.blob()); } catch(e) {}
-    try { var ar = await fetch('admin.html'); zip.file('admin.html', await ar.text()); } catch(e) {}
+    // UTF-8 → base64
+    var b64 = btoa(unescape(encodeURIComponent(html)));
 
-    var zipBlob = await zip.generateAsync({ type: 'blob' });
+    var apiBase = 'https://api.github.com/repos/' + owner + '/' + repo + '/contents/';
+    var headers = {
+      'Authorization': 'Bearer ' + token,
+      'Accept': 'application/vnd.github+json',
+      'Content-Type': 'application/json'
+    };
 
-    var resp = await fetch('https://api.netlify.com/api/v1/sites/' + siteId + '/deploys', {
-      method: 'POST',
-      headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/zip' },
-      body: zipBlob
-    });
+    // Mevcut SHA'yı al
+    var shaResp = await fetch(apiBase + 'index.html', { headers: headers });
+    var sha = '';
+    if (shaResp.ok) { var shaData = await shaResp.json(); sha = shaData.sha || ''; }
 
+    // index.html güncelle
+    var body = JSON.stringify({ message: 'Site güncellendi', content: b64, sha: sha });
+    var resp = await fetch(apiBase + 'index.html', { method: 'PUT', headers: headers, body: body });
     if (!resp.ok) {
-      var errBody = '';
-      try { var j = await resp.json(); errBody = j.message || ''; } catch(e) {}
-      throw new Error('HTTP ' + resp.status + (errBody ? ': ' + errBody : ''));
+      var e = await resp.json();
+      throw new Error(e.message || 'HTTP ' + resp.status);
     }
 
     clearUnsaved();
     setStatus('Yayınlandı', false);
-    showToast('Netlify\'a yayınlandı! ~30 sn içinde canlı.', 'ok');
+    showToast('GitHub\'a yayınlandı! ~1 dk içinde canlı.', 'ok');
     btn.textContent = '✓ Yayınlandı';
-    setTimeout(function() {
-      btn.textContent = 'Netlify\'a Yayınla';
-      btn.disabled = false;
-    }, 4000);
+    setTimeout(function() { btn.textContent = 'GitHub\'a Yayınla'; btn.disabled = false; }, 4000);
 
   } catch(err) {
-    // TypeError = CORS cevabı engelliyor ama deploy gönderildi (Netlify'ın bilinen davranışı)
-    if (err instanceof TypeError) {
-      clearUnsaved();
-      setStatus('Yayınlandı', false);
-      showToast('Deploy gönderildi! Site ~30sn içinde güncellenir.', 'ok');
-      btn.textContent = '✓ Yayınlandı';
-      setTimeout(function() { btn.textContent = 'Netlify\'a Yayınla'; btn.disabled = false; }, 4000);
-    } else {
-      setStatus('Hata', false);
-      showToast('Hata: ' + err.message, 'fail');
-      btn.textContent = '✗ Tekrar Dene';
-      btn.disabled = false;
-      setTimeout(function() { btn.textContent = 'Netlify\'a Yayınla'; }, 3000);
-    }
+    setStatus('Hata', false);
+    showToast('Hata: ' + err.message, 'fail');
+    btn.textContent = '✗ Tekrar Dene';
+    btn.disabled = false;
+    setTimeout(function() { btn.textContent = 'GitHub\'a Yayınla'; }, 3000);
   }
 }
 
