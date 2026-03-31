@@ -1,20 +1,11 @@
-// ---- NAV DRAWER ----
-const menuBtn = document.getElementById('menuBtn');
-const navDrawer = document.getElementById('navDrawer');
-const navOverlay = document.getElementById('navOverlay');
-
-function openNav() {
-  navDrawer.classList.add('open');
-  navOverlay.classList.add('open');
-}
-function closeNav() {
-  navDrawer.classList.remove('open');
-  navOverlay.classList.remove('open');
-}
-
-menuBtn.addEventListener('click', openNav);
-navOverlay.addEventListener('click', closeNav);
-navDrawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+// ---- NAV aktif link ----
+const navLinks = document.querySelectorAll('.main-nav a:not(.nav-cta)');
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.forEach(l => l.style.color = '');
+    link.style.color = 'var(--gold)';
+  });
+});
 
 // ---- SERVICES SLIDER ----
 const track = document.getElementById('servicesTrack');

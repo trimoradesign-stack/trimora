@@ -29,87 +29,76 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 16px;
   background: var(--green-dark);
   border-bottom: 1px solid var(--border);
 }
 
-.menu-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
+.header-top {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding: 4px;
-}
-.menu-btn span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: var(--text-white);
-  border-radius: 2px;
-  transition: .3s;
-}
-
-/* Masaüstü nav — mobilde gizli */
-.desktop-nav {
-  display: none;
+  justify-content: center;
+  padding: 8px 16px 4px;
 }
 
 .header-logo img {
-  height: 62px;
+  height: 68px;
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 0 8px rgba(212,175,106,0.35));
 }
 
-/* Masaüstünde hamburger gizle, nav göster */
-@media (min-width: 768px) {
-  .menu-btn { display: none; }
+/* NAV — her ekranda görünür */
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  border-top: 1px solid var(--border);
+  padding: 0 8px;
+}
+.main-nav::-webkit-scrollbar { display: none; }
 
-  .desktop-nav {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-  }
-  .desktop-nav a {
-    color: var(--text-white);
-    text-decoration: none;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    position: relative;
-    transition: color .2s;
-  }
-  .desktop-nav a::after {
-    content: '';
-    position: absolute;
-    bottom: -3px;
-    left: 0; right: 0;
-    height: 1px;
-    background: var(--gold);
-    transform: scaleX(0);
-    transition: transform .2s;
-  }
-  .desktop-nav a:hover { color: var(--gold); }
-  .desktop-nav a:hover::after { transform: scaleX(1); }
+.main-nav a {
+  color: var(--text-white);
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .8px;
+  white-space: nowrap;
+  padding: 10px 12px;
+  position: relative;
+  transition: color .2s;
+  flex-shrink: 0;
+}
+.main-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 12px; right: 12px;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform .2s;
+}
+.main-nav a:hover { color: var(--gold); }
+.main-nav a:hover::after { transform: scaleX(1); }
 
-  .desktop-nav .nav-cta {
-    background: var(--gold);
-    color: var(--green-dark);
-    padding: 7px 16px;
-    border-radius: 4px;
-    font-weight: 700;
-    transition: background .2s;
-  }
-  .desktop-nav .nav-cta:hover { background: var(--gold-light); }
-  .desktop-nav .nav-cta::after { display: none; }
+.main-nav .nav-cta {
+  background: var(--gold);
+  color: var(--green-dark) !important;
+  border-radius: 4px;
+  margin-left: 6px;
+  padding: 6px 14px;
+  font-weight: 700;
+}
+.main-nav .nav-cta::after { display: none; }
+.main-nav .nav-cta:hover { background: var(--gold-light); }
+
+@media (min-width: 600px) {
+  .main-nav a { font-size: 12px; padding: 11px 16px; }
+  .header-logo img { height: 72px; }
 }
 
 /* ---- NAV DRAWER ---- */
