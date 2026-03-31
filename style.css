@@ -32,7 +32,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 18px;
+  padding: 10px 16px;
   background: var(--green-dark);
   border-bottom: 1px solid var(--border);
 }
@@ -70,7 +70,7 @@ body {
 }
 
 .header-logo img {
-  height: 48px;
+  height: 44px;
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 0 6px rgba(212,175,106,0.3));
@@ -113,14 +113,14 @@ body {
 /* ---- HERO ---- */
 .hero {
   position: relative;
-  height: 340px;
+  height: 320px;
   overflow: hidden;
 }
 
 .hero-images {
   display: flex;
   height: 100%;
-  gap: 3px;
+  gap: 2px;
 }
 .hero-img {
   flex: 1;
@@ -131,7 +131,7 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: brightness(.65);
+  filter: brightness(.55);
 }
 
 .hero-overlay {
@@ -139,44 +139,45 @@ body {
   inset: 0;
   background: linear-gradient(
     to bottom,
-    transparent 0%,
-    rgba(13,34,24,.4) 50%,
-    rgba(13,34,24,.85) 100%
+    rgba(13,34,24,.1) 0%,
+    rgba(13,34,24,.3) 40%,
+    rgba(13,34,24,.75) 100%
   );
 }
 
 .hero-text {
   position: absolute;
-  bottom: 28px;
+  bottom: 24px;
   left: 0; right: 0;
   text-align: center;
-  padding: 0 16px;
+  padding: 0 20px;
 }
 .hero-text h1 {
   font-family: 'Cinzel', serif;
-  font-size: clamp(13px, 4.2vw, 22px);
+  font-size: clamp(14px, 4.5vw, 20px);
   font-weight: 700;
   color: var(--gold);
-  line-height: 1.4;
-  text-shadow: 0 2px 8px rgba(0,0,0,.7);
+  line-height: 1.45;
+  text-shadow: 0 2px 12px rgba(0,0,0,.9);
   letter-spacing: .5px;
+  text-transform: uppercase;
 }
 
 /* ---- SECTION TITLE ---- */
 .section-title {
   font-family: 'Cinzel', serif;
-  font-size: clamp(16px, 5vw, 22px);
+  font-size: clamp(15px, 4.5vw, 20px);
   font-weight: 700;
   color: var(--gold);
   text-align: center;
   letter-spacing: 2px;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 
 /* ---- SERVICES ---- */
 .services {
   background: var(--green-mid);
-  padding: 36px 0 28px;
+  padding: 32px 0 24px;
 }
 
 .services-slider-wrapper {
@@ -184,23 +185,23 @@ body {
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: 0 40px;
+  padding: 0 36px;
 }
 
 .services-track {
   display: flex;
-  gap: 14px;
+  gap: 10px;
   transition: transform .35s ease;
   will-change: transform;
 }
 
 .service-card {
-  flex: 0 0 calc(25% - 10px);
-  min-width: 130px;
+  flex: 0 0 calc(25% - 8px);
+  min-width: 0;
   background: rgba(255,255,255,0.04);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 20px 14px;
+  padding: 16px 10px;
   text-align: center;
   transition: border-color .2s, background .2s;
   cursor: pointer;
@@ -211,9 +212,9 @@ body {
 }
 
 .service-icon {
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 12px;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 10px;
 }
 .service-icon svg {
   width: 100%;
@@ -222,14 +223,15 @@ body {
 
 .service-card h3 {
   font-family: 'Cinzel', serif;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
   color: var(--gold);
-  letter-spacing: .8px;
-  margin-bottom: 6px;
+  letter-spacing: .5px;
+  margin-bottom: 5px;
+  line-height: 1.4;
 }
 .service-card p {
-  font-size: 11px;
+  font-size: 10px;
   color: var(--text-muted);
   line-height: 1.5;
 }
@@ -241,8 +243,8 @@ body {
   background: rgba(212,175,106,0.15);
   border: 1px solid var(--border);
   color: var(--gold);
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   cursor: pointer;
   font-size: 18px;
@@ -252,16 +254,17 @@ body {
   justify-content: center;
   z-index: 2;
   transition: background .2s;
+  flex-shrink: 0;
 }
 .slider-btn:hover { background: rgba(212,175,106,0.3); }
-.slider-prev { left: 6px; }
-.slider-next { right: 6px; }
+.slider-prev { left: 4px; }
+.slider-next { right: 4px; }
 
 .slider-dots {
   display: flex;
   justify-content: center;
   gap: 6px;
-  margin-top: 18px;
+  margin-top: 16px;
 }
 .dot {
   width: 8px;
@@ -276,19 +279,19 @@ body {
 /* ---- GALLERY ---- */
 .gallery {
   background: var(--green-dark);
-  padding: 36px 14px 36px;
+  padding: 32px 12px 32px;
 }
 
 .gallery-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 140px 140px;
-  gap: 6px;
+  grid-template-rows: 130px 130px;
+  gap: 5px;
 }
 
 .gallery-item {
   overflow: hidden;
-  border-radius: 6px;
+  border-radius: 5px;
   background: var(--green-mid);
 }
 .gallery-item img {
@@ -300,7 +303,9 @@ body {
 }
 .gallery-item:hover img { transform: scale(1.06); }
 
+/* tall item: 3. sütun, 2 satır — referans tasarım gibi */
 .gallery-item-tall {
+  grid-column: 3;
   grid-row: 1 / 3;
 }
 
@@ -315,12 +320,12 @@ body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .form-row {
   display: flex;
-  gap: 10px;
+  gap: 8px;
 }
 
 .form-row input,
@@ -329,7 +334,7 @@ body {
   background: rgba(255,255,255,0.06);
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 12px 14px;
+  padding: 11px 12px;
   color: var(--text-white);
   font-family: 'Open Sans', sans-serif;
   font-size: 13px;
@@ -339,6 +344,7 @@ body {
 .form-row input::placeholder,
 .form-row textarea::placeholder {
   color: var(--text-muted);
+  font-size: 12px;
 }
 .form-row input:focus,
 .form-row textarea:focus {
@@ -346,7 +352,7 @@ body {
 }
 .form-row textarea {
   resize: none;
-  height: 50px;
+  height: 90px;
 }
 
 .form-row-bottom {
@@ -358,9 +364,9 @@ body {
   color: var(--green-dark);
   border: none;
   border-radius: 6px;
-  padding: 12px 22px;
+  padding: 11px 20px;
   font-family: 'Cinzel', serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 1px;
   cursor: pointer;
@@ -374,37 +380,37 @@ body {
 .footer {
   background: var(--green-mid);
   border-top: 1px solid var(--border);
-  padding: 28px 18px 16px;
+  padding: 24px 16px 14px;
 }
 
 .footer-top {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px 14px;
+  gap: 20px 14px;
 }
 
 .footer-brand {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
+  gap: 10px;
 }
 .footer-logo {
-  height: 52px;
+  height: 48px;
   width: auto;
   object-fit: contain;
 }
 
 .footer-social {
   display: flex;
-  gap: 10px;
+  gap: 8px;
 }
 .footer-social a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   border: 1px solid var(--border);
   border-radius: 8px;
   transition: border-color .2s;
@@ -413,30 +419,33 @@ body {
 
 .footer-col h4 {
   font-family: 'Cinzel', serif;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   color: var(--gold);
   letter-spacing: 1px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   text-transform: uppercase;
 }
 
 .footer-col p {
   font-size: 11px;
   color: var(--text-muted);
-  margin-bottom: 7px;
+  margin-bottom: 6px;
   display: flex;
-  align-items: center;
-  gap: 6px;
+  align-items: flex-start;
+  gap: 5px;
   line-height: 1.5;
 }
+.footer-col p svg { flex-shrink: 0; margin-top: 2px; }
+.footer-col p a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color .2s;
+}
+.footer-col p a:hover { color: var(--gold); }
 
-.footer-col ul {
-  list-style: none;
-}
-.footer-col ul li {
-  margin-bottom: 7px;
-}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 6px; }
 .footer-col ul li a {
   color: var(--text-muted);
   text-decoration: none;
@@ -446,21 +455,27 @@ body {
 .footer-col ul li a:hover { color: var(--gold); }
 
 .footer-bottom {
-  margin-top: 24px;
-  padding-top: 14px;
+  margin-top: 20px;
+  padding-top: 12px;
   border-top: 1px solid var(--border);
   text-align: center;
   font-size: 10px;
   color: var(--text-muted);
 }
 
-/* ---- RESPONSIVE ---- */
+/* ---- DESKTOP ---- */
 @media (min-width: 600px) {
   .footer-top {
     grid-template-columns: repeat(4, 1fr);
   }
-
   .service-card {
-    flex: 0 0 calc(20% - 12px);
+    flex: 0 0 calc(20% - 10px);
+  }
+  .service-card h3 { font-size: 11px; }
+  .service-card p  { font-size: 11px; }
+  .hero { height: 400px; }
+  .hero-text h1 { font-size: 24px; }
+  .gallery-grid {
+    grid-template-rows: 180px 180px;
   }
 }
