@@ -40,22 +40,17 @@ dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
 window.addEventListener('resize', () => goTo(current));
 
 // ---- CONTACT FORM ----
-const form = document.querySelector('.contact-form');
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-});
-
-document.querySelector('.btn-teklif').addEventListener('click', () => {
-  const name = form.querySelector('input[type="text"]').value.trim();
-  const email = form.querySelector('input[type="email"]').value.trim();
-  const msg = form.querySelector('textarea').value.trim();
+document.getElementById('submitBtn').addEventListener('click', () => {
+  const name  = document.getElementById('fname').value.trim();
+  const email = document.getElementById('femail').value.trim();
+  const msg   = document.getElementById('fmsg').value.trim();
 
   if (!name || !email || !msg) {
-    alert('Lütfen tüm alanları doldurun.');
+    alert('Lütfen ad, e-posta ve mesaj alanlarını doldurun.');
     return;
   }
   alert('Teklifiniz alındı! En kısa sürede size dönüş yapacağız.');
-  form.querySelectorAll('input, textarea').forEach(el => el.value = '');
+  document.getElementById('contactForm').reset();
 });
 
 // ---- SMOOTH SCROLL for anchor links ----

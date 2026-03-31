@@ -320,51 +320,147 @@ body {
 /* ---- CONTACT ---- */
 .contact {
   background: var(--green-dark);
-  padding: 0 14px 36px;
+  padding: 0 14px 40px;
 }
 
-.contact-form {
-  max-width: 700px;
+/* Contact Card */
+.contact-card {
+  position: relative;
+  max-width: 900px;
   margin: 0 auto;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  display: grid;
+  grid-template-columns: 1fr;
+  background: var(--green-dark);
+  box-shadow: 0 4px 32px rgba(0,0,0,.4);
+}
+
+/* Köşe + ikonları */
+.corner {
+  position: absolute;
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.corner-tl { top: -10px; left: -10px; }
+.corner-tr { top: -10px; right: -10px; }
+.corner-bl { bottom: -10px; left: -10px; }
+.corner-br { bottom: -10px; right: -10px; }
+
+/* Sol bilgi tarafı */
+.contact-info-side {
+  padding: 28px 22px;
+}
+
+.contact-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(20px, 6vw, 36px);
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.contact-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 22px;
+  max-width: 480px;
+}
+
+.contact-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+}
+.contact-info-item--wide {
+  grid-column: 1 / -1;
+}
+
+.contact-info-icon {
+  background: rgba(212,175,106,0.12);
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.info-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-white);
+  margin-bottom: 2px;
+}
+.info-value {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Sağ form tarafı */
+.contact-form-side {
+  background: rgba(255,255,255,0.03);
+  border-top: 1px solid var(--border);
+  padding: 24px 22px;
+}
+
+.field {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 5px;
+  margin-bottom: 12px;
 }
 
-.form-row {
-  display: flex;
-  gap: 8px;
+.field label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-white);
+  letter-spacing: .3px;
 }
 
-.form-row input,
-.form-row textarea {
-  flex: 1;
+.field input,
+.field textarea {
   background: rgba(255,255,255,0.06);
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 11px 12px;
+  padding: 10px 12px;
   color: var(--text-white);
   font-family: 'Open Sans', sans-serif;
   font-size: 13px;
   outline: none;
   transition: border-color .2s;
+  width: 100%;
 }
-.form-row input::placeholder,
-.form-row textarea::placeholder {
+.field input::placeholder,
+.field textarea::placeholder {
   color: var(--text-muted);
   font-size: 12px;
 }
-.form-row input:focus,
-.form-row textarea:focus {
+.field input:focus,
+.field textarea:focus {
   border-color: var(--gold);
 }
-.form-row textarea {
+.field textarea {
   resize: none;
-  height: 90px;
-}
-
-.form-row-bottom {
-  align-items: center;
+  min-height: 80px;
 }
 
 .btn-teklif {
@@ -383,6 +479,20 @@ body {
 }
 .btn-teklif:hover { background: var(--gold-light); }
 .btn-teklif:active { transform: scale(.97); }
+.btn-full { width: 100%; margin-top: 4px; }
+
+@media (min-width: 640px) {
+  .contact-card {
+    grid-template-columns: 1fr 1fr;
+  }
+  .contact-form-side {
+    border-top: none;
+    border-left: 1px solid var(--border);
+  }
+  .contact-info-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
 
 /* ---- FOOTER ---- */
 .footer {
