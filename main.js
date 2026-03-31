@@ -39,18 +39,32 @@ dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
 
 window.addEventListener('resize', () => goTo(current));
 
-// ---- CONTACT FORM ----
-document.getElementById('submitBtn').addEventListener('click', () => {
-  const name  = document.getElementById('fname').value.trim();
-  const email = document.getElementById('femail').value.trim();
-  const msg   = document.getElementById('fmsg').value.trim();
+// ---- CONTACT FORM (Formspree) ----
+document.getElementById('contactForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const btn = document.getElementById('submitBtn');
 
-  if (!name || !email || !msg) {
-    alert('Lütfen ad, e-posta ve mesaj alanlarını doldurun.');
-    return;
+  btn.textContent = 'GÖNDERİLİYOR...';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' }
+    });
+    if (res.ok) {
+      btn.textContent = 'GÖNDERİLDİ ✓';
+      form.reset();
+    } else {
+      btn.textContent = 'HATA — TEKRAR DENEYİN';
+      btn.disabled = false;
+    }
+  } catch {
+    btn.textContent = 'HATA — TEKRAR DENEYİN';
+    btn.disabled = false;
   }
-  alert('Teklifiniz alındı! En kısa sürede size dönüş yapacağız.');
-  document.getElementById('contactForm').reset();
 });
 
 // ---- SMOOTH SCROLL for anchor links ----
