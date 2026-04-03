@@ -72,26 +72,38 @@ navLinks.forEach(link => {
 
 // ---- SERVICES SLIDER ----
 const track = document.getElementById('servicesTrack');
-const dots = document.querySelectorAll('.dot');
+const dotsContainer = document.getElementById('sliderDots');
 const cards = track.querySelectorAll('.service-card');
 
 let current = 0;
-const visibleCount = () => window.innerWidth >= 600 ? 4 : 3;
-const maxIndex = () => cards.length - visibleCount();
+const visibleCount = () => window.innerWidth >= 600 ? 4 : 2;
+const maxIndex = () => Math.max(0, cards.length - visibleCount());
+
+function buildDots() {
+  const count = maxIndex() + 1;
+  dotsContainer.innerHTML = '';
+  for (let i = 0; i < count; i++) {
+    const dot = document.createElement('span');
+    dot.className = 'dot' + (i === current ? ' active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    dotsContainer.appendChild(dot);
+  }
+}
 
 function goTo(idx) {
   const max = maxIndex();
   current = Math.max(0, Math.min(idx, max));
-  const cardW = cards[0].offsetWidth + 14; // width + gap
+  const gap = 10;
+  const cardW = cards[0].offsetWidth + gap;
   track.style.transform = `translateX(-${current * cardW}px)`;
-  dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  dotsContainer.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
 }
 
+buildDots();
 document.querySelector('.slider-prev').addEventListener('click', () => goTo(current - 1));
 document.querySelector('.slider-next').addEventListener('click', () => goTo(current + 1));
-dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
 
-window.addEventListener('resize', () => goTo(current));
+window.addEventListener('resize', () => { buildDots(); goTo(current); });
 
 // ---- SLIDER SWIPE (dokunmatik + mouse sürükle) ----
 let dragStart = null;
