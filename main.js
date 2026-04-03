@@ -1,149 +1,100 @@
-// ---- ADMIN PANELİ + CONFIG.JSON VERİLERİNİ YÜKLE ----
-function ls(key) { try { return localStorage.getItem(key); } catch(e) { return null; } }
-
-function applyAdminOverrides() {
-  // Hero slogan
-  const slogan = ls('trimora_hero_slogan');
-  if (slogan) {
-    const h1 = document.querySelector('.hero-content h1');
-    if (h1) h1.textContent = slogan;
-  }
-
-  // Hero görsel
-  const heroImg = ls('trimora_hero_image');
-  if (heroImg) {
-    const img = document.querySelector('.hero-bg img');
-    if (img) img.src = heroImg;
-  }
-
-  // Site title
-  const title = ls('trimora_site_title');
-  if (title) document.title = title;
-
-  // Meta description
-  const metaDesc = ls('trimora_meta_desc');
-  if (metaDesc) {
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.content = metaDesc;
-  }
-
-  // İletişim bilgileri
-  const phone = ls('trimora_contact_phone');
-  const email = ls('trimora_contact_email');
-  const address = ls('trimora_contact_address');
-  const whatsapp = ls('trimora_contact_whatsapp');
-
-  if (phone) {
-    document.querySelectorAll('[data-cfg="phone"]').forEach(el => {
-      el.textContent = phone;
-      if (el.tagName === 'A') el.href = 'tel:' + phone.replace(/\s/g, '');
-    });
-  }
-  if (email) {
-    document.querySelectorAll('[data-cfg="email"]').forEach(el => {
-      el.textContent = email;
-      if (el.tagName === 'A') el.href = 'mailto:' + email;
-    });
-  }
-  if (address) {
-    document.querySelectorAll('[data-cfg="address"]').forEach(el => {
-      el.textContent = address;
-    });
-  }
-  if (whatsapp) {
-    document.querySelectorAll('a[href*="wa.me"]').forEach(el => {
-      const msg = encodeURIComponent('Merhaba, bir ürün hakkında bilgi almak istiyorum.');
-      el.href = 'https://wa.me/' + whatsapp + '?text=' + msg;
-    });
-  }
-
-  // Sosyal medya linkleri
-  const socials = {
-    instagram: ls('trimora_social_instagram'),
-    facebook: ls('trimora_social_facebook'),
-    youtube: ls('trimora_social_youtube'),
-    tiktok: ls('trimora_social_tiktok')
-  };
-  if (socials.instagram) document.querySelectorAll('a[href*="instagram.com"]').forEach(el => el.href = socials.instagram);
-  if (socials.facebook) document.querySelectorAll('a[href*="facebook.com"]').forEach(el => el.href = socials.facebook);
-  if (socials.youtube) document.querySelectorAll('a[href*="youtube.com"]').forEach(el => el.href = socials.youtube);
-  if (socials.tiktok) document.querySelectorAll('a[href*="tiktok.com"]').forEach(el => el.href = socials.tiktok);
-
-  // Menü isimleri
-  const navHome = ls('trimora_nav_home');
-  const navServices = ls('trimora_nav_services');
-  const navGallery = ls('trimora_nav_gallery');
-  const navLinks = document.querySelectorAll('.main-nav a:not(.nav-cta)');
-  if (navHome && navLinks[0]) navLinks[0].textContent = navHome;
-  if (navServices && navLinks[1]) navLinks[1].textContent = navServices;
-  if (navGallery && navLinks[2]) navLinks[2].textContent = navGallery;
-
-  // Hizmet kartları
-  const servicesData = ls('trimora_services');
-  if (servicesData) {
-    try {
-      const services = JSON.parse(servicesData);
-      const cards = document.querySelectorAll('.service-card');
-      services.forEach((s, i) => {
-        if (!cards[i]) return;
-        const h3 = cards[i].querySelector('h3');
-        const p = cards[i].querySelector('p');
-        const img = cards[i].querySelector('.service-img img');
-        if (h3 && s.name) h3.textContent = s.name;
-        if (p && s.desc) p.textContent = s.desc;
-        if (img && s.image) img.src = s.image;
-      });
-    } catch(e) {}
-  }
-
-  // Footer copyright
-  const copyright = ls('trimora_footer_copyright');
-  if (copyright) {
-    const fb = document.querySelector('.footer-bottom p');
-    if (fb) fb.textContent = copyright;
-  }
-}
-
+// ---- CONFIG.JSON'DAN VERİLERİ YÜKLE ----
 async function loadConfig() {
   try {
     const res = await fetch('config.json?v=' + Date.now());
     if (!res.ok) return;
     const cfg = await res.json();
 
-    if (cfg.site?.slogan && !ls('trimora_hero_slogan')) {
+    // Site title
+    if (cfg.site?.title) document.title = cfg.site.title;
+
+    // Meta description
+    if (cfg.site?.metaDesc) {
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.content = cfg.site.metaDesc;
+    }
+
+    // Hero slogan
+    if (cfg.site?.slogan) {
       const h1 = document.querySelector('.hero-content h1');
       if (h1) h1.textContent = cfg.site.slogan;
     }
+
+    // Hero background image
+    if (cfg.site?.heroImage) {
+      const img = document.querySelector('.hero-bg img');
+      if (img) img.src = cfg.site.heroImage;
+    }
+
+    // İletişim bilgileri
     if (cfg.contact) {
       const c = cfg.contact;
-      if (!ls('trimora_contact_email')) {
-        document.querySelectorAll('[data-cfg="email"]').forEach(el => {
-          el.textContent = c.email || el.textContent;
-          if (el.tagName === 'A') el.href = 'mailto:' + c.email;
-        });
-      }
-      if (!ls('trimora_contact_phone')) {
-        document.querySelectorAll('[data-cfg="phone"]').forEach(el => {
-          el.textContent = c.phone || el.textContent;
-          if (el.tagName === 'A') el.href = 'tel:' + (c.phone || '').replace(/\s/g, '');
-        });
-      }
-      if (!ls('trimora_contact_address')) {
-        document.querySelectorAll('[data-cfg="address"]').forEach(el => {
-          el.textContent = c.address || el.textContent;
-        });
-      }
-      if (c.whatsapp && !ls('trimora_contact_whatsapp')) {
+      document.querySelectorAll('[data-cfg="phone"]').forEach(el => {
+        el.textContent = c.phone || el.textContent;
+        if (el.tagName === 'A') el.href = 'tel:' + (c.phone || '').replace(/\s/g, '');
+      });
+      document.querySelectorAll('[data-cfg="email"]').forEach(el => {
+        el.textContent = c.email || el.textContent;
+        if (el.tagName === 'A') el.href = 'mailto:' + c.email;
+      });
+      document.querySelectorAll('[data-cfg="address"]').forEach(el => {
+        el.textContent = c.address || el.textContent;
+      });
+      if (c.whatsapp) {
+        const msg = encodeURIComponent('Merhaba, bir ürün hakkında bilgi almak istiyorum.');
         document.querySelectorAll('a[href*="wa.me"]').forEach(el => {
-          el.href = 'https://wa.me/' + c.whatsapp + '?text=Merhaba%2C%20bir%20%C3%BCr%C3%BCn%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.';
+          el.href = 'https://wa.me/' + c.whatsapp + '?text=' + msg;
         });
       }
     }
-  } catch (e) {}
+
+    // Sosyal medya linkleri
+    if (cfg.social) {
+      const s = cfg.social;
+      if (s.instagram) document.querySelectorAll('a[href*="instagram.com"]').forEach(el => el.href = s.instagram);
+      if (s.facebook) document.querySelectorAll('a[href*="facebook.com"]').forEach(el => el.href = s.facebook);
+      if (s.youtube) document.querySelectorAll('a[href*="youtube.com"]').forEach(el => el.href = s.youtube);
+      if (s.tiktok) document.querySelectorAll('a[href*="tiktok.com"]').forEach(el => el.href = s.tiktok);
+    }
+
+    // Menü isimleri
+    if (cfg.nav) {
+      const navLinks = document.querySelectorAll('.main-nav a:not(.nav-cta)');
+      if (cfg.nav.home && navLinks[0]) navLinks[0].textContent = cfg.nav.home;
+      if (cfg.nav.services && navLinks[1]) navLinks[1].textContent = cfg.nav.services;
+      if (cfg.nav.gallery && navLinks[2]) navLinks[2].textContent = cfg.nav.gallery;
+    }
+
+    // Hizmet kartları
+    if (cfg.services && Array.isArray(cfg.services)) {
+      const cards = document.querySelectorAll('.service-card');
+      cfg.services.forEach((svc, i) => {
+        if (!cards[i]) return;
+        const h3 = cards[i].querySelector('h3');
+        const p = cards[i].querySelector('p');
+        if (h3 && svc.name) h3.textContent = svc.name;
+        if (p && svc.desc) p.textContent = svc.desc;
+      });
+    }
+
+    // Footer copyright
+    if (cfg.footer?.copyright) {
+      const fb = document.querySelector('.footer-bottom p');
+      if (fb) fb.textContent = cfg.footer.copyright;
+    }
+
+    // SEO tags
+    if (cfg.seo?.tags && Array.isArray(cfg.seo.tags)) {
+      const tagsEl = document.querySelector('.seo-tags');
+      if (tagsEl) tagsEl.textContent = cfg.seo.tags.join(' ');
+    }
+
+  } catch (e) {
+    // Sessizce başarısız — sayfa varsayılan değerlerle gösterilir
+  }
 }
 
-// Önce config.json, sonra admin override
-loadConfig().then(() => applyAdminOverrides());
+loadConfig();
 
 // ---- NAV aktif link ----
 const navLinks = document.querySelectorAll('.main-nav a:not(.nav-cta)');

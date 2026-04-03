@@ -65,27 +65,27 @@
 
   <script>
   (function() {
-    const slug = 'tavan-doseme';
-    const brandKey = 'trimora_brand_gallery_' + slug;
-    const serviceKey = 'trimora_service_gallery_' + slug;
-    const data = localStorage.getItem(brandKey) || localStorage.getItem(serviceKey);
-    if (!data) return;
-    try {
-      const images = JSON.parse(data);
-      if (!images.length) return;
-      const grid = document.getElementById('galleryGrid');
-      const empty = document.querySelector('.subpage-empty');
-      if (!grid) return;
-      grid.innerHTML = '';
-      images.forEach(src => {
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = document.querySelector('h1')?.textContent || '';
-        img.loading = 'lazy';
-        grid.appendChild(img);
-      });
-      if (empty) empty.style.display = 'none';
-    } catch(e) {}
+    var slug = 'tavan-doseme';
+    fetch('../config.json?v=' + Date.now())
+      .then(function(r) { return r.json(); })
+      .then(function(cfg) {
+        var images = (cfg.brandGallery && cfg.brandGallery[slug]) ||
+                     (cfg.serviceGallery && cfg.serviceGallery[slug]) || [];
+        if (!images.length) return;
+        var grid = document.getElementById('galleryGrid');
+        var empty = document.querySelector('.subpage-empty');
+        if (!grid) return;
+        grid.innerHTML = '';
+        images.forEach(function(src) {
+          var img = document.createElement('img');
+          img.src = '../' + src;
+          img.alt = (document.querySelector('h1') || {}).textContent || '';
+          img.loading = 'lazy';
+          grid.appendChild(img);
+        });
+        if (empty) empty.style.display = 'none';
+      })
+      .catch(function() {});
   })();
   </script>
 </body>

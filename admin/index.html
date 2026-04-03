@@ -24,6 +24,7 @@
       --border2:  rgba(255,255,255,0.07);
       --red:      #e05555;
       --green:    #4caf7d;
+      --blue:     #4a9eff;
       --sidebar-w: 260px;
       --topbar-h: 60px;
     }
@@ -31,7 +32,6 @@
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--text); font-family: 'Open Sans', sans-serif; min-height: 100vh; font-size: 14px; }
 
-    /* ===== SCROLLBAR ===== */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg2); }
     ::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
@@ -47,7 +47,7 @@
     }
     .login-box {
       background: var(--bg2); border: 1px solid var(--border); border-radius: 16px;
-      padding: 48px 40px; width: 360px; text-align: center;
+      padding: 48px 40px; width: 380px; text-align: center;
       box-shadow: 0 4px 24px rgba(0,0,0,0.4), 0 1px 0 rgba(212,175,106,0.1) inset;
     }
     .login-logo { font-family: 'Cinzel', serif; font-size: 28px; color: var(--gold); letter-spacing: 4px; margin-bottom: 6px; }
@@ -60,6 +60,7 @@
     }
     .login-box input:focus { border-color: var(--gold); }
     .login-box input::placeholder { color: var(--muted); }
+    .login-divider { font-size: 11px; color: var(--muted); margin: 4px 0 14px; text-align: left; letter-spacing: .3px; }
     .btn-primary {
       background: linear-gradient(135deg, var(--gold) 0%, var(--gold-d) 100%);
       color: var(--bg); border: none; border-radius: 8px; padding: 13px 24px;
@@ -70,6 +71,11 @@
     .btn-primary:hover { opacity: .9; }
     .btn-primary:active { transform: scale(.98); }
     .login-err { color: var(--red); font-size: 12px; margin-top: 10px; min-height: 18px; }
+    .login-token-note {
+      font-size: 11px; color: var(--muted); margin-top: 16px; line-height: 1.6;
+      background: var(--bg3); border-radius: 8px; padding: 12px; text-align: left;
+    }
+    .login-token-note a { color: var(--gold); }
 
     /* ===== DASHBOARD LAYOUT ===== */
     #dashboard { display: none; min-height: 100vh; }
@@ -85,7 +91,6 @@
     .topbar-badge { font-size: 10px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
     .topbar-right { display: flex; align-items: center; gap: 10px; }
 
-    /* Hamburger */
     .hamburger {
       display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 6px;
     }
@@ -140,6 +145,15 @@
     }
     .card-title { font-size: 13px; font-weight: 700; color: var(--gold); letter-spacing: .5px; margin-bottom: 18px; text-transform: uppercase; }
 
+    /* GitHub info banner */
+    .github-info {
+      background: rgba(74,158,255,0.08); border: 1px solid rgba(74,158,255,0.25);
+      border-radius: 10px; padding: 14px 18px; margin-bottom: 20px;
+      font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 10px;
+    }
+    .github-info svg { flex-shrink: 0; color: var(--blue); }
+    .github-info strong { color: var(--text); }
+
     /* Form elements */
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .form-grid.single { grid-template-columns: 1fr; }
@@ -161,10 +175,11 @@
       color: var(--bg); border: none; border-radius: 8px; padding: 12px 28px;
       font-weight: 700; font-size: 13px; font-family: 'Open Sans', sans-serif;
       cursor: pointer; letter-spacing: 1px; text-transform: uppercase;
-      transition: opacity .2s, transform .1s;
+      transition: opacity .2s, transform .1s; display: flex; align-items: center; gap: 8px;
     }
-    .btn-save:hover { opacity: .9; }
-    .btn-save:active { transform: scale(.98); }
+    .btn-save:hover:not(:disabled) { opacity: .9; }
+    .btn-save:active:not(:disabled) { transform: scale(.98); }
+    .btn-save:disabled { opacity: .5; cursor: not-allowed; }
     .btn-reset {
       background: var(--bg3); border: 1px solid var(--border); border-radius: 8px;
       padding: 12px 20px; color: var(--muted); font-size: 13px; font-family: 'Open Sans', sans-serif;
@@ -172,14 +187,29 @@
     }
     .btn-reset:hover { border-color: var(--red); color: var(--red); }
 
+    /* Saving spinner */
+    .spinner {
+      width: 14px; height: 14px; border: 2px solid rgba(26,26,31,0.3);
+      border-top-color: var(--bg); border-radius: 50%;
+      animation: spin .7s linear infinite; display: none;
+    }
+    .btn-save.saving .spinner { display: block; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Deploy notice */
+    .deploy-notice {
+      font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px;
+      opacity: 0; transition: opacity .4s;
+    }
+    .deploy-notice.show { opacity: 1; }
+    .deploy-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; flex-shrink: 0; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+
     /* Image upload */
     .img-upload-wrap { display: flex; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
     .img-preview {
       width: 120px; height: 80px; border-radius: 8px; object-fit: cover;
       border: 1px solid var(--border); background: var(--bg3);
-    }
-    .img-preview.placeholder {
-      display: flex; align-items: center; justify-content: center; color: var(--muted);
     }
     .upload-area {
       border: 2px dashed var(--border); border-radius: 10px; padding: 18px 20px;
@@ -204,9 +234,7 @@
     }
     .brand-card-title { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 12px; }
     .gallery-imgs { display: flex; flex-wrap: wrap; gap: 8px; min-height: 60px; }
-    .gallery-thumb {
-      position: relative; width: 72px; height: 54px;
-    }
+    .gallery-thumb { position: relative; width: 72px; height: 54px; }
     .gallery-thumb img { width: 72px; height: 54px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border); }
     .gallery-thumb .del-img {
       position: absolute; top: -5px; right: -5px; width: 18px; height: 18px;
@@ -223,6 +251,7 @@
     }
     .add-img-btn:hover { border-color: var(--gold); color: var(--gold); }
     .add-img-input { display: none; }
+    .gallery-upload-note { font-size: 11px; color: var(--muted); margin-top: 8px; }
 
     /* Tags */
     .tags-wrap { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
@@ -233,7 +262,7 @@
     .tag-del { background: none; border: none; color: var(--gold-d); cursor: pointer; font-size: 14px; line-height: 1; }
     .tag-del:hover { color: var(--red); }
     .tag-add { background: var(--bg3); border: 1px dashed var(--border); border-radius: 20px; padding: 5px 12px; display: flex; align-items: center; gap: 6px; }
-    .tag-add input { background: none; border: none; outline: none; color: var(--text); font-size: 12px; font-family: 'Open Sans', sans-serif; width: 100px; }
+    .tag-add input { background: none; border: none; outline: none; color: var(--text); font-size: 12px; font-family: 'Open Sans', sans-serif; width: 120px; }
     .tag-add input::placeholder { color: var(--muted); }
     .tag-add button { background: none; border: none; color: var(--gold); cursor: pointer; font-size: 16px; }
 
@@ -242,29 +271,38 @@
     .toast {
       background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
       padding: 14px 20px; font-size: 13px; color: var(--text);
-      display: flex; align-items: center; gap: 10px; min-width: 220px;
+      display: flex; align-items: center; gap: 10px; min-width: 240px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.4);
       animation: slideIn .3s cubic-bezier(.34,1.56,.64,1);
       pointer-events: all;
     }
     .toast.success { border-color: rgba(76,175,125,0.4); }
     .toast.error { border-color: rgba(224,85,85,0.4); }
+    .toast.info { border-color: rgba(74,158,255,0.4); }
     .toast-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
     .toast.success .toast-dot { background: var(--green); }
     .toast.error .toast-dot { background: var(--red); }
+    .toast.info .toast-dot { background: var(--blue); }
     .toast.fade-out { animation: fadeOut .3s forwards; }
     @keyframes slideIn { from { opacity:0; transform: translateX(20px); } to { opacity:1; transform: translateX(0); } }
     @keyframes fadeOut { to { opacity:0; transform: translateX(20px); } }
 
-    /* Autosave indicator */
-    .autosave { font-size: 11px; color: var(--green); opacity: 0; transition: opacity .3s; }
-    .autosave.show { opacity: 1; }
-
-    /* Divider */
-    hr.divider { border: none; border-top: 1px solid var(--border2); margin: 20px 0; }
-
-    /* Overlay for mobile sidebar */
-    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 89; }
+    /* Loading overlay */
+    #loadingOverlay {
+      display: none; position: fixed; inset: 0; background: rgba(26,26,31,.85);
+      z-index: 200; align-items: center; justify-content: center; flex-direction: column; gap: 16px;
+    }
+    #loadingOverlay.show { display: flex; }
+    .loading-logo { font-family: 'Cinzel', serif; font-size: 22px; color: var(--gold); letter-spacing: 3px; }
+    .loading-bar {
+      width: 200px; height: 2px; background: var(--bg4); border-radius: 2px; overflow: hidden;
+    }
+    .loading-bar-inner {
+      height: 100%; background: linear-gradient(90deg, var(--gold-d), var(--gold));
+      border-radius: 2px; animation: loadBar 1.2s ease-in-out infinite;
+    }
+    @keyframes loadBar { 0% { width: 0; margin-left: 0; } 50% { width: 70%; margin-left: 30%; } 100% { width: 0; margin-left: 100%; } }
+    .loading-text { font-size: 12px; color: var(--muted); letter-spacing: 1px; }
 
     /* Dashboard stats */
     .stats-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-bottom: 28px; }
@@ -275,6 +313,22 @@
     .stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
     .stat-val { font-family: 'Cinzel', serif; font-size: 26px; color: var(--gold); }
     .stat-sub { font-size: 11px; color: var(--muted); }
+
+    /* Token settings */
+    .token-field { position: relative; }
+    .token-field input { padding-right: 80px; font-family: monospace; font-size: 12px; letter-spacing: .5px; }
+    .token-toggle {
+      position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; color: var(--muted); cursor: pointer; font-size: 11px;
+      font-family: 'Open Sans', sans-serif; transition: color .2s;
+    }
+    .token-toggle:hover { color: var(--gold); }
+
+    /* Sidebar overlay */
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 89; }
+
+    /* Divider */
+    hr.divider { border: none; border-top: 1px solid var(--border2); margin: 20px 0; }
 
     /* Responsive */
     @media (max-width: 900px) {
@@ -295,14 +349,28 @@
 </head>
 <body>
 
+<!-- ===== LOADING OVERLAY ===== -->
+<div id="loadingOverlay">
+  <div class="loading-logo">TRIMORA</div>
+  <div class="loading-bar"><div class="loading-bar-inner"></div></div>
+  <div class="loading-text" id="loadingText">GitHub'dan yükleniyor...</div>
+</div>
+
 <!-- ===== LOGIN ===== -->
 <div id="loginScreen">
   <div class="login-box">
     <div class="login-logo">TRIMORA</div>
     <div class="login-sub">Design Admin Panel</div>
-    <input type="password" id="passInput" placeholder="Şifre giriniz" />
+    <input type="password" id="passInput" placeholder="Admin şifresi" />
+    <div class="login-divider">GitHub Personal Access Token (ilk girişte gerekli)</div>
+    <input type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off" />
     <button class="btn-primary" onclick="doLogin()">Giriş Yap</button>
     <div class="login-err" id="loginErr"></div>
+    <div class="login-token-note">
+      Token yoksa: <a href="https://github.com/settings/tokens/new?scopes=repo&description=Trimora+Admin" target="_blank">GitHub Token Oluştur</a><br>
+      Gerekli izin: <strong>repo</strong> (tüm repo erişimi).<br>
+      Token sadece bu tarayıcıda saklanır.
+    </div>
   </div>
 </div>
 
@@ -323,7 +391,7 @@
     <div class="topbar-right">
       <a class="btn-sm" href="../index.html" target="_blank">
         <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        Siteye Dön
+        Siteye Git
       </a>
       <button class="btn-sm danger" onclick="doLogout()">
         <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
@@ -380,6 +448,10 @@
       <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
       Footer
     </div>
+    <div class="nav-item" onclick="showSection('token')" data-section="token">
+      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      GitHub Token
+    </div>
   </nav>
 
   <!-- Main Content -->
@@ -389,7 +461,11 @@
     <div class="section active" id="sec-dashboard-home">
       <div class="section-header">
         <div class="section-title">Genel Bakış</div>
-        <div class="section-desc">Trimora Design Admin Panel'e hoş geldiniz.</div>
+        <div class="section-desc">Trimora Design Admin Panel — GitHub API destekli.</div>
+      </div>
+      <div class="github-info">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>Tüm değişiklikler <strong>GitHub'daki config.json</strong> dosyasına yazılır. Site otomatik olarak birkaç dakika içinde güncellenir.</span>
       </div>
       <div class="stats-row">
         <div class="stat-card">
@@ -408,9 +484,9 @@
           <div class="stat-sub">Toplam galeri görseli</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">localStorage</div>
-          <div class="stat-val" id="stat-storage">–</div>
-          <div class="stat-sub">Kullanılan depolama</div>
+          <div class="stat-label">Repo</div>
+          <div class="stat-val" style="font-size:14px;padding-top:4px;">trimoradesign-stack</div>
+          <div class="stat-sub">GitHub depo</div>
         </div>
       </div>
       <div class="card">
@@ -420,7 +496,14 @@
           <button class="btn-sm" onclick="showSection('iletisim')">İletişim</button>
           <button class="btn-sm" onclick="showSection('hizmetler')">Hizmetler</button>
           <button class="btn-sm" onclick="showSection('marka-galeri')">Marka Galerisi</button>
+          <button class="btn-sm" onclick="showSection('hizmet-galeri')">Hizmet Galerisi</button>
           <button class="btn-sm" onclick="showSection('seo')">SEO</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Son İşlemler</div>
+        <div id="activityLog" style="font-size:12px;color:var(--muted);line-height:2;">
+          Henüz işlem yapılmadı.
         </div>
       </div>
     </div>
@@ -436,21 +519,20 @@
         <div class="form-grid single" style="margin-bottom:16px;">
           <div class="form-group">
             <label class="form-label">Hero Slogan</label>
-            <textarea class="form-input" id="g_hero_slogan" rows="3" placeholder="Araçlarınızı Sanat Eserine Dönüştürüyoruz"></textarea>
+            <textarea class="form-input" id="g_hero_slogan" rows="3" placeholder="Lüks Konfor Yenilenen Sürüş Keyfi"></textarea>
           </div>
         </div>
         <div class="form-group">
           <label class="form-label">Hero Arka Plan Görseli</label>
           <div class="img-upload-wrap">
-            <img id="g_hero_img_preview" class="img-preview" src="" alt="Hero görsel" onerror="this.style.display='none'">
+            <img id="g_hero_img_preview" class="img-preview" src="" alt="Hero görsel" style="display:none">
             <div class="upload-area" onclick="document.getElementById('g_hero_img_input').click()">
-              <input type="file" id="g_hero_img_input" accept="image/*" onchange="handleImgUpload(this,'g_hero_image','g_hero_img_preview')">
+              <input type="file" id="g_hero_img_input" accept="image/*" onchange="handleHeroImgUpload(this)">
               <div class="upload-icon">
                 <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
               </div>
-              <div class="upload-area-text">PNG, JPG, WEBP (max 2MB)<br>Tıkla veya sürükle</div>
+              <div class="upload-area-text">PNG, JPG, WEBP (max 4MB)<br>Tıkla veya sürükle — GitHub'a yüklenir</div>
             </div>
-            <button class="btn-reset" onclick="clearImg('g_hero_image','g_hero_img_preview')" style="align-self:flex-end;">Görseli Kaldır</button>
           </div>
         </div>
       </div>
@@ -458,19 +540,24 @@
         <div class="card-title">Site Bilgileri</div>
         <div class="form-grid">
           <div class="form-group">
-            <label class="form-label">Site Başlığı</label>
-            <input type="text" class="form-input" id="g_site_title" placeholder="Trimora Design">
+            <label class="form-label">Site Başlığı (Title)</label>
+            <input type="text" class="form-input" id="g_site_title" placeholder="Trimora Design – Lüks Araç İçi Kaplama | Konya">
           </div>
           <div class="form-group">
             <label class="form-label">Meta Açıklama</label>
-            <input type="text" class="form-input" id="g_meta_desc" placeholder="İstanbul'un en iyi oto döşeme atölyesi...">
+            <input type="text" class="form-input" id="g_meta_desc" placeholder="Konya'da oto döşeme...">
           </div>
         </div>
       </div>
       <div class="section-actions">
-        <button class="btn-save" onclick="saveGenel()">Kaydet</button>
-        <button class="btn-reset" onclick="resetGenel()">Varsayılana Dön</button>
-        <span class="autosave" id="as-genel">✓ Kaydedildi</span>
+        <button class="btn-save" id="btn-save-genel" onclick="saveGenel()">
+          <span class="spinner"></span>
+          <span class="btn-text">GitHub'a Kaydet</span>
+        </button>
+        <div class="deploy-notice" id="deploy-genel">
+          <span class="deploy-dot"></span>
+          Site birkaç dakika içinde güncellenecek
+        </div>
       </div>
     </div>
 
@@ -485,26 +572,29 @@
         <div class="form-grid">
           <div class="form-group">
             <label class="form-label">Telefon</label>
-            <input type="text" class="form-input" id="c_phone" placeholder="+90 (212) 000 00 00">
+            <input type="text" class="form-input" id="c_phone" placeholder="0530 235 45 23">
           </div>
           <div class="form-group">
-            <label class="form-label">WhatsApp Numarası</label>
-            <input type="text" class="form-input" id="c_whatsapp" placeholder="905xxxxxxxxx">
+            <label class="form-label">WhatsApp Numarası (ülke koduyla)</label>
+            <input type="text" class="form-input" id="c_whatsapp" placeholder="905302354523">
           </div>
           <div class="form-group">
             <label class="form-label">E-posta</label>
-            <input type="email" class="form-input" id="c_email" placeholder="info@trimoradesign.com">
+            <input type="email" class="form-input" id="c_email" placeholder="trimoradesign@gmail.com">
           </div>
           <div class="form-group">
             <label class="form-label">Adres</label>
-            <input type="text" class="form-input" id="c_address" placeholder="Bağcılar, İstanbul">
+            <input type="text" class="form-input" id="c_address" placeholder="Musalla Bağları Mah...">
           </div>
         </div>
       </div>
       <div class="section-actions">
-        <button class="btn-save" onclick="saveIletisim()">Kaydet</button>
-        <button class="btn-reset" onclick="resetIletisim()">Varsayılana Dön</button>
-        <span class="autosave" id="as-iletisim">✓ Kaydedildi</span>
+        <button class="btn-save" id="btn-save-iletisim" onclick="saveIletisim()">
+          <span class="spinner"></span><span class="btn-text">GitHub'a Kaydet</span>
+        </button>
+        <div class="deploy-notice" id="deploy-iletisim">
+          <span class="deploy-dot"></span>Site birkaç dakika içinde güncellenecek
+        </div>
       </div>
     </div>
 
@@ -536,9 +626,12 @@
         </div>
       </div>
       <div class="section-actions">
-        <button class="btn-save" onclick="saveSosyal()">Kaydet</button>
-        <button class="btn-reset" onclick="resetSosyal()">Varsayılana Dön</button>
-        <span class="autosave" id="as-sosyal">✓ Kaydedildi</span>
+        <button class="btn-save" id="btn-save-sosyal" onclick="saveSosyal()">
+          <span class="spinner"></span><span class="btn-text">GitHub'a Kaydet</span>
+        </button>
+        <div class="deploy-notice" id="deploy-sosyal">
+          <span class="deploy-dot"></span>Site birkaç dakika içinde güncellenecek
+        </div>
       </div>
     </div>
 
@@ -553,22 +646,25 @@
         <div class="form-grid">
           <div class="form-group">
             <label class="form-label">Anasayfa Link Adı</label>
-            <input type="text" class="form-input" id="m_home" placeholder="Anasayfa">
+            <input type="text" class="form-input" id="m_home" placeholder="ANASAYFA">
           </div>
           <div class="form-group">
             <label class="form-label">Hizmetler Link Adı</label>
-            <input type="text" class="form-input" id="m_services" placeholder="Hizmetlerimiz">
+            <input type="text" class="form-input" id="m_services" placeholder="HİZMETLERİMİZ">
           </div>
           <div class="form-group">
             <label class="form-label">Galeri Link Adı</label>
-            <input type="text" class="form-input" id="m_gallery" placeholder="Galeri">
+            <input type="text" class="form-input" id="m_gallery" placeholder="GALERİ">
           </div>
         </div>
       </div>
       <div class="section-actions">
-        <button class="btn-save" onclick="saveMenu()">Kaydet</button>
-        <button class="btn-reset" onclick="resetMenu()">Varsayılana Dön</button>
-        <span class="autosave" id="as-menu">✓ Kaydedildi</span>
+        <button class="btn-save" id="btn-save-menu" onclick="saveMenu()">
+          <span class="spinner"></span><span class="btn-text">GitHub'a Kaydet</span>
+        </button>
+        <div class="deploy-notice" id="deploy-menu">
+          <span class="deploy-dot"></span>Site birkaç dakika içinde güncellenecek
+        </div>
       </div>
     </div>
 
@@ -576,13 +672,16 @@
     <div class="section" id="sec-hizmetler">
       <div class="section-header">
         <div class="section-title">Hizmetler</div>
-        <div class="section-desc">Her hizmetin adını, açıklamasını ve görselini düzenle.</div>
+        <div class="section-desc">Her hizmetin adını ve açıklamasını düzenle.</div>
       </div>
       <div class="services-grid" id="servicesGrid"></div>
       <div class="section-actions">
-        <button class="btn-save" onclick="saveHizmetler()">Tüm Hizmetleri Kaydet</button>
-        <button class="btn-reset" onclick="resetHizmetler()">Varsayılana Dön</button>
-        <span class="autosave" id="as-hizmetler">✓ Kaydedildi</span>
+        <button class="btn-save" id="btn-save-hizmetler" onclick="saveHizmetler()">
+          <span class="spinner"></span><span class="btn-text">Tüm Hizmetleri Kaydet</span>
+        </button>
+        <div class="deploy-notice" id="deploy-hizmetler">
+          <span class="deploy-dot"></span>Site birkaç dakika içinde güncellenecek
+        </div>
       </div>
     </div>
 
@@ -590,12 +689,20 @@
     <div class="section" id="sec-marka-galeri">
       <div class="section-header">
         <div class="section-title">Marka Galerisi</div>
-        <div class="section-desc">Her araç markası için galeri görsellerini yönet.</div>
+        <div class="section-desc">Her araç markası için galeri görsellerini yönet. Görseller GitHub'a yüklenir.</div>
+      </div>
+      <div class="github-info">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>Görseller <strong>gallery/{marka}/</strong> klasörüne yüklenir, yollar config.json'a kaydedilir.</span>
       </div>
       <div class="brands-grid" id="brandsGrid"></div>
       <div class="section-actions">
-        <button class="btn-save" onclick="saveBrandGallery()">Tüm Galerileri Kaydet</button>
-        <span class="autosave" id="as-marka-galeri">✓ Kaydedildi</span>
+        <button class="btn-save" id="btn-save-marka-galeri" onclick="saveBrandGallery()">
+          <span class="spinner"></span><span class="btn-text">Galerileri GitHub'a Kaydet</span>
+        </button>
+        <div class="deploy-notice" id="deploy-marka-galeri">
+          <span class="deploy-dot"></span>Site birkaç dakika içinde güncellenecek
+        </div>
       </div>
     </div>
 
@@ -603,12 +710,20 @@
     <div class="section" id="sec-hizmet-galeri">
       <div class="section-header">
         <div class="section-title">Hizmet Galerisi</div>
-        <div class="section-desc">Her hizmet için galeri görsellerini yönet.</div>
+        <div class="section-desc">Her hizmet için galeri görsellerini yönet. Görseller GitHub'a yüklenir.</div>
+      </div>
+      <div class="github-info">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>Görseller <strong>gallery/{hizmet}/</strong> klasörüne yüklenir, yollar config.json'a kaydedilir.</span>
       </div>
       <div class="services-gallery-grid" id="serviceGalleryGrid"></div>
       <div class="section-actions">
-        <button class="btn-save" onclick="saveServiceGallery()">Tüm Galerileri Kaydet</button>
-        <span class="autosave" id="as-hizmet-galeri">✓ Kaydedildi</span>
+        <button class="btn-save" id="btn-save-hizmet-galeri" onclick="saveServiceGallery()">
+          <span class="spinner"></span><span class="btn-text">Galerileri GitHub'a Kaydet</span>
+        </button>
+        <div class="deploy-notice" id="deploy-hizmet-galeri">
+          <span class="deploy-dot"></span>Site birkaç dakika içinde güncellenecek
+        </div>
       </div>
     </div>
 
@@ -617,19 +732,6 @@
       <div class="section-header">
         <div class="section-title">SEO Ayarları</div>
         <div class="section-desc">Sayfa başlığı, meta açıklama ve hashtagler.</div>
-      </div>
-      <div class="card">
-        <div class="card-title">Temel SEO</div>
-        <div class="form-grid single">
-          <div class="form-group">
-            <label class="form-label">Sayfa Başlığı (Title)</label>
-            <input type="text" class="form-input" id="seo_title" placeholder="Trimora Design | Oto Koltuk Döşeme İstanbul">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Meta Açıklama</label>
-            <textarea class="form-input" id="seo_desc" rows="3" placeholder="İstanbul'un en iyi oto döşeme atölyesi..."></textarea>
-          </div>
-        </div>
       </div>
       <div class="card">
         <div class="card-title">Hashtagler / Anahtar Kelimeler</div>
@@ -641,9 +743,12 @@
         </div>
       </div>
       <div class="section-actions">
-        <button class="btn-save" onclick="saveSeo()">Kaydet</button>
-        <button class="btn-reset" onclick="resetSeo()">Varsayılana Dön</button>
-        <span class="autosave" id="as-seo">✓ Kaydedildi</span>
+        <button class="btn-save" id="btn-save-seo" onclick="saveSeo()">
+          <span class="spinner"></span><span class="btn-text">GitHub'a Kaydet</span>
+        </button>
+        <div class="deploy-notice" id="deploy-seo">
+          <span class="deploy-dot"></span>Site birkaç dakika içinde güncellenecek
+        </div>
       </div>
     </div>
 
@@ -651,33 +756,55 @@
     <div class="section" id="sec-footer">
       <div class="section-header">
         <div class="section-title">Footer Ayarları</div>
-        <div class="section-desc">Telif hakkı metni ve footer sütun başlıkları.</div>
+        <div class="section-desc">Telif hakkı metni.</div>
       </div>
       <div class="card">
         <div class="card-title">Footer İçeriği</div>
-        <div class="form-grid">
+        <div class="form-grid single">
           <div class="form-group">
             <label class="form-label">Telif Hakkı Metni</label>
-            <input type="text" class="form-input" id="f_copyright" placeholder="© 2024 Trimora Design. Tüm hakları saklıdır.">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Sütun 1 Başlığı</label>
-            <input type="text" class="form-input" id="f_col1" placeholder="Hızlı Bağlantılar">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Sütun 2 Başlığı</label>
-            <input type="text" class="form-input" id="f_col2" placeholder="Hizmetlerimiz">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Sütun 3 Başlığı</label>
-            <input type="text" class="form-input" id="f_col3" placeholder="İletişim">
+            <input type="text" class="form-input" id="f_copyright" placeholder="© 2024 Trimora Design Garage. Tüm hakları saklıdır.">
           </div>
         </div>
       </div>
       <div class="section-actions">
-        <button class="btn-save" onclick="saveFooter()">Kaydet</button>
-        <button class="btn-reset" onclick="resetFooter()">Varsayılana Dön</button>
-        <span class="autosave" id="as-footer">✓ Kaydedildi</span>
+        <button class="btn-save" id="btn-save-footer" onclick="saveFooter()">
+          <span class="spinner"></span><span class="btn-text">GitHub'a Kaydet</span>
+        </button>
+        <div class="deploy-notice" id="deploy-footer">
+          <span class="deploy-dot"></span>Site birkaç dakika içinde güncellenecek
+        </div>
+      </div>
+    </div>
+
+    <!-- === GITHUB TOKEN === -->
+    <div class="section" id="sec-token">
+      <div class="section-header">
+        <div class="section-title">GitHub Token</div>
+        <div class="section-desc">Personal Access Token'ınızı güncelleyin.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Token Ayarları</div>
+        <div class="form-grid single">
+          <div class="form-group">
+            <label class="form-label">GitHub Personal Access Token</label>
+            <div class="token-field">
+              <input type="password" class="form-input" id="token_input_field" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+              <button class="token-toggle" onclick="toggleTokenVisibility()">Göster</button>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-top:12px;line-height:1.8;">
+          Token sadece bu tarayıcıda (localStorage) saklanır.<br>
+          Gerekli izin: <strong style="color:var(--text);">repo</strong><br>
+          <a href="https://github.com/settings/tokens/new?scopes=repo&description=Trimora+Admin" target="_blank" style="color:var(--gold);">Yeni token oluştur →</a>
+        </div>
+      </div>
+      <div class="section-actions">
+        <button class="btn-save" onclick="saveToken()">
+          <span class="btn-text">Token'ı Güncelle</span>
+        </button>
+        <button class="btn-reset" onclick="testToken()">Bağlantıyı Test Et</button>
       </div>
     </div>
 
@@ -688,57 +815,169 @@
 <div class="toast-container" id="toastContainer"></div>
 
 <script>
-// ==================== AUTH ====================
-const PASS_HASH = 'e657aa3a8d200fd25254aa42c7e517286b23fd42e5a13dd448944f606553aea4'; // SHA-256 of "trimora2024"
+// ==================== CONSTANTS ====================
+const REPO = 'trimoradesign-stack/trimora';
+const BRANCH = 'main';
+const PASS_HASH = 'e657aa3a8d200fd25254aa42c7e517286b23fd42e5a13dd448944f606553aea4';
 
+// ==================== STATE ====================
+let ghToken = '';
+let configSha = '';
+let currentConfig = null;
+let currentTags = [];
+// Pending gallery uploads (images added but not yet saved to GitHub)
+const pendingGallery = { brand: {}, service: {} };
+
+// ==================== AUTH ====================
 async function sha256(str) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
 }
 
 async function doLogin() {
-  const val = document.getElementById('passInput').value;
-  const hash = await sha256(val);
-  if (hash === PASS_HASH) {
-    sessionStorage.setItem('trimora_auth', '1');
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('dashboard').style.display = 'block';
-    initDashboard();
-  } else {
+  const pass = document.getElementById('passInput').value;
+  const tokenVal = document.getElementById('tokenInput').value.trim();
+  const hash = await sha256(pass);
+
+  if (hash !== PASS_HASH) {
     document.getElementById('loginErr').textContent = 'Şifre yanlış. Lütfen tekrar deneyin.';
     document.getElementById('passInput').value = '';
     document.getElementById('passInput').focus();
+    return;
   }
+
+  // Use entered token or stored token
+  const storedToken = localStorage.getItem('trimora_gh_token');
+  const finalToken = tokenVal || storedToken;
+
+  if (!finalToken) {
+    document.getElementById('loginErr').textContent = 'GitHub Token gerekli. Lütfen token giriniz.';
+    document.getElementById('tokenInput').focus();
+    return;
+  }
+
+  if (tokenVal) {
+    localStorage.setItem('trimora_gh_token', tokenVal);
+  }
+
+  ghToken = finalToken;
+  sessionStorage.setItem('trimora_auth', '1');
+
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  await initDashboard();
 }
 
 function doLogout() {
   sessionStorage.removeItem('trimora_auth');
+  ghToken = '';
+  currentConfig = null;
   document.getElementById('dashboard').style.display = 'none';
   document.getElementById('loginScreen').style.display = 'flex';
   document.getElementById('passInput').value = '';
+  document.getElementById('tokenInput').value = '';
   document.getElementById('loginErr').textContent = '';
 }
 
 document.getElementById('passInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('tokenInput').focus();
+});
+document.getElementById('tokenInput').addEventListener('keydown', e => {
   if (e.key === 'Enter') doLogin();
 });
 
-// Auto-login check
-if (sessionStorage.getItem('trimora_auth') === '1') {
+// Auto-login if session active and token stored
+if (sessionStorage.getItem('trimora_auth') === '1' && localStorage.getItem('trimora_gh_token')) {
+  ghToken = localStorage.getItem('trimora_gh_token');
   document.getElementById('loginScreen').style.display = 'none';
   document.getElementById('dashboard').style.display = 'block';
   window.addEventListener('DOMContentLoaded', initDashboard);
 }
 
-// ==================== STORAGE HELPERS ====================
-const K = 'trimora_';
-function ls(key) { return localStorage.getItem(K + key); }
-function lsSet(key, val) { localStorage.setItem(K + key, val); }
-function lsJ(key) { try { return JSON.parse(ls(key)) || null; } catch { return null; } }
-function lsJSet(key, val) { lsSet(key, JSON.stringify(val)); }
+// ==================== GITHUB API ====================
+async function ghFetch(path, options = {}) {
+  const url = `https://api.github.com/repos/${REPO}/contents/${path}`;
+  const res = await fetch(url, {
+    ...options,
+    headers: {
+      'Authorization': 'token ' + ghToken,
+      'Content-Type': 'application/json',
+      'Accept': 'application/vnd.github.v3+json',
+      ...(options.headers || {})
+    }
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.message || `GitHub API hatası: ${res.status}`);
+  }
+  return res.json();
+}
+
+async function loadConfigFromGitHub() {
+  const data = await ghFetch('config.json');
+  configSha = data.sha;
+  const decoded = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+  currentConfig = JSON.parse(decoded);
+  return currentConfig;
+}
+
+async function saveConfigToGitHub(message) {
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(currentConfig, null, 2))));
+  const res = await ghFetch('config.json', {
+    method: 'PUT',
+    body: JSON.stringify({
+      message: message || 'Admin panel: config güncellendi',
+      content,
+      sha: configSha,
+      branch: BRANCH
+    })
+  });
+  configSha = res.content.sha;
+  return res;
+}
+
+async function uploadImageToGitHub(folder, filename, base64Content) {
+  // Check if file already exists (to get sha for update)
+  let sha = undefined;
+  try {
+    const existing = await ghFetch(`gallery/${folder}/${filename}`);
+    sha = existing.sha;
+  } catch (e) {
+    // File doesn't exist yet — that's fine
+  }
+  const body = {
+    message: `Galeri: ${folder}/${filename} eklendi`,
+    content: base64Content,
+    branch: BRANCH
+  };
+  if (sha) body.sha = sha;
+  const res = await ghFetch(`gallery/${folder}/${filename}`, {
+    method: 'PUT',
+    body: JSON.stringify(body)
+  });
+  return `gallery/${folder}/${filename}`;
+}
+
+async function deleteFileFromGitHub(path) {
+  let sha;
+  try {
+    const existing = await ghFetch(path);
+    sha = existing.sha;
+  } catch (e) {
+    return; // Already deleted or not found
+  }
+  await ghFetch(path, {
+    method: 'DELETE',
+    body: JSON.stringify({
+      message: `Galeri: ${path} silindi`,
+      sha,
+      branch: BRANCH
+    })
+  });
+}
 
 // ==================== TOAST ====================
-function toast(msg, type = 'success') {
+function toast(msg, type = 'success', duration = 3000) {
   const c = document.getElementById('toastContainer');
   const el = document.createElement('div');
   el.className = `toast ${type}`;
@@ -747,14 +986,45 @@ function toast(msg, type = 'success') {
   setTimeout(() => {
     el.classList.add('fade-out');
     setTimeout(() => el.remove(), 350);
-  }, 2800);
+  }, duration);
 }
 
-function showAutosave(id) {
-  const el = document.getElementById('as-' + id);
+// ==================== BUTTON LOADING STATE ====================
+function setBtnLoading(btnId, loading) {
+  const btn = document.getElementById(btnId);
+  if (!btn) return;
+  btn.disabled = loading;
+  const spinner = btn.querySelector('.spinner');
+  const text = btn.querySelector('.btn-text');
+  if (spinner) spinner.style.display = loading ? 'block' : 'none';
+  if (text) text.textContent = loading ? 'Kaydediliyor...' : 'GitHub\'a Kaydet';
+}
+
+function setBtnText(btnId, text) {
+  const btn = document.getElementById(btnId);
+  if (!btn) return;
+  const textEl = btn.querySelector('.btn-text');
+  if (textEl) textEl.textContent = text;
+}
+
+function showDeployNotice(id) {
+  const el = document.getElementById('deploy-' + id);
   if (!el) return;
   el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), 2500);
+  setTimeout(() => el.classList.remove('show'), 8000);
+}
+
+// ==================== ACTIVITY LOG ====================
+function logActivity(msg) {
+  const log = document.getElementById('activityLog');
+  if (!log) return;
+  const now = new Date().toLocaleTimeString('tr-TR');
+  const item = document.createElement('div');
+  item.textContent = `${now} — ${msg}`;
+  if (log.textContent.trim() === 'Henüz işlem yapılmadı.') log.textContent = '';
+  log.prepend(item);
+  const items = log.querySelectorAll('div');
+  if (items.length > 10) items[items.length - 1].remove();
 }
 
 // ==================== NAVIGATION ====================
@@ -764,7 +1034,6 @@ function showSection(id) {
   const sec = document.getElementById('sec-' + id);
   if (sec) sec.classList.add('active');
   document.querySelectorAll(`[data-section="${id}"]`).forEach(n => n.classList.add('active'));
-  // Close sidebar on mobile
   if (window.innerWidth <= 900) {
     document.getElementById('sidebar').classList.remove('open');
     document.getElementById('sidebarOverlay').classList.remove('open');
@@ -776,240 +1045,271 @@ function toggleSidebar() {
   document.getElementById('sidebarOverlay').classList.toggle('open');
 }
 
-// ==================== IMAGE UPLOAD HELPER ====================
-function handleImgUpload(input, key, previewId) {
+// ==================== POPULATE FORMS ====================
+function populateForms(cfg) {
+  // Genel
+  document.getElementById('g_hero_slogan').value = cfg.site?.slogan || '';
+  document.getElementById('g_site_title').value = cfg.site?.title || '';
+  document.getElementById('g_meta_desc').value = cfg.site?.metaDesc || '';
+
+  // İletişim
+  document.getElementById('c_phone').value = cfg.contact?.phone || '';
+  document.getElementById('c_email').value = cfg.contact?.email || '';
+  document.getElementById('c_address').value = cfg.contact?.address || '';
+  document.getElementById('c_whatsapp').value = cfg.contact?.whatsapp || '';
+
+  // Sosyal
+  document.getElementById('s_instagram').value = cfg.social?.instagram || '';
+  document.getElementById('s_facebook').value = cfg.social?.facebook || '';
+  document.getElementById('s_youtube').value = cfg.social?.youtube || '';
+  document.getElementById('s_tiktok').value = cfg.social?.tiktok || '';
+
+  // Menü
+  document.getElementById('m_home').value = cfg.nav?.home || '';
+  document.getElementById('m_services').value = cfg.nav?.services || '';
+  document.getElementById('m_gallery').value = cfg.nav?.gallery || '';
+
+  // Footer
+  document.getElementById('f_copyright').value = cfg.footer?.copyright || '';
+
+  // SEO tags
+  currentTags = (cfg.seo?.tags) ? [...cfg.seo.tags] : [];
+  renderTags();
+
+  // Token field
+  const stored = localStorage.getItem('trimora_gh_token');
+  if (stored) {
+    document.getElementById('token_input_field').value = stored;
+  }
+
+  // Hizmetler
+  loadHizmetler(cfg);
+
+  // Galleries
+  loadBrandGallery(cfg);
+  loadServiceGallery(cfg);
+
+  // Stats
+  updateStats(cfg);
+}
+
+// ==================== GENEL ====================
+async function saveGenel() {
+  setBtnLoading('btn-save-genel', true);
+  try {
+    currentConfig = {
+      ...currentConfig,
+      site: {
+        ...currentConfig.site,
+        slogan: document.getElementById('g_hero_slogan').value,
+        title: document.getElementById('g_site_title').value,
+        metaDesc: document.getElementById('g_meta_desc').value
+      }
+    };
+    await saveConfigToGitHub('Admin: Genel ayarlar güncellendi');
+    toast('GitHub\'a kaydedildi ✓');
+    showDeployNotice('genel');
+    logActivity('Genel ayarlar kaydedildi');
+  } catch (e) {
+    toast('Hata: ' + e.message, 'error', 5000);
+  } finally {
+    setBtnLoading('btn-save-genel', false);
+    setBtnText('btn-save-genel', 'GitHub\'a Kaydet');
+  }
+}
+
+// Hero image upload — uploads to GitHub then updates config
+async function handleHeroImgUpload(input) {
   const file = input.files[0];
   if (!file) return;
-  if (file.size > 2 * 1024 * 1024) { toast('Görsel 2MB\'den büyük olamaz', 'error'); return; }
+  if (file.size > 4 * 1024 * 1024) { toast('Görsel 4MB\'den büyük olamaz', 'error'); return; }
   const reader = new FileReader();
-  reader.onload = e => {
-    lsSet(key, e.target.result);
-    const prev = document.getElementById(previewId);
-    if (prev) { prev.src = e.target.result; prev.style.display = 'block'; }
-    toast('Görsel yüklendi');
+  reader.onload = async (e) => {
+    const dataUrl = e.target.result;
+    const base64 = dataUrl.split(',')[1];
+    const ext = file.name.split('.').pop();
+    const fname = 'hero.' + ext;
+    toast('Hero görseli yükleniyor...', 'info');
+    try {
+      const path = await uploadImageToGitHub('', fname, base64);
+      // Update config with hero image path
+      currentConfig = {
+        ...currentConfig,
+        site: { ...currentConfig.site, heroImage: path }
+      };
+      const prev = document.getElementById('g_hero_img_preview');
+      prev.src = dataUrl;
+      prev.style.display = 'block';
+      toast('Hero görseli yüklendi ✓');
+    } catch (e) {
+      toast('Yükleme hatası: ' + e.message, 'error', 5000);
+    }
   };
   reader.readAsDataURL(file);
 }
 
-function clearImg(key, previewId) {
-  localStorage.removeItem(K + key);
-  const prev = document.getElementById(previewId);
-  if (prev) { prev.src = ''; prev.style.display = 'none'; }
-  toast('Görsel kaldırıldı');
-}
-
-// ==================== GENEL ====================
-const DEFAULTS = {
-  hero_slogan: 'Araçlarınızı Sanat Eserine Dönüştürüyoruz',
-  site_title: 'Trimora Design | Oto Koltuk Döşeme İstanbul',
-  meta_desc: 'İstanbul\'un en iyi oto döşeme atölyesi. Koltuk döşeme, tavan, kapı ve direksiyon kaplama hizmetleri.',
-  contact_phone: '+90 (212) 000 00 00',
-  contact_email: 'info@trimoradesign.com',
-  contact_address: 'Bağcılar, İstanbul',
-  contact_whatsapp: '905000000000',
-  social_instagram: 'https://instagram.com/trimoradesign',
-  social_facebook: 'https://facebook.com/trimoradesign',
-  social_youtube: '',
-  social_tiktok: '',
-  nav_home: 'Anasayfa',
-  nav_services: 'Hizmetlerimiz',
-  nav_gallery: 'Galeri',
-  footer_copyright: '© 2024 Trimora Design. Tüm hakları saklıdır.',
-  footer_col1: 'Hızlı Bağlantılar',
-  footer_col2: 'Hizmetlerimiz',
-  footer_col3: 'İletişim',
-  seo_title: 'Trimora Design | Oto Koltuk Döşeme İstanbul',
-  seo_desc: 'İstanbul\'un en iyi oto döşeme atölyesi. Koltuk döşeme, tavan, kapı ve direksiyon kaplama hizmetleri.',
-};
-
-function loadGenel() {
-  document.getElementById('g_hero_slogan').value = ls('hero_slogan') || DEFAULTS.hero_slogan;
-  document.getElementById('g_site_title').value = ls('site_title') || DEFAULTS.site_title;
-  document.getElementById('g_meta_desc').value = ls('meta_desc') || DEFAULTS.meta_desc;
-  const img = ls('hero_image');
-  const prev = document.getElementById('g_hero_img_preview');
-  if (img) { prev.src = img; prev.style.display = 'block'; } else { prev.style.display = 'none'; }
-}
-function saveGenel() {
-  lsSet('hero_slogan', document.getElementById('g_hero_slogan').value);
-  lsSet('site_title', document.getElementById('g_site_title').value);
-  lsSet('meta_desc', document.getElementById('g_meta_desc').value);
-  toast('Genel ayarlar kaydedildi');
-  showAutosave('genel');
-}
-function resetGenel() {
-  if (!confirm('Genel ayarları sıfırlamak istediğinizden emin misiniz?')) return;
-  ['hero_slogan','site_title','meta_desc','hero_image'].forEach(k => localStorage.removeItem(K+k));
-  loadGenel(); toast('Varsayılana döndürüldü');
-}
-
 // ==================== İLETİŞİM ====================
-function loadIletisim() {
-  document.getElementById('c_phone').value = ls('contact_phone') || DEFAULTS.contact_phone;
-  document.getElementById('c_email').value = ls('contact_email') || DEFAULTS.contact_email;
-  document.getElementById('c_address').value = ls('contact_address') || DEFAULTS.contact_address;
-  document.getElementById('c_whatsapp').value = ls('contact_whatsapp') || DEFAULTS.contact_whatsapp;
-}
-function saveIletisim() {
-  lsSet('contact_phone', document.getElementById('c_phone').value);
-  lsSet('contact_email', document.getElementById('c_email').value);
-  lsSet('contact_address', document.getElementById('c_address').value);
-  lsSet('contact_whatsapp', document.getElementById('c_whatsapp').value);
-  toast('İletişim bilgileri kaydedildi');
-  showAutosave('iletisim');
-}
-function resetIletisim() {
-  if (!confirm('İletişim bilgilerini sıfırlamak istediğinizden emin misiniz?')) return;
-  ['contact_phone','contact_email','contact_address','contact_whatsapp'].forEach(k => localStorage.removeItem(K+k));
-  loadIletisim(); toast('Varsayılana döndürüldü');
+async function saveIletisim() {
+  setBtnLoading('btn-save-iletisim', true);
+  try {
+    currentConfig = {
+      ...currentConfig,
+      contact: {
+        phone: document.getElementById('c_phone').value,
+        email: document.getElementById('c_email').value,
+        address: document.getElementById('c_address').value,
+        whatsapp: document.getElementById('c_whatsapp').value
+      }
+    };
+    await saveConfigToGitHub('Admin: İletişim bilgileri güncellendi');
+    toast('GitHub\'a kaydedildi ✓');
+    showDeployNotice('iletisim');
+    logActivity('İletişim bilgileri kaydedildi');
+  } catch (e) {
+    toast('Hata: ' + e.message, 'error', 5000);
+  } finally {
+    setBtnLoading('btn-save-iletisim', false);
+    setBtnText('btn-save-iletisim', 'GitHub\'a Kaydet');
+  }
 }
 
 // ==================== SOSYAL ====================
-function loadSosyal() {
-  document.getElementById('s_instagram').value = ls('social_instagram') || DEFAULTS.social_instagram;
-  document.getElementById('s_facebook').value = ls('social_facebook') || DEFAULTS.social_facebook;
-  document.getElementById('s_youtube').value = ls('social_youtube') || DEFAULTS.social_youtube;
-  document.getElementById('s_tiktok').value = ls('social_tiktok') || DEFAULTS.social_tiktok;
-}
-function saveSosyal() {
-  lsSet('social_instagram', document.getElementById('s_instagram').value);
-  lsSet('social_facebook', document.getElementById('s_facebook').value);
-  lsSet('social_youtube', document.getElementById('s_youtube').value);
-  lsSet('social_tiktok', document.getElementById('s_tiktok').value);
-  toast('Sosyal medya linkleri kaydedildi');
-  showAutosave('sosyal');
-}
-function resetSosyal() {
-  if (!confirm('Sosyal medya linklerini sıfırlamak istediğinizden emin misiniz?')) return;
-  ['social_instagram','social_facebook','social_youtube','social_tiktok'].forEach(k => localStorage.removeItem(K+k));
-  loadSosyal(); toast('Varsayılana döndürüldü');
+async function saveSosyal() {
+  setBtnLoading('btn-save-sosyal', true);
+  try {
+    currentConfig = {
+      ...currentConfig,
+      social: {
+        instagram: document.getElementById('s_instagram').value,
+        facebook: document.getElementById('s_facebook').value,
+        youtube: document.getElementById('s_youtube').value,
+        tiktok: document.getElementById('s_tiktok').value
+      }
+    };
+    await saveConfigToGitHub('Admin: Sosyal medya linkleri güncellendi');
+    toast('GitHub\'a kaydedildi ✓');
+    showDeployNotice('sosyal');
+    logActivity('Sosyal medya linkleri kaydedildi');
+  } catch (e) {
+    toast('Hata: ' + e.message, 'error', 5000);
+  } finally {
+    setBtnLoading('btn-save-sosyal', false);
+    setBtnText('btn-save-sosyal', 'GitHub\'a Kaydet');
+  }
 }
 
 // ==================== MENÜ ====================
-function loadMenu() {
-  document.getElementById('m_home').value = ls('nav_home') || DEFAULTS.nav_home;
-  document.getElementById('m_services').value = ls('nav_services') || DEFAULTS.nav_services;
-  document.getElementById('m_gallery').value = ls('nav_gallery') || DEFAULTS.nav_gallery;
-}
-function saveMenu() {
-  lsSet('nav_home', document.getElementById('m_home').value);
-  lsSet('nav_services', document.getElementById('m_services').value);
-  lsSet('nav_gallery', document.getElementById('m_gallery').value);
-  toast('Menü isimleri kaydedildi');
-  showAutosave('menu');
-}
-function resetMenu() {
-  if (!confirm('Menü isimlerini sıfırlamak istediğinizden emin misiniz?')) return;
-  ['nav_home','nav_services','nav_gallery'].forEach(k => localStorage.removeItem(K+k));
-  loadMenu(); toast('Varsayılana döndürüldü');
+async function saveMenu() {
+  setBtnLoading('btn-save-menu', true);
+  try {
+    currentConfig = {
+      ...currentConfig,
+      nav: {
+        home: document.getElementById('m_home').value,
+        services: document.getElementById('m_services').value,
+        gallery: document.getElementById('m_gallery').value
+      }
+    };
+    await saveConfigToGitHub('Admin: Menü isimleri güncellendi');
+    toast('GitHub\'a kaydedildi ✓');
+    showDeployNotice('menu');
+    logActivity('Menü isimleri kaydedildi');
+  } catch (e) {
+    toast('Hata: ' + e.message, 'error', 5000);
+  } finally {
+    setBtnLoading('btn-save-menu', false);
+    setBtnText('btn-save-menu', 'GitHub\'a Kaydet');
+  }
 }
 
 // ==================== HİZMETLER ====================
-const SERVICE_DEFAULTS = [
-  { name: 'Oto Koltuk Döşeme',       desc: 'Yıpranmış koltuk döşemelerinizi lüks deriye dönüştürüyoruz.' },
-  { name: 'Recaro & Vader Dönüşüm',  desc: 'Performans ve konfor bir arada; Recaro ve Vader koltuk montajı.' },
-  { name: 'Direksiyon Kaplama',       desc: 'Gerçek deri ile kaplanmış direksiyon tutunma ve estetiği artırır.' },
-  { name: 'Vites Topuzu & Körüğü',    desc: 'Kişiselleştirilmiş vites topuzu ve körük kaplama çözümleri.' },
-  { name: 'Göğüs & Torpido Kaplama',  desc: 'Kontrol paneli ve torpido bölgesi için premium kaplama.' },
-  { name: 'Kapı İçi Döşeme',          desc: 'Kapı panellerini yenileyerek kabine bütünlük katıyoruz.' },
-  { name: 'Taban Halısı Döşeme',      desc: 'Yüksek kaliteli taban halısı ile araç içi hijyen ve konfor.' },
-  { name: 'Tavan Döşeme',             desc: 'Alcantara veya deri tavan kaplaması ile spor iç mekan.' },
-  { name: 'Tirim Kaplama',            desc: 'Tüm iç aksam trimlerinde özel renk ve doku seçenekleri.' },
-];
-
-const SERVICE_KEYS = [
-  'oto-koltuk-doseme', 'recaro-vader', 'direksiyon-kaplama',
-  'vites-topuzu', 'gogs-torpido', 'kapi-ici',
-  'taban-halisi', 'tavan-doseme', 'tirim-kaplama',
-];
-
-function loadHizmetler() {
-  const saved = lsJ('services') || SERVICE_DEFAULTS.map(s => ({ ...s, image: '' }));
+function loadHizmetler(cfg) {
+  const services = cfg?.services || [];
   const grid = document.getElementById('servicesGrid');
   grid.innerHTML = '';
-  saved.forEach((svc, i) => {
-    const def = SERVICE_DEFAULTS[i] || {};
+  services.forEach((svc, i) => {
     const card = document.createElement('div');
     card.className = 'service-card';
     card.innerHTML = `
-      <div class="service-card-title">${i + 1}. ${def.name || svc.name}</div>
+      <div class="service-card-title">${i + 1}. ${escH(svc.name)}</div>
       <div class="form-group" style="margin-bottom:10px;">
         <label class="form-label">Ad</label>
-        <input type="text" class="form-input" id="svc_name_${i}" value="${escH(svc.name)}" placeholder="${escH(def.name)}">
-      </div>
-      <div class="form-group" style="margin-bottom:10px;">
-        <label class="form-label">Açıklama</label>
-        <textarea class="form-input" id="svc_desc_${i}" rows="2">${escH(svc.desc)}</textarea>
+        <input type="text" class="form-input" id="svc_name_${i}" value="${escH(svc.name)}">
       </div>
       <div class="form-group">
-        <label class="form-label">Görsel</label>
-        <div class="img-upload-wrap">
-          ${svc.image ? `<img id="svc_prev_${i}" class="img-preview" src="${svc.image}" alt="">` : `<img id="svc_prev_${i}" class="img-preview" src="" style="display:none" alt="">`}
-          <div class="upload-area" onclick="document.getElementById('svc_img_${i}').click()" style="padding:10px;">
-            <input type="file" id="svc_img_${i}" accept="image/*" data-idx="${i}" onchange="handleSvcImg(this)">
-            <div style="font-size:11px;color:var(--muted);">Görsel Yükle</div>
-          </div>
-        </div>
+        <label class="form-label">Açıklama</label>
+        <textarea class="form-input" id="svc_desc_${i}" rows="2">${escH(svc.desc)}</textarea>
       </div>
     `;
     grid.appendChild(card);
   });
 }
 
-function handleSvcImg(input) {
-  const i = input.dataset.idx;
-  const file = input.files[0];
-  if (!file) return;
-  if (file.size > 2 * 1024 * 1024) { toast('Görsel 2MB\'den büyük olamaz', 'error'); return; }
-  const reader = new FileReader();
-  reader.onload = e => {
-    const prev = document.getElementById('svc_prev_' + i);
-    prev.src = e.target.result; prev.style.display = 'block';
-    toast('Görsel yüklendi');
-  };
-  reader.readAsDataURL(file);
-}
-
-function saveHizmetler() {
-  const count = SERVICE_DEFAULTS.length;
-  const data = [];
-  for (let i = 0; i < count; i++) {
-    const prev = document.getElementById('svc_prev_' + i);
-    data.push({
-      name: document.getElementById('svc_name_' + i).value,
-      desc: document.getElementById('svc_desc_' + i).value,
-      image: prev ? prev.src : '',
-    });
+async function saveHizmetler() {
+  setBtnLoading('btn-save-hizmetler', true);
+  try {
+    const services = (currentConfig.services || []).map((svc, i) => ({
+      ...svc,
+      name: document.getElementById('svc_name_' + i)?.value || svc.name,
+      desc: document.getElementById('svc_desc_' + i)?.value || svc.desc
+    }));
+    currentConfig = { ...currentConfig, services };
+    await saveConfigToGitHub('Admin: Hizmetler güncellendi');
+    toast('GitHub\'a kaydedildi ✓');
+    showDeployNotice('hizmetler');
+    logActivity('Hizmetler kaydedildi');
+  } catch (e) {
+    toast('Hata: ' + e.message, 'error', 5000);
+  } finally {
+    setBtnLoading('btn-save-hizmetler', false);
+    setBtnText('btn-save-hizmetler', 'Tüm Hizmetleri Kaydet');
   }
-  lsJSet('services', data);
-  toast('Hizmetler kaydedildi');
-  showAutosave('hizmetler');
-}
-
-function resetHizmetler() {
-  if (!confirm('Hizmetleri sıfırlamak istediğinizden emin misiniz?')) return;
-  localStorage.removeItem(K + 'services');
-  loadHizmetler(); toast('Varsayılana döndürüldü');
 }
 
 // ==================== BRAND GALLERY ====================
 const BRANDS = ['ford','volvo','honda','audi','bmw','mercedes','volkswagen','peugeot','togg','opel'];
 const BRAND_LABELS = ['Ford','Volvo','Honda','Audi','BMW','Mercedes','Volkswagen','Peugeot','Togg','Opel'];
 
-function loadBrandGallery() {
+function loadBrandGallery(cfg) {
   const grid = document.getElementById('brandsGrid');
   grid.innerHTML = '';
   BRANDS.forEach((brand, bi) => {
-    const imgs = lsJ('brand_gallery_' + brand) || [];
+    const imgs = (cfg?.brandGallery?.[brand]) || [];
+    pendingGallery.brand[brand] = [...imgs];
     const card = document.createElement('div');
     card.className = 'brand-card';
     card.setAttribute('data-brand', brand);
     card.innerHTML = `
       <div class="brand-card-title">${BRAND_LABELS[bi]}</div>
       <div class="gallery-imgs" id="bgallery_${brand}">${renderGalleryThumbs(imgs, 'brand', brand)}</div>
-      <div style="margin-top:10px;">
+      <div style="margin-top:10px;display:flex;align-items:center;gap:8px;">
         <input type="file" class="add-img-input" id="badd_${brand}" accept="image/*" multiple onchange="handleGalleryAdd(this,'brand','${brand}')">
         <button class="add-img-btn" onclick="document.getElementById('badd_${brand}').click()" title="Görsel Ekle">+</button>
+        <span class="gallery-upload-note">Görseller "Kaydet" butonuyla GitHub'a yüklenir</span>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function loadServiceGallery(cfg) {
+  const grid = document.getElementById('serviceGalleryGrid');
+  grid.innerHTML = '';
+  const svcKeys = (cfg?.services || []).map(s => s.slug);
+  const svcLabels = (cfg?.services || []).map(s => s.name);
+  svcKeys.forEach((key, si) => {
+    const imgs = (cfg?.serviceGallery?.[key]) || [];
+    pendingGallery.service[key] = [...imgs];
+    const card = document.createElement('div');
+    card.className = 'service-gallery-card';
+    card.setAttribute('data-skey', key);
+    card.innerHTML = `
+      <div class="brand-card-title">${escH(svcLabels[si] || key)}</div>
+      <div class="gallery-imgs" id="sgallery_${key}">${renderGalleryThumbs(imgs, 'service', key)}</div>
+      <div style="margin-top:10px;display:flex;align-items:center;gap:8px;">
+        <input type="file" class="add-img-input" id="sadd_${key}" accept="image/*" multiple onchange="handleGalleryAdd(this,'service','${key}')">
+        <button class="add-img-btn" onclick="document.getElementById('sadd_${key}').click()" title="Görsel Ekle">+</button>
+        <span class="gallery-upload-note">Görseller "Kaydet" butonuyla GitHub'a yüklenir</span>
       </div>
     `;
     grid.appendChild(card);
@@ -1019,22 +1319,24 @@ function loadBrandGallery() {
 function renderGalleryThumbs(imgs, type, key) {
   return imgs.map((src, i) => `
     <div class="gallery-thumb" data-type="${type}" data-key="${key}" data-idx="${i}">
-      <img src="${src}" alt="">
+      <img src="${src.startsWith('gallery/') ? 'https://raw.githubusercontent.com/${REPO}/${BRANCH}/' + src : src}" alt="" onerror="this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'72\\' height=\\'54\\'><rect width=\\'72\\' height=\\'54\\' fill=\\'%2338383f\\'/></svg>'">
       <button class="del-img" onclick="delGalleryImg('${type}','${key}',${i})" title="Sil">×</button>
     </div>
   `).join('');
 }
 
+// Local pending gallery management (no GitHub calls until save)
 function handleGalleryAdd(input, type, key) {
   const files = Array.from(input.files);
-  const storageKey = (type === 'brand' ? 'brand_gallery_' : 'service_gallery_') + key;
-  const imgs = lsJ(storageKey) || [];
+  const pending = pendingGallery[type][key] || [];
   let loaded = 0;
+  // We store dataURLs in pending until saved
   files.forEach(file => {
-    if (file.size > 2 * 1024 * 1024) { toast('Görsel 2MB\'den büyük: ' + file.name, 'error'); loaded++; checkDone(); return; }
+    if (file.size > 5 * 1024 * 1024) { toast('Görsel 5MB\'den büyük: ' + file.name, 'error'); loaded++; checkDone(); return; }
     const reader = new FileReader();
     reader.onload = e => {
-      imgs.push(e.target.result);
+      // Store as {dataUrl, file} for upload
+      pending.push({ dataUrl: e.target.result, file, name: file.name });
       loaded++;
       checkDone();
     };
@@ -1042,74 +1344,138 @@ function handleGalleryAdd(input, type, key) {
   });
   function checkDone() {
     if (loaded === files.length) {
-      lsJSet(storageKey, imgs);
+      pendingGallery[type][key] = pending;
       const container = document.getElementById((type === 'brand' ? 'bgallery_' : 'sgallery_') + key);
-      if (container) container.innerHTML = renderGalleryThumbs(imgs, type, key);
-      toast(files.length + ' görsel eklendi');
+      if (container) container.innerHTML = renderPendingThumbs(pending, type, key);
+      toast(files.filter(f => f.size <= 5*1024*1024).length + ' görsel eklendi — Kaydet\'e basarak GitHub\'a yükle', 'info', 4000);
     }
   }
   input.value = '';
 }
 
-function delGalleryImg(type, key, idx) {
-  if (!confirm('Bu görseli silmek istediğinizden emin misiniz?')) return;
-  const storageKey = (type === 'brand' ? 'brand_gallery_' : 'service_gallery_') + key;
-  const imgs = lsJ(storageKey) || [];
-  imgs.splice(idx, 1);
-  lsJSet(storageKey, imgs);
-  const container = document.getElementById((type === 'brand' ? 'bgallery_' : 'sgallery_') + key);
-  if (container) container.innerHTML = renderGalleryThumbs(imgs, type, key);
-  toast('Görsel silindi');
-}
-
-function saveBrandGallery() {
-  toast('Marka galerileri kaydedildi');
-  showAutosave('marka-galeri');
-}
-
-// ==================== SERVICE GALLERY ====================
-const SVC_GALLERY_KEYS = SERVICE_KEYS;
-const SVC_GALLERY_LABELS = SERVICE_DEFAULTS.map(s => s.name);
-
-function loadServiceGallery() {
-  const grid = document.getElementById('serviceGalleryGrid');
-  grid.innerHTML = '';
-  SVC_GALLERY_KEYS.forEach((key, si) => {
-    const imgs = lsJ('service_gallery_' + key) || [];
-    const card = document.createElement('div');
-    card.className = 'service-gallery-card';
-    card.setAttribute('data-skey', key);
-    card.innerHTML = `
-      <div class="brand-card-title">${SVC_GALLERY_LABELS[si]}</div>
-      <div class="gallery-imgs" id="sgallery_${key}">${renderGalleryThumbs(imgs, 'service', key)}</div>
-      <div style="margin-top:10px;">
-        <input type="file" class="add-img-input" id="sadd_${key}" accept="image/*" multiple onchange="handleGalleryAdd(this,'service','${key}')">
-        <button class="add-img-btn" onclick="document.getElementById('sadd_${key}').click()" title="Görsel Ekle">+</button>
+function renderPendingThumbs(items, type, key) {
+  return items.map((item, i) => {
+    const src = typeof item === 'string'
+      ? (item.startsWith('gallery/') ? `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${item}` : item)
+      : item.dataUrl;
+    return `
+      <div class="gallery-thumb" data-type="${type}" data-key="${key}" data-idx="${i}">
+        <img src="${src}" alt="">
+        <button class="del-img" onclick="delPendingImg('${type}','${key}',${i})" title="Sil">×</button>
       </div>
     `;
-    grid.appendChild(card);
-  });
+  }).join('');
 }
 
-function saveServiceGallery() {
-  toast('Hizmet galerileri kaydedildi');
-  showAutosave('hizmet-galeri');
+function delPendingImg(type, key, idx) {
+  if (!confirm('Bu görseli kaldırmak istediğinizden emin misiniz?')) return;
+  const pending = pendingGallery[type][key] || [];
+  const item = pending[idx];
+  // If it's an existing GitHub path, we'll delete it on save
+  if (typeof item === 'string') {
+    pending.splice(idx, 1);
+  } else {
+    pending.splice(idx, 1);
+  }
+  pendingGallery[type][key] = pending;
+  const container = document.getElementById((type === 'brand' ? 'bgallery_' : 'sgallery_') + key);
+  if (container) container.innerHTML = renderPendingThumbs(pending, type, key);
+  toast('Görsel kaldırıldı');
+}
+
+// Legacy — keep for compatibility with rendered HTML
+function delGalleryImg(type, key, idx) { delPendingImg(type, key, idx); }
+
+async function saveBrandGallery() {
+  setBtnLoading('btn-save-marka-galeri', true);
+  const btn = document.getElementById('btn-save-marka-galeri');
+  const textEl = btn?.querySelector('.btn-text');
+  try {
+    const brandGallery = { ...(currentConfig.brandGallery || {}) };
+    for (const brand of BRANDS) {
+      const items = pendingGallery.brand[brand] || [];
+      const paths = [];
+      for (const item of items) {
+        if (typeof item === 'string') {
+          paths.push(item);
+        } else {
+          // Upload new image
+          if (textEl) textEl.textContent = `${brand} yükleniyor...`;
+          const ext = item.name.split('.').pop();
+          const fname = `${Date.now()}_${item.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
+          const base64 = item.dataUrl.split(',')[1];
+          const path = await uploadImageToGitHub(brand, fname, base64);
+          paths.push(path);
+        }
+      }
+      brandGallery[brand] = paths;
+      pendingGallery.brand[brand] = [...paths];
+    }
+    currentConfig = { ...currentConfig, brandGallery };
+    await saveConfigToGitHub('Admin: Marka galerileri güncellendi');
+    toast('Marka galerileri GitHub\'a kaydedildi ✓');
+    showDeployNotice('marka-galeri');
+    logActivity('Marka galerileri kaydedildi');
+    // Re-render thumbs with real paths
+    BRANDS.forEach(brand => {
+      const container = document.getElementById('bgallery_' + brand);
+      if (container) container.innerHTML = renderGalleryThumbs(brandGallery[brand] || [], 'brand', brand);
+    });
+    updateStats(currentConfig);
+  } catch (e) {
+    toast('Hata: ' + e.message, 'error', 5000);
+  } finally {
+    setBtnLoading('btn-save-marka-galeri', false);
+    setBtnText('btn-save-marka-galeri', 'Galerileri GitHub\'a Kaydet');
+  }
+}
+
+async function saveServiceGallery() {
+  setBtnLoading('btn-save-hizmet-galeri', true);
+  const btn = document.getElementById('btn-save-hizmet-galeri');
+  const textEl = btn?.querySelector('.btn-text');
+  try {
+    const serviceGallery = { ...(currentConfig.serviceGallery || {}) };
+    const svcKeys = (currentConfig.services || []).map(s => s.slug);
+    for (const key of svcKeys) {
+      const items = pendingGallery.service[key] || [];
+      const paths = [];
+      for (const item of items) {
+        if (typeof item === 'string') {
+          paths.push(item);
+        } else {
+          if (textEl) textEl.textContent = `${key} yükleniyor...`;
+          const fname = `${Date.now()}_${item.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
+          const base64 = item.dataUrl.split(',')[1];
+          const path = await uploadImageToGitHub(key, fname, base64);
+          paths.push(path);
+        }
+      }
+      serviceGallery[key] = paths;
+      pendingGallery.service[key] = [...paths];
+    }
+    currentConfig = { ...currentConfig, serviceGallery };
+    await saveConfigToGitHub('Admin: Hizmet galerileri güncellendi');
+    toast('Hizmet galerileri GitHub\'a kaydedildi ✓');
+    showDeployNotice('hizmet-galeri');
+    logActivity('Hizmet galerileri kaydedildi');
+    svcKeys.forEach(key => {
+      const container = document.getElementById('sgallery_' + key);
+      if (container) container.innerHTML = renderGalleryThumbs(serviceGallery[key] || [], 'service', key);
+    });
+    updateStats(currentConfig);
+  } catch (e) {
+    toast('Hata: ' + e.message, 'error', 5000);
+  } finally {
+    setBtnLoading('btn-save-hizmet-galeri', false);
+    setBtnText('btn-save-hizmet-galeri', 'Galerileri GitHub\'a Kaydet');
+  }
 }
 
 // ==================== SEO ====================
-let currentTags = [];
-
-function loadSeo() {
-  document.getElementById('seo_title').value = ls('seo_tags_title') || ls('site_title') || DEFAULTS.seo_title;
-  document.getElementById('seo_desc').value = ls('seo_desc_text') || ls('meta_desc') || DEFAULTS.seo_desc;
-  currentTags = lsJ('seo_tags') || ['#otodöşeme','#Istanbul','#trimoradesign','#koltukdöşeme','#otomotiv'];
-  renderTags();
-}
-
 function renderTags() {
   const area = document.getElementById('tagsArea');
   const addEl = area.querySelector('.tag-add');
-  // Remove existing tag elements
   area.querySelectorAll('.tag').forEach(t => t.remove());
   currentTags.forEach((tag, i) => {
     const el = document.createElement('div');
@@ -1133,79 +1499,120 @@ function removeTag(i) {
   renderTags();
 }
 
-function saveSeo() {
-  lsSet('seo_tags_title', document.getElementById('seo_title').value);
-  lsSet('seo_desc_text', document.getElementById('seo_desc').value);
-  lsJSet('seo_tags', currentTags);
-  toast('SEO ayarları kaydedildi');
-  showAutosave('seo');
-}
-
-function resetSeo() {
-  if (!confirm('SEO ayarlarını sıfırlamak istediğinizden emin misiniz?')) return;
-  ['seo_tags_title','seo_desc_text','seo_tags'].forEach(k => localStorage.removeItem(K+k));
-  loadSeo(); toast('Varsayılana döndürüldü');
+async function saveSeo() {
+  setBtnLoading('btn-save-seo', true);
+  try {
+    currentConfig = {
+      ...currentConfig,
+      seo: { ...currentConfig.seo, tags: [...currentTags] }
+    };
+    await saveConfigToGitHub('Admin: SEO ayarları güncellendi');
+    toast('GitHub\'a kaydedildi ✓');
+    showDeployNotice('seo');
+    logActivity('SEO ayarları kaydedildi');
+  } catch (e) {
+    toast('Hata: ' + e.message, 'error', 5000);
+  } finally {
+    setBtnLoading('btn-save-seo', false);
+    setBtnText('btn-save-seo', 'GitHub\'a Kaydet');
+  }
 }
 
 // ==================== FOOTER ====================
-function loadFooter() {
-  document.getElementById('f_copyright').value = ls('footer_copyright') || DEFAULTS.footer_copyright;
-  document.getElementById('f_col1').value = ls('footer_col1') || DEFAULTS.footer_col1;
-  document.getElementById('f_col2').value = ls('footer_col2') || DEFAULTS.footer_col2;
-  document.getElementById('f_col3').value = ls('footer_col3') || DEFAULTS.footer_col3;
+async function saveFooter() {
+  setBtnLoading('btn-save-footer', true);
+  try {
+    currentConfig = {
+      ...currentConfig,
+      footer: { copyright: document.getElementById('f_copyright').value }
+    };
+    await saveConfigToGitHub('Admin: Footer güncellendi');
+    toast('GitHub\'a kaydedildi ✓');
+    showDeployNotice('footer');
+    logActivity('Footer kaydedildi');
+  } catch (e) {
+    toast('Hata: ' + e.message, 'error', 5000);
+  } finally {
+    setBtnLoading('btn-save-footer', false);
+    setBtnText('btn-save-footer', 'GitHub\'a Kaydet');
+  }
 }
-function saveFooter() {
-  lsSet('footer_copyright', document.getElementById('f_copyright').value);
-  lsSet('footer_col1', document.getElementById('f_col1').value);
-  lsSet('footer_col2', document.getElementById('f_col2').value);
-  lsSet('footer_col3', document.getElementById('f_col3').value);
-  toast('Footer ayarları kaydedildi');
-  showAutosave('footer');
+
+// ==================== TOKEN SETTINGS ====================
+function toggleTokenVisibility() {
+  const input = document.getElementById('token_input_field');
+  const btn = input.parentElement.querySelector('.token-toggle');
+  if (input.type === 'password') {
+    input.type = 'text';
+    btn.textContent = 'Gizle';
+  } else {
+    input.type = 'password';
+    btn.textContent = 'Göster';
+  }
 }
-function resetFooter() {
-  if (!confirm('Footer ayarlarını sıfırlamak istediğinizden emin misiniz?')) return;
-  ['footer_copyright','footer_col1','footer_col2','footer_col3'].forEach(k => localStorage.removeItem(K+k));
-  loadFooter(); toast('Varsayılana döndürüldü');
+
+function saveToken() {
+  const newToken = document.getElementById('token_input_field').value.trim();
+  if (!newToken) { toast('Token boş olamaz', 'error'); return; }
+  localStorage.setItem('trimora_gh_token', newToken);
+  ghToken = newToken;
+  toast('Token güncellendi ✓');
+}
+
+async function testToken() {
+  try {
+    const t = document.getElementById('token_input_field').value.trim() || ghToken;
+    const res = await fetch(`https://api.github.com/repos/${REPO}`, {
+      headers: { 'Authorization': 'token ' + t }
+    });
+    if (res.ok) {
+      toast('Bağlantı başarılı ✓ Repo erişimi doğrulandı', 'success');
+    } else {
+      const err = await res.json();
+      toast('Bağlantı hatası: ' + (err.message || res.status), 'error', 5000);
+    }
+  } catch (e) {
+    toast('Bağlantı hatası: ' + e.message, 'error', 5000);
+  }
 }
 
 // ==================== STATS ====================
-function updateStats() {
-  let totalImgs = 0;
-  BRANDS.forEach(b => { const imgs = lsJ('brand_gallery_' + b); if (imgs) totalImgs += imgs.length; });
-  SERVICE_KEYS.forEach(k => { const imgs = lsJ('service_gallery_' + k); if (imgs) totalImgs += imgs.length; });
-  document.getElementById('stat-gallery-count').textContent = totalImgs;
-
+function updateStats(cfg) {
   let total = 0;
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    if (key && key.startsWith(K)) total += (localStorage.getItem(key) || '').length;
-  }
-  const mb = (total * 2 / (1024 * 1024)).toFixed(1);
-  document.getElementById('stat-storage').textContent = mb + ' MB';
+  const bg = cfg?.brandGallery || {};
+  const sg = cfg?.serviceGallery || {};
+  Object.values(bg).forEach(arr => { total += arr.length; });
+  Object.values(sg).forEach(arr => { total += arr.length; });
+  const el = document.getElementById('stat-gallery-count');
+  if (el) el.textContent = total;
 }
 
 // ==================== INIT ====================
-function initDashboard() {
-  loadGenel();
-  loadIletisim();
-  loadSosyal();
-  loadMenu();
-  loadHizmetler();
-  loadBrandGallery();
-  loadServiceGallery();
-  loadSeo();
-  loadFooter();
-  updateStats();
+async function initDashboard() {
+  const overlay = document.getElementById('loadingOverlay');
+  const loadText = document.getElementById('loadingText');
+  overlay.classList.add('show');
+  try {
+    loadText.textContent = 'GitHub\'dan config.json yükleniyor...';
+    const cfg = await loadConfigFromGitHub();
+    currentConfig = cfg;
+    populateForms(cfg);
+    toast('Config başarıyla yüklendi ✓', 'success');
+  } catch (e) {
+    toast('GitHub\'dan yükleme başarısız: ' + e.message, 'error', 6000);
+    // Show token section on auth errors
+    if (e.message.includes('401') || e.message.includes('Bad credentials')) {
+      toast('Token geçersiz. Lütfen GitHub Token bölümünden güncelleyin.', 'error', 8000);
+      showSection('token');
+    }
+  } finally {
+    overlay.classList.remove('show');
+  }
 }
 
 // ==================== UTILS ====================
 function escH(str) {
   return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-// Run on load if already logged in
-if (document.getElementById('dashboard').style.display === 'block') {
-  initDashboard();
 }
 </script>
 </body>

@@ -1,7 +1,8 @@
 {
   "site": {
     "title": "Trimora Design – Lüks Araç İçi Kaplama | Konya",
-    "slogan": "Konya Oto Koltuk Döşeme  Trimora Design Garage"
+    "slogan": "Lüks Konfor Yenilenen Sürüş Keyfi",
+    "metaDesc": "Konya'da oto döşeme, direksiyon kaplama, Recaro & Vader dönüşüm, torpido kaplama. Trimora Design Garage – 0530 235 45 23"
   },
   "contact": {
     "phone": "0530 235 45 23",
@@ -9,26 +10,55 @@
     "email": "trimoradesign@gmail.com",
     "address": "Musalla Bağları Mah. Sırrı Acar Sk. No:10, Selçuklu/Konya"
   },
-  "gallery": [
-    {
-      "src": "https://images.unsplash.com/photo-1547038577-da80abbc4f19?w=400&q=80",
-      "alt": "Direksiyon kaplama"
-    },
-    {
-      "src": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80",
-      "alt": "Deri kaplama"
-    },
-    {
-      "src": "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=400&q=80",
-      "alt": "Vites topuzu"
-    },
-    {
-      "src": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&q=80",
-      "alt": "Klasik araç iç mekan"
-    },
-    {
-      "src": "https://raw.githubusercontent.com/trimoradesign-stack/trimora/main/gallery/1774992436051_PSX_1745347071007.jpg",
-      "alt": "PSX_1745347071007"
-    }
-  ]
+  "social": {
+    "instagram": "https://www.instagram.com/trimoradesign?igsh=bmVsaHg2bGRuOHhm",
+    "facebook": "https://www.facebook.com/share/1CjxgLbxAY/",
+    "youtube": "https://youtube.com/@trimoradesign?si=htUIMFBxbviOkIqY",
+    "tiktok": "https://www.tiktok.com/@trimora.design?_r=1&_t=ZS-959klqVZgQ8"
+  },
+  "nav": {
+    "home": "ANASAYFA",
+    "services": "HİZMETLERİMİZ",
+    "gallery": "GALERİ"
+  },
+  "services": [
+    {"name": "OTO KOLTUK DÖŞEME", "desc": "Klasik ve modern araç içi koltuk kaplama hizmetleri.", "slug": "oto-koltuk-doseme"},
+    {"name": "RECARO & VADER DÖNÜŞÜM", "desc": "Orijinal Recaro & Vader koltuk montajı ve döşeme.", "slug": "recaro-vader-donusum"},
+    {"name": "DİREKSİYON KAPLAMA", "desc": "Orijinal deri direksiyon kılıfı ve onarımı.", "slug": "direksiyon-kaplama"},
+    {"name": "VİTES TOPUZU & KÖRÜĞÜ", "desc": "Vites topuzu ve körüğü yenileme.", "slug": "vites-topuzu"},
+    {"name": "GÖĞÜS & TORPİDO KAPLAMA", "desc": "Dikişli torpido ve göğüs paneli kaplama.", "slug": "torpido-kaplama"},
+    {"name": "KAPI İÇİ DÖŞEME", "desc": "Kapı iç panelleri deri ve kumaş kaplama.", "slug": "kapi-ici-doseme"},
+    {"name": "TABAN HALISI DÖŞEME", "desc": "Araç taban halısı yenileme ve döşeme.", "slug": "taban-halisi-doseme"},
+    {"name": "TAVAN DÖŞEME", "desc": "Araç tavan kaplaması yenileme.", "slug": "tavan-doseme"},
+    {"name": "TİRİM KAPLAMA", "desc": "İç trim parçaları karbon ve deri kaplama.", "slug": "tirim-kaplama"}
+  ],
+  "brandGallery": {
+    "ford": [],
+    "volvo": [],
+    "honda": [],
+    "audi": [],
+    "bmw": [],
+    "mercedes": [],
+    "volkswagen": [],
+    "peugeot": [],
+    "togg": [],
+    "opel": []
+  },
+  "serviceGallery": {
+    "oto-koltuk-doseme": [],
+    "recaro-vader-donusum": [],
+    "direksiyon-kaplama": [],
+    "vites-topuzu": [],
+    "torpido-kaplama": [],
+    "kapi-ici-doseme": [],
+    "taban-halisi-doseme": [],
+    "tavan-doseme": [],
+    "tirim-kaplama": []
+  },
+  "seo": {
+    "tags": ["#KonyaOtoDoseme","#KonyaOtoKoltukDoseme","#KonyadaOtoDoseme","#KonyaDeriDoseme","#KonyaOtoIcTasarim","#KonyaAraçDoseme","#KonyaKoltukKaplama","#KonyadaOtoKoltuk","#OtoDoseme","#OtoKoltukDoseme","#OtoDosemeci","#OtoKoltukYenileme","#DeriKoltukKaplama","#AraçIciDoseme","#OtoIcDoseme","#ArabaDoseme","#AraçIciTasarim","#OtoRestorasyon","#OtoKoltukKaplama","#OtoDosemeUstasi"]
+  },
+  "footer": {
+    "copyright": "© 2024 Trimora Design Garage. Tüm hakları saklıdır."
+  }
 }
