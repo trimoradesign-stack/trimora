@@ -1,65 +1,149 @@
-// ---- CONFIG.JSON yükle ve sayfayı doldur ----
+// ---- ADMIN PANELİ + CONFIG.JSON VERİLERİNİ YÜKLE ----
+function ls(key) { try { return localStorage.getItem(key); } catch(e) { return null; } }
+
+function applyAdminOverrides() {
+  // Hero slogan
+  const slogan = ls('trimora_hero_slogan');
+  if (slogan) {
+    const h1 = document.querySelector('.hero-content h1');
+    if (h1) h1.textContent = slogan;
+  }
+
+  // Hero görsel
+  const heroImg = ls('trimora_hero_image');
+  if (heroImg) {
+    const img = document.querySelector('.hero-bg img');
+    if (img) img.src = heroImg;
+  }
+
+  // Site title
+  const title = ls('trimora_site_title');
+  if (title) document.title = title;
+
+  // Meta description
+  const metaDesc = ls('trimora_meta_desc');
+  if (metaDesc) {
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.content = metaDesc;
+  }
+
+  // İletişim bilgileri
+  const phone = ls('trimora_contact_phone');
+  const email = ls('trimora_contact_email');
+  const address = ls('trimora_contact_address');
+  const whatsapp = ls('trimora_contact_whatsapp');
+
+  if (phone) {
+    document.querySelectorAll('[data-cfg="phone"]').forEach(el => {
+      el.textContent = phone;
+      if (el.tagName === 'A') el.href = 'tel:' + phone.replace(/\s/g, '');
+    });
+  }
+  if (email) {
+    document.querySelectorAll('[data-cfg="email"]').forEach(el => {
+      el.textContent = email;
+      if (el.tagName === 'A') el.href = 'mailto:' + email;
+    });
+  }
+  if (address) {
+    document.querySelectorAll('[data-cfg="address"]').forEach(el => {
+      el.textContent = address;
+    });
+  }
+  if (whatsapp) {
+    document.querySelectorAll('a[href*="wa.me"]').forEach(el => {
+      const msg = encodeURIComponent('Merhaba, bir ürün hakkında bilgi almak istiyorum.');
+      el.href = 'https://wa.me/' + whatsapp + '?text=' + msg;
+    });
+  }
+
+  // Sosyal medya linkleri
+  const socials = {
+    instagram: ls('trimora_social_instagram'),
+    facebook: ls('trimora_social_facebook'),
+    youtube: ls('trimora_social_youtube'),
+    tiktok: ls('trimora_social_tiktok')
+  };
+  if (socials.instagram) document.querySelectorAll('a[href*="instagram.com"]').forEach(el => el.href = socials.instagram);
+  if (socials.facebook) document.querySelectorAll('a[href*="facebook.com"]').forEach(el => el.href = socials.facebook);
+  if (socials.youtube) document.querySelectorAll('a[href*="youtube.com"]').forEach(el => el.href = socials.youtube);
+  if (socials.tiktok) document.querySelectorAll('a[href*="tiktok.com"]').forEach(el => el.href = socials.tiktok);
+
+  // Menü isimleri
+  const navHome = ls('trimora_nav_home');
+  const navServices = ls('trimora_nav_services');
+  const navGallery = ls('trimora_nav_gallery');
+  const navLinks = document.querySelectorAll('.main-nav a:not(.nav-cta)');
+  if (navHome && navLinks[0]) navLinks[0].textContent = navHome;
+  if (navServices && navLinks[1]) navLinks[1].textContent = navServices;
+  if (navGallery && navLinks[2]) navLinks[2].textContent = navGallery;
+
+  // Hizmet kartları
+  const servicesData = ls('trimora_services');
+  if (servicesData) {
+    try {
+      const services = JSON.parse(servicesData);
+      const cards = document.querySelectorAll('.service-card');
+      services.forEach((s, i) => {
+        if (!cards[i]) return;
+        const h3 = cards[i].querySelector('h3');
+        const p = cards[i].querySelector('p');
+        const img = cards[i].querySelector('.service-img img');
+        if (h3 && s.name) h3.textContent = s.name;
+        if (p && s.desc) p.textContent = s.desc;
+        if (img && s.image) img.src = s.image;
+      });
+    } catch(e) {}
+  }
+
+  // Footer copyright
+  const copyright = ls('trimora_footer_copyright');
+  if (copyright) {
+    const fb = document.querySelector('.footer-bottom p');
+    if (fb) fb.textContent = copyright;
+  }
+}
+
 async function loadConfig() {
   try {
     const res = await fetch('config.json?v=' + Date.now());
     if (!res.ok) return;
     const cfg = await res.json();
 
-    // Slogan
-    if (cfg.site?.slogan) {
+    if (cfg.site?.slogan && !ls('trimora_hero_slogan')) {
       const h1 = document.querySelector('.hero-content h1');
       if (h1) h1.textContent = cfg.site.slogan;
     }
-
-    // İletişim bilgileri
     if (cfg.contact) {
       const c = cfg.contact;
-      const emailEls = document.querySelectorAll('[data-cfg="email"]');
-      const phoneEls = document.querySelectorAll('[data-cfg="phone"]');
-      const addressEls = document.querySelectorAll('[data-cfg="address"]');
-
-      emailEls.forEach(el => {
-        el.textContent = c.email || el.textContent;
-        if (el.tagName === 'A') el.href = 'mailto:' + c.email;
-      });
-      phoneEls.forEach(el => {
-        el.textContent = c.phone || el.textContent;
-        if (el.tagName === 'A') el.href = 'tel:' + (c.phone || '').replace(/\s/g, '');
-      });
-      addressEls.forEach(el => {
-        el.textContent = c.address || el.textContent;
-      });
-
-      // WhatsApp linki
-      if (c.whatsapp) {
-        const waBtn = document.querySelector('a[href*="wa.me"]');
-        if (waBtn) waBtn.href = `https://wa.me/${c.whatsapp}?text=Merhaba%2C%20teklif%20almak%20istiyorum.`;
+      if (!ls('trimora_contact_email')) {
+        document.querySelectorAll('[data-cfg="email"]').forEach(el => {
+          el.textContent = c.email || el.textContent;
+          if (el.tagName === 'A') el.href = 'mailto:' + c.email;
+        });
       }
-    }
-
-    // Galeri
-    if (cfg.gallery && cfg.gallery.length > 0) {
-      const grid = document.getElementById('galleryGrid');
-      if (grid) {
-        grid.innerHTML = '';
-        cfg.gallery.forEach((item, i) => {
-          const div = document.createElement('div');
-          div.className = 'gallery-item' + (i === cfg.gallery.length - 1 ? ' gallery-item-tall' : '');
-          const img = document.createElement('img');
-          img.src = item.src;
-          img.alt = item.alt || '';
-          img.loading = 'lazy';
-          div.appendChild(img);
-          grid.appendChild(div);
+      if (!ls('trimora_contact_phone')) {
+        document.querySelectorAll('[data-cfg="phone"]').forEach(el => {
+          el.textContent = c.phone || el.textContent;
+          if (el.tagName === 'A') el.href = 'tel:' + (c.phone || '').replace(/\s/g, '');
+        });
+      }
+      if (!ls('trimora_contact_address')) {
+        document.querySelectorAll('[data-cfg="address"]').forEach(el => {
+          el.textContent = c.address || el.textContent;
+        });
+      }
+      if (c.whatsapp && !ls('trimora_contact_whatsapp')) {
+        document.querySelectorAll('a[href*="wa.me"]').forEach(el => {
+          el.href = 'https://wa.me/' + c.whatsapp + '?text=Merhaba%2C%20bir%20%C3%BCr%C3%BCn%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.';
         });
       }
     }
-  } catch (e) {
-    // config yüklenemezse mevcut HTML içeriği kullanılır
-  }
+  } catch (e) {}
 }
 
-loadConfig();
+// Önce config.json, sonra admin override
+loadConfig().then(() => applyAdminOverrides());
 
 // ---- NAV aktif link ----
 const navLinks = document.querySelectorAll('.main-nav a:not(.nav-cta)');

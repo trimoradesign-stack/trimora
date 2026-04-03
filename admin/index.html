@@ -4,478 +4,1209 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trimora Admin Panel</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --green: #0d2218;
-      --green-mid: #153a26;
-      --gold: #d4af6a;
-      --gold-light: #e8c97e;
-      --text: #f0ede6;
-      --muted: #8a9e8a;
-      --border: rgba(212,175,106,0.2);
-      --red: #e05555;
-      --card: #1a3828;
-    }
-    body { background: var(--green); color: var(--text); font-family: 'Segoe UI', sans-serif; min-height: 100vh; }
 
-    /* LOGIN */
+    :root {
+      --bg:       #1a1a1f;
+      --bg2:      #242429;
+      --bg3:      #2e2e35;
+      --bg4:      #38383f;
+      --gold:     #d4af6a;
+      --gold-l:   #e8c97e;
+      --gold-d:   #b8933f;
+      --text:     #f0ede6;
+      --muted:    #9898a6;
+      --border:   rgba(212,175,106,0.18);
+      --border2:  rgba(255,255,255,0.07);
+      --red:      #e05555;
+      --green:    #4caf7d;
+      --sidebar-w: 260px;
+      --topbar-h: 60px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Open Sans', sans-serif; min-height: 100vh; font-size: 14px; }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg2); }
+    ::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gold-d); }
+
+    /* ===== LOGIN ===== */
     #loginScreen {
       display: flex; align-items: center; justify-content: center; min-height: 100vh;
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(212,175,106,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(212,175,106,0.04) 0%, transparent 50%);
     }
     .login-box {
-      background: var(--green-mid); border: 1px solid var(--border); border-radius: 14px;
-      padding: 40px 32px; width: 340px; text-align: center;
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 16px;
+      padding: 48px 40px; width: 360px; text-align: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4), 0 1px 0 rgba(212,175,106,0.1) inset;
     }
-    .login-box img { height: 70px; margin-bottom: 20px; }
-    .login-box h2 { font-size: 18px; color: var(--gold); margin-bottom: 24px; letter-spacing: 1px; }
+    .login-logo { font-family: 'Cinzel', serif; font-size: 28px; color: var(--gold); letter-spacing: 4px; margin-bottom: 6px; }
+    .login-sub { font-size: 11px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; margin-bottom: 36px; }
     .login-box input {
-      width: 100%; background: rgba(255,255,255,0.06); border: 1px solid var(--border);
-      border-radius: 8px; padding: 12px 14px; color: var(--text); font-size: 14px; margin-bottom: 12px; outline: none;
+      width: 100%; background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 8px; padding: 13px 16px; color: var(--text); font-size: 14px;
+      font-family: 'Open Sans', sans-serif; margin-bottom: 14px; outline: none;
+      transition: border-color .2s;
     }
     .login-box input:focus { border-color: var(--gold); }
-    .btn { background: var(--gold); color: var(--green); border: none; border-radius: 8px;
-      padding: 12px 24px; font-weight: 700; font-size: 14px; cursor: pointer; width: 100%;
-      transition: background .2s; letter-spacing: .5px; }
-    .btn:hover { background: var(--gold-light); }
-    .err { color: var(--red); font-size: 12px; margin-top: 8px; }
+    .login-box input::placeholder { color: var(--muted); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-d) 100%);
+      color: var(--bg); border: none; border-radius: 8px; padding: 13px 24px;
+      font-weight: 700; font-size: 13px; font-family: 'Open Sans', sans-serif;
+      cursor: pointer; width: 100%; letter-spacing: 1.5px; text-transform: uppercase;
+      transition: opacity .2s, transform .1s;
+    }
+    .btn-primary:hover { opacity: .9; }
+    .btn-primary:active { transform: scale(.98); }
+    .login-err { color: var(--red); font-size: 12px; margin-top: 10px; min-height: 18px; }
 
-    /* DASHBOARD */
-    #dashboard { display: none; }
+    /* ===== DASHBOARD LAYOUT ===== */
+    #dashboard { display: none; min-height: 100vh; }
+
+    /* Topbar */
     .topbar {
-      background: var(--green-mid); border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between; padding: 12px 24px; position: sticky; top: 0; z-index: 10;
+      position: fixed; top: 0; left: 0; right: 0; height: var(--topbar-h); z-index: 100;
+      background: var(--bg2); border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between; padding: 0 20px;
     }
-    .topbar-left { display: flex; align-items: center; gap: 12px; }
-    .topbar img { height: 40px; }
-    .topbar h1 { font-size: 15px; color: var(--gold); letter-spacing: 1px; }
-    .topbar-actions { display: flex; gap: 10px; align-items: center; }
-    .btn-sm { padding: 8px 16px; font-size: 12px; border-radius: 6px; background: var(--gold); color: var(--green); border: none; cursor: pointer; font-weight: 700; transition: background .2s; }
-    .btn-sm:hover { background: var(--gold-light); }
-    .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--muted); }
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); background: transparent; }
-    .btn-danger { background: var(--red); color: white; }
-    .btn-danger:hover { background: #c44; }
+    .topbar-left { display: flex; align-items: center; gap: 14px; }
+    .topbar-logo { font-family: 'Cinzel', serif; font-size: 18px; color: var(--gold); letter-spacing: 3px; }
+    .topbar-badge { font-size: 10px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+    .topbar-right { display: flex; align-items: center; gap: 10px; }
 
-    .content { max-width: 900px; margin: 0 auto; padding: 28px 20px; }
-
-    /* TABS */
-    .tabs { display: flex; gap: 4px; margin-bottom: 24px; border-bottom: 1px solid var(--border); }
-    .tab { padding: 10px 18px; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer;
-      border-bottom: 2px solid transparent; transition: color .2s; }
-    .tab.active { color: var(--gold); border-bottom-color: var(--gold); }
-
-    /* CARDS */
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 16px; }
-    .card h3 { font-size: 13px; color: var(--gold); letter-spacing: .5px; margin-bottom: 14px; text-transform: uppercase; }
-
-    /* FORM */
-    .field { margin-bottom: 14px; }
-    .field label { display: block; font-size: 11px; color: var(--muted); margin-bottom: 5px; font-weight: 600; text-transform: uppercase; }
-    .field input, .field textarea {
-      width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-      border-radius: 6px; padding: 10px 12px; color: var(--text); font-size: 13px; outline: none; transition: border-color .2s;
+    /* Hamburger */
+    .hamburger {
+      display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 6px;
     }
-    .field input:focus, .field textarea:focus { border-color: var(--gold); }
-    .field textarea { resize: vertical; min-height: 70px; }
 
-    /* GALLERY */
-    #galleryTab { display: none; }
-    #settingsTab { display: none; }
-    #infoTab { display: block; }
+    .btn-sm {
+      background: var(--bg3); border: 1px solid var(--border); border-radius: 7px;
+      padding: 8px 14px; color: var(--text); font-size: 12px; font-family: 'Open Sans', sans-serif;
+      cursor: pointer; display: flex; align-items: center; gap: 6px; transition: border-color .2s, color .2s;
+      text-decoration: none;
+    }
+    .btn-sm:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-sm.danger:hover { border-color: var(--red); color: var(--red); }
 
-    .gallery-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-bottom: 16px;
+    /* Sidebar */
+    .sidebar {
+      position: fixed; top: var(--topbar-h); left: 0; bottom: 0; width: var(--sidebar-w);
+      background: var(--bg2); border-right: 1px solid var(--border);
+      overflow-y: auto; z-index: 90; transition: transform .3s;
     }
-    .gallery-item {
-      position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 1; background: var(--green-mid);
+    .sidebar-section { padding: 20px 14px 8px; font-size: 10px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
+    .nav-item {
+      display: flex; align-items: center; gap: 11px; padding: 11px 16px; border-radius: 9px;
+      margin: 2px 10px; cursor: pointer; color: var(--muted); font-size: 13px; font-weight: 600;
+      transition: background .15s, color .15s; position: relative;
     }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .gallery-item .del-btn {
-      position: absolute; top: 5px; right: 5px; background: rgba(224,85,85,.85); border: none;
-      color: white; border-radius: 50%; width: 26px; height: 26px; cursor: pointer; font-size: 14px;
-      display: flex; align-items: center; justify-content: center; transition: background .2s;
+    .nav-item:hover { background: var(--bg3); color: var(--text); }
+    .nav-item.active { background: rgba(212,175,106,0.12); color: var(--gold); }
+    .nav-item.active::before {
+      content: ''; position: absolute; left: 0; top: 20%; bottom: 20%; width: 3px;
+      background: var(--gold); border-radius: 0 3px 3px 0;
     }
-    .gallery-item .del-btn:hover { background: var(--red); }
+    .nav-icon { width: 18px; height: 18px; flex-shrink: 0; }
 
+    /* Main content */
+    .main-content {
+      margin-left: var(--sidebar-w); margin-top: var(--topbar-h);
+      padding: 32px 36px; min-height: calc(100vh - var(--topbar-h));
+    }
+
+    /* Sections */
+    .section { display: none; }
+    .section.active { display: block; }
+
+    .section-header { margin-bottom: 28px; }
+    .section-title { font-family: 'Cinzel', serif; font-size: 22px; color: var(--gold); margin-bottom: 6px; }
+    .section-desc { color: var(--muted); font-size: 13px; }
+
+    /* Cards */
+    .card {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+      padding: 24px; margin-bottom: 20px;
+    }
+    .card-title { font-size: 13px; font-weight: 700; color: var(--gold); letter-spacing: .5px; margin-bottom: 18px; text-transform: uppercase; }
+
+    /* Form elements */
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-grid.single { grid-template-columns: 1fr; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: .5px; text-transform: uppercase; }
+    .form-input {
+      background: var(--bg3); border: 1px solid var(--border2); border-radius: 8px;
+      padding: 11px 14px; color: var(--text); font-size: 14px; font-family: 'Open Sans', sans-serif;
+      outline: none; transition: border-color .2s;
+    }
+    .form-input:focus { border-color: var(--gold); }
+    .form-input::placeholder { color: var(--muted); }
+    textarea.form-input { resize: vertical; min-height: 90px; }
+
+    /* Save button */
+    .section-actions { display: flex; align-items: center; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+    .btn-save {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-d) 100%);
+      color: var(--bg); border: none; border-radius: 8px; padding: 12px 28px;
+      font-weight: 700; font-size: 13px; font-family: 'Open Sans', sans-serif;
+      cursor: pointer; letter-spacing: 1px; text-transform: uppercase;
+      transition: opacity .2s, transform .1s;
+    }
+    .btn-save:hover { opacity: .9; }
+    .btn-save:active { transform: scale(.98); }
+    .btn-reset {
+      background: var(--bg3); border: 1px solid var(--border); border-radius: 8px;
+      padding: 12px 20px; color: var(--muted); font-size: 13px; font-family: 'Open Sans', sans-serif;
+      cursor: pointer; transition: border-color .2s, color .2s;
+    }
+    .btn-reset:hover { border-color: var(--red); color: var(--red); }
+
+    /* Image upload */
+    .img-upload-wrap { display: flex; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+    .img-preview {
+      width: 120px; height: 80px; border-radius: 8px; object-fit: cover;
+      border: 1px solid var(--border); background: var(--bg3);
+    }
+    .img-preview.placeholder {
+      display: flex; align-items: center; justify-content: center; color: var(--muted);
+    }
     .upload-area {
-      border: 2px dashed var(--border); border-radius: 10px; padding: 28px 20px; text-align: center;
-      cursor: pointer; transition: border-color .2s; position: relative;
+      border: 2px dashed var(--border); border-radius: 10px; padding: 18px 20px;
+      text-align: center; cursor: pointer; transition: border-color .2s; flex: 1; min-width: 180px;
     }
     .upload-area:hover { border-color: var(--gold); }
-    .upload-area input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
-    .upload-area p { color: var(--muted); font-size: 13px; }
-    .upload-area strong { color: var(--gold); display: block; font-size: 15px; margin-bottom: 6px; }
+    .upload-area input[type=file] { display: none; }
+    .upload-area-text { font-size: 12px; color: var(--muted); margin-top: 6px; }
+    .upload-icon { color: var(--gold); }
 
-    /* TOAST */
-    .toast {
-      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
-      background: var(--green-mid); border: 1px solid var(--gold); color: var(--text);
-      padding: 12px 24px; border-radius: 8px; font-size: 13px; z-index: 999;
-      transition: transform .3s; white-space: nowrap;
+    /* Services grid */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+    .service-card {
+      background: var(--bg3); border: 1px solid var(--border2); border-radius: 10px; padding: 18px;
     }
-    .toast.show { transform: translateX(-50%) translateY(0); }
-    .toast.error { border-color: var(--red); }
+    .service-card-title { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 12px; }
 
-    /* LOADER */
-    .loader { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(212,175,106,.3); border-top-color: var(--gold); border-radius: 50%; animation: spin .6s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    /* Gallery */
+    .brands-grid, .services-gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .brand-card, .service-gallery-card {
+      background: var(--bg3); border: 1px solid var(--border2); border-radius: 10px; padding: 18px;
+    }
+    .brand-card-title { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 12px; }
+    .gallery-imgs { display: flex; flex-wrap: wrap; gap: 8px; min-height: 60px; }
+    .gallery-thumb {
+      position: relative; width: 72px; height: 54px;
+    }
+    .gallery-thumb img { width: 72px; height: 54px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border); }
+    .gallery-thumb .del-img {
+      position: absolute; top: -5px; right: -5px; width: 18px; height: 18px;
+      background: var(--red); border-radius: 50%; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11px;
+      opacity: 0; transition: opacity .15s;
+    }
+    .gallery-thumb:hover .del-img { opacity: 1; }
+    .add-img-btn {
+      width: 72px; height: 54px; border: 2px dashed var(--border); border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--muted); font-size: 22px; transition: border-color .2s, color .2s;
+      background: none;
+    }
+    .add-img-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .add-img-input { display: none; }
 
-    .setup-note { background: rgba(212,175,106,.08); border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-size: 12px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
-    .setup-note strong { color: var(--gold); }
+    /* Tags */
+    .tags-wrap { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .tag {
+      background: rgba(212,175,106,0.12); border: 1px solid var(--gold-d); border-radius: 20px;
+      padding: 5px 12px; font-size: 12px; color: var(--gold); display: flex; align-items: center; gap: 6px;
+    }
+    .tag-del { background: none; border: none; color: var(--gold-d); cursor: pointer; font-size: 14px; line-height: 1; }
+    .tag-del:hover { color: var(--red); }
+    .tag-add { background: var(--bg3); border: 1px dashed var(--border); border-radius: 20px; padding: 5px 12px; display: flex; align-items: center; gap: 6px; }
+    .tag-add input { background: none; border: none; outline: none; color: var(--text); font-size: 12px; font-family: 'Open Sans', sans-serif; width: 100px; }
+    .tag-add input::placeholder { color: var(--muted); }
+    .tag-add button { background: none; border: none; color: var(--gold); cursor: pointer; font-size: 16px; }
 
-    .site-link { color: var(--gold); font-size: 12px; text-decoration: none; }
-    .site-link:hover { text-decoration: underline; }
+    /* Toast */
+    .toast-container { position: fixed; bottom: 28px; right: 28px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
+    .toast {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
+      padding: 14px 20px; font-size: 13px; color: var(--text);
+      display: flex; align-items: center; gap: 10px; min-width: 220px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      animation: slideIn .3s cubic-bezier(.34,1.56,.64,1);
+      pointer-events: all;
+    }
+    .toast.success { border-color: rgba(76,175,125,0.4); }
+    .toast.error { border-color: rgba(224,85,85,0.4); }
+    .toast-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .toast.success .toast-dot { background: var(--green); }
+    .toast.error .toast-dot { background: var(--red); }
+    .toast.fade-out { animation: fadeOut .3s forwards; }
+    @keyframes slideIn { from { opacity:0; transform: translateX(20px); } to { opacity:1; transform: translateX(0); } }
+    @keyframes fadeOut { to { opacity:0; transform: translateX(20px); } }
 
-    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #4caf50; display: inline-block; margin-right: 6px; }
-    .status-dot.red { background: var(--red); }
+    /* Autosave indicator */
+    .autosave { font-size: 11px; color: var(--green); opacity: 0; transition: opacity .3s; }
+    .autosave.show { opacity: 1; }
+
+    /* Divider */
+    hr.divider { border: none; border-top: 1px solid var(--border2); margin: 20px 0; }
+
+    /* Overlay for mobile sidebar */
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 89; }
+
+    /* Dashboard stats */
+    .stats-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .stat-card {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+      padding: 20px; display: flex; flex-direction: column; gap: 8px;
+    }
+    .stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+    .stat-val { font-family: 'Cinzel', serif; font-size: 26px; color: var(--gold); }
+    .stat-sub { font-size: 11px; color: var(--muted); }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .main-content { margin-left: 0; padding: 20px 18px; }
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.open { display: block; }
+      .hamburger { display: flex; }
+      .form-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .topbar { padding: 0 14px; }
+      .topbar-badge { display: none; }
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .login-box { padding: 36px 24px; width: 92vw; }
+    }
   </style>
 </head>
 <body>
 
-<!-- GİRİŞ EKRANI -->
+<!-- ===== LOGIN ===== -->
 <div id="loginScreen">
   <div class="login-box">
-    <img src="../logo-header.png" alt="Trimora" />
-    <h2>YÖNETİM PANELİ</h2>
-    <input type="password" id="passInput" placeholder="Şifre" onkeydown="if(event.key==='Enter')login()" />
-    <button class="btn" onclick="login()">GİRİŞ YAP</button>
-    <div class="err" id="loginErr"></div>
+    <div class="login-logo">TRIMORA</div>
+    <div class="login-sub">Design Admin Panel</div>
+    <input type="password" id="passInput" placeholder="Şifre giriniz" />
+    <button class="btn-primary" onclick="doLogin()">Giriş Yap</button>
+    <div class="login-err" id="loginErr"></div>
   </div>
 </div>
 
-<!-- DASHBOARD -->
+<!-- ===== DASHBOARD ===== -->
 <div id="dashboard">
-  <div class="topbar">
+
+  <!-- Topbar -->
+  <header class="topbar">
     <div class="topbar-left">
-      <img src="../logo-header.png" alt="Trimora" />
-      <h1>YÖNETİM PANELİ</h1>
+      <button class="hamburger" onclick="toggleSidebar()" aria-label="Menü">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+      <span class="topbar-logo">TRIMORA</span>
+      <span class="topbar-badge">Admin</span>
     </div>
-    <div class="topbar-actions">
-      <a href="https://trimoradesign.com" target="_blank" class="site-link">🌐 Siteyi Gör</a>
-      <button class="btn-sm btn-outline" onclick="logout()">Çıkış</button>
+    <div class="topbar-right">
+      <a class="btn-sm" href="../index.html" target="_blank">
+        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Siteye Dön
+      </a>
+      <button class="btn-sm danger" onclick="doLogout()">
+        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Çıkış
+      </button>
     </div>
-  </div>
+  </header>
 
-  <div class="content">
-    <!-- TABS -->
-    <div class="tabs">
-      <div class="tab active" onclick="showTab('info', this)">İletişim Bilgileri</div>
-      <div class="tab" onclick="showTab('gallery', this)">Galeri</div>
-      <div class="tab" onclick="showTab('settings', this)">Ayarlar</div>
-    </div>
+  <!-- Sidebar overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
-    <!-- BİLGİLER TAB -->
-    <div id="infoTab">
-      <div class="card">
-        <h3>İletişim Bilgileri</h3>
-        <div class="field">
-          <label>Telefon</label>
-          <input type="text" id="cfgPhone" placeholder="0530 235 45 23" />
-        </div>
-        <div class="field">
-          <label>WhatsApp Numarası (ülke kodu ile, başında + olmadan)</label>
-          <input type="text" id="cfgWa" placeholder="905302354523" />
-        </div>
-        <div class="field">
-          <label>E-posta</label>
-          <input type="email" id="cfgEmail" placeholder="trimoradesign@gmail.com" />
-        </div>
-        <div class="field">
-          <label>Adres</label>
-          <textarea id="cfgAddress"></textarea>
-        </div>
-        <button class="btn" onclick="saveInfo()">KAYDET</button>
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-section">Genel</div>
+    <div class="nav-item active" onclick="showSection('dashboard-home')" data-section="dashboard-home">
+      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Genel Bakış
+    </div>
+    <div class="nav-item" onclick="showSection('genel')" data-section="genel">
+      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 0-14.14 0"/><path d="M4 12a8 8 0 1 0 16 0 8 8 0 0 0-16 0"/></svg>
+      Genel Ayarlar
+    </div>
+    <div class="nav-item" onclick="showSection('iletisim')" data-section="iletisim">
+      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.18 2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.89 6.89l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      İletişim Bilgileri
+    </div>
+    <div class="nav-item" onclick="showSection('sosyal')" data-section="sosyal">
+      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      Sosyal Medya
+    </div>
+    <div class="nav-item" onclick="showSection('menu')" data-section="menu">
+      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+      Menü Yönetimi
+    </div>
+    <div class="sidebar-section">İçerik</div>
+    <div class="nav-item" onclick="showSection('hizmetler')" data-section="hizmetler">
+      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      Hizmetler
+    </div>
+    <div class="nav-item" onclick="showSection('marka-galeri')" data-section="marka-galeri">
+      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      Marka Galerisi
+    </div>
+    <div class="nav-item" onclick="showSection('hizmet-galeri')" data-section="hizmet-galeri">
+      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Hizmet Galerisi
+    </div>
+    <div class="sidebar-section">Teknik</div>
+    <div class="nav-item" onclick="showSection('seo')" data-section="seo">
+      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      SEO Ayarları
+    </div>
+    <div class="nav-item" onclick="showSection('footer')" data-section="footer">
+      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
+      Footer
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- === DASHBOARD HOME === -->
+    <div class="section active" id="sec-dashboard-home">
+      <div class="section-header">
+        <div class="section-title">Genel Bakış</div>
+        <div class="section-desc">Trimora Design Admin Panel'e hoş geldiniz.</div>
       </div>
-
-      <div class="card">
-        <h3>Site Başlığı</h3>
-        <div class="field">
-          <label>Slogan (hero yazısı)</label>
-          <input type="text" id="cfgSlogan" />
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-label">Hizmet</div>
+          <div class="stat-val">9</div>
+          <div class="stat-sub">Aktif hizmet kategorisi</div>
         </div>
-        <button class="btn" onclick="saveInfo()">KAYDET</button>
+        <div class="stat-card">
+          <div class="stat-label">Marka</div>
+          <div class="stat-val">10</div>
+          <div class="stat-sub">Araç markası galerisi</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Galeri</div>
+          <div class="stat-val" id="stat-gallery-count">–</div>
+          <div class="stat-sub">Toplam galeri görseli</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">localStorage</div>
+          <div class="stat-val" id="stat-storage">–</div>
+          <div class="stat-sub">Kullanılan depolama</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Hızlı Erişim</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;">
+          <button class="btn-sm" onclick="showSection('genel')">Genel Ayarlar</button>
+          <button class="btn-sm" onclick="showSection('iletisim')">İletişim</button>
+          <button class="btn-sm" onclick="showSection('hizmetler')">Hizmetler</button>
+          <button class="btn-sm" onclick="showSection('marka-galeri')">Marka Galerisi</button>
+          <button class="btn-sm" onclick="showSection('seo')">SEO</button>
+        </div>
       </div>
     </div>
 
-    <!-- GALERİ TAB -->
-    <div id="galleryTab">
+    <!-- === GENEL AYARLAR === -->
+    <div class="section" id="sec-genel">
+      <div class="section-header">
+        <div class="section-title">Genel Ayarlar</div>
+        <div class="section-desc">Hero bölümü, site başlığı ve meta açıklama ayarları.</div>
+      </div>
       <div class="card">
-        <h3>Galeri Fotoğrafları</h3>
-        <div class="gallery-grid" id="galleryGrid"></div>
-        <div class="upload-area" id="uploadArea">
-          <input type="file" accept="image/*" multiple onchange="handleUpload(this)" />
-          <strong>+ Fotoğraf Ekle</strong>
-          <p>Tıklayın veya sürükleyin (JPG, PNG, WEBP)</p>
+        <div class="card-title">Hero Bölümü</div>
+        <div class="form-grid single" style="margin-bottom:16px;">
+          <div class="form-group">
+            <label class="form-label">Hero Slogan</label>
+            <textarea class="form-input" id="g_hero_slogan" rows="3" placeholder="Araçlarınızı Sanat Eserine Dönüştürüyoruz"></textarea>
+          </div>
         </div>
-        <p style="font-size:11px;color:var(--muted);margin-top:10px;">Fotoğraflar GitHub'a yüklenir. Her dosya max 5 MB olmalı.</p>
+        <div class="form-group">
+          <label class="form-label">Hero Arka Plan Görseli</label>
+          <div class="img-upload-wrap">
+            <img id="g_hero_img_preview" class="img-preview" src="" alt="Hero görsel" onerror="this.style.display='none'">
+            <div class="upload-area" onclick="document.getElementById('g_hero_img_input').click()">
+              <input type="file" id="g_hero_img_input" accept="image/*" onchange="handleImgUpload(this,'g_hero_image','g_hero_img_preview')">
+              <div class="upload-icon">
+                <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              </div>
+              <div class="upload-area-text">PNG, JPG, WEBP (max 2MB)<br>Tıkla veya sürükle</div>
+            </div>
+            <button class="btn-reset" onclick="clearImg('g_hero_image','g_hero_img_preview')" style="align-self:flex-end;">Görseli Kaldır</button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Site Bilgileri</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Site Başlığı</label>
+            <input type="text" class="form-input" id="g_site_title" placeholder="Trimora Design">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Meta Açıklama</label>
+            <input type="text" class="form-input" id="g_meta_desc" placeholder="İstanbul'un en iyi oto döşeme atölyesi...">
+          </div>
+        </div>
+      </div>
+      <div class="section-actions">
+        <button class="btn-save" onclick="saveGenel()">Kaydet</button>
+        <button class="btn-reset" onclick="resetGenel()">Varsayılana Dön</button>
+        <span class="autosave" id="as-genel">✓ Kaydedildi</span>
       </div>
     </div>
 
-    <!-- AYARLAR TAB -->
-    <div id="settingsTab">
-      <div class="card">
-        <div class="setup-note">
-          <strong>GitHub Token Nedir?</strong><br>
-          Fotoğraf yüklemek ve bilgileri kaydetmek için GitHub hesabından alınan özel bir anahtardır.
-          Bir kez girilir, tarayıcıda güvenli şekilde saklanır.<br><br>
-          <strong>Nasıl Alınır?</strong> github.com → Profil → Settings → Developer Settings → Personal Access Tokens → Tokens (classic) → Generate → <em>repo</em> kutusunu işaretle → Kopyala
-        </div>
-        <div class="field">
-          <label>GitHub Token</label>
-          <input type="password" id="cfgToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" />
-        </div>
-        <div style="font-size:11px;color:var(--muted);margin-bottom:14px;">
-          <span class="status-dot" id="tokenDot"></span>
-          <span id="tokenStatus">Token girilmedi</span>
-        </div>
-        <button class="btn" onclick="saveToken()">TOKEN KAYDET</button>
+    <!-- === İLETİŞİM === -->
+    <div class="section" id="sec-iletisim">
+      <div class="section-header">
+        <div class="section-title">İletişim Bilgileri</div>
+        <div class="section-desc">Telefon, e-posta, adres ve WhatsApp numarası.</div>
       </div>
-
       <div class="card">
-        <h3>Şifre Değiştir</h3>
-        <div class="field">
-          <label>Mevcut Şifre</label>
-          <input type="password" id="oldPass" />
+        <div class="card-title">İletişim</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Telefon</label>
+            <input type="text" class="form-input" id="c_phone" placeholder="+90 (212) 000 00 00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">WhatsApp Numarası</label>
+            <input type="text" class="form-input" id="c_whatsapp" placeholder="905xxxxxxxxx">
+          </div>
+          <div class="form-group">
+            <label class="form-label">E-posta</label>
+            <input type="email" class="form-input" id="c_email" placeholder="info@trimoradesign.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Adres</label>
+            <input type="text" class="form-input" id="c_address" placeholder="Bağcılar, İstanbul">
+          </div>
         </div>
-        <div class="field">
-          <label>Yeni Şifre</label>
-          <input type="password" id="newPass" />
-        </div>
-        <div class="field">
-          <label>Yeni Şifre (Tekrar)</label>
-          <input type="password" id="newPass2" />
-        </div>
-        <button class="btn" onclick="changePass()">ŞİFREYİ DEĞİŞTİR</button>
+      </div>
+      <div class="section-actions">
+        <button class="btn-save" onclick="saveIletisim()">Kaydet</button>
+        <button class="btn-reset" onclick="resetIletisim()">Varsayılana Dön</button>
+        <span class="autosave" id="as-iletisim">✓ Kaydedildi</span>
       </div>
     </div>
-  </div>
+
+    <!-- === SOSYAL MEDYA === -->
+    <div class="section" id="sec-sosyal">
+      <div class="section-header">
+        <div class="section-title">Sosyal Medya</div>
+        <div class="section-desc">Instagram, Facebook, YouTube ve TikTok URL'leri.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Platformlar</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Instagram URL</label>
+            <input type="url" class="form-input" id="s_instagram" placeholder="https://instagram.com/trimoradesign">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Facebook URL</label>
+            <input type="url" class="form-input" id="s_facebook" placeholder="https://facebook.com/trimoradesign">
+          </div>
+          <div class="form-group">
+            <label class="form-label">YouTube URL</label>
+            <input type="url" class="form-input" id="s_youtube" placeholder="https://youtube.com/@trimoradesign">
+          </div>
+          <div class="form-group">
+            <label class="form-label">TikTok URL</label>
+            <input type="url" class="form-input" id="s_tiktok" placeholder="https://tiktok.com/@trimoradesign">
+          </div>
+        </div>
+      </div>
+      <div class="section-actions">
+        <button class="btn-save" onclick="saveSosyal()">Kaydet</button>
+        <button class="btn-reset" onclick="resetSosyal()">Varsayılana Dön</button>
+        <span class="autosave" id="as-sosyal">✓ Kaydedildi</span>
+      </div>
+    </div>
+
+    <!-- === MENÜ === -->
+    <div class="section" id="sec-menu">
+      <div class="section-header">
+        <div class="section-title">Menü Yönetimi</div>
+        <div class="section-desc">Navigasyon bağlantılarının isimlerini düzenle.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Navigasyon Linkleri</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Anasayfa Link Adı</label>
+            <input type="text" class="form-input" id="m_home" placeholder="Anasayfa">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Hizmetler Link Adı</label>
+            <input type="text" class="form-input" id="m_services" placeholder="Hizmetlerimiz">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Galeri Link Adı</label>
+            <input type="text" class="form-input" id="m_gallery" placeholder="Galeri">
+          </div>
+        </div>
+      </div>
+      <div class="section-actions">
+        <button class="btn-save" onclick="saveMenu()">Kaydet</button>
+        <button class="btn-reset" onclick="resetMenu()">Varsayılana Dön</button>
+        <span class="autosave" id="as-menu">✓ Kaydedildi</span>
+      </div>
+    </div>
+
+    <!-- === HİZMETLER === -->
+    <div class="section" id="sec-hizmetler">
+      <div class="section-header">
+        <div class="section-title">Hizmetler</div>
+        <div class="section-desc">Her hizmetin adını, açıklamasını ve görselini düzenle.</div>
+      </div>
+      <div class="services-grid" id="servicesGrid"></div>
+      <div class="section-actions">
+        <button class="btn-save" onclick="saveHizmetler()">Tüm Hizmetleri Kaydet</button>
+        <button class="btn-reset" onclick="resetHizmetler()">Varsayılana Dön</button>
+        <span class="autosave" id="as-hizmetler">✓ Kaydedildi</span>
+      </div>
+    </div>
+
+    <!-- === MARKA GALERİSİ === -->
+    <div class="section" id="sec-marka-galeri">
+      <div class="section-header">
+        <div class="section-title">Marka Galerisi</div>
+        <div class="section-desc">Her araç markası için galeri görsellerini yönet.</div>
+      </div>
+      <div class="brands-grid" id="brandsGrid"></div>
+      <div class="section-actions">
+        <button class="btn-save" onclick="saveBrandGallery()">Tüm Galerileri Kaydet</button>
+        <span class="autosave" id="as-marka-galeri">✓ Kaydedildi</span>
+      </div>
+    </div>
+
+    <!-- === HİZMET GALERİSİ === -->
+    <div class="section" id="sec-hizmet-galeri">
+      <div class="section-header">
+        <div class="section-title">Hizmet Galerisi</div>
+        <div class="section-desc">Her hizmet için galeri görsellerini yönet.</div>
+      </div>
+      <div class="services-gallery-grid" id="serviceGalleryGrid"></div>
+      <div class="section-actions">
+        <button class="btn-save" onclick="saveServiceGallery()">Tüm Galerileri Kaydet</button>
+        <span class="autosave" id="as-hizmet-galeri">✓ Kaydedildi</span>
+      </div>
+    </div>
+
+    <!-- === SEO === -->
+    <div class="section" id="sec-seo">
+      <div class="section-header">
+        <div class="section-title">SEO Ayarları</div>
+        <div class="section-desc">Sayfa başlığı, meta açıklama ve hashtagler.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Temel SEO</div>
+        <div class="form-grid single">
+          <div class="form-group">
+            <label class="form-label">Sayfa Başlığı (Title)</label>
+            <input type="text" class="form-input" id="seo_title" placeholder="Trimora Design | Oto Koltuk Döşeme İstanbul">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Meta Açıklama</label>
+            <textarea class="form-input" id="seo_desc" rows="3" placeholder="İstanbul'un en iyi oto döşeme atölyesi..."></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Hashtagler / Anahtar Kelimeler</div>
+        <div id="tagsArea" class="tags-wrap">
+          <div class="tag-add">
+            <input type="text" id="tagInput" placeholder="Yeni etiket ekle" onkeydown="if(event.key==='Enter'){addTag();event.preventDefault()}">
+            <button onclick="addTag()">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="section-actions">
+        <button class="btn-save" onclick="saveSeo()">Kaydet</button>
+        <button class="btn-reset" onclick="resetSeo()">Varsayılana Dön</button>
+        <span class="autosave" id="as-seo">✓ Kaydedildi</span>
+      </div>
+    </div>
+
+    <!-- === FOOTER === -->
+    <div class="section" id="sec-footer">
+      <div class="section-header">
+        <div class="section-title">Footer Ayarları</div>
+        <div class="section-desc">Telif hakkı metni ve footer sütun başlıkları.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Footer İçeriği</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Telif Hakkı Metni</label>
+            <input type="text" class="form-input" id="f_copyright" placeholder="© 2024 Trimora Design. Tüm hakları saklıdır.">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Sütun 1 Başlığı</label>
+            <input type="text" class="form-input" id="f_col1" placeholder="Hızlı Bağlantılar">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Sütun 2 Başlığı</label>
+            <input type="text" class="form-input" id="f_col2" placeholder="Hizmetlerimiz">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Sütun 3 Başlığı</label>
+            <input type="text" class="form-input" id="f_col3" placeholder="İletişim">
+          </div>
+        </div>
+      </div>
+      <div class="section-actions">
+        <button class="btn-save" onclick="saveFooter()">Kaydet</button>
+        <button class="btn-reset" onclick="resetFooter()">Varsayılana Dön</button>
+        <span class="autosave" id="as-footer">✓ Kaydedildi</span>
+      </div>
+    </div>
+
+  </main>
 </div>
 
-<div class="toast" id="toast"></div>
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
 
 <script>
-const REPO   = 'trimoradesign-stack/trimora';
-const BRANCH = 'main';
-const DEFAULT_PASS_HASH = 'e657aa3a8d200fd25254aa42c7e517286b23fd42e5a13dd448944f606553aea4'; // trimora2024
+// ==================== AUTH ====================
+const PASS_HASH = 'e657aa3a8d200fd25254aa42c7e517286b23fd42e5a13dd448944f606553aea4'; // SHA-256 of "trimora2024"
 
-// ── UTILS ──
-async function sha256(msg) {
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
 }
-const REPO_TOKEN = ['ghp','_njCeOQeQaZThu7nFhDw','mZTHTGGqqo33nDF0D'].join('');
-function getToken() { return localStorage.getItem('tr_token') || REPO_TOKEN; }
-function getPassHash() { return localStorage.getItem('tr_pass') || DEFAULT_PASS_HASH; }
-function showToast(msg, isErr = false) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast show' + (isErr ? ' error' : '');
-  setTimeout(() => t.className = 'toast', 3000);
-}
 
-// ── AUTH ──
-async function login() {
+async function doLogin() {
   const val = document.getElementById('passInput').value;
   const hash = await sha256(val);
-  if (hash === getPassHash()) {
+  if (hash === PASS_HASH) {
+    sessionStorage.setItem('trimora_auth', '1');
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('dashboard').style.display = 'block';
-    loadConfig();
-    checkToken();
+    initDashboard();
   } else {
-    document.getElementById('loginErr').textContent = 'Şifre hatalı!';
+    document.getElementById('loginErr').textContent = 'Şifre yanlış. Lütfen tekrar deneyin.';
+    document.getElementById('passInput').value = '';
+    document.getElementById('passInput').focus();
   }
 }
-function logout() {
+
+function doLogout() {
+  sessionStorage.removeItem('trimora_auth');
   document.getElementById('dashboard').style.display = 'none';
   document.getElementById('loginScreen').style.display = 'flex';
   document.getElementById('passInput').value = '';
+  document.getElementById('loginErr').textContent = '';
 }
 
-// ── TABS ──
-function showTab(name, el) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('infoTab').style.display = name === 'info' ? 'block' : 'none';
-  document.getElementById('galleryTab').style.display = name === 'gallery' ? 'block' : 'none';
-  document.getElementById('settingsTab').style.display = name === 'settings' ? 'block' : 'none';
+document.getElementById('passInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') doLogin();
+});
+
+// Auto-login check
+if (sessionStorage.getItem('trimora_auth') === '1') {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  window.addEventListener('DOMContentLoaded', initDashboard);
 }
 
-// ── GITHUB API ──
-async function getFile(path) {
-  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
-    headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' }
-  });
-  if (!r.ok) throw new Error('Dosya okunamadı');
-  return r.json();
+// ==================== STORAGE HELPERS ====================
+const K = 'trimora_';
+function ls(key) { return localStorage.getItem(K + key); }
+function lsSet(key, val) { localStorage.setItem(K + key, val); }
+function lsJ(key) { try { return JSON.parse(ls(key)) || null; } catch { return null; } }
+function lsJSet(key, val) { lsSet(key, JSON.stringify(val)); }
+
+// ==================== TOAST ====================
+function toast(msg, type = 'success') {
+  const c = document.getElementById('toastContainer');
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  el.innerHTML = `<span class="toast-dot"></span><span>${msg}</span>`;
+  c.appendChild(el);
+  setTimeout(() => {
+    el.classList.add('fade-out');
+    setTimeout(() => el.remove(), 350);
+  }, 2800);
 }
 
-async function putFile(path, content, message, sha = null) {
-  const body = { message, content: btoa(unescape(encodeURIComponent(content))), branch: BRANCH };
-  if (sha) body.sha = sha;
-  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
-    method: 'PUT',
-    headers: { Authorization: `token ${getToken()}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
-  });
-  if (!r.ok) { const e = await r.json(); throw new Error(e.message || 'Kayıt hatası'); }
-  return r.json();
+function showAutosave(id) {
+  const el = document.getElementById('as-' + id);
+  if (!el) return;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2500);
 }
 
-async function putBinaryFile(path, base64Content, message, sha = null) {
-  const body = { message, content: base64Content, branch: BRANCH };
-  if (sha) body.sha = sha;
-  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
-    method: 'PUT',
-    headers: { Authorization: `token ${getToken()}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
-  });
-  if (!r.ok) { const e = await r.json(); throw new Error(e.message || 'Yükleme hatası'); }
-  return r.json();
-}
-
-// ── CONFIG ──
-let _configSha = null;
-let _config = null;
-
-async function loadConfig() {
-  try {
-    if (!getToken()) return;
-    const file = await getFile('config.json');
-    _configSha = file.sha;
-    _config = JSON.parse(decodeURIComponent(escape(atob(file.content.replace(/\n/g,'')))));
-    fillForm();
-    renderGallery();
-  } catch(e) {
-    showToast('Config yüklenemedi: ' + e.message, true);
+// ==================== NAVIGATION ====================
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const sec = document.getElementById('sec-' + id);
+  if (sec) sec.classList.add('active');
+  document.querySelectorAll(`[data-section="${id}"]`).forEach(n => n.classList.add('active'));
+  // Close sidebar on mobile
+  if (window.innerWidth <= 900) {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebarOverlay').classList.remove('open');
   }
 }
 
-function fillForm() {
-  if (!_config) return;
-  document.getElementById('cfgPhone').value   = _config.contact.phone || '';
-  document.getElementById('cfgWa').value      = _config.contact.whatsapp || '';
-  document.getElementById('cfgEmail').value   = _config.contact.email || '';
-  document.getElementById('cfgAddress').value = _config.contact.address || '';
-  document.getElementById('cfgSlogan').value  = _config.site.slogan || '';
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('open');
 }
 
-async function saveInfo() {
-  if (!getToken()) { showToast('Önce Ayarlar > Token girin', true); return; }
-  _config.contact.phone    = document.getElementById('cfgPhone').value.trim();
-  _config.contact.whatsapp = document.getElementById('cfgWa').value.trim();
-  _config.contact.email    = document.getElementById('cfgEmail').value.trim();
-  _config.contact.address  = document.getElementById('cfgAddress').value.trim();
-  _config.site.slogan      = document.getElementById('cfgSlogan').value.trim();
-  try {
-    const res = await putFile('config.json', JSON.stringify(_config, null, 2), 'admin: bilgiler güncellendi', _configSha);
-    _configSha = res.content.sha;
-    showToast('✓ Kaydedildi! Site 1-2 dk içinde güncellenir.');
-  } catch(e) { showToast(e.message, true); }
+// ==================== IMAGE UPLOAD HELPER ====================
+function handleImgUpload(input, key, previewId) {
+  const file = input.files[0];
+  if (!file) return;
+  if (file.size > 2 * 1024 * 1024) { toast('Görsel 2MB\'den büyük olamaz', 'error'); return; }
+  const reader = new FileReader();
+  reader.onload = e => {
+    lsSet(key, e.target.result);
+    const prev = document.getElementById(previewId);
+    if (prev) { prev.src = e.target.result; prev.style.display = 'block'; }
+    toast('Görsel yüklendi');
+  };
+  reader.readAsDataURL(file);
 }
 
-// ── GALLERY ──
-function renderGallery() {
-  const grid = document.getElementById('galleryGrid');
+function clearImg(key, previewId) {
+  localStorage.removeItem(K + key);
+  const prev = document.getElementById(previewId);
+  if (prev) { prev.src = ''; prev.style.display = 'none'; }
+  toast('Görsel kaldırıldı');
+}
+
+// ==================== GENEL ====================
+const DEFAULTS = {
+  hero_slogan: 'Araçlarınızı Sanat Eserine Dönüştürüyoruz',
+  site_title: 'Trimora Design | Oto Koltuk Döşeme İstanbul',
+  meta_desc: 'İstanbul\'un en iyi oto döşeme atölyesi. Koltuk döşeme, tavan, kapı ve direksiyon kaplama hizmetleri.',
+  contact_phone: '+90 (212) 000 00 00',
+  contact_email: 'info@trimoradesign.com',
+  contact_address: 'Bağcılar, İstanbul',
+  contact_whatsapp: '905000000000',
+  social_instagram: 'https://instagram.com/trimoradesign',
+  social_facebook: 'https://facebook.com/trimoradesign',
+  social_youtube: '',
+  social_tiktok: '',
+  nav_home: 'Anasayfa',
+  nav_services: 'Hizmetlerimiz',
+  nav_gallery: 'Galeri',
+  footer_copyright: '© 2024 Trimora Design. Tüm hakları saklıdır.',
+  footer_col1: 'Hızlı Bağlantılar',
+  footer_col2: 'Hizmetlerimiz',
+  footer_col3: 'İletişim',
+  seo_title: 'Trimora Design | Oto Koltuk Döşeme İstanbul',
+  seo_desc: 'İstanbul\'un en iyi oto döşeme atölyesi. Koltuk döşeme, tavan, kapı ve direksiyon kaplama hizmetleri.',
+};
+
+function loadGenel() {
+  document.getElementById('g_hero_slogan').value = ls('hero_slogan') || DEFAULTS.hero_slogan;
+  document.getElementById('g_site_title').value = ls('site_title') || DEFAULTS.site_title;
+  document.getElementById('g_meta_desc').value = ls('meta_desc') || DEFAULTS.meta_desc;
+  const img = ls('hero_image');
+  const prev = document.getElementById('g_hero_img_preview');
+  if (img) { prev.src = img; prev.style.display = 'block'; } else { prev.style.display = 'none'; }
+}
+function saveGenel() {
+  lsSet('hero_slogan', document.getElementById('g_hero_slogan').value);
+  lsSet('site_title', document.getElementById('g_site_title').value);
+  lsSet('meta_desc', document.getElementById('g_meta_desc').value);
+  toast('Genel ayarlar kaydedildi');
+  showAutosave('genel');
+}
+function resetGenel() {
+  if (!confirm('Genel ayarları sıfırlamak istediğinizden emin misiniz?')) return;
+  ['hero_slogan','site_title','meta_desc','hero_image'].forEach(k => localStorage.removeItem(K+k));
+  loadGenel(); toast('Varsayılana döndürüldü');
+}
+
+// ==================== İLETİŞİM ====================
+function loadIletisim() {
+  document.getElementById('c_phone').value = ls('contact_phone') || DEFAULTS.contact_phone;
+  document.getElementById('c_email').value = ls('contact_email') || DEFAULTS.contact_email;
+  document.getElementById('c_address').value = ls('contact_address') || DEFAULTS.contact_address;
+  document.getElementById('c_whatsapp').value = ls('contact_whatsapp') || DEFAULTS.contact_whatsapp;
+}
+function saveIletisim() {
+  lsSet('contact_phone', document.getElementById('c_phone').value);
+  lsSet('contact_email', document.getElementById('c_email').value);
+  lsSet('contact_address', document.getElementById('c_address').value);
+  lsSet('contact_whatsapp', document.getElementById('c_whatsapp').value);
+  toast('İletişim bilgileri kaydedildi');
+  showAutosave('iletisim');
+}
+function resetIletisim() {
+  if (!confirm('İletişim bilgilerini sıfırlamak istediğinizden emin misiniz?')) return;
+  ['contact_phone','contact_email','contact_address','contact_whatsapp'].forEach(k => localStorage.removeItem(K+k));
+  loadIletisim(); toast('Varsayılana döndürüldü');
+}
+
+// ==================== SOSYAL ====================
+function loadSosyal() {
+  document.getElementById('s_instagram').value = ls('social_instagram') || DEFAULTS.social_instagram;
+  document.getElementById('s_facebook').value = ls('social_facebook') || DEFAULTS.social_facebook;
+  document.getElementById('s_youtube').value = ls('social_youtube') || DEFAULTS.social_youtube;
+  document.getElementById('s_tiktok').value = ls('social_tiktok') || DEFAULTS.social_tiktok;
+}
+function saveSosyal() {
+  lsSet('social_instagram', document.getElementById('s_instagram').value);
+  lsSet('social_facebook', document.getElementById('s_facebook').value);
+  lsSet('social_youtube', document.getElementById('s_youtube').value);
+  lsSet('social_tiktok', document.getElementById('s_tiktok').value);
+  toast('Sosyal medya linkleri kaydedildi');
+  showAutosave('sosyal');
+}
+function resetSosyal() {
+  if (!confirm('Sosyal medya linklerini sıfırlamak istediğinizden emin misiniz?')) return;
+  ['social_instagram','social_facebook','social_youtube','social_tiktok'].forEach(k => localStorage.removeItem(K+k));
+  loadSosyal(); toast('Varsayılana döndürüldü');
+}
+
+// ==================== MENÜ ====================
+function loadMenu() {
+  document.getElementById('m_home').value = ls('nav_home') || DEFAULTS.nav_home;
+  document.getElementById('m_services').value = ls('nav_services') || DEFAULTS.nav_services;
+  document.getElementById('m_gallery').value = ls('nav_gallery') || DEFAULTS.nav_gallery;
+}
+function saveMenu() {
+  lsSet('nav_home', document.getElementById('m_home').value);
+  lsSet('nav_services', document.getElementById('m_services').value);
+  lsSet('nav_gallery', document.getElementById('m_gallery').value);
+  toast('Menü isimleri kaydedildi');
+  showAutosave('menu');
+}
+function resetMenu() {
+  if (!confirm('Menü isimlerini sıfırlamak istediğinizden emin misiniz?')) return;
+  ['nav_home','nav_services','nav_gallery'].forEach(k => localStorage.removeItem(K+k));
+  loadMenu(); toast('Varsayılana döndürüldü');
+}
+
+// ==================== HİZMETLER ====================
+const SERVICE_DEFAULTS = [
+  { name: 'Oto Koltuk Döşeme',       desc: 'Yıpranmış koltuk döşemelerinizi lüks deriye dönüştürüyoruz.' },
+  { name: 'Recaro & Vader Dönüşüm',  desc: 'Performans ve konfor bir arada; Recaro ve Vader koltuk montajı.' },
+  { name: 'Direksiyon Kaplama',       desc: 'Gerçek deri ile kaplanmış direksiyon tutunma ve estetiği artırır.' },
+  { name: 'Vites Topuzu & Körüğü',    desc: 'Kişiselleştirilmiş vites topuzu ve körük kaplama çözümleri.' },
+  { name: 'Göğüs & Torpido Kaplama',  desc: 'Kontrol paneli ve torpido bölgesi için premium kaplama.' },
+  { name: 'Kapı İçi Döşeme',          desc: 'Kapı panellerini yenileyerek kabine bütünlük katıyoruz.' },
+  { name: 'Taban Halısı Döşeme',      desc: 'Yüksek kaliteli taban halısı ile araç içi hijyen ve konfor.' },
+  { name: 'Tavan Döşeme',             desc: 'Alcantara veya deri tavan kaplaması ile spor iç mekan.' },
+  { name: 'Tirim Kaplama',            desc: 'Tüm iç aksam trimlerinde özel renk ve doku seçenekleri.' },
+];
+
+const SERVICE_KEYS = [
+  'oto-koltuk-doseme', 'recaro-vader', 'direksiyon-kaplama',
+  'vites-topuzu', 'gogs-torpido', 'kapi-ici',
+  'taban-halisi', 'tavan-doseme', 'tirim-kaplama',
+];
+
+function loadHizmetler() {
+  const saved = lsJ('services') || SERVICE_DEFAULTS.map(s => ({ ...s, image: '' }));
+  const grid = document.getElementById('servicesGrid');
   grid.innerHTML = '';
-  if (!_config) return;
-  _config.gallery.forEach((img, i) => {
-    const div = document.createElement('div');
-    div.className = 'gallery-item';
-    div.innerHTML = `<img src="${img.src}" alt="${img.alt}" loading="lazy" />
-      <button class="del-btn" onclick="deleteGalleryItem(${i})" title="Sil">×</button>`;
-    grid.appendChild(div);
+  saved.forEach((svc, i) => {
+    const def = SERVICE_DEFAULTS[i] || {};
+    const card = document.createElement('div');
+    card.className = 'service-card';
+    card.innerHTML = `
+      <div class="service-card-title">${i + 1}. ${def.name || svc.name}</div>
+      <div class="form-group" style="margin-bottom:10px;">
+        <label class="form-label">Ad</label>
+        <input type="text" class="form-input" id="svc_name_${i}" value="${escH(svc.name)}" placeholder="${escH(def.name)}">
+      </div>
+      <div class="form-group" style="margin-bottom:10px;">
+        <label class="form-label">Açıklama</label>
+        <textarea class="form-input" id="svc_desc_${i}" rows="2">${escH(svc.desc)}</textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Görsel</label>
+        <div class="img-upload-wrap">
+          ${svc.image ? `<img id="svc_prev_${i}" class="img-preview" src="${svc.image}" alt="">` : `<img id="svc_prev_${i}" class="img-preview" src="" style="display:none" alt="">`}
+          <div class="upload-area" onclick="document.getElementById('svc_img_${i}').click()" style="padding:10px;">
+            <input type="file" id="svc_img_${i}" accept="image/*" data-idx="${i}" onchange="handleSvcImg(this)">
+            <div style="font-size:11px;color:var(--muted);">Görsel Yükle</div>
+          </div>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
   });
 }
 
-async function deleteGalleryItem(i) {
-  if (!confirm('Bu fotoğrafı silmek istediğinize emin misiniz?')) return;
-  _config.gallery.splice(i, 1);
-  try {
-    const res = await putFile('config.json', JSON.stringify(_config, null, 2), 'admin: galeri fotoğrafı silindi', _configSha);
-    _configSha = res.content.sha;
-    renderGallery();
-    showToast('✓ Fotoğraf silindi');
-  } catch(e) { showToast(e.message, true); }
+function handleSvcImg(input) {
+  const i = input.dataset.idx;
+  const file = input.files[0];
+  if (!file) return;
+  if (file.size > 2 * 1024 * 1024) { toast('Görsel 2MB\'den büyük olamaz', 'error'); return; }
+  const reader = new FileReader();
+  reader.onload = e => {
+    const prev = document.getElementById('svc_prev_' + i);
+    prev.src = e.target.result; prev.style.display = 'block';
+    toast('Görsel yüklendi');
+  };
+  reader.readAsDataURL(file);
 }
 
-async function handleUpload(input) {
-  if (!getToken()) { showToast('Önce Ayarlar > Token girin', true); return; }
-  const files = Array.from(input.files);
-  if (!files.length) return;
-  showToast('Yükleniyor...');
+function saveHizmetler() {
+  const count = SERVICE_DEFAULTS.length;
+  const data = [];
+  for (let i = 0; i < count; i++) {
+    const prev = document.getElementById('svc_prev_' + i);
+    data.push({
+      name: document.getElementById('svc_name_' + i).value,
+      desc: document.getElementById('svc_desc_' + i).value,
+      image: prev ? prev.src : '',
+    });
+  }
+  lsJSet('services', data);
+  toast('Hizmetler kaydedildi');
+  showAutosave('hizmetler');
+}
 
-  for (const file of files) {
-    if (file.size > 5 * 1024 * 1024) { showToast(file.name + ' 5MB\'den büyük!', true); continue; }
-    const base64 = await fileToBase64(file);
-    const filename = `gallery/${Date.now()}_${file.name.replace(/[^a-zA-Z0-9._-]/g,'_')}`;
-    try {
-      const res = await putBinaryFile(filename, base64, `admin: galeri fotoğrafı eklendi - ${file.name}`);
-      const url = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${filename}`;
-      _config.gallery.push({ src: url, alt: file.name.replace(/\.[^.]+$/, '') });
-      const cfgRes = await putFile('config.json', JSON.stringify(_config, null, 2), 'admin: galeri güncellendi', _configSha);
-      _configSha = cfgRes.content.sha;
-      renderGallery();
-      showToast('✓ ' + file.name + ' yüklendi');
-    } catch(e) { showToast(file.name + ': ' + e.message, true); }
+function resetHizmetler() {
+  if (!confirm('Hizmetleri sıfırlamak istediğinizden emin misiniz?')) return;
+  localStorage.removeItem(K + 'services');
+  loadHizmetler(); toast('Varsayılana döndürüldü');
+}
+
+// ==================== BRAND GALLERY ====================
+const BRANDS = ['ford','volvo','honda','audi','bmw','mercedes','volkswagen','peugeot','togg','opel'];
+const BRAND_LABELS = ['Ford','Volvo','Honda','Audi','BMW','Mercedes','Volkswagen','Peugeot','Togg','Opel'];
+
+function loadBrandGallery() {
+  const grid = document.getElementById('brandsGrid');
+  grid.innerHTML = '';
+  BRANDS.forEach((brand, bi) => {
+    const imgs = lsJ('brand_gallery_' + brand) || [];
+    const card = document.createElement('div');
+    card.className = 'brand-card';
+    card.setAttribute('data-brand', brand);
+    card.innerHTML = `
+      <div class="brand-card-title">${BRAND_LABELS[bi]}</div>
+      <div class="gallery-imgs" id="bgallery_${brand}">${renderGalleryThumbs(imgs, 'brand', brand)}</div>
+      <div style="margin-top:10px;">
+        <input type="file" class="add-img-input" id="badd_${brand}" accept="image/*" multiple onchange="handleGalleryAdd(this,'brand','${brand}')">
+        <button class="add-img-btn" onclick="document.getElementById('badd_${brand}').click()" title="Görsel Ekle">+</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function renderGalleryThumbs(imgs, type, key) {
+  return imgs.map((src, i) => `
+    <div class="gallery-thumb" data-type="${type}" data-key="${key}" data-idx="${i}">
+      <img src="${src}" alt="">
+      <button class="del-img" onclick="delGalleryImg('${type}','${key}',${i})" title="Sil">×</button>
+    </div>
+  `).join('');
+}
+
+function handleGalleryAdd(input, type, key) {
+  const files = Array.from(input.files);
+  const storageKey = (type === 'brand' ? 'brand_gallery_' : 'service_gallery_') + key;
+  const imgs = lsJ(storageKey) || [];
+  let loaded = 0;
+  files.forEach(file => {
+    if (file.size > 2 * 1024 * 1024) { toast('Görsel 2MB\'den büyük: ' + file.name, 'error'); loaded++; checkDone(); return; }
+    const reader = new FileReader();
+    reader.onload = e => {
+      imgs.push(e.target.result);
+      loaded++;
+      checkDone();
+    };
+    reader.readAsDataURL(file);
+  });
+  function checkDone() {
+    if (loaded === files.length) {
+      lsJSet(storageKey, imgs);
+      const container = document.getElementById((type === 'brand' ? 'bgallery_' : 'sgallery_') + key);
+      if (container) container.innerHTML = renderGalleryThumbs(imgs, type, key);
+      toast(files.length + ' görsel eklendi');
+    }
   }
   input.value = '';
 }
 
-function fileToBase64(file) {
-  return new Promise((res, rej) => {
-    const reader = new FileReader();
-    reader.onload = () => res(reader.result.split(',')[1]);
-    reader.onerror = rej;
-    reader.readAsDataURL(file);
+function delGalleryImg(type, key, idx) {
+  if (!confirm('Bu görseli silmek istediğinizden emin misiniz?')) return;
+  const storageKey = (type === 'brand' ? 'brand_gallery_' : 'service_gallery_') + key;
+  const imgs = lsJ(storageKey) || [];
+  imgs.splice(idx, 1);
+  lsJSet(storageKey, imgs);
+  const container = document.getElementById((type === 'brand' ? 'bgallery_' : 'sgallery_') + key);
+  if (container) container.innerHTML = renderGalleryThumbs(imgs, type, key);
+  toast('Görsel silindi');
+}
+
+function saveBrandGallery() {
+  toast('Marka galerileri kaydedildi');
+  showAutosave('marka-galeri');
+}
+
+// ==================== SERVICE GALLERY ====================
+const SVC_GALLERY_KEYS = SERVICE_KEYS;
+const SVC_GALLERY_LABELS = SERVICE_DEFAULTS.map(s => s.name);
+
+function loadServiceGallery() {
+  const grid = document.getElementById('serviceGalleryGrid');
+  grid.innerHTML = '';
+  SVC_GALLERY_KEYS.forEach((key, si) => {
+    const imgs = lsJ('service_gallery_' + key) || [];
+    const card = document.createElement('div');
+    card.className = 'service-gallery-card';
+    card.setAttribute('data-skey', key);
+    card.innerHTML = `
+      <div class="brand-card-title">${SVC_GALLERY_LABELS[si]}</div>
+      <div class="gallery-imgs" id="sgallery_${key}">${renderGalleryThumbs(imgs, 'service', key)}</div>
+      <div style="margin-top:10px;">
+        <input type="file" class="add-img-input" id="sadd_${key}" accept="image/*" multiple onchange="handleGalleryAdd(this,'service','${key}')">
+        <button class="add-img-btn" onclick="document.getElementById('sadd_${key}').click()" title="Görsel Ekle">+</button>
+      </div>
+    `;
+    grid.appendChild(card);
   });
 }
 
-// ── SETTINGS ──
-function checkToken() {
-  const t = getToken();
-  const dot = document.getElementById('tokenDot');
-  const status = document.getElementById('tokenStatus');
-  if (t) {
-    dot.classList.remove('red');
-    status.textContent = 'Token kayıtlı ✓';
-    document.getElementById('cfgToken').value = t;
-    loadConfig();
-  } else {
-    dot.classList.add('red');
-    status.textContent = 'Token girilmedi — fotoğraf yüklenemez';
+function saveServiceGallery() {
+  toast('Hizmet galerileri kaydedildi');
+  showAutosave('hizmet-galeri');
+}
+
+// ==================== SEO ====================
+let currentTags = [];
+
+function loadSeo() {
+  document.getElementById('seo_title').value = ls('seo_tags_title') || ls('site_title') || DEFAULTS.seo_title;
+  document.getElementById('seo_desc').value = ls('seo_desc_text') || ls('meta_desc') || DEFAULTS.seo_desc;
+  currentTags = lsJ('seo_tags') || ['#otodöşeme','#Istanbul','#trimoradesign','#koltukdöşeme','#otomotiv'];
+  renderTags();
+}
+
+function renderTags() {
+  const area = document.getElementById('tagsArea');
+  const addEl = area.querySelector('.tag-add');
+  // Remove existing tag elements
+  area.querySelectorAll('.tag').forEach(t => t.remove());
+  currentTags.forEach((tag, i) => {
+    const el = document.createElement('div');
+    el.className = 'tag';
+    el.innerHTML = `${escH(tag)}<button class="tag-del" onclick="removeTag(${i})">×</button>`;
+    area.insertBefore(el, addEl);
+  });
+}
+
+function addTag() {
+  const input = document.getElementById('tagInput');
+  const val = input.value.trim();
+  if (!val) return;
+  currentTags = [...currentTags, val.startsWith('#') ? val : '#' + val];
+  renderTags();
+  input.value = '';
+}
+
+function removeTag(i) {
+  currentTags = currentTags.filter((_, idx) => idx !== i);
+  renderTags();
+}
+
+function saveSeo() {
+  lsSet('seo_tags_title', document.getElementById('seo_title').value);
+  lsSet('seo_desc_text', document.getElementById('seo_desc').value);
+  lsJSet('seo_tags', currentTags);
+  toast('SEO ayarları kaydedildi');
+  showAutosave('seo');
+}
+
+function resetSeo() {
+  if (!confirm('SEO ayarlarını sıfırlamak istediğinizden emin misiniz?')) return;
+  ['seo_tags_title','seo_desc_text','seo_tags'].forEach(k => localStorage.removeItem(K+k));
+  loadSeo(); toast('Varsayılana döndürüldü');
+}
+
+// ==================== FOOTER ====================
+function loadFooter() {
+  document.getElementById('f_copyright').value = ls('footer_copyright') || DEFAULTS.footer_copyright;
+  document.getElementById('f_col1').value = ls('footer_col1') || DEFAULTS.footer_col1;
+  document.getElementById('f_col2').value = ls('footer_col2') || DEFAULTS.footer_col2;
+  document.getElementById('f_col3').value = ls('footer_col3') || DEFAULTS.footer_col3;
+}
+function saveFooter() {
+  lsSet('footer_copyright', document.getElementById('f_copyright').value);
+  lsSet('footer_col1', document.getElementById('f_col1').value);
+  lsSet('footer_col2', document.getElementById('f_col2').value);
+  lsSet('footer_col3', document.getElementById('f_col3').value);
+  toast('Footer ayarları kaydedildi');
+  showAutosave('footer');
+}
+function resetFooter() {
+  if (!confirm('Footer ayarlarını sıfırlamak istediğinizden emin misiniz?')) return;
+  ['footer_copyright','footer_col1','footer_col2','footer_col3'].forEach(k => localStorage.removeItem(K+k));
+  loadFooter(); toast('Varsayılana döndürüldü');
+}
+
+// ==================== STATS ====================
+function updateStats() {
+  let totalImgs = 0;
+  BRANDS.forEach(b => { const imgs = lsJ('brand_gallery_' + b); if (imgs) totalImgs += imgs.length; });
+  SERVICE_KEYS.forEach(k => { const imgs = lsJ('service_gallery_' + k); if (imgs) totalImgs += imgs.length; });
+  document.getElementById('stat-gallery-count').textContent = totalImgs;
+
+  let total = 0;
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key && key.startsWith(K)) total += (localStorage.getItem(key) || '').length;
   }
+  const mb = (total * 2 / (1024 * 1024)).toFixed(1);
+  document.getElementById('stat-storage').textContent = mb + ' MB';
 }
 
-function saveToken() {
-  const t = document.getElementById('cfgToken').value.trim();
-  if (!t.startsWith('ghp_')) { showToast('Geçersiz token formatı', true); return; }
-  localStorage.setItem('tr_token', t);
-  checkToken();
-  showToast('✓ Token kaydedildi');
+// ==================== INIT ====================
+function initDashboard() {
+  loadGenel();
+  loadIletisim();
+  loadSosyal();
+  loadMenu();
+  loadHizmetler();
+  loadBrandGallery();
+  loadServiceGallery();
+  loadSeo();
+  loadFooter();
+  updateStats();
 }
 
-async function changePass() {
-  const old = document.getElementById('oldPass').value;
-  const n1  = document.getElementById('newPass').value;
-  const n2  = document.getElementById('newPass2').value;
-  if (n1 !== n2) { showToast('Yeni şifreler eşleşmiyor', true); return; }
-  if (n1.length < 6) { showToast('Şifre en az 6 karakter olmalı', true); return; }
-  const oldHash = await sha256(old);
-  if (oldHash !== getPassHash()) { showToast('Mevcut şifre hatalı', true); return; }
-  const newHash = await sha256(n1);
-  localStorage.setItem('tr_pass', newHash);
-  document.getElementById('oldPass').value = '';
-  document.getElementById('newPass').value = '';
-  document.getElementById('newPass2').value = '';
-  showToast('✓ Şifre değiştirildi');
+// ==================== UTILS ====================
+function escH(str) {
+  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-// ── INIT ──
-window.onload = () => {
-  checkToken();
-};
+// Run on load if already logged in
+if (document.getElementById('dashboard').style.display === 'block') {
+  initDashboard();
+}
 </script>
 </body>
 </html>

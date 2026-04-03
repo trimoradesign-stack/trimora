@@ -62,5 +62,31 @@
   <a href="https://wa.me/905302354523?text=Merhaba%2C%20bir%20%C3%BCr%C3%BCn%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="whatsapp-fab" aria-label="WhatsApp">
     <svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.97.5 3.82 1.39 5.43L2 22l4.7-1.36A9.953 9.953 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.66 0-3.22-.46-4.56-1.26l-.32-.2-3.33.96.99-3.24-.21-.33A7.953 7.953 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.45-5.9c-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.54.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.47-.39-.4-.54-.41l-.46-.01c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.51.57.18 1.1.16 1.51.1.46-.07 1.43-.58 1.63-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg>
   </a>
+
+  <script>
+  (function() {
+    const slug = 'honda';
+    const brandKey = 'trimora_brand_gallery_' + slug;
+    const serviceKey = 'trimora_service_gallery_' + slug;
+    const data = localStorage.getItem(brandKey) || localStorage.getItem(serviceKey);
+    if (!data) return;
+    try {
+      const images = JSON.parse(data);
+      if (!images.length) return;
+      const grid = document.getElementById('galleryGrid');
+      const empty = document.querySelector('.subpage-empty');
+      if (!grid) return;
+      grid.innerHTML = '';
+      images.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = document.querySelector('h1')?.textContent || '';
+        img.loading = 'lazy';
+        grid.appendChild(img);
+      });
+      if (empty) empty.style.display = 'none';
+    } catch(e) {}
+  })();
+  </script>
 </body>
 </html>
