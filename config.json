@@ -87,26 +87,26 @@
     "vites-topuzu": [],
     "torpido-kaplama": [],
     "kapi-ici-doseme": [
-      "gallery/kapi-ici-doseme/1775261843179_audi.png",
-      "gallery/kapi-ici-doseme/1775261844837_bmw.png",
-      "gallery/kapi-ici-doseme/1775261965154_opel.png",
-      "gallery/kapi-ici-doseme/1775261966445_Oto_koltuk_d__eme.png",
-      "gallery/kapi-ici-doseme/1775261968159_peugeot.png",
-      "gallery/kapi-ici-doseme/1775261969555_screenshot.png",
-      "gallery/kapi-ici-doseme/1775261971319_screenshot_services.png",
-      "gallery/kapi-ici-doseme/1775261972837_screenshot_services2.png",
-      "gallery/kapi-ici-doseme/1775261974265_screenshot2_footer.png",
-      "gallery/kapi-ici-doseme/1775261975730_screenshot2_gallery.png",
-      "gallery/kapi-ici-doseme/1775261977260_screenshot2_services.png",
-      "gallery/kapi-ici-doseme/1775261978971_ss_admin_dashboard.png",
-      "gallery/kapi-ici-doseme/1775261980293_ss_admin_hizmet.png",
-      "gallery/kapi-ici-doseme/1775261981607_ss_admin_login.png",
-      "gallery/kapi-ici-doseme/1775261982859_ss_admin_marka.png",
-      "gallery/kapi-ici-doseme/1775261983908_ss_admin_new_login.png",
-      "gallery/kapi-ici-doseme/1775261985219_ss_antrasit_contact.png",
-      "gallery/kapi-ici-doseme/1775261986055_screenshot2.png",
-      "gallery/kapi-ici-doseme/1775261987727_Recaro_Vader_d_n___m.png",
-      "gallery/kapi-ici-doseme/1775261989675_ss_antrasit_footer.png"
+      {
+        "src": "gallery/kapi-ici-doseme/1775261843179_audi.png",
+        "caption": ""
+      },
+      {
+        "src": "gallery/kapi-ici-doseme/1775261844837_bmw.png",
+        "caption": ""
+      },
+      {
+        "src": "gallery/kapi-ici-doseme/1775261965154_opel.png",
+        "caption": ""
+      },
+      {
+        "src": "gallery/kapi-ici-doseme/1775261966445_Oto_koltuk_d__eme.png",
+        "caption": ""
+      },
+      {
+        "src": "gallery/kapi-ici-doseme/1775261968159_peugeot.png",
+        "caption": ""
+      }
     ],
     "taban-halisi-doseme": [],
     "tavan-doseme": [],
