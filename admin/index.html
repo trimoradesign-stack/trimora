@@ -361,16 +361,10 @@
   <div class="login-box">
     <div class="login-logo">TRIMORA</div>
     <div class="login-sub">Design Admin Panel</div>
-    <input type="password" id="passInput" placeholder="Admin şifresi" />
-    <div class="login-divider">GitHub Personal Access Token (ilk girişte gerekli)</div>
-    <input type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off" />
+    <input type="text" id="userInput" placeholder="Kullanıcı adı" autocomplete="username" />
+    <input type="password" id="passInput" placeholder="Şifre" autocomplete="current-password" />
     <button class="btn-primary" onclick="doLogin()">Giriş Yap</button>
     <div class="login-err" id="loginErr"></div>
-    <div class="login-token-note">
-      Token yoksa: <a href="https://github.com/settings/tokens/new?scopes=repo&description=Trimora+Admin" target="_blank">GitHub Token Oluştur</a><br>
-      Gerekli izin: <strong>repo</strong> (tüm repo erişimi).<br>
-      Token sadece bu tarayıcıda saklanır.
-    </div>
   </div>
 </div>
 
@@ -447,10 +441,6 @@
     <div class="nav-item" onclick="showSection('footer')" data-section="footer">
       <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
       Footer
-    </div>
-    <div class="nav-item" onclick="showSection('token')" data-section="token">
-      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      GitHub Token
     </div>
   </nav>
 
@@ -777,36 +767,7 @@
       </div>
     </div>
 
-    <!-- === GITHUB TOKEN === -->
-    <div class="section" id="sec-token">
-      <div class="section-header">
-        <div class="section-title">GitHub Token</div>
-        <div class="section-desc">Personal Access Token'ınızı güncelleyin.</div>
-      </div>
-      <div class="card">
-        <div class="card-title">Token Ayarları</div>
-        <div class="form-grid single">
-          <div class="form-group">
-            <label class="form-label">GitHub Personal Access Token</label>
-            <div class="token-field">
-              <input type="password" class="form-input" id="token_input_field" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
-              <button class="token-toggle" onclick="toggleTokenVisibility()">Göster</button>
-            </div>
-          </div>
-        </div>
-        <div style="font-size:12px;color:var(--muted);margin-top:12px;line-height:1.8;">
-          Token sadece bu tarayıcıda (localStorage) saklanır.<br>
-          Gerekli izin: <strong style="color:var(--text);">repo</strong><br>
-          <a href="https://github.com/settings/tokens/new?scopes=repo&description=Trimora+Admin" target="_blank" style="color:var(--gold);">Yeni token oluştur →</a>
-        </div>
-      </div>
-      <div class="section-actions">
-        <button class="btn-save" onclick="saveToken()">
-          <span class="btn-text">Token'ı Güncelle</span>
-        </button>
-        <button class="btn-reset" onclick="testToken()">Bağlantıyı Test Et</button>
-      </div>
-    </div>
+    <!-- Token bölümü kaldırıldı - token şifre ile otomatik çözülüyor -->
 
   </main>
 </div>
@@ -819,6 +780,10 @@
 const REPO = 'trimoradesign-stack/trimora';
 const BRANCH = 'main';
 const PASS_HASH = 'e657aa3a8d200fd25254aa42c7e517286b23fd42e5a13dd448944f606553aea4';
+// Encrypted token (AES-256-CBC, key derived from password)
+const ENC_IV = '13fd94414f61e4cfb90938d57d3dc41e';
+const ENC_TOKEN = '92a3c6f6b86b98bdb1a11a9be44d47948ae9e8cbba0fa684eabc2478fce6dfa4bea489922b668163d1f09854d246fb27';
+const ENC_SALT = 'trimora_salt_2024';
 
 // ==================== STATE ====================
 let ghToken = '';
@@ -834,35 +799,61 @@ async function sha256(str) {
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
 }
 
-async function doLogin() {
-  const pass = document.getElementById('passInput').value;
-  const tokenVal = document.getElementById('tokenInput').value.trim();
-  const hash = await sha256(pass);
+async function decryptToken(password) {
+  // Derive key from password using PBKDF2
+  const enc = new TextEncoder();
+  const keyMaterial = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveBits']);
+  const derivedBits = await crypto.subtle.deriveBits(
+    { name: 'PBKDF2', salt: enc.encode(ENC_SALT), iterations: 100000, hash: 'SHA-256' },
+    keyMaterial, 256
+  );
+  const key = await crypto.subtle.importKey('raw', derivedBits, { name: 'AES-CBC' }, false, ['decrypt']);
+  const iv = new Uint8Array(ENC_IV.match(/.{2}/g).map(b => parseInt(b, 16)));
+  const data = new Uint8Array(ENC_TOKEN.match(/.{2}/g).map(b => parseInt(b, 16)));
+  const decrypted = await crypto.subtle.decrypt({ name: 'AES-CBC', iv }, key, data);
+  return new TextDecoder().decode(decrypted);
+}
 
+async function doLogin() {
+  const user = document.getElementById('userInput').value.trim();
+  const pass = document.getElementById('passInput').value;
+  const errEl = document.getElementById('loginErr');
+
+  if (!user || !pass) {
+    errEl.textContent = 'Kullanıcı adı ve şifre giriniz.';
+    return;
+  }
+
+  if (user !== 'admin') {
+    errEl.textContent = 'Kullanıcı adı yanlış.';
+    document.getElementById('userInput').value = '';
+    document.getElementById('userInput').focus();
+    return;
+  }
+
+  const hash = await sha256(pass);
   if (hash !== PASS_HASH) {
-    document.getElementById('loginErr').textContent = 'Şifre yanlış. Lütfen tekrar deneyin.';
+    errEl.textContent = 'Şifre yanlış. Lütfen tekrar deneyin.';
     document.getElementById('passInput').value = '';
     document.getElementById('passInput').focus();
     return;
   }
 
-  // Use entered token or stored token
-  const storedToken = localStorage.getItem('trimora_gh_token');
-  const finalToken = tokenVal || storedToken;
-
-  if (!finalToken) {
-    document.getElementById('loginErr').textContent = 'GitHub Token gerekli. Lütfen token giriniz.';
-    document.getElementById('tokenInput').focus();
-    return;
+  // Decrypt GitHub token from password
+  try {
+    ghToken = await decryptToken(pass);
+  } catch(e) {
+    // Fallback: Node.js derived key may differ from Web Crypto. Try stored token.
+    const stored = localStorage.getItem('trimora_gh_token');
+    if (stored) {
+      ghToken = stored;
+    } else {
+      errEl.textContent = 'Bağlantı hatası. Tekrar deneyin.';
+      return;
+    }
   }
 
-  if (tokenVal) {
-    localStorage.setItem('trimora_gh_token', tokenVal);
-  }
-
-  ghToken = finalToken;
   sessionStorage.setItem('trimora_auth', '1');
-
   document.getElementById('loginScreen').style.display = 'none';
   document.getElementById('dashboard').style.display = 'block';
   await initDashboard();
@@ -1084,12 +1075,6 @@ function populateForms(cfg) {
   // SEO tags
   currentTags = (cfg.seo?.tags) ? [...cfg.seo.tags] : [];
   renderTags();
-
-  // Token field
-  const stored = localStorage.getItem('trimora_gh_token');
-  if (stored) {
-    document.getElementById('token_input_field').value = stored;
-  }
 
   // Hizmetler
   loadHizmetler(cfg);
@@ -1622,17 +1607,15 @@ async function initDashboard() {
     if (res.ok) {
       currentConfig = await res.json();
       populateForms(currentConfig);
-      // SHA olmadan kaydetme yapılamaz, uyarı ver
       if (!configSha) {
-        toast('Config yüklendi. Kaydetmek için GitHub Token gerekli.', 'warning', 5000);
-        if (!token) showSection('token');
+        toast('Config yüklendi (salt okunur). Kaydetmek için giriş yapın.', 'warning', 5000);
       }
     } else {
       throw new Error('Config yüklenemedi');
     }
   } catch (e) {
     toast('Yükleme başarısız: ' + e.message, 'error', 6000);
-    showSection('token');
+    showSection('genel');
   } finally {
     overlay.classList.remove('show');
   }
