@@ -234,8 +234,8 @@
     }
     .brand-card-title { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 12px; }
     .gallery-imgs { display: flex; flex-wrap: wrap; gap: 8px; min-height: 60px; }
-    .gallery-thumb { position: relative; width: 72px; height: 54px; }
-    .gallery-thumb img { width: 72px; height: 54px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border); }
+    .gallery-thumb { position: relative; width: 100px; display: flex; flex-direction: column; }
+    .gallery-thumb img { width: 100px; height: 75px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border); }
     .gallery-thumb .del-img {
       position: absolute; top: -5px; right: -5px; width: 18px; height: 18px;
       background: var(--red); border-radius: 50%; border: none; cursor: pointer;
@@ -243,6 +243,20 @@
       opacity: 0; transition: opacity .15s;
     }
     .gallery-thumb:hover .del-img { opacity: 1; }
+    .gallery-caption-input {
+      width: 100%;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text);
+      font-size: 11px;
+      padding: 4px 6px;
+      margin-top: 4px;
+      font-family: 'Open Sans', sans-serif;
+      outline: none;
+    }
+    .gallery-caption-input:focus { border-color: var(--gold); }
+    .gallery-caption-input::placeholder { color: var(--muted); }
     .add-img-btn {
       width: 72px; height: 54px; border: 2px dashed var(--border); border-radius: 6px;
       display: flex; align-items: center; justify-content: center;
@@ -1272,7 +1286,7 @@ function loadBrandGallery(cfg) {
   grid.innerHTML = '';
   BRANDS.forEach((brand, bi) => {
     const imgs = (cfg?.brandGallery?.[brand]) || [];
-    pendingGallery.brand[brand] = [...imgs];
+    pendingGallery.brand[brand] = imgs.map(i => typeof i === 'string' ? { src: i, caption: '' } : { ...i });
     const card = document.createElement('div');
     card.className = 'brand-card';
     card.setAttribute('data-brand', brand);
@@ -1296,7 +1310,7 @@ function loadServiceGallery(cfg) {
   const svcLabels = (cfg?.services || []).map(s => s.name);
   svcKeys.forEach((key, si) => {
     const imgs = (cfg?.serviceGallery?.[key]) || [];
-    pendingGallery.service[key] = [...imgs];
+    pendingGallery.service[key] = imgs.map(i => typeof i === 'string' ? { src: i, caption: '' } : { ...i });
     const card = document.createElement('div');
     card.className = 'service-gallery-card';
     card.setAttribute('data-skey', key);
@@ -1314,12 +1328,19 @@ function loadServiceGallery(cfg) {
 }
 
 function renderGalleryThumbs(imgs, type, key) {
-  return imgs.map((src, i) => `
+  return imgs.map((item, i) => {
+    const src = typeof item === 'string' ? item : (item.src || '');
+    const caption = typeof item === 'string' ? '' : (item.caption || '');
+    const imgUrl = src.startsWith('gallery/')
+      ? `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${src}`
+      : src;
+    return `
     <div class="gallery-thumb" data-type="${type}" data-key="${key}" data-idx="${i}">
-      <img src="${src.startsWith('gallery/') ? 'https://raw.githubusercontent.com/${REPO}/${BRANCH}/' + src : src}" alt="" onerror="this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'72\\' height=\\'54\\'><rect width=\\'72\\' height=\\'54\\' fill=\\'%2338383f\\'/></svg>'">
+      <img src="${imgUrl}" alt="" onerror="this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'100\\' height=\\'75\\'><rect width=\\'100\\' height=\\'75\\' fill=\\'%2338383f\\'/></svg>'">
       <button class="del-img" onclick="delGalleryImg('${type}','${key}',${i})" title="Sil">×</button>
+      <input type="text" class="gallery-caption-input" placeholder="Açıklama..." value="${escH(caption)}" onchange="updateCaption('${type}','${key}',${i},this.value)">
     </div>
-  `).join('');
+  `}).join('');
 }
 
 // Local pending gallery management (no GitHub calls until save)
@@ -1332,8 +1353,8 @@ function handleGalleryAdd(input, type, key) {
     if (file.size > 5 * 1024 * 1024) { toast('Görsel 5MB\'den büyük: ' + file.name, 'error'); loaded++; checkDone(); return; }
     const reader = new FileReader();
     reader.onload = e => {
-      // Store as {dataUrl, file} for upload
-      pending.push({ dataUrl: e.target.result, file, name: file.name });
+      // Store as {dataUrl, file, caption} for upload
+      pending.push({ dataUrl: e.target.result, file, name: file.name, caption: '' });
       loaded++;
       checkDone();
     };
@@ -1352,13 +1373,24 @@ function handleGalleryAdd(input, type, key) {
 
 function renderPendingThumbs(items, type, key) {
   return items.map((item, i) => {
-    const src = typeof item === 'string'
-      ? (item.startsWith('gallery/') ? `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${item}` : item)
-      : item.dataUrl;
+    let imgSrc, caption;
+    if (typeof item === 'string') {
+      imgSrc = item.startsWith('gallery/') ? `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${item}` : item;
+      caption = '';
+    } else if (item.dataUrl) {
+      imgSrc = item.dataUrl;
+      caption = item.caption || '';
+    } else {
+      imgSrc = item.src && item.src.startsWith('gallery/')
+        ? `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${item.src}`
+        : (item.src || '');
+      caption = item.caption || '';
+    }
     return `
       <div class="gallery-thumb" data-type="${type}" data-key="${key}" data-idx="${i}">
-        <img src="${src}" alt="">
+        <img src="${imgSrc}" alt="">
         <button class="del-img" onclick="delPendingImg('${type}','${key}',${i})" title="Sil">×</button>
+        <input type="text" class="gallery-caption-input" placeholder="Açıklama..." value="${escH(caption)}" onchange="updateCaption('${type}','${key}',${i},this.value)">
       </div>
     `;
   }).join('');
@@ -1383,6 +1415,18 @@ function delPendingImg(type, key, idx) {
 // Legacy — keep for compatibility with rendered HTML
 function delGalleryImg(type, key, idx) { delPendingImg(type, key, idx); }
 
+function updateCaption(type, key, idx, value) {
+  const pending = pendingGallery[type][key] || [];
+  if (!pending[idx]) return;
+  if (typeof pending[idx] === 'string') {
+    // Convert string to object format
+    pending[idx] = { src: pending[idx], caption: value };
+  } else {
+    pending[idx] = { ...pending[idx], caption: value };
+  }
+  pendingGallery[type][key] = pending;
+}
+
 async function saveBrandGallery() {
   setBtnLoading('btn-save-marka-galeri', true);
   const btn = document.getElementById('btn-save-marka-galeri');
@@ -1391,29 +1435,31 @@ async function saveBrandGallery() {
     const brandGallery = { ...(currentConfig.brandGallery || {}) };
     for (const brand of BRANDS) {
       const items = pendingGallery.brand[brand] || [];
-      const paths = [];
+      const objects = [];
       for (const item of items) {
         if (typeof item === 'string') {
-          paths.push(item);
-        } else {
-          // Upload new image
+          // Old string format — convert to object
+          objects.push({ src: item, caption: '' });
+        } else if (item.dataUrl) {
+          // New upload — upload to GitHub
           if (textEl) textEl.textContent = `${brand} yükleniyor...`;
-          const ext = item.name.split('.').pop();
           const fname = `${Date.now()}_${item.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
           const base64 = item.dataUrl.split(',')[1];
-          const path = await uploadImageToGitHub(brand, fname, base64);
-          paths.push(path);
+          const uploadedPath = await uploadImageToGitHub(brand, fname, base64);
+          objects.push({ src: uploadedPath, caption: item.caption || '' });
+        } else {
+          // Already an {src, caption} object
+          objects.push({ src: item.src, caption: item.caption || '' });
         }
       }
-      brandGallery[brand] = paths;
-      pendingGallery.brand[brand] = [...paths];
+      brandGallery[brand] = objects;
+      pendingGallery.brand[brand] = objects.map(o => ({ ...o }));
     }
     currentConfig = { ...currentConfig, brandGallery };
     await saveConfigToGitHub('Admin: Marka galerileri güncellendi');
     toast('Marka galerileri GitHub\'a kaydedildi ✓');
     showDeployNotice('marka-galeri');
     logActivity('Marka galerileri kaydedildi');
-    // Re-render thumbs with real paths
     BRANDS.forEach(brand => {
       const container = document.getElementById('bgallery_' + brand);
       if (container) container.innerHTML = renderGalleryThumbs(brandGallery[brand] || [], 'brand', brand);
@@ -1436,20 +1482,25 @@ async function saveServiceGallery() {
     const svcKeys = (currentConfig.services || []).map(s => s.slug);
     for (const key of svcKeys) {
       const items = pendingGallery.service[key] || [];
-      const paths = [];
+      const objects = [];
       for (const item of items) {
         if (typeof item === 'string') {
-          paths.push(item);
-        } else {
+          // Old string format — convert to object
+          objects.push({ src: item, caption: '' });
+        } else if (item.dataUrl) {
+          // New upload
           if (textEl) textEl.textContent = `${key} yükleniyor...`;
           const fname = `${Date.now()}_${item.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
           const base64 = item.dataUrl.split(',')[1];
-          const path = await uploadImageToGitHub(key, fname, base64);
-          paths.push(path);
+          const uploadedPath = await uploadImageToGitHub(key, fname, base64);
+          objects.push({ src: uploadedPath, caption: item.caption || '' });
+        } else {
+          // Already an {src, caption} object
+          objects.push({ src: item.src, caption: item.caption || '' });
         }
       }
-      serviceGallery[key] = paths;
-      pendingGallery.service[key] = [...paths];
+      serviceGallery[key] = objects;
+      pendingGallery.service[key] = objects.map(o => ({ ...o }));
     }
     currentConfig = { ...currentConfig, serviceGallery };
     await saveConfigToGitHub('Admin: Hizmet galerileri güncellendi');
@@ -1578,8 +1629,8 @@ function updateStats(cfg) {
   let total = 0;
   const bg = cfg?.brandGallery || {};
   const sg = cfg?.serviceGallery || {};
-  Object.values(bg).forEach(arr => { total += arr.length; });
-  Object.values(sg).forEach(arr => { total += arr.length; });
+  Object.values(bg).forEach(arr => { if (Array.isArray(arr)) total += arr.length; });
+  Object.values(sg).forEach(arr => { if (Array.isArray(arr)) total += arr.length; });
   const el = document.getElementById('stat-gallery-count');
   if (el) el.textContent = total;
 }
