@@ -22,15 +22,51 @@
     "gallery": "GALERİ"
   },
   "services": [
-    {"name": "OTO KOLTUK DÖŞEME", "desc": "Klasik ve modern araç içi koltuk kaplama hizmetleri.", "slug": "oto-koltuk-doseme"},
-    {"name": "RECARO & VADER DÖNÜŞÜM", "desc": "Orijinal Recaro & Vader koltuk montajı ve döşeme.", "slug": "recaro-vader-donusum"},
-    {"name": "DİREKSİYON KAPLAMA", "desc": "Orijinal deri direksiyon kılıfı ve onarımı.", "slug": "direksiyon-kaplama"},
-    {"name": "VİTES TOPUZU & KÖRÜĞÜ", "desc": "Vites topuzu ve körüğü yenileme.", "slug": "vites-topuzu"},
-    {"name": "GÖĞÜS & TORPİDO KAPLAMA", "desc": "Dikişli torpido ve göğüs paneli kaplama.", "slug": "torpido-kaplama"},
-    {"name": "KAPI İÇİ DÖŞEME", "desc": "Kapı iç panelleri deri ve kumaş kaplama.", "slug": "kapi-ici-doseme"},
-    {"name": "TABAN HALISI DÖŞEME", "desc": "Araç taban halısı yenileme ve döşeme.", "slug": "taban-halisi-doseme"},
-    {"name": "TAVAN DÖŞEME", "desc": "Araç tavan kaplaması yenileme.", "slug": "tavan-doseme"},
-    {"name": "TİRİM KAPLAMA", "desc": "İç trim parçaları karbon ve deri kaplama.", "slug": "tirim-kaplama"}
+    {
+      "name": "OTO KOLTUK DÖŞEME",
+      "desc": "Klasik ve modern araç içi koltuk kaplama hizmetleri.",
+      "slug": "oto-koltuk-doseme"
+    },
+    {
+      "name": "RECARO & VADER DÖNÜŞÜM",
+      "desc": "Orijinal Recaro & Vader koltuk montajı ve döşeme.",
+      "slug": "recaro-vader-donusum"
+    },
+    {
+      "name": "DİREKSİYON KAPLAMA",
+      "desc": "Orijinal deri direksiyon kılıfı ve onarımı.",
+      "slug": "direksiyon-kaplama"
+    },
+    {
+      "name": "VİTES TOPUZU & KÖRÜĞÜ",
+      "desc": "Vites topuzu ve körüğü yenileme.",
+      "slug": "vites-topuzu"
+    },
+    {
+      "name": "GÖĞÜS & TORPİDO KAPLAMA",
+      "desc": "Dikişli torpido ve göğüs paneli kaplama.",
+      "slug": "torpido-kaplama"
+    },
+    {
+      "name": "KAPI İÇİ DÖŞEME",
+      "desc": "Kapı iç panelleri deri ve kumaş kaplama.",
+      "slug": "kapi-ici-doseme"
+    },
+    {
+      "name": "TABAN HALISI DÖŞEME",
+      "desc": "Araç taban halısı yenileme ve döşeme.",
+      "slug": "taban-halisi-doseme"
+    },
+    {
+      "name": "TAVAN DÖŞEME",
+      "desc": "Araç tavan kaplaması yenileme.",
+      "slug": "tavan-doseme"
+    },
+    {
+      "name": "TİRİM KAPLAMA",
+      "desc": "İç trim parçaları karbon ve deri kaplama.",
+      "slug": "tirim-kaplama"
+    }
   ],
   "brandGallery": {
     "ford": [],
@@ -50,13 +86,37 @@
     "direksiyon-kaplama": [],
     "vites-topuzu": [],
     "torpido-kaplama": [],
-    "kapi-ici-doseme": [],
+    "kapi-ici-doseme": [
+      "gallery/kapi-ici-doseme/1775261843179_audi.png",
+      "gallery/kapi-ici-doseme/1775261844837_bmw.png"
+    ],
     "taban-halisi-doseme": [],
     "tavan-doseme": [],
     "tirim-kaplama": []
   },
   "seo": {
-    "tags": ["#KonyaOtoDoseme","#KonyaOtoKoltukDoseme","#KonyadaOtoDoseme","#KonyaDeriDoseme","#KonyaOtoIcTasarim","#KonyaAraçDoseme","#KonyaKoltukKaplama","#KonyadaOtoKoltuk","#OtoDoseme","#OtoKoltukDoseme","#OtoDosemeci","#OtoKoltukYenileme","#DeriKoltukKaplama","#AraçIciDoseme","#OtoIcDoseme","#ArabaDoseme","#AraçIciTasarim","#OtoRestorasyon","#OtoKoltukKaplama","#OtoDosemeUstasi"]
+    "tags": [
+      "#KonyaOtoDoseme",
+      "#KonyaOtoKoltukDoseme",
+      "#KonyadaOtoDoseme",
+      "#KonyaDeriDoseme",
+      "#KonyaOtoIcTasarim",
+      "#KonyaAraçDoseme",
+      "#KonyaKoltukKaplama",
+      "#KonyadaOtoKoltuk",
+      "#OtoDoseme",
+      "#OtoKoltukDoseme",
+      "#OtoDosemeci",
+      "#OtoKoltukYenileme",
+      "#DeriKoltukKaplama",
+      "#AraçIciDoseme",
+      "#OtoIcDoseme",
+      "#ArabaDoseme",
+      "#AraçIciTasarim",
+      "#OtoRestorasyon",
+      "#OtoKoltukKaplama",
+      "#OtoDosemeUstasi"
+    ]
   },
   "footer": {
     "copyright": "© 2024 Trimora Design Garage. Tüm hakları saklıdır."
