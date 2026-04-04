@@ -485,6 +485,14 @@
       <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
       Footer
     </div>
+    <div class="nav-item" onclick="showSection('logo')" data-section="logo">
+      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      Logo Yönetimi
+    </div>
+    <div class="nav-item" onclick="showSection('sifre')" data-section="sifre">
+      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Şifre Değiştir
+    </div>
     <div class="nav-item" onclick="showSection('yedekleme')" data-section="yedekleme">
       <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       Yedekleme
@@ -896,6 +904,11 @@
             <input type="text" class="form-input" id="new_svc_slug" placeholder="ornek-hizmet">
             <div class="form-hint">Otomatik oluşturulur, değiştirilebilir.</div>
           </div>
+          <div class="form-group">
+            <label class="form-label">Kart Görseli</label>
+            <input type="file" class="form-input" id="new_svc_img" accept="image/*" style="padding:8px;">
+            <div class="form-hint">Ana sayfadaki hizmet kartında görünecek görsel.</div>
+          </div>
           <button class="btn-add" onclick="addService()">+ Ekle</button>
         </div>
       </div>
@@ -931,6 +944,11 @@
             <label class="form-label">Slug (URL)</label>
             <input type="text" class="form-input" id="new_brand_slug" placeholder="hyundai">
             <div class="form-hint">Otomatik oluşturulur. Küçük harf, Türkçe karakter yok.</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Marka Logosu</label>
+            <input type="file" class="form-input" id="new_brand_img" accept="image/*" style="padding:8px;">
+            <div class="form-hint">Ana sayfadaki marka kartında görünecek logo.</div>
           </div>
           <button class="btn-add" onclick="addBrand()">+ Ekle</button>
         </div>
@@ -1013,6 +1031,74 @@
         <div class="deploy-notice" id="deploy-footer">
           <span class="deploy-dot"></span>Site birkaç dakika içinde güncellenecek
         </div>
+      </div>
+    </div>
+
+    <!-- === LOGO === -->
+    <div class="section" id="sec-logo">
+      <div class="section-header">
+        <div class="section-title">Logo Yönetimi</div>
+        <div class="section-desc">Site logosu (header ve footer). Yüklenen görsel GitHub'a kaydedilir.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Header Logo</div>
+        <div class="img-upload-wrap">
+          <img id="logo_header_preview" class="img-preview" src="" alt="Header logo" style="display:none;background:#1a1a1f;">
+          <div class="upload-area" onclick="document.getElementById('logo_header_input').click()">
+            <input type="file" id="logo_header_input" accept="image/*" onchange="handleLogoUpload(this,'header')">
+            <div class="upload-icon">
+              <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            </div>
+            <div class="upload-area-text">PNG, JPG, WEBP (max 2MB) — Dosya adı: logo-header.webp</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Footer Logo</div>
+        <div class="img-upload-wrap">
+          <img id="logo_footer_preview" class="img-preview" src="" alt="Footer logo" style="display:none;background:#1a1a1f;">
+          <div class="upload-area" onclick="document.getElementById('logo_footer_input').click()">
+            <input type="file" id="logo_footer_input" accept="image/*" onchange="handleLogoUpload(this,'footer')">
+            <div class="upload-icon">
+              <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            </div>
+            <div class="upload-area-text">PNG, JPG, WEBP (max 2MB) — Dosya adı: logo-footer.webp</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- === ŞİFRE === -->
+    <div class="section" id="sec-sifre">
+      <div class="section-header">
+        <div class="section-title">Şifre Değiştir</div>
+        <div class="section-desc">Admin panel giriş şifresini değiştir. Şifre değişikliği GitHub'a kaydedilir.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Şifre Güncelle</div>
+        <div class="github-info" style="border-color:rgba(224,85,85,0.25);background:rgba(224,85,85,0.08);">
+          <svg width="16" height="16" fill="none" stroke="var(--red)" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <span>Şifre değiştirmek admin/index.html dosyasındaki hash'i günceller. Şifreyi unutursanız erişiminizi kaybedebilirsiniz!</span>
+        </div>
+        <div class="form-grid single" style="margin-top:16px;">
+          <div class="form-group">
+            <label class="form-label">Mevcut Şifre</label>
+            <input type="password" class="form-input" id="pw_current" placeholder="Mevcut şifreniz">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Yeni Şifre</label>
+            <input type="password" class="form-input" id="pw_new" placeholder="Yeni şifre (en az 6 karakter)">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Yeni Şifre Tekrar</label>
+            <input type="password" class="form-input" id="pw_confirm" placeholder="Yeni şifreyi tekrar girin">
+          </div>
+        </div>
+      </div>
+      <div class="section-actions">
+        <button class="btn-save" id="btn-save-sifre" onclick="changePassword()" style="background:linear-gradient(135deg,var(--red) 0%,#b03030 100%);">
+          <span class="spinner"></span><span class="btn-text">Şifreyi Güncelle</span>
+        </button>
       </div>
     </div>
 
@@ -1562,17 +1648,38 @@ function loadHizmetler(cfg) {
   });
 }
 
-function addService() {
+async function addService() {
   const name = document.getElementById('new_svc_name').value.trim();
   const desc = document.getElementById('new_svc_desc').value.trim();
   const slug = document.getElementById('new_svc_slug').value.trim();
+  const imgInput = document.getElementById('new_svc_img');
   if (!name) { toast('Hizmet adı gerekli', 'error'); return; }
   const finalSlug = slug || toSlug(name);
   const services = currentConfig.services || [];
   if (services.some(s => s.slug === finalSlug)) { toast('Bu slug zaten var: ' + finalSlug, 'error'); return; }
+
+  toast('Hizmet ekleniyor...', 'info');
+
+  // Kart gorseli yukleme
+  if (imgInput.files[0]) {
+    const file = imgInput.files[0];
+    const reader = new FileReader();
+    const base64 = await new Promise(resolve => {
+      reader.onload = e => resolve(e.target.result.split(',')[1]);
+      reader.readAsDataURL(file);
+    });
+    try {
+      await uploadFileToGitHub('service-' + finalSlug + '.webp', base64, 'Hizmet görseli: ' + finalSlug);
+    } catch(e) { toast('Görsel yüklenemedi: ' + e.message, 'error'); }
+  }
+
+  // Alt sayfa olustur
+  try {
+    await createSubpage(finalSlug, name, desc);
+  } catch(e) { toast('Alt sayfa oluşturulamadı: ' + e.message, 'error'); }
+
   services.push({ name, desc: desc || name, slug: finalSlug });
   currentConfig = { ...currentConfig, services };
-  // Initialize service gallery
   if (!currentConfig.serviceGallery) currentConfig.serviceGallery = {};
   if (!currentConfig.serviceGallery[finalSlug]) currentConfig.serviceGallery[finalSlug] = [];
   loadHizmetler(currentConfig);
@@ -1580,6 +1687,7 @@ function addService() {
   document.getElementById('new_svc_name').value = '';
   document.getElementById('new_svc_desc').value = '';
   document.getElementById('new_svc_slug').value = '';
+  if (imgInput) imgInput.value = '';
   delete document.getElementById('new_svc_slug').dataset.manual;
   toast('Hizmet eklendi — Kaydetmeyi unutma!', 'info');
   updateStats(currentConfig);
@@ -1653,17 +1761,40 @@ function loadBrandGallery(cfg) {
   });
 }
 
-function addBrand() {
+async function addBrand() {
   const name = document.getElementById('new_brand_name').value.trim();
   const slug = document.getElementById('new_brand_slug').value.trim();
+  const imgInput = document.getElementById('new_brand_img');
   if (!name) { toast('Marka adı gerekli', 'error'); return; }
   const finalSlug = slug || toSlug(name);
   if (!currentConfig.brandGallery) currentConfig.brandGallery = {};
   if (currentConfig.brandGallery[finalSlug] !== undefined) { toast('Bu marka zaten var: ' + finalSlug, 'error'); return; }
+
+  toast('Marka ekleniyor...', 'info');
+
+  // Marka logosu yukleme
+  if (imgInput.files[0]) {
+    const file = imgInput.files[0];
+    const reader = new FileReader();
+    const base64 = await new Promise(resolve => {
+      reader.onload = e => resolve(e.target.result.split(',')[1]);
+      reader.readAsDataURL(file);
+    });
+    try {
+      await uploadFileToGitHub('brand-' + finalSlug + '.webp', base64, 'Marka logosu: ' + finalSlug);
+    } catch(e) { toast('Logo yüklenemedi: ' + e.message, 'error'); }
+  }
+
+  // Alt sayfa olustur
+  try {
+    await createSubpage(finalSlug, name, name + ' Araçlara Özel Döşeme & Kaplama Hizmetleri');
+  } catch(e) { toast('Alt sayfa oluşturulamadı: ' + e.message, 'error'); }
+
   currentConfig.brandGallery[finalSlug] = [];
   loadBrandGallery(currentConfig);
   document.getElementById('new_brand_name').value = '';
   document.getElementById('new_brand_slug').value = '';
+  if (imgInput) imgInput.value = '';
   delete document.getElementById('new_brand_slug').dataset.manual;
   toast('Marka eklendi — Kaydetmeyi unutma!', 'info');
   updateStats(currentConfig);
@@ -2037,6 +2168,337 @@ async function initDashboard() {
     showSection('genel');
   } finally {
     overlay.classList.remove('show');
+  }
+}
+
+// ==================== DOSYA YUKLEME (ROOT) ====================
+async function uploadFileToGitHub(filename, base64Content, message) {
+  let sha;
+  try { const existing = await ghFetch(filename); sha = existing.sha; } catch(e) {}
+  const body = { message: message || 'Dosya: ' + filename, content: base64Content, branch: BRANCH };
+  if (sha) body.sha = sha;
+  await ghFetch(filename, { method: 'PUT', body: JSON.stringify(body) });
+}
+
+// ==================== ALT SAYFA OLUSTURMA ====================
+async function createSubpage(slug, title, description) {
+  const path = slug + '/index.html';
+  // Kontrol: zaten var mi?
+  let exists = false;
+  try { await ghFetch(path); exists = true; } catch(e) {}
+  if (exists) return; // Zaten var, atla
+
+  const html = generateSubpageHTML(slug, title, description);
+  const content = btoa(unescape(encodeURIComponent(html)));
+  await ghFetch(path, {
+    method: 'PUT',
+    body: JSON.stringify({
+      message: 'Alt sayfa olusturuldu: ' + slug,
+      content,
+      branch: BRANCH
+    })
+  });
+}
+
+function generateSubpageHTML(slug, title, description) {
+  return `<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${escH(title)} – Trimora Design | Konya</title>
+  <meta name="description" content="${escH(description)} - Trimora Design Garage, Konya. 0530 235 45 23" />
+  <link rel="icon" type="image/png" href="../logo-header.webp" />
+  <link rel="canonical" href="https://trimoradesign.com/${slug}" />
+  <meta property="og:title" content="${escH(title)} – Trimora Design" />
+  <meta property="og:description" content="${escH(description)}" />
+  <meta property="og:image" content="https://trimoradesign.com/hero.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .subpage-hero { padding: 100px 20px 60px; text-align: center; }
+    .subpage-hero img { width: 120px; height: 120px; object-fit: contain; margin-bottom: 20px; }
+    .subpage-hero h1 { font-family: 'Cinzel', serif; font-size: clamp(20px, 5vw, 32px); color: var(--gold); margin-bottom: 8px; }
+    .subpage-hero p { color: var(--text-muted); font-size: 14px; max-width: 500px; margin: 0 auto; line-height: 1.6; }
+    .subpage-gallery { padding: 0 16px 40px; max-width: 900px; margin: 0 auto; }
+    .subpage-gallery h2 { font-family: 'Cinzel', serif; font-size: 16px; color: var(--gold); margin-bottom: 20px; text-align: center; letter-spacing: 2px; }
+    .subpage-empty { text-align: center; padding: 60px 20px; color: var(--text-muted); font-size: 14px; border: 1px dashed var(--border); border-radius: 12px; }
+    .subpage-back { display: inline-flex; align-items: center; gap: 6px; color: var(--gold); text-decoration: none; font-size: 13px; font-weight: 600; margin-top: 30px; transition: opacity .2s; }
+    .subpage-back:hover { opacity: 0.7; }
+    .gallery-upload-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .gallery-card { background: #242429; border: 1px solid rgba(212,175,106,0.15); border-radius: 12px; overflow: hidden; transition: transform .3s cubic-bezier(0.34,1.56,0.64,1), border-color .3s; }
+    .gallery-card:hover { transform: translateY(-3px); border-color: rgba(212,175,106,0.4); }
+    .gallery-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; cursor: pointer; transition: opacity .2s; }
+    .gallery-card img:hover { opacity: 0.85; }
+    .gallery-card-caption { padding: 12px 14px; font-size: 13px; color: #9a9a9e; line-height: 1.5; }
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.94); backdrop-filter: blur(10px); flex-direction: column; align-items: center; justify-content: center; }
+    .lightbox.active { display: flex; }
+    .lightbox-close { position: absolute; top: 16px; right: 20px; background: none; border: none; color: #fff; font-size: 36px; cursor: pointer; z-index: 10; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background .2s; }
+    .lightbox-close:hover { background: rgba(255,255,255,0.1); }
+    .lightbox-img-wrap { max-width: 90vw; max-height: 75vh; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .lightbox-img-wrap img { max-width: 90vw; max-height: 75vh; object-fit: contain; transition: transform .3s; cursor: zoom-in; border-radius: 4px; }
+    .lightbox-img-wrap img.zoomed { cursor: zoom-out; transform: scale(2); }
+    .lightbox-caption { color: #ccc; font-size: 14px; text-align: center; margin-top: 14px; max-width: 600px; line-height: 1.5; padding: 0 20px; }
+    .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; font-size: 28px; width: 48px; height: 48px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s; }
+    .lightbox-nav:hover { background: rgba(255,255,255,0.18); }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+    .lightbox-counter { position: absolute; bottom: 20px; color: rgba(255,255,255,0.45); font-size: 13px; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-top">
+      <div class="header-logo">
+        <a href="../"><img src="../logo-header.webp" alt="Trimora Design Garage" /></a>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <a href="../">ANASAYFA</a>
+      <a href="../#hizmetler">HİZMETLERİMİZ</a>
+      <a href="../#galeri">GALERİ</a>
+    </nav>
+  </header>
+
+  <div class="subpage-hero">
+    <h1>${escH(title)}</h1>
+    <p>${escH(description)}</p>
+  </div>
+
+  <div class="subpage-gallery">
+    <h2>GALERİ</h2>
+    <div class="gallery-upload-grid" id="galleryGrid"></div>
+    <div class="subpage-empty">Görseller yakında eklenecektir.</div>
+    <a href="../" class="subpage-back">← Ana Sayfaya Dön</a>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="../logo-footer.webp" alt="Trimora Design" class="footer-logo" />
+      </div>
+      <div class="footer-col">
+        <h4>Trimora Design</h4>
+        <p><span data-cfg="address">Musalla Bağları Mah. Sırrı Acar Sk. No:10, Selçuklu/Konya</span></p>
+        <p><a href="tel:05302354523" data-cfg="phone">0530 235 45 23</a></p>
+        <p><a href="mailto:trimoradesign@gmail.com" data-cfg="email">trimoradesign@gmail.com</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>BAĞLANTILAR</h4>
+        <ul>
+          <li><a href="../#iletisim">Teklif Al</a></li>
+          <li><a href="../#galeri">Galeri</a></li>
+          <li><a href="../">Ana Sayfa</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2024 Trimora Design Garage. Tüm hakları saklıdır.</p></div>
+  </footer>
+
+  <a href="https://wa.me/905302354523?text=Merhaba%2C%20teklif%20almak%20istiyorum." target="_blank" rel="noopener" class="whatsapp-fab" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.97.5 3.82 1.39 5.43L2 22l4.7-1.36A9.953 9.953 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.66 0-3.22-.46-4.56-1.26l-.32-.2-3.33.96.99-3.24-.21-.33A7.953 7.953 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.45-5.9c-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.54.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.47-.39-.4-.54-.41l-.46-.01c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.51.57.18 1.1.16 1.51.1.46-.07 1.43-.58 1.63-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg>
+  </a>
+
+  <script>
+  (function() {
+    var slug = '${slug}';
+    fetch('../config.json?v=' + Date.now())
+      .then(function(r) { return r.json(); })
+      .then(function(cfg) {
+        var items = (cfg.brandGallery && cfg.brandGallery[slug]) ||
+                    (cfg.serviceGallery && cfg.serviceGallery[slug]) || [];
+        if (!items.length) return;
+        var grid = document.getElementById('galleryGrid');
+        var empty = document.querySelector('.subpage-empty');
+        if (!grid) return;
+        grid.innerHTML = '';
+        var galleryData = [];
+        items.forEach(function(item, i) {
+          var src = typeof item === 'string' ? item : item.src;
+          var caption = typeof item === 'string' ? '' : (item.caption || '');
+          var fullSrc = src.startsWith('gallery/') ? '../' + src : src;
+          galleryData.push({ src: fullSrc, caption: caption });
+          var card = document.createElement('div');
+          card.className = 'gallery-card';
+          var capHtml = caption ? '<div class="gallery-card-caption">' + caption + '</div>' : '';
+          card.innerHTML = '<img src="' + fullSrc + '" alt="' + ((document.querySelector('h1') || {}).textContent || '') + '" loading="lazy" onclick="openLightbox(' + i + ')" />' + capHtml;
+          grid.appendChild(card);
+        });
+        if (empty) empty.style.display = 'none';
+        window.galleryData = galleryData;
+        if (cfg.contact && cfg.contact.whatsapp) {
+          var waMsg = encodeURIComponent(cfg.contact.whatsappMessage || 'Merhaba, teklif almak istiyorum.');
+          var waLinks = document.querySelectorAll('a[href*="wa.me"]');
+          waLinks.forEach(function(el) { el.href = 'https://wa.me/' + cfg.contact.whatsapp + '?text=' + waMsg; });
+        }
+        if (cfg.nav) {
+          var navLinks = document.querySelectorAll('.main-nav a');
+          if (cfg.nav.home && navLinks[0]) navLinks[0].textContent = cfg.nav.home;
+          if (cfg.nav.services && navLinks[1]) navLinks[1].textContent = cfg.nav.services;
+          if (cfg.nav.gallery && navLinks[2]) navLinks[2].textContent = cfg.nav.gallery;
+        }
+        if (cfg.contact) {
+          document.querySelectorAll('[data-cfg="phone"]').forEach(function(el) {
+            el.textContent = cfg.contact.phone || el.textContent;
+            if (el.tagName === 'A') el.href = 'tel:' + (cfg.contact.phone || '').replace(/\\s/g, '');
+          });
+          document.querySelectorAll('[data-cfg="email"]').forEach(function(el) {
+            el.textContent = cfg.contact.email || el.textContent;
+            if (el.tagName === 'A') el.href = 'mailto:' + cfg.contact.email;
+          });
+          document.querySelectorAll('[data-cfg="address"]').forEach(function(el) {
+            el.textContent = cfg.contact.address || el.textContent;
+          });
+        }
+        if (cfg.footer && cfg.footer.copyright) {
+          var fb = document.querySelector('.footer-bottom p');
+          if (fb) fb.textContent = cfg.footer.copyright;
+        }
+      })
+      .catch(function() {});
+
+    var currentIdx = 0;
+    window.openLightbox = function(idx) {
+      currentIdx = idx;
+      var lb = document.getElementById('lightbox');
+      if (!lb) return;
+      lb.classList.add('active');
+      updateLightbox();
+      document.body.style.overflow = 'hidden';
+    };
+    window.closeLightbox = function() {
+      var lb = document.getElementById('lightbox');
+      if (lb) lb.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+    window.navLightbox = function(dir) {
+      if (!window.galleryData) return;
+      currentIdx = (currentIdx + dir + window.galleryData.length) % window.galleryData.length;
+      var img = document.getElementById('lbImg');
+      if (img) { img.classList.remove('zoomed'); img.style.transform = 'scale(1)'; }
+      updateLightbox();
+    };
+    function updateLightbox() {
+      if (!window.galleryData || !window.galleryData[currentIdx]) return;
+      var item = window.galleryData[currentIdx];
+      var img = document.getElementById('lbImg');
+      var cap = document.getElementById('lbCaption');
+      var counter = document.getElementById('lbCounter');
+      if (img) { img.src = item.src; img.style.transform = 'scale(1)'; img.classList.remove('zoomed'); }
+      if (cap) cap.textContent = item.caption || '';
+      if (counter) counter.textContent = (currentIdx + 1) + ' / ' + window.galleryData.length;
+    }
+    window.toggleZoom = function(img) {
+      if (img.classList.contains('zoomed')) { img.classList.remove('zoomed'); img.style.transform = 'scale(1)'; }
+      else { img.classList.add('zoomed'); img.style.transform = 'scale(2)'; }
+    };
+    document.addEventListener('keydown', function(e) {
+      var lb = document.getElementById('lightbox');
+      if (!lb || !lb.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') navLightbox(-1);
+      if (e.key === 'ArrowRight') navLightbox(1);
+    });
+  })();
+  </script>
+
+  <div id="lightbox" class="lightbox" onclick="if(event.target===this)closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)">&#8249;</button>
+    <div class="lightbox-img-wrap"><img id="lbImg" src="" alt="" onclick="toggleZoom(this)" /></div>
+    <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)">&#8250;</button>
+    <div class="lightbox-caption" id="lbCaption"></div>
+    <div class="lightbox-counter" id="lbCounter"></div>
+  </div>
+</body>
+</html>`;
+}
+
+// ==================== LOGO YUKLEME ====================
+async function handleLogoUpload(input, type) {
+  const file = input.files[0];
+  if (!file) return;
+  if (file.size > 2 * 1024 * 1024) { toast('Logo 2MB\'den büyük olamaz', 'error'); return; }
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    const dataUrl = e.target.result;
+    const base64 = dataUrl.split(',')[1];
+    const fname = 'logo-' + type + '.webp';
+    toast(type + ' logosu yükleniyor...', 'info');
+    try {
+      await uploadFileToGitHub(fname, base64, 'Logo güncellendi: ' + fname);
+      const prev = document.getElementById('logo_' + type + '_preview');
+      if (prev) { prev.src = dataUrl; prev.style.display = 'block'; }
+      toast(type.charAt(0).toUpperCase() + type.slice(1) + ' logosu yüklendi');
+      logActivity(type + ' logosu güncellendi');
+    } catch(e) {
+      toast('Yükleme hatası: ' + e.message, 'error', 5000);
+    }
+  };
+  reader.readAsDataURL(file);
+}
+
+// ==================== ŞİFRE DEĞİŞTİRME ====================
+async function changePassword() {
+  const current = document.getElementById('pw_current').value;
+  const newPw = document.getElementById('pw_new').value;
+  const confirm = document.getElementById('pw_confirm').value;
+
+  if (!current || !newPw || !confirm) { toast('Tüm alanları doldurun', 'error'); return; }
+  if (newPw.length < 6) { toast('Yeni şifre en az 6 karakter olmalı', 'error'); return; }
+  if (newPw !== confirm) { toast('Yeni şifreler eşleşmiyor', 'error'); return; }
+
+  const currentHash = await sha256(current);
+  if (currentHash !== PASS_HASH) { toast('Mevcut şifre yanlış', 'error'); return; }
+
+  setBtnLoading('btn-save-sifre', true);
+  try {
+    const newHash = await sha256(newPw);
+
+    // Admin dosyasini GitHub'dan oku
+    const adminFile = await ghFetch('admin/index.html');
+    const adminContent = decodeURIComponent(escape(atob(adminFile.content.replace(/\n/g, ''))));
+
+    // Hash'i degistir
+    const updatedContent = adminContent.replace(
+      "const PASS_HASH = '" + PASS_HASH + "'",
+      "const PASS_HASH = '" + newHash + "'"
+    );
+
+    if (updatedContent === adminContent) {
+      toast('Şifre hash\'i bulunamadı', 'error');
+      return;
+    }
+
+    // GitHub'a kaydet
+    const content = btoa(unescape(encodeURIComponent(updatedContent)));
+    await ghFetch('admin/index.html', {
+      method: 'PUT',
+      body: JSON.stringify({
+        message: 'Admin: Şifre güncellendi',
+        content,
+        sha: adminFile.sha,
+        branch: BRANCH
+      })
+    });
+
+    toast('Şifre değiştirildi! Yeni şifrenizle tekrar giriş yapın.', 'success', 5000);
+    logActivity('Şifre değiştirildi');
+
+    // Formu temizle
+    document.getElementById('pw_current').value = '';
+    document.getElementById('pw_new').value = '';
+    document.getElementById('pw_confirm').value = '';
+
+    // 3 saniye sonra logout
+    setTimeout(() => doLogout(), 3000);
+
+  } catch(e) {
+    toast('Hata: ' + e.message, 'error', 5000);
+  } finally {
+    setBtnLoading('btn-save-sifre', false);
   }
 }
 

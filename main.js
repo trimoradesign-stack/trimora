@@ -1,4 +1,5 @@
 // ---- SLUG → GORSEL MAPPING ----
+// Eski gorseller icin ozel mapping, yeni eklenenler 'service-{slug}.webp' pattern'i kullanir
 const SERVICE_IMAGES = {
   'oto-koltuk-doseme': 'service-oto-doseme.webp',
   'recaro-vader-donusum': 'service-recaro-vader.webp',
@@ -10,6 +11,9 @@ const SERVICE_IMAGES = {
   'tavan-doseme': 'service-tavan.webp',
   'tirim-kaplama': 'service-tirim.webp'
 };
+function getServiceImage(slug) {
+  return SERVICE_IMAGES[slug] || ('service-' + slug + '.webp');
+}
 
 // ---- CONFIG.JSON'DAN VERİLERİ YÜKLE ----
 async function loadConfig() {
@@ -78,7 +82,7 @@ async function loadConfig() {
       if (track) {
         track.innerHTML = '';
         cfg.services.forEach(svc => {
-          const imgFile = SERVICE_IMAGES[svc.slug] || 'service-default.webp';
+          const imgFile = getServiceImage(svc.slug);
           const a = document.createElement('a');
           a.href = svc.slug;
           a.className = 'service-card';
