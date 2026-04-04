@@ -2,13 +2,29 @@
   "site": {
     "title": "Trimora Design – Lüks Araç İçi Kaplama | Konya",
     "slogan": "Lüks Konfor Yenilenen Sürüş Keyfi",
-    "metaDesc": "Konya'da oto döşeme, direksiyon kaplama, Recaro & Vader dönüşüm, torpido kaplama. Trimora Design Garage – 0530 235 45 23"
+    "metaDesc": "Konya'da oto döşeme, direksiyon kaplama, Recaro & Vader dönüşüm, torpido kaplama. Trimora Design Garage – 0530 235 45 23",
+    "aboutText": "Trimora Design Garage olarak, araç iç mekan tasarımında uzmanlaşmış bir ekibiz. Yılların deneyimi ve kaliteli malzemelerle aracınızın iç mekanını baştan yaratıyoruz.",
+    "sectionTitles": {
+      "services": "HİZMETLERİMİZ",
+      "brands": "ÇALIŞTIĞIMIZ MARKALAR",
+      "location": "KONUMUMUZ",
+      "contact": "Bizimle İletişime Geçin",
+      "contactDesc": "Hizmetlerimiz hakkında sorularınız varsa veya yardıma ihtiyacınız varsa formu doldurun. En kısa sürede size dönüş yapacağız."
+    }
   },
   "contact": {
     "phone": "0530 235 45 23",
     "whatsapp": "905302354523",
     "email": "trimoradesign@gmail.com",
-    "address": "Musalla Bağları Mah. Sırrı Acar Sk. No:10, Selçuklu/Konya"
+    "address": "Musalla Bağları Mah. Sırrı Acar Sk. No:10, Selçuklu/Konya",
+    "workingHours": {
+      "weekdays": "09:00 – 19:00",
+      "saturday": "09:00 – 17:00",
+      "sunday": "Kapalı"
+    },
+    "whatsappMessage": "Merhaba, teklif almak istiyorum.",
+    "mapQuery": "Musalla Bağları Mah. Sırrı Acar Sk. No:10 Selçuklu Konya",
+    "formspreeId": "mwvwbynb"
   },
   "social": {
     "instagram": "https://www.instagram.com/trimoradesign?igsh=bmVsaHg2bGRuOHhm",

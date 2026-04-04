@@ -60,7 +60,6 @@
     }
     .login-box input:focus { border-color: var(--gold); }
     .login-box input::placeholder { color: var(--muted); }
-    .login-divider { font-size: 11px; color: var(--muted); margin: 4px 0 14px; text-align: left; letter-spacing: .3px; }
     .btn-primary {
       background: linear-gradient(135deg, var(--gold) 0%, var(--gold-d) 100%);
       color: var(--bg); border: none; border-radius: 8px; padding: 13px 24px;
@@ -71,16 +70,10 @@
     .btn-primary:hover { opacity: .9; }
     .btn-primary:active { transform: scale(.98); }
     .login-err { color: var(--red); font-size: 12px; margin-top: 10px; min-height: 18px; }
-    .login-token-note {
-      font-size: 11px; color: var(--muted); margin-top: 16px; line-height: 1.6;
-      background: var(--bg3); border-radius: 8px; padding: 12px; text-align: left;
-    }
-    .login-token-note a { color: var(--gold); }
 
     /* ===== DASHBOARD LAYOUT ===== */
     #dashboard { display: none; min-height: 100vh; }
 
-    /* Topbar */
     .topbar {
       position: fixed; top: 0; left: 0; right: 0; height: var(--topbar-h); z-index: 100;
       background: var(--bg2); border-bottom: 1px solid var(--border);
@@ -103,8 +96,9 @@
     }
     .btn-sm:hover { border-color: var(--gold); color: var(--gold); }
     .btn-sm.danger:hover { border-color: var(--red); color: var(--red); }
+    .btn-sm.success { border-color: rgba(76,175,125,0.4); }
+    .btn-sm.success:hover { border-color: var(--green); color: var(--green); }
 
-    /* Sidebar */
     .sidebar {
       position: fixed; top: var(--topbar-h); left: 0; bottom: 0; width: var(--sidebar-w);
       background: var(--bg2); border-right: 1px solid var(--border);
@@ -124,13 +118,11 @@
     }
     .nav-icon { width: 18px; height: 18px; flex-shrink: 0; }
 
-    /* Main content */
     .main-content {
       margin-left: var(--sidebar-w); margin-top: var(--topbar-h);
       padding: 32px 36px; min-height: calc(100vh - var(--topbar-h));
     }
 
-    /* Sections */
     .section { display: none; }
     .section.active { display: block; }
 
@@ -138,14 +130,12 @@
     .section-title { font-family: 'Cinzel', serif; font-size: 22px; color: var(--gold); margin-bottom: 6px; }
     .section-desc { color: var(--muted); font-size: 13px; }
 
-    /* Cards */
     .card {
       background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
       padding: 24px; margin-bottom: 20px;
     }
     .card-title { font-size: 13px; font-weight: 700; color: var(--gold); letter-spacing: .5px; margin-bottom: 18px; text-transform: uppercase; }
 
-    /* GitHub info banner */
     .github-info {
       background: rgba(74,158,255,0.08); border: 1px solid rgba(74,158,255,0.25);
       border-radius: 10px; padding: 14px 18px; margin-bottom: 20px;
@@ -154,11 +144,12 @@
     .github-info svg { flex-shrink: 0; color: var(--blue); }
     .github-info strong { color: var(--text); }
 
-    /* Form elements */
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .form-grid.single { grid-template-columns: 1fr; }
+    .form-grid.triple { grid-template-columns: 1fr 1fr 1fr; }
     .form-group { display: flex; flex-direction: column; gap: 6px; }
     .form-label { font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: .5px; text-transform: uppercase; }
+    .form-hint { font-size: 11px; color: var(--muted); opacity: 0.7; margin-top: 2px; }
     .form-input {
       background: var(--bg3); border: 1px solid var(--border2); border-radius: 8px;
       padding: 11px 14px; color: var(--text); font-size: 14px; font-family: 'Open Sans', sans-serif;
@@ -168,7 +159,6 @@
     .form-input::placeholder { color: var(--muted); }
     textarea.form-input { resize: vertical; min-height: 90px; }
 
-    /* Save button */
     .section-actions { display: flex; align-items: center; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
     .btn-save {
       background: linear-gradient(135deg, var(--gold) 0%, var(--gold-d) 100%);
@@ -187,7 +177,6 @@
     }
     .btn-reset:hover { border-color: var(--red); color: var(--red); }
 
-    /* Saving spinner */
     .spinner {
       width: 14px; height: 14px; border: 2px solid rgba(26,26,31,0.3);
       border-top-color: var(--bg); border-radius: 50%;
@@ -196,7 +185,6 @@
     .btn-save.saving .spinner { display: block; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* Deploy notice */
     .deploy-notice {
       font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px;
       opacity: 0; transition: opacity .4s;
@@ -205,7 +193,6 @@
     .deploy-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; flex-shrink: 0; animation: pulse 2s ease-in-out infinite; }
     @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
 
-    /* Image upload */
     .img-upload-wrap { display: flex; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
     .img-preview {
       width: 120px; height: 80px; border-radius: 8px; object-fit: cover;
@@ -220,19 +207,28 @@
     .upload-area-text { font-size: 12px; color: var(--muted); margin-top: 6px; }
     .upload-icon { color: var(--gold); }
 
-    /* Services grid */
     .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
     .service-card {
       background: var(--bg3); border: 1px solid var(--border2); border-radius: 10px; padding: 18px;
+      position: relative;
     }
-    .service-card-title { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 12px; }
+    .service-card-title { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; }
+    .svc-del-btn {
+      background: none; border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px;
+      color: var(--muted); cursor: pointer; font-size: 11px; transition: border-color .2s, color .2s;
+    }
+    .svc-del-btn:hover { border-color: var(--red); color: var(--red); }
 
-    /* Gallery */
     .brands-grid, .services-gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
     .brand-card, .service-gallery-card {
       background: var(--bg3); border: 1px solid var(--border2); border-radius: 10px; padding: 18px;
     }
-    .brand-card-title { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 12px; }
+    .brand-card-title { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; }
+    .brand-del-btn {
+      background: none; border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px;
+      color: var(--muted); cursor: pointer; font-size: 11px; transition: border-color .2s, color .2s;
+    }
+    .brand-del-btn:hover { border-color: var(--red); color: var(--red); }
     .gallery-imgs { display: flex; flex-wrap: wrap; gap: 8px; min-height: 60px; }
     .gallery-thumb { position: relative; width: 100px; display: flex; flex-direction: column; }
     .gallery-thumb img { width: 100px; height: 75px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border); }
@@ -244,16 +240,9 @@
     }
     .gallery-thumb:hover .del-img { opacity: 1; }
     .gallery-caption-input {
-      width: 100%;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      color: var(--text);
-      font-size: 11px;
-      padding: 4px 6px;
-      margin-top: 4px;
-      font-family: 'Open Sans', sans-serif;
-      outline: none;
+      width: 100%; background: var(--bg3); border: 1px solid var(--border); border-radius: 4px;
+      color: var(--text); font-size: 11px; padding: 4px 6px; margin-top: 4px;
+      font-family: 'Open Sans', sans-serif; outline: none;
     }
     .gallery-caption-input:focus { border-color: var(--gold); }
     .gallery-caption-input::placeholder { color: var(--muted); }
@@ -267,7 +256,6 @@
     .add-img-input { display: none; }
     .gallery-upload-note { font-size: 11px; color: var(--muted); margin-top: 8px; }
 
-    /* Tags */
     .tags-wrap { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
     .tag {
       background: rgba(212,175,106,0.12); border: 1px solid var(--gold-d); border-radius: 20px;
@@ -280,7 +268,6 @@
     .tag-add input::placeholder { color: var(--muted); }
     .tag-add button { background: none; border: none; color: var(--gold); cursor: pointer; font-size: 16px; }
 
-    /* Toast */
     .toast-container { position: fixed; bottom: 28px; right: 28px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
     .toast {
       background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
@@ -301,16 +288,13 @@
     @keyframes slideIn { from { opacity:0; transform: translateX(20px); } to { opacity:1; transform: translateX(0); } }
     @keyframes fadeOut { to { opacity:0; transform: translateX(20px); } }
 
-    /* Loading overlay */
     #loadingOverlay {
       display: none; position: fixed; inset: 0; background: rgba(26,26,31,.85);
       z-index: 200; align-items: center; justify-content: center; flex-direction: column; gap: 16px;
     }
     #loadingOverlay.show { display: flex; }
     .loading-logo { font-family: 'Cinzel', serif; font-size: 22px; color: var(--gold); letter-spacing: 3px; }
-    .loading-bar {
-      width: 200px; height: 2px; background: var(--bg4); border-radius: 2px; overflow: hidden;
-    }
+    .loading-bar { width: 200px; height: 2px; background: var(--bg4); border-radius: 2px; overflow: hidden; }
     .loading-bar-inner {
       height: 100%; background: linear-gradient(90deg, var(--gold-d), var(--gold));
       border-radius: 2px; animation: loadBar 1.2s ease-in-out infinite;
@@ -318,7 +302,6 @@
     @keyframes loadBar { 0% { width: 0; margin-left: 0; } 50% { width: 70%; margin-left: 30%; } 100% { width: 0; margin-left: 100%; } }
     .loading-text { font-size: 12px; color: var(--muted); letter-spacing: 1px; }
 
-    /* Dashboard stats */
     .stats-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-bottom: 28px; }
     .stat-card {
       background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
@@ -328,21 +311,42 @@
     .stat-val { font-family: 'Cinzel', serif; font-size: 26px; color: var(--gold); }
     .stat-sub { font-size: 11px; color: var(--muted); }
 
-    /* Token settings */
-    .token-field { position: relative; }
-    .token-field input { padding-right: 80px; font-family: monospace; font-size: 12px; letter-spacing: .5px; }
-    .token-toggle {
-      position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
-      background: none; border: none; color: var(--muted); cursor: pointer; font-size: 11px;
-      font-family: 'Open Sans', sans-serif; transition: color .2s;
-    }
-    .token-toggle:hover { color: var(--gold); }
-
-    /* Sidebar overlay */
     .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 89; }
-
-    /* Divider */
     hr.divider { border: none; border-top: 1px solid var(--border2); margin: 20px 0; }
+
+    /* Add item inline form */
+    .add-item-row {
+      display: flex; gap: 10px; margin-top: 16px; align-items: flex-end; flex-wrap: wrap;
+    }
+    .add-item-row .form-group { flex: 1; min-width: 150px; }
+    .btn-add {
+      background: var(--bg3); border: 1px solid var(--green); border-radius: 8px;
+      padding: 10px 18px; color: var(--green); font-size: 13px; font-family: 'Open Sans', sans-serif;
+      cursor: pointer; font-weight: 600; transition: background .2s, color .2s;
+      white-space: nowrap;
+    }
+    .btn-add:hover { background: var(--green); color: #fff; }
+
+    /* Backup section */
+    .backup-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+    .backup-btn {
+      background: var(--bg3); border: 1px solid var(--border); border-radius: 8px;
+      padding: 14px 24px; color: var(--text); font-size: 13px; cursor: pointer;
+      font-family: 'Open Sans', sans-serif; display: flex; align-items: center; gap: 10px;
+      transition: border-color .2s, color .2s;
+    }
+    .backup-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .backup-btn svg { flex-shrink: 0; }
+    #backupFileInput { display: none; }
+
+    /* JSON viewer */
+    .json-viewer {
+      background: var(--bg3); border: 1px solid var(--border2); border-radius: 8px;
+      padding: 16px; font-family: monospace; font-size: 12px; color: var(--muted);
+      max-height: 300px; overflow: auto; white-space: pre-wrap; word-break: break-all;
+      margin-top: 12px; display: none;
+    }
+    .json-viewer.show { display: block; }
 
     /* Responsive */
     @media (max-width: 900px) {
@@ -352,6 +356,7 @@
       .sidebar-overlay.open { display: block; }
       .hamburger { display: flex; }
       .form-grid { grid-template-columns: 1fr; }
+      .form-grid.triple { grid-template-columns: 1fr; }
     }
     @media (max-width: 600px) {
       .topbar { padding: 0 14px; }
@@ -422,6 +427,12 @@
       <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 0-14.14 0"/><path d="M4 12a8 8 0 1 0 16 0 8 8 0 0 0-16 0"/></svg>
       Genel Ayarlar
     </div>
+    <div class="nav-item" onclick="showSection('basliklar')" data-section="basliklar">
+      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>
+      Bölüm Başlıkları
+    </div>
+
+    <div class="sidebar-section">İletişim</div>
     <div class="nav-item" onclick="showSection('iletisim')" data-section="iletisim">
       <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.18 2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.89 6.89l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       İletişim Bilgileri
@@ -430,10 +441,27 @@
       <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
       Sosyal Medya
     </div>
+    <div class="nav-item" onclick="showSection('calisma-saatleri')" data-section="calisma-saatleri">
+      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Çalışma Saatleri
+    </div>
+    <div class="nav-item" onclick="showSection('whatsapp')" data-section="whatsapp">
+      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      WhatsApp Ayarları
+    </div>
+    <div class="nav-item" onclick="showSection('harita')" data-section="harita">
+      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+      Harita Ayarları
+    </div>
+    <div class="nav-item" onclick="showSection('form')" data-section="form">
+      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      İletişim Formu
+    </div>
     <div class="nav-item" onclick="showSection('menu')" data-section="menu">
       <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
       Menü Yönetimi
     </div>
+
     <div class="sidebar-section">İçerik</div>
     <div class="nav-item" onclick="showSection('hizmetler')" data-section="hizmetler">
       <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
@@ -447,6 +475,7 @@
       <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
       Hizmet Galerisi
     </div>
+
     <div class="sidebar-section">Teknik</div>
     <div class="nav-item" onclick="showSection('seo')" data-section="seo">
       <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -455,6 +484,10 @@
     <div class="nav-item" onclick="showSection('footer')" data-section="footer">
       <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
       Footer
+    </div>
+    <div class="nav-item" onclick="showSection('yedekleme')" data-section="yedekleme">
+      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Yedekleme
     </div>
   </nav>
 
@@ -474,12 +507,12 @@
       <div class="stats-row">
         <div class="stat-card">
           <div class="stat-label">Hizmet</div>
-          <div class="stat-val">9</div>
+          <div class="stat-val" id="stat-service-count">–</div>
           <div class="stat-sub">Aktif hizmet kategorisi</div>
         </div>
         <div class="stat-card">
           <div class="stat-label">Marka</div>
-          <div class="stat-val">10</div>
+          <div class="stat-val" id="stat-brand-count">–</div>
           <div class="stat-sub">Araç markası galerisi</div>
         </div>
         <div class="stat-card">
@@ -488,9 +521,9 @@
           <div class="stat-sub">Toplam galeri görseli</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">Repo</div>
-          <div class="stat-val" style="font-size:14px;padding-top:4px;">trimoradesign-stack</div>
-          <div class="stat-sub">GitHub depo</div>
+          <div class="stat-label">SEO Etiketi</div>
+          <div class="stat-val" id="stat-seo-count">–</div>
+          <div class="stat-sub">Hashtag / anahtar kelime</div>
         </div>
       </div>
       <div class="card">
@@ -501,7 +534,10 @@
           <button class="btn-sm" onclick="showSection('hizmetler')">Hizmetler</button>
           <button class="btn-sm" onclick="showSection('marka-galeri')">Marka Galerisi</button>
           <button class="btn-sm" onclick="showSection('hizmet-galeri')">Hizmet Galerisi</button>
+          <button class="btn-sm" onclick="showSection('basliklar')">Bölüm Başlıkları</button>
+          <button class="btn-sm" onclick="showSection('calisma-saatleri')">Çalışma Saatleri</button>
           <button class="btn-sm" onclick="showSection('seo')">SEO</button>
+          <button class="btn-sm" onclick="showSection('yedekleme')">Yedekleme</button>
         </div>
       </div>
       <div class="card">
@@ -516,7 +552,7 @@
     <div class="section" id="sec-genel">
       <div class="section-header">
         <div class="section-title">Genel Ayarlar</div>
-        <div class="section-desc">Hero bölümü, site başlığı ve meta açıklama ayarları.</div>
+        <div class="section-desc">Hero bölümü, site başlığı, meta açıklama ve hakkımızda metni.</div>
       </div>
       <div class="card">
         <div class="card-title">Hero Bölümü</div>
@@ -553,6 +589,16 @@
           </div>
         </div>
       </div>
+      <div class="card">
+        <div class="card-title">Hakkımızda Metni</div>
+        <div class="form-grid single">
+          <div class="form-group">
+            <label class="form-label">Hakkımızda Açıklaması</label>
+            <textarea class="form-input" id="g_about_text" rows="4" placeholder="Trimora Design Garage olarak..."></textarea>
+            <div class="form-hint">Bu metin sitenin çeşitli bölümlerinde kullanılabilir.</div>
+          </div>
+        </div>
+      </div>
       <div class="section-actions">
         <button class="btn-save" id="btn-save-genel" onclick="saveGenel()">
           <span class="spinner"></span>
@@ -561,6 +607,50 @@
         <div class="deploy-notice" id="deploy-genel">
           <span class="deploy-dot"></span>
           Site birkaç dakika içinde güncellenecek
+        </div>
+      </div>
+    </div>
+
+    <!-- === BÖLÜM BAŞLIKLARI === -->
+    <div class="section" id="sec-basliklar">
+      <div class="section-header">
+        <div class="section-title">Bölüm Başlıkları</div>
+        <div class="section-desc">Sitedeki tüm ana bölüm başlıklarını ve açıklamalarını değiştir.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Ana Sayfa Bölümleri</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Hizmetler Başlığı</label>
+            <input type="text" class="form-input" id="st_services" placeholder="HİZMETLERİMİZ">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Markalar Başlığı</label>
+            <input type="text" class="form-input" id="st_brands" placeholder="ÇALIŞTIĞIMIZ MARKALAR">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Konum Başlığı</label>
+            <input type="text" class="form-input" id="st_location" placeholder="KONUMUMUZ">
+          </div>
+          <div class="form-group">
+            <label class="form-label">İletişim Başlığı</label>
+            <input type="text" class="form-input" id="st_contact" placeholder="Bizimle İletişime Geçin">
+          </div>
+        </div>
+        <hr class="divider">
+        <div class="form-grid single">
+          <div class="form-group">
+            <label class="form-label">İletişim Açıklama Metni</label>
+            <textarea class="form-input" id="st_contact_desc" rows="3" placeholder="Hizmetlerimiz hakkında sorularınız varsa..."></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="section-actions">
+        <button class="btn-save" id="btn-save-basliklar" onclick="saveBasliklar()">
+          <span class="spinner"></span><span class="btn-text">GitHub'a Kaydet</span>
+        </button>
+        <div class="deploy-notice" id="deploy-basliklar">
+          <span class="deploy-dot"></span>Site birkaç dakika içinde güncellenecek
         </div>
       </div>
     </div>
@@ -639,6 +729,117 @@
       </div>
     </div>
 
+    <!-- === ÇALIŞMA SAATLERİ === -->
+    <div class="section" id="sec-calisma-saatleri">
+      <div class="section-header">
+        <div class="section-title">Çalışma Saatleri</div>
+        <div class="section-desc">Hafta içi, cumartesi ve pazar çalışma saatlerini belirle.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Saatler</div>
+        <div class="form-grid triple">
+          <div class="form-group">
+            <label class="form-label">Hafta İçi</label>
+            <input type="text" class="form-input" id="wh_weekdays" placeholder="09:00 – 19:00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Cumartesi</label>
+            <input type="text" class="form-input" id="wh_saturday" placeholder="09:00 – 17:00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Pazar</label>
+            <input type="text" class="form-input" id="wh_sunday" placeholder="Kapalı">
+          </div>
+        </div>
+      </div>
+      <div class="section-actions">
+        <button class="btn-save" id="btn-save-calisma-saatleri" onclick="saveCalismaSaatleri()">
+          <span class="spinner"></span><span class="btn-text">GitHub'a Kaydet</span>
+        </button>
+        <div class="deploy-notice" id="deploy-calisma-saatleri">
+          <span class="deploy-dot"></span>Site birkaç dakika içinde güncellenecek
+        </div>
+      </div>
+    </div>
+
+    <!-- === WHATSAPP === -->
+    <div class="section" id="sec-whatsapp">
+      <div class="section-header">
+        <div class="section-title">WhatsApp Ayarları</div>
+        <div class="section-desc">WhatsApp butonuna tıklandığında gönderilecek varsayılan mesaj.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Mesaj Şablonu</div>
+        <div class="form-grid single">
+          <div class="form-group">
+            <label class="form-label">WhatsApp Varsayılan Mesaj</label>
+            <textarea class="form-input" id="wa_message" rows="3" placeholder="Merhaba, teklif almak istiyorum."></textarea>
+            <div class="form-hint">Kullanıcı WhatsApp butonuna tıkladığında bu mesaj otomatik yazılır.</div>
+          </div>
+        </div>
+      </div>
+      <div class="section-actions">
+        <button class="btn-save" id="btn-save-whatsapp" onclick="saveWhatsapp()">
+          <span class="spinner"></span><span class="btn-text">GitHub'a Kaydet</span>
+        </button>
+        <div class="deploy-notice" id="deploy-whatsapp">
+          <span class="deploy-dot"></span>Site birkaç dakika içinde güncellenecek
+        </div>
+      </div>
+    </div>
+
+    <!-- === HARİTA === -->
+    <div class="section" id="sec-harita">
+      <div class="section-header">
+        <div class="section-title">Harita Ayarları</div>
+        <div class="section-desc">Google Maps'te gösterilecek adres sorgusunu ayarla.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Google Maps</div>
+        <div class="form-grid single">
+          <div class="form-group">
+            <label class="form-label">Harita Adresi (Google Maps Sorgusu)</label>
+            <input type="text" class="form-input" id="map_query" placeholder="Musalla Bağları Mah. Sırrı Acar Sk. No:10 Selçuklu Konya">
+            <div class="form-hint">Bu metin Google Maps embed URL'inde kullanılır. Tam adres yazın.</div>
+          </div>
+        </div>
+      </div>
+      <div class="section-actions">
+        <button class="btn-save" id="btn-save-harita" onclick="saveHarita()">
+          <span class="spinner"></span><span class="btn-text">GitHub'a Kaydet</span>
+        </button>
+        <div class="deploy-notice" id="deploy-harita">
+          <span class="deploy-dot"></span>Site birkaç dakika içinde güncellenecek
+        </div>
+      </div>
+    </div>
+
+    <!-- === İLETİŞİM FORMU === -->
+    <div class="section" id="sec-form">
+      <div class="section-header">
+        <div class="section-title">İletişim Formu Ayarları</div>
+        <div class="section-desc">Formspree form ID'sini değiştirerek iletişim formunun gönderim hedefini ayarla.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Formspree</div>
+        <div class="form-grid single">
+          <div class="form-group">
+            <label class="form-label">Formspree Form ID</label>
+            <input type="text" class="form-input" id="form_id" placeholder="mwvwbynb">
+            <div class="form-hint">formspree.io sitesinden alınan form ID'si. Örn: mwvwbynb. Form verileri bu adrese gönderilir.</div>
+          </div>
+        </div>
+      </div>
+      <div class="section-actions">
+        <button class="btn-save" id="btn-save-form" onclick="saveForm()">
+          <span class="spinner"></span><span class="btn-text">GitHub'a Kaydet</span>
+        </button>
+        <div class="deploy-notice" id="deploy-form">
+          <span class="deploy-dot"></span>Site birkaç dakika içinde güncellenecek
+        </div>
+      </div>
+    </div>
+
     <!-- === MENÜ === -->
     <div class="section" id="sec-menu">
       <div class="section-header">
@@ -676,9 +877,28 @@
     <div class="section" id="sec-hizmetler">
       <div class="section-header">
         <div class="section-title">Hizmetler</div>
-        <div class="section-desc">Her hizmetin adını ve açıklamasını düzenle.</div>
+        <div class="section-desc">Her hizmetin adını ve açıklamasını düzenle. Yeni hizmet ekle veya sil.</div>
       </div>
       <div class="services-grid" id="servicesGrid"></div>
+      <div class="card" style="margin-top:16px;">
+        <div class="card-title">Yeni Hizmet Ekle</div>
+        <div class="add-item-row">
+          <div class="form-group">
+            <label class="form-label">Hizmet Adı</label>
+            <input type="text" class="form-input" id="new_svc_name" placeholder="Yeni hizmet adı">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Açıklama</label>
+            <input type="text" class="form-input" id="new_svc_desc" placeholder="Kısa açıklama">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Slug (URL)</label>
+            <input type="text" class="form-input" id="new_svc_slug" placeholder="ornek-hizmet">
+            <div class="form-hint">Otomatik oluşturulur, değiştirilebilir.</div>
+          </div>
+          <button class="btn-add" onclick="addService()">+ Ekle</button>
+        </div>
+      </div>
       <div class="section-actions">
         <button class="btn-save" id="btn-save-hizmetler" onclick="saveHizmetler()">
           <span class="spinner"></span><span class="btn-text">Tüm Hizmetleri Kaydet</span>
@@ -693,13 +913,28 @@
     <div class="section" id="sec-marka-galeri">
       <div class="section-header">
         <div class="section-title">Marka Galerisi</div>
-        <div class="section-desc">Her araç markası için galeri görsellerini yönet. Görseller GitHub'a yüklenir.</div>
+        <div class="section-desc">Her araç markası için galeri görsellerini yönet. Yeni marka ekle veya sil.</div>
       </div>
       <div class="github-info">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         <span>Görseller <strong>gallery/{marka}/</strong> klasörüne yüklenir, yollar config.json'a kaydedilir.</span>
       </div>
       <div class="brands-grid" id="brandsGrid"></div>
+      <div class="card" style="margin-top:16px;">
+        <div class="card-title">Yeni Marka Ekle</div>
+        <div class="add-item-row">
+          <div class="form-group">
+            <label class="form-label">Marka Adı</label>
+            <input type="text" class="form-input" id="new_brand_name" placeholder="Örn: Hyundai">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Slug (URL)</label>
+            <input type="text" class="form-input" id="new_brand_slug" placeholder="hyundai">
+            <div class="form-hint">Otomatik oluşturulur. Küçük harf, Türkçe karakter yok.</div>
+          </div>
+          <button class="btn-add" onclick="addBrand()">+ Ekle</button>
+        </div>
+      </div>
       <div class="section-actions">
         <button class="btn-save" id="btn-save-marka-galeri" onclick="saveBrandGallery()">
           <span class="spinner"></span><span class="btn-text">Galerileri GitHub'a Kaydet</span>
@@ -781,7 +1016,39 @@
       </div>
     </div>
 
-    <!-- Token bölümü kaldırıldı - token şifre ile otomatik çözülüyor -->
+    <!-- === YEDEKLEME === -->
+    <div class="section" id="sec-yedekleme">
+      <div class="section-header">
+        <div class="section-title">Yedekleme & Geri Yükleme</div>
+        <div class="section-desc">Config dosyasını yedekle, geri yükle veya mevcut JSON'u görüntüle.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Yedekleme İşlemleri</div>
+        <div class="backup-actions">
+          <button class="backup-btn" onclick="exportConfig()">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Config'i İndir (JSON)
+          </button>
+          <button class="backup-btn" onclick="document.getElementById('backupFileInput').click()">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Yedekten Geri Yükle
+          </button>
+          <input type="file" id="backupFileInput" accept=".json" onchange="importConfig(this)">
+          <button class="backup-btn" onclick="toggleJsonViewer()">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            JSON'u Görüntüle
+          </button>
+        </div>
+      </div>
+      <div class="json-viewer" id="jsonViewer"></div>
+      <div class="card" style="margin-top:20px;">
+        <div class="card-title">Fabrika Ayarlarına Sıfırla</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:12px;">
+          Tüm değişiklikleri sıfırlar ve config.json'u varsayılan haline getirir. Bu işlem geri alınamaz!
+        </div>
+        <button class="btn-reset" onclick="resetConfig()">Sıfırla</button>
+      </div>
+    </div>
 
   </main>
 </div>
@@ -794,7 +1061,6 @@
 const REPO = 'trimoradesign-stack/trimora';
 const BRANCH = 'main';
 const PASS_HASH = 'e657aa3a8d200fd25254aa42c7e517286b23fd42e5a13dd448944f606553aea4';
-// Encrypted token (AES-256-CBC, key derived from password)
 const ENC_IV = '13fd94414f61e4cfb90938d57d3dc41e';
 const ENC_TOKEN = '92a3c6f6b86b98bdb1a11a9be44d47948ae9e8cbba0fa684eabc2478fce6dfa4bea489922b668163d1f09854d246fb27';
 const ENC_SALT = 'trimora_salt_2024';
@@ -804,10 +1070,6 @@ let ghToken = '';
 let configSha = '';
 let currentConfig = null;
 let currentTags = [];
-const BRANDS = ['ford','volvo','honda','audi','bmw','mercedes','volkswagen','peugeot','togg','opel'];
-const BRAND_LABELS = ['Ford','Volvo','Honda','Audi','BMW','Mercedes','Volkswagen','Peugeot','Togg','Opel'];
-const SERVICE_SLUGS = ['oto-koltuk-doseme','recaro-vader-donusum','direksiyon-kaplama','vites-topuzu','torpido-kaplama','kapi-ici-doseme','taban-halisi-doseme','tavan-doseme','tirim-kaplama'];
-// Pending gallery uploads (images added but not yet saved to GitHub)
 const pendingGallery = { brand: {}, service: {} };
 
 // ==================== AUTH ====================
@@ -817,7 +1079,6 @@ async function sha256(str) {
 }
 
 async function decryptToken(password) {
-  // Derive key from password using PBKDF2
   const enc = new TextEncoder();
   const keyMaterial = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveBits']);
   const derivedBits = await crypto.subtle.deriveBits(
@@ -836,11 +1097,7 @@ async function doLogin() {
   const pass = document.getElementById('passInput').value;
   const errEl = document.getElementById('loginErr');
 
-  if (!user || !pass) {
-    errEl.textContent = 'Kullanıcı adı ve şifre giriniz.';
-    return;
-  }
-
+  if (!user || !pass) { errEl.textContent = 'Kullanıcı adı ve şifre giriniz.'; return; }
   if (user !== 'admin') {
     errEl.textContent = 'Kullanıcı adı yanlış.';
     document.getElementById('userInput').value = '';
@@ -856,18 +1113,12 @@ async function doLogin() {
     return;
   }
 
-  // Decrypt GitHub token from password
   try {
     ghToken = await decryptToken(pass);
   } catch(e) {
-    // Fallback: Node.js derived key may differ from Web Crypto. Try stored token.
     const stored = localStorage.getItem('trimora_gh_token');
-    if (stored) {
-      ghToken = stored;
-    } else {
-      errEl.textContent = 'Bağlantı hatası. Tekrar deneyin.';
-      return;
-    }
+    if (stored) { ghToken = stored; }
+    else { errEl.textContent = 'Bağlantı hatası. Tekrar deneyin.'; return; }
   }
 
   sessionStorage.setItem('trimora_auth', '1');
@@ -885,7 +1136,6 @@ function doLogout() {
   document.getElementById('dashboard').style.display = 'none';
   document.getElementById('loginScreen').style.display = 'flex';
   document.getElementById('passInput').value = '';
-  document.getElementById('tokenInput').value = '';
   document.getElementById('loginErr').textContent = '';
 }
 
@@ -933,66 +1183,26 @@ async function loadConfigFromGitHub() {
 
 async function saveConfigToGitHub(message) {
   if (!configSha) {
-    // SHA yok — önce GitHub API'den config'i çek
-    const token = localStorage.getItem('trimora_gh_token');
-    if (!token) {
-      throw new Error('Kaydetmek için GitHub Token gerekli. Token bölümünden ekleyin.');
-    }
     const data = await ghFetch('config.json');
     configSha = data.sha;
   }
   const content = btoa(unescape(encodeURIComponent(JSON.stringify(currentConfig, null, 2))));
   const res = await ghFetch('config.json', {
     method: 'PUT',
-    body: JSON.stringify({
-      message: message || 'Admin panel: config güncellendi',
-      content,
-      sha: configSha,
-      branch: BRANCH
-    })
+    body: JSON.stringify({ message: message || 'Admin panel: config güncellendi', content, sha: configSha, branch: BRANCH })
   });
   configSha = res.content.sha;
   return res;
 }
 
 async function uploadImageToGitHub(folder, filename, base64Content) {
-  // Check if file already exists (to get sha for update)
-  let sha = undefined;
-  try {
-    const existing = await ghFetch(`gallery/${folder}/${filename}`);
-    sha = existing.sha;
-  } catch (e) {
-    // File doesn't exist yet — that's fine
-  }
-  const body = {
-    message: `Galeri: ${folder}/${filename} eklendi`,
-    content: base64Content,
-    branch: BRANCH
-  };
-  if (sha) body.sha = sha;
-  const res = await ghFetch(`gallery/${folder}/${filename}`, {
-    method: 'PUT',
-    body: JSON.stringify(body)
-  });
-  return `gallery/${folder}/${filename}`;
-}
-
-async function deleteFileFromGitHub(path) {
   let sha;
-  try {
-    const existing = await ghFetch(path);
-    sha = existing.sha;
-  } catch (e) {
-    return; // Already deleted or not found
-  }
-  await ghFetch(path, {
-    method: 'DELETE',
-    body: JSON.stringify({
-      message: `Galeri: ${path} silindi`,
-      sha,
-      branch: BRANCH
-    })
-  });
+  const filePath = folder ? `gallery/${folder}/${filename}` : `gallery/${filename}`;
+  try { const existing = await ghFetch(filePath); sha = existing.sha; } catch(e) {}
+  const body = { message: `Galeri: ${filePath} eklendi`, content: base64Content, branch: BRANCH };
+  if (sha) body.sha = sha;
+  await ghFetch(filePath, { method: 'PUT', body: JSON.stringify(body) });
+  return filePath;
 }
 
 // ==================== TOAST ====================
@@ -1002,21 +1212,16 @@ function toast(msg, type = 'success', duration = 3000) {
   el.className = `toast ${type}`;
   el.innerHTML = `<span class="toast-dot"></span><span>${msg}</span>`;
   c.appendChild(el);
-  setTimeout(() => {
-    el.classList.add('fade-out');
-    setTimeout(() => el.remove(), 350);
-  }, duration);
+  setTimeout(() => { el.classList.add('fade-out'); setTimeout(() => el.remove(), 350); }, duration);
 }
 
-// ==================== BUTTON LOADING STATE ====================
+// ==================== BUTTON HELPERS ====================
 function setBtnLoading(btnId, loading) {
   const btn = document.getElementById(btnId);
   if (!btn) return;
   btn.disabled = loading;
   const spinner = btn.querySelector('.spinner');
-  const text = btn.querySelector('.btn-text');
   if (spinner) spinner.style.display = loading ? 'block' : 'none';
-  if (text) text.textContent = loading ? 'Kaydediliyor...' : 'GitHub\'a Kaydet';
 }
 
 function setBtnText(btnId, text) {
@@ -1043,7 +1248,7 @@ function logActivity(msg) {
   if (log.textContent.trim() === 'Henüz işlem yapılmadı.') log.textContent = '';
   log.prepend(item);
   const items = log.querySelectorAll('div');
-  if (items.length > 10) items[items.length - 1].remove();
+  if (items.length > 15) items[items.length - 1].remove();
 }
 
 // ==================== NAVIGATION ====================
@@ -1064,18 +1269,64 @@ function toggleSidebar() {
   document.getElementById('sidebarOverlay').classList.toggle('open');
 }
 
+// ==================== SLUG HELPER ====================
+function toSlug(str) {
+  return str.toLowerCase()
+    .replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s').replace(/ı/g,'i').replace(/ö/g,'o').replace(/ç/g,'c')
+    .replace(/Ğ/g,'g').replace(/Ü/g,'u').replace(/Ş/g,'s').replace(/İ/g,'i').replace(/Ö/g,'o').replace(/Ç/g,'c')
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+// Auto slug generation
+document.addEventListener('input', e => {
+  if (e.target.id === 'new_svc_name') {
+    const slugInput = document.getElementById('new_svc_slug');
+    if (slugInput && !slugInput.dataset.manual) slugInput.value = toSlug(e.target.value);
+  }
+  if (e.target.id === 'new_brand_name') {
+    const slugInput = document.getElementById('new_brand_slug');
+    if (slugInput && !slugInput.dataset.manual) slugInput.value = toSlug(e.target.value);
+  }
+  if (e.target.id === 'new_svc_slug') e.target.dataset.manual = '1';
+  if (e.target.id === 'new_brand_slug') e.target.dataset.manual = '1';
+});
+
 // ==================== POPULATE FORMS ====================
 function populateForms(cfg) {
   // Genel
   document.getElementById('g_hero_slogan').value = cfg.site?.slogan || '';
   document.getElementById('g_site_title').value = cfg.site?.title || '';
   document.getElementById('g_meta_desc').value = cfg.site?.metaDesc || '';
+  document.getElementById('g_about_text').value = cfg.site?.aboutText || '';
+
+  // Bölüm Başlıkları
+  const st = cfg.site?.sectionTitles || {};
+  document.getElementById('st_services').value = st.services || 'HİZMETLERİMİZ';
+  document.getElementById('st_brands').value = st.brands || 'ÇALIŞTIĞIMIZ MARKALAR';
+  document.getElementById('st_location').value = st.location || 'KONUMUMUZ';
+  document.getElementById('st_contact').value = st.contact || 'Bizimle İletişime Geçin';
+  document.getElementById('st_contact_desc').value = st.contactDesc || '';
 
   // İletişim
   document.getElementById('c_phone').value = cfg.contact?.phone || '';
   document.getElementById('c_email').value = cfg.contact?.email || '';
   document.getElementById('c_address').value = cfg.contact?.address || '';
   document.getElementById('c_whatsapp').value = cfg.contact?.whatsapp || '';
+
+  // Çalışma Saatleri
+  const wh = cfg.contact?.workingHours || {};
+  document.getElementById('wh_weekdays').value = wh.weekdays || '';
+  document.getElementById('wh_saturday').value = wh.saturday || '';
+  document.getElementById('wh_sunday').value = wh.sunday || '';
+
+  // WhatsApp
+  document.getElementById('wa_message').value = cfg.contact?.whatsappMessage || '';
+
+  // Harita
+  document.getElementById('map_query').value = cfg.contact?.mapQuery || '';
+
+  // Form
+  document.getElementById('form_id').value = cfg.contact?.formspreeId || '';
 
   // Sosyal
   document.getElementById('s_instagram').value = cfg.social?.instagram || '';
@@ -1106,32 +1357,38 @@ function populateForms(cfg) {
   updateStats(cfg);
 }
 
+// ==================== SAVE HELPERS ====================
+async function genericSave(btnId, noticeId, updateFn, message, logMsg) {
+  setBtnLoading(btnId, true);
+  try {
+    updateFn();
+    await saveConfigToGitHub(message);
+    toast('GitHub\'a kaydedildi');
+    showDeployNotice(noticeId);
+    logActivity(logMsg);
+  } catch(e) {
+    toast('Hata: ' + e.message, 'error', 5000);
+  } finally {
+    setBtnLoading(btnId, false);
+  }
+}
+
 // ==================== GENEL ====================
 async function saveGenel() {
-  setBtnLoading('btn-save-genel', true);
-  try {
+  await genericSave('btn-save-genel', 'genel', () => {
     currentConfig = {
       ...currentConfig,
       site: {
         ...currentConfig.site,
         slogan: document.getElementById('g_hero_slogan').value,
         title: document.getElementById('g_site_title').value,
-        metaDesc: document.getElementById('g_meta_desc').value
+        metaDesc: document.getElementById('g_meta_desc').value,
+        aboutText: document.getElementById('g_about_text').value
       }
     };
-    await saveConfigToGitHub('Admin: Genel ayarlar güncellendi');
-    toast('GitHub\'a kaydedildi ✓');
-    showDeployNotice('genel');
-    logActivity('Genel ayarlar kaydedildi');
-  } catch (e) {
-    toast('Hata: ' + e.message, 'error', 5000);
-  } finally {
-    setBtnLoading('btn-save-genel', false);
-    setBtnText('btn-save-genel', 'GitHub\'a Kaydet');
-  }
+  }, 'Admin: Genel ayarlar güncellendi', 'Genel ayarlar kaydedildi');
 }
 
-// Hero image upload — uploads to GitHub then updates config
 async function handleHeroImgUpload(input) {
   const file = input.files[0];
   if (!file) return;
@@ -1141,55 +1398,58 @@ async function handleHeroImgUpload(input) {
     const dataUrl = e.target.result;
     const base64 = dataUrl.split(',')[1];
     const ext = file.name.split('.').pop();
-    const fname = 'hero.' + ext;
     toast('Hero görseli yükleniyor...', 'info');
     try {
-      const path = await uploadImageToGitHub('', fname, base64);
-      // Update config with hero image path
-      currentConfig = {
-        ...currentConfig,
-        site: { ...currentConfig.site, heroImage: path }
-      };
+      await uploadImageToGitHub('', 'hero.' + ext, base64);
       const prev = document.getElementById('g_hero_img_preview');
       prev.src = dataUrl;
       prev.style.display = 'block';
-      toast('Hero görseli yüklendi ✓');
-    } catch (e) {
+      toast('Hero görseli yüklendi');
+    } catch(e) {
       toast('Yükleme hatası: ' + e.message, 'error', 5000);
     }
   };
   reader.readAsDataURL(file);
 }
 
+// ==================== BÖLÜM BAŞLIKLARI ====================
+async function saveBasliklar() {
+  await genericSave('btn-save-basliklar', 'basliklar', () => {
+    currentConfig = {
+      ...currentConfig,
+      site: {
+        ...currentConfig.site,
+        sectionTitles: {
+          services: document.getElementById('st_services').value,
+          brands: document.getElementById('st_brands').value,
+          location: document.getElementById('st_location').value,
+          contact: document.getElementById('st_contact').value,
+          contactDesc: document.getElementById('st_contact_desc').value
+        }
+      }
+    };
+  }, 'Admin: Bölüm başlıkları güncellendi', 'Bölüm başlıkları kaydedildi');
+}
+
 // ==================== İLETİŞİM ====================
 async function saveIletisim() {
-  setBtnLoading('btn-save-iletisim', true);
-  try {
+  await genericSave('btn-save-iletisim', 'iletisim', () => {
     currentConfig = {
       ...currentConfig,
       contact: {
+        ...currentConfig.contact,
         phone: document.getElementById('c_phone').value,
         email: document.getElementById('c_email').value,
         address: document.getElementById('c_address').value,
         whatsapp: document.getElementById('c_whatsapp').value
       }
     };
-    await saveConfigToGitHub('Admin: İletişim bilgileri güncellendi');
-    toast('GitHub\'a kaydedildi ✓');
-    showDeployNotice('iletisim');
-    logActivity('İletişim bilgileri kaydedildi');
-  } catch (e) {
-    toast('Hata: ' + e.message, 'error', 5000);
-  } finally {
-    setBtnLoading('btn-save-iletisim', false);
-    setBtnText('btn-save-iletisim', 'GitHub\'a Kaydet');
-  }
+  }, 'Admin: İletişim bilgileri güncellendi', 'İletişim bilgileri kaydedildi');
 }
 
 // ==================== SOSYAL ====================
 async function saveSosyal() {
-  setBtnLoading('btn-save-sosyal', true);
-  try {
+  await genericSave('btn-save-sosyal', 'sosyal', () => {
     currentConfig = {
       ...currentConfig,
       social: {
@@ -1199,22 +1459,68 @@ async function saveSosyal() {
         tiktok: document.getElementById('s_tiktok').value
       }
     };
-    await saveConfigToGitHub('Admin: Sosyal medya linkleri güncellendi');
-    toast('GitHub\'a kaydedildi ✓');
-    showDeployNotice('sosyal');
-    logActivity('Sosyal medya linkleri kaydedildi');
-  } catch (e) {
-    toast('Hata: ' + e.message, 'error', 5000);
-  } finally {
-    setBtnLoading('btn-save-sosyal', false);
-    setBtnText('btn-save-sosyal', 'GitHub\'a Kaydet');
-  }
+  }, 'Admin: Sosyal medya linkleri güncellendi', 'Sosyal medya kaydedildi');
+}
+
+// ==================== ÇALIŞMA SAATLERİ ====================
+async function saveCalismaSaatleri() {
+  await genericSave('btn-save-calisma-saatleri', 'calisma-saatleri', () => {
+    currentConfig = {
+      ...currentConfig,
+      contact: {
+        ...currentConfig.contact,
+        workingHours: {
+          weekdays: document.getElementById('wh_weekdays').value,
+          saturday: document.getElementById('wh_saturday').value,
+          sunday: document.getElementById('wh_sunday').value
+        }
+      }
+    };
+  }, 'Admin: Çalışma saatleri güncellendi', 'Çalışma saatleri kaydedildi');
+}
+
+// ==================== WHATSAPP ====================
+async function saveWhatsapp() {
+  await genericSave('btn-save-whatsapp', 'whatsapp', () => {
+    currentConfig = {
+      ...currentConfig,
+      contact: {
+        ...currentConfig.contact,
+        whatsappMessage: document.getElementById('wa_message').value
+      }
+    };
+  }, 'Admin: WhatsApp mesajı güncellendi', 'WhatsApp mesajı kaydedildi');
+}
+
+// ==================== HARİTA ====================
+async function saveHarita() {
+  await genericSave('btn-save-harita', 'harita', () => {
+    currentConfig = {
+      ...currentConfig,
+      contact: {
+        ...currentConfig.contact,
+        mapQuery: document.getElementById('map_query').value
+      }
+    };
+  }, 'Admin: Harita ayarları güncellendi', 'Harita ayarları kaydedildi');
+}
+
+// ==================== FORM ====================
+async function saveForm() {
+  await genericSave('btn-save-form', 'form', () => {
+    currentConfig = {
+      ...currentConfig,
+      contact: {
+        ...currentConfig.contact,
+        formspreeId: document.getElementById('form_id').value
+      }
+    };
+  }, 'Admin: Form ayarları güncellendi', 'Form ayarları kaydedildi');
 }
 
 // ==================== MENÜ ====================
 async function saveMenu() {
-  setBtnLoading('btn-save-menu', true);
-  try {
+  await genericSave('btn-save-menu', 'menu', () => {
     currentConfig = {
       ...currentConfig,
       nav: {
@@ -1223,16 +1529,7 @@ async function saveMenu() {
         gallery: document.getElementById('m_gallery').value
       }
     };
-    await saveConfigToGitHub('Admin: Menü isimleri güncellendi');
-    toast('GitHub\'a kaydedildi ✓');
-    showDeployNotice('menu');
-    logActivity('Menü isimleri kaydedildi');
-  } catch (e) {
-    toast('Hata: ' + e.message, 'error', 5000);
-  } finally {
-    setBtnLoading('btn-save-menu', false);
-    setBtnText('btn-save-menu', 'GitHub\'a Kaydet');
-  }
+  }, 'Admin: Menü isimleri güncellendi', 'Menü isimleri kaydedildi');
 }
 
 // ==================== HİZMETLER ====================
@@ -1244,18 +1541,58 @@ function loadHizmetler(cfg) {
     const card = document.createElement('div');
     card.className = 'service-card';
     card.innerHTML = `
-      <div class="service-card-title">${i + 1}. ${escH(svc.name)}</div>
+      <div class="service-card-title">
+        <span>${i + 1}. ${escH(svc.name)}</span>
+        <button class="svc-del-btn" onclick="removeService(${i})">Sil</button>
+      </div>
       <div class="form-group" style="margin-bottom:10px;">
         <label class="form-label">Ad</label>
         <input type="text" class="form-input" id="svc_name_${i}" value="${escH(svc.name)}">
       </div>
-      <div class="form-group">
+      <div class="form-group" style="margin-bottom:10px;">
         <label class="form-label">Açıklama</label>
         <textarea class="form-input" id="svc_desc_${i}" rows="2">${escH(svc.desc)}</textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Slug</label>
+        <input type="text" class="form-input" id="svc_slug_${i}" value="${escH(svc.slug)}" style="font-size:12px;color:var(--muted);">
       </div>
     `;
     grid.appendChild(card);
   });
+}
+
+function addService() {
+  const name = document.getElementById('new_svc_name').value.trim();
+  const desc = document.getElementById('new_svc_desc').value.trim();
+  const slug = document.getElementById('new_svc_slug').value.trim();
+  if (!name) { toast('Hizmet adı gerekli', 'error'); return; }
+  const finalSlug = slug || toSlug(name);
+  const services = currentConfig.services || [];
+  if (services.some(s => s.slug === finalSlug)) { toast('Bu slug zaten var: ' + finalSlug, 'error'); return; }
+  services.push({ name, desc: desc || name, slug: finalSlug });
+  currentConfig = { ...currentConfig, services };
+  // Initialize service gallery
+  if (!currentConfig.serviceGallery) currentConfig.serviceGallery = {};
+  if (!currentConfig.serviceGallery[finalSlug]) currentConfig.serviceGallery[finalSlug] = [];
+  loadHizmetler(currentConfig);
+  loadServiceGallery(currentConfig);
+  document.getElementById('new_svc_name').value = '';
+  document.getElementById('new_svc_desc').value = '';
+  document.getElementById('new_svc_slug').value = '';
+  delete document.getElementById('new_svc_slug').dataset.manual;
+  toast('Hizmet eklendi — Kaydetmeyi unutma!', 'info');
+  updateStats(currentConfig);
+}
+
+function removeService(idx) {
+  if (!confirm('Bu hizmeti silmek istediğinizden emin misiniz?')) return;
+  const services = [...(currentConfig.services || [])];
+  services.splice(idx, 1);
+  currentConfig = { ...currentConfig, services };
+  loadHizmetler(currentConfig);
+  toast('Hizmet kaldırıldı — Kaydetmeyi unutma!', 'info');
+  updateStats(currentConfig);
 }
 
 async function saveHizmetler() {
@@ -1264,14 +1601,15 @@ async function saveHizmetler() {
     const services = (currentConfig.services || []).map((svc, i) => ({
       ...svc,
       name: document.getElementById('svc_name_' + i)?.value || svc.name,
-      desc: document.getElementById('svc_desc_' + i)?.value || svc.desc
+      desc: document.getElementById('svc_desc_' + i)?.value || svc.desc,
+      slug: document.getElementById('svc_slug_' + i)?.value || svc.slug
     }));
     currentConfig = { ...currentConfig, services };
     await saveConfigToGitHub('Admin: Hizmetler güncellendi');
-    toast('GitHub\'a kaydedildi ✓');
+    toast('GitHub\'a kaydedildi');
     showDeployNotice('hizmetler');
     logActivity('Hizmetler kaydedildi');
-  } catch (e) {
+  } catch(e) {
     toast('Hata: ' + e.message, 'error', 5000);
   } finally {
     setBtnLoading('btn-save-hizmetler', false);
@@ -1280,18 +1618,30 @@ async function saveHizmetler() {
 }
 
 // ==================== BRAND GALLERY ====================
+function getBrands() {
+  const bg = currentConfig?.brandGallery || {};
+  return Object.keys(bg);
+}
+
+function getBrandLabel(slug) {
+  return slug.charAt(0).toUpperCase() + slug.slice(1);
+}
 
 function loadBrandGallery(cfg) {
   const grid = document.getElementById('brandsGrid');
   grid.innerHTML = '';
-  BRANDS.forEach((brand, bi) => {
+  const brands = Object.keys(cfg?.brandGallery || {});
+  brands.forEach(brand => {
     const imgs = (cfg?.brandGallery?.[brand]) || [];
     pendingGallery.brand[brand] = imgs.map(i => typeof i === 'string' ? { src: i, caption: '' } : { ...i });
     const card = document.createElement('div');
     card.className = 'brand-card';
     card.setAttribute('data-brand', brand);
     card.innerHTML = `
-      <div class="brand-card-title">${BRAND_LABELS[bi]}</div>
+      <div class="brand-card-title">
+        <span>${getBrandLabel(brand)}</span>
+        <button class="brand-del-btn" onclick="removeBrand('${brand}')">Sil</button>
+      </div>
       <div class="gallery-imgs" id="bgallery_${brand}">${renderGalleryThumbs(imgs, 'brand', brand)}</div>
       <div style="margin-top:10px;display:flex;align-items:center;gap:8px;">
         <input type="file" class="add-img-input" id="badd_${brand}" accept="image/*" multiple onchange="handleGalleryAdd(this,'brand','${brand}')">
@@ -1301,6 +1651,32 @@ function loadBrandGallery(cfg) {
     `;
     grid.appendChild(card);
   });
+}
+
+function addBrand() {
+  const name = document.getElementById('new_brand_name').value.trim();
+  const slug = document.getElementById('new_brand_slug').value.trim();
+  if (!name) { toast('Marka adı gerekli', 'error'); return; }
+  const finalSlug = slug || toSlug(name);
+  if (!currentConfig.brandGallery) currentConfig.brandGallery = {};
+  if (currentConfig.brandGallery[finalSlug] !== undefined) { toast('Bu marka zaten var: ' + finalSlug, 'error'); return; }
+  currentConfig.brandGallery[finalSlug] = [];
+  loadBrandGallery(currentConfig);
+  document.getElementById('new_brand_name').value = '';
+  document.getElementById('new_brand_slug').value = '';
+  delete document.getElementById('new_brand_slug').dataset.manual;
+  toast('Marka eklendi — Kaydetmeyi unutma!', 'info');
+  updateStats(currentConfig);
+}
+
+function removeBrand(slug) {
+  if (!confirm(`"${getBrandLabel(slug)}" markasını silmek istediğinizden emin misiniz?`)) return;
+  const bg = { ...(currentConfig.brandGallery || {}) };
+  delete bg[slug];
+  currentConfig = { ...currentConfig, brandGallery: bg };
+  loadBrandGallery(currentConfig);
+  toast('Marka kaldırıldı — Kaydetmeyi unutma!', 'info');
+  updateStats(currentConfig);
 }
 
 function loadServiceGallery(cfg) {
@@ -1337,23 +1713,20 @@ function renderGalleryThumbs(imgs, type, key) {
     return `
     <div class="gallery-thumb" data-type="${type}" data-key="${key}" data-idx="${i}">
       <img src="${imgUrl}" alt="" onerror="this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'100\\' height=\\'75\\'><rect width=\\'100\\' height=\\'75\\' fill=\\'%2338383f\\'/></svg>'">
-      <button class="del-img" onclick="delGalleryImg('${type}','${key}',${i})" title="Sil">×</button>
+      <button class="del-img" onclick="delPendingImg('${type}','${key}',${i})" title="Sil">×</button>
       <input type="text" class="gallery-caption-input" placeholder="Açıklama..." value="${escH(caption)}" onchange="updateCaption('${type}','${key}',${i},this.value)">
     </div>
   `}).join('');
 }
 
-// Local pending gallery management (no GitHub calls until save)
 function handleGalleryAdd(input, type, key) {
   const files = Array.from(input.files);
   const pending = pendingGallery[type][key] || [];
   let loaded = 0;
-  // We store dataURLs in pending until saved
   files.forEach(file => {
     if (file.size > 5 * 1024 * 1024) { toast('Görsel 5MB\'den büyük: ' + file.name, 'error'); loaded++; checkDone(); return; }
     const reader = new FileReader();
     reader.onload = e => {
-      // Store as {dataUrl, file, caption} for upload
       pending.push({ dataUrl: e.target.result, file, name: file.name, caption: '' });
       loaded++;
       checkDone();
@@ -1399,27 +1772,19 @@ function renderPendingThumbs(items, type, key) {
 function delPendingImg(type, key, idx) {
   if (!confirm('Bu görseli kaldırmak istediğinizden emin misiniz?')) return;
   const pending = pendingGallery[type][key] || [];
-  const item = pending[idx];
-  // If it's an existing GitHub path, we'll delete it on save
-  if (typeof item === 'string') {
-    pending.splice(idx, 1);
-  } else {
-    pending.splice(idx, 1);
-  }
+  pending.splice(idx, 1);
   pendingGallery[type][key] = pending;
   const container = document.getElementById((type === 'brand' ? 'bgallery_' : 'sgallery_') + key);
   if (container) container.innerHTML = renderPendingThumbs(pending, type, key);
   toast('Görsel kaldırıldı');
 }
 
-// Legacy — keep for compatibility with rendered HTML
 function delGalleryImg(type, key, idx) { delPendingImg(type, key, idx); }
 
 function updateCaption(type, key, idx, value) {
   const pending = pendingGallery[type][key] || [];
   if (!pending[idx]) return;
   if (typeof pending[idx] === 'string') {
-    // Convert string to object format
     pending[idx] = { src: pending[idx], caption: value };
   } else {
     pending[idx] = { ...pending[idx], caption: value };
@@ -1433,22 +1798,20 @@ async function saveBrandGallery() {
   const textEl = btn?.querySelector('.btn-text');
   try {
     const brandGallery = { ...(currentConfig.brandGallery || {}) };
-    for (const brand of BRANDS) {
+    const brands = Object.keys(brandGallery);
+    for (const brand of brands) {
       const items = pendingGallery.brand[brand] || [];
       const objects = [];
       for (const item of items) {
         if (typeof item === 'string') {
-          // Old string format — convert to object
           objects.push({ src: item, caption: '' });
         } else if (item.dataUrl) {
-          // New upload — upload to GitHub
           if (textEl) textEl.textContent = `${brand} yükleniyor...`;
           const fname = `${Date.now()}_${item.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
           const base64 = item.dataUrl.split(',')[1];
           const uploadedPath = await uploadImageToGitHub(brand, fname, base64);
           objects.push({ src: uploadedPath, caption: item.caption || '' });
         } else {
-          // Already an {src, caption} object
           objects.push({ src: item.src, caption: item.caption || '' });
         }
       }
@@ -1457,15 +1820,15 @@ async function saveBrandGallery() {
     }
     currentConfig = { ...currentConfig, brandGallery };
     await saveConfigToGitHub('Admin: Marka galerileri güncellendi');
-    toast('Marka galerileri GitHub\'a kaydedildi ✓');
+    toast('Marka galerileri GitHub\'a kaydedildi');
     showDeployNotice('marka-galeri');
     logActivity('Marka galerileri kaydedildi');
-    BRANDS.forEach(brand => {
+    brands.forEach(brand => {
       const container = document.getElementById('bgallery_' + brand);
       if (container) container.innerHTML = renderGalleryThumbs(brandGallery[brand] || [], 'brand', brand);
     });
     updateStats(currentConfig);
-  } catch (e) {
+  } catch(e) {
     toast('Hata: ' + e.message, 'error', 5000);
   } finally {
     setBtnLoading('btn-save-marka-galeri', false);
@@ -1485,17 +1848,14 @@ async function saveServiceGallery() {
       const objects = [];
       for (const item of items) {
         if (typeof item === 'string') {
-          // Old string format — convert to object
           objects.push({ src: item, caption: '' });
         } else if (item.dataUrl) {
-          // New upload
           if (textEl) textEl.textContent = `${key} yükleniyor...`;
           const fname = `${Date.now()}_${item.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
           const base64 = item.dataUrl.split(',')[1];
           const uploadedPath = await uploadImageToGitHub(key, fname, base64);
           objects.push({ src: uploadedPath, caption: item.caption || '' });
         } else {
-          // Already an {src, caption} object
           objects.push({ src: item.src, caption: item.caption || '' });
         }
       }
@@ -1504,7 +1864,7 @@ async function saveServiceGallery() {
     }
     currentConfig = { ...currentConfig, serviceGallery };
     await saveConfigToGitHub('Admin: Hizmet galerileri güncellendi');
-    toast('Hizmet galerileri GitHub\'a kaydedildi ✓');
+    toast('Hizmet galerileri GitHub\'a kaydedildi');
     showDeployNotice('hizmet-galeri');
     logActivity('Hizmet galerileri kaydedildi');
     svcKeys.forEach(key => {
@@ -1512,7 +1872,7 @@ async function saveServiceGallery() {
       if (container) container.innerHTML = renderGalleryThumbs(serviceGallery[key] || [], 'service', key);
     });
     updateStats(currentConfig);
-  } catch (e) {
+  } catch(e) {
     toast('Hata: ' + e.message, 'error', 5000);
   } finally {
     setBtnLoading('btn-save-hizmet-galeri', false);
@@ -1548,91 +1908,98 @@ function removeTag(i) {
 }
 
 async function saveSeo() {
-  setBtnLoading('btn-save-seo', true);
-  try {
+  await genericSave('btn-save-seo', 'seo', () => {
     currentConfig = {
       ...currentConfig,
       seo: { ...currentConfig.seo, tags: [...currentTags] }
     };
-    await saveConfigToGitHub('Admin: SEO ayarları güncellendi');
-    toast('GitHub\'a kaydedildi ✓');
-    showDeployNotice('seo');
-    logActivity('SEO ayarları kaydedildi');
-  } catch (e) {
-    toast('Hata: ' + e.message, 'error', 5000);
-  } finally {
-    setBtnLoading('btn-save-seo', false);
-    setBtnText('btn-save-seo', 'GitHub\'a Kaydet');
-  }
+  }, 'Admin: SEO ayarları güncellendi', 'SEO ayarları kaydedildi');
 }
 
 // ==================== FOOTER ====================
 async function saveFooter() {
-  setBtnLoading('btn-save-footer', true);
-  try {
+  await genericSave('btn-save-footer', 'footer', () => {
     currentConfig = {
       ...currentConfig,
       footer: { copyright: document.getElementById('f_copyright').value }
     };
-    await saveConfigToGitHub('Admin: Footer güncellendi');
-    toast('GitHub\'a kaydedildi ✓');
-    showDeployNotice('footer');
-    logActivity('Footer kaydedildi');
-  } catch (e) {
-    toast('Hata: ' + e.message, 'error', 5000);
-  } finally {
-    setBtnLoading('btn-save-footer', false);
-    setBtnText('btn-save-footer', 'GitHub\'a Kaydet');
-  }
+  }, 'Admin: Footer güncellendi', 'Footer kaydedildi');
 }
 
-// ==================== TOKEN SETTINGS ====================
-function toggleTokenVisibility() {
-  const input = document.getElementById('token_input_field');
-  const btn = input.parentElement.querySelector('.token-toggle');
-  if (input.type === 'password') {
-    input.type = 'text';
-    btn.textContent = 'Gizle';
-  } else {
-    input.type = 'password';
-    btn.textContent = 'Göster';
-  }
+// ==================== YEDEKLEME ====================
+function exportConfig() {
+  if (!currentConfig) { toast('Config yüklenmedi', 'error'); return; }
+  const blob = new Blob([JSON.stringify(currentConfig, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const date = new Date().toISOString().slice(0,10);
+  a.href = url;
+  a.download = `trimora-config-backup-${date}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('Config indirildi');
+  logActivity('Config yedeklendi');
 }
 
-function saveToken() {
-  const newToken = document.getElementById('token_input_field').value.trim();
-  if (!newToken) { toast('Token boş olamaz', 'error'); return; }
-  localStorage.setItem('trimora_gh_token', newToken);
-  ghToken = newToken;
-  toast('Token güncellendi ✓');
-}
-
-async function testToken() {
-  try {
-    const t = document.getElementById('token_input_field').value.trim() || ghToken;
-    const res = await fetch(`https://api.github.com/repos/${REPO}`, {
-      headers: { 'Authorization': 'token ' + t }
-    });
-    if (res.ok) {
-      toast('Bağlantı başarılı ✓ Repo erişimi doğrulandı', 'success');
-    } else {
-      const err = await res.json();
-      toast('Bağlantı hatası: ' + (err.message || res.status), 'error', 5000);
+function importConfig(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    try {
+      const imported = JSON.parse(e.target.result);
+      if (!imported.site || !imported.contact) {
+        toast('Geçersiz config dosyası', 'error');
+        return;
+      }
+      if (!confirm('Mevcut config bu yedekle değiştirilecek. Devam edilsin mi?')) return;
+      currentConfig = imported;
+      populateForms(currentConfig);
+      toast('Config geri yüklendi — Kaydetmek için bir bölümden GitHub\'a Kaydet\'e tıklayın', 'info', 5000);
+      logActivity('Config yedekten geri yüklendi');
+    } catch(err) {
+      toast('Dosya okunamadı: ' + err.message, 'error');
     }
-  } catch (e) {
-    toast('Bağlantı hatası: ' + e.message, 'error', 5000);
+  };
+  reader.readAsText(file);
+  input.value = '';
+}
+
+function toggleJsonViewer() {
+  const viewer = document.getElementById('jsonViewer');
+  if (viewer.classList.contains('show')) {
+    viewer.classList.remove('show');
+  } else {
+    viewer.textContent = JSON.stringify(currentConfig, null, 2);
+    viewer.classList.add('show');
   }
+}
+
+async function resetConfig() {
+  if (!confirm('TÜM değişiklikler sıfırlanacak. Bu işlem geri alınamaz! Devam edilsin mi?')) return;
+  if (!confirm('Son kez: Gerçekten sıfırlamak istiyor musunuz?')) return;
+  toast('Sıfırlama yapılmadı — bu özellik güvenlik nedeniyle devre dışı.', 'info');
 }
 
 // ==================== STATS ====================
 function updateStats(cfg) {
-  let total = 0;
+  let totalGallery = 0;
   const bg = cfg?.brandGallery || {};
   const sg = cfg?.serviceGallery || {};
-  Object.values(bg).forEach(arr => { if (Array.isArray(arr)) total += arr.length; });
-  Object.values(sg).forEach(arr => { if (Array.isArray(arr)) total += arr.length; });
-  const el = document.getElementById('stat-gallery-count');
-  if (el) el.textContent = total;
+  Object.values(bg).forEach(arr => { if (Array.isArray(arr)) totalGallery += arr.length; });
+  Object.values(sg).forEach(arr => { if (Array.isArray(arr)) totalGallery += arr.length; });
+
+  const el1 = document.getElementById('stat-gallery-count');
+  if (el1) el1.textContent = totalGallery;
+
+  const el2 = document.getElementById('stat-service-count');
+  if (el2) el2.textContent = (cfg?.services || []).length;
+
+  const el3 = document.getElementById('stat-brand-count');
+  if (el3) el3.textContent = Object.keys(bg).length;
+
+  const el4 = document.getElementById('stat-seo-count');
+  if (el4) el4.textContent = (cfg?.seo?.tags || []).length;
 }
 
 // ==================== INIT ====================
@@ -1642,32 +2009,30 @@ async function initDashboard() {
   overlay.classList.add('show');
   try {
     loadText.textContent = 'Config yükleniyor...';
-    // Önce GitHub API ile dene (token varsa)
     const token = ghToken || sessionStorage.getItem('trimora_gh_token_session');
     if (token) {
       try {
         const cfg = await loadConfigFromGitHub();
         currentConfig = cfg;
         populateForms(cfg);
-        toast('Config GitHub\'dan yüklendi ✓', 'success');
+        toast('Config GitHub\'dan yüklendi', 'success');
         overlay.classList.remove('show');
         return;
       } catch(e) {
         console.warn('GitHub API başarısız, public fetch deneniyor...', e.message);
       }
     }
-    // Fallback: public fetch (token olmadan da çalışır)
     const res = await fetch('https://trimoradesign.com/config.json?v=' + Date.now());
     if (res.ok) {
       currentConfig = await res.json();
       populateForms(currentConfig);
       if (!configSha) {
-        toast('Config yüklendi (salt okunur). Kaydetmek için giriş yapın.', 'warning', 5000);
+        toast('Config yüklendi (salt okunur). Kaydetmek için giriş yapın.', 'info', 5000);
       }
     } else {
       throw new Error('Config yüklenemedi');
     }
-  } catch (e) {
+  } catch(e) {
     toast('Yükleme başarısız: ' + e.message, 'error', 6000);
     showSection('genel');
   } finally {
