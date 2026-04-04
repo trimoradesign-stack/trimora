@@ -40,12 +40,6 @@ async function loadConfig() {
       document.querySelectorAll('[data-cfg="address"]').forEach(el => {
         el.textContent = c.address || el.textContent;
       });
-      if (c.whatsapp) {
-        const msg = encodeURIComponent('Merhaba, bir ürün hakkında bilgi almak istiyorum.');
-        document.querySelectorAll('a[href*="wa.me"]').forEach(el => {
-          el.href = 'https://wa.me/' + c.whatsapp + '?text=' + msg;
-        });
-      }
     }
 
     // Sosyal medya linkleri
@@ -77,6 +71,60 @@ async function loadConfig() {
       });
     }
 
+    // Bölüm başlıkları
+    if (cfg.site?.sectionTitles) {
+      const st = cfg.site.sectionTitles;
+      if (st.services) {
+        const el = document.querySelector('.services .section-title');
+        if (el) el.textContent = st.services;
+      }
+      if (st.brands) {
+        const el = document.querySelector('.brands .section-title');
+        if (el) el.textContent = st.brands;
+      }
+      if (st.location) {
+        const el = document.querySelector('.map-section .section-title');
+        if (el) el.textContent = st.location;
+      }
+      if (st.contact) {
+        const el = document.querySelector('.contact-title');
+        if (el) el.textContent = st.contact;
+      }
+      if (st.contactDesc) {
+        const el = document.querySelector('.contact-desc');
+        if (el) el.textContent = st.contactDesc;
+      }
+    }
+
+    // WhatsApp mesaj şablonu
+    if (cfg.contact?.whatsapp) {
+      const msg = encodeURIComponent(cfg.contact.whatsappMessage || 'Merhaba, teklif almak istiyorum.');
+      document.querySelectorAll('a[href*="wa.me"]').forEach(el => {
+        el.href = 'https://wa.me/' + cfg.contact.whatsapp + '?text=' + msg;
+      });
+    }
+
+    // Harita sorgusu
+    if (cfg.contact?.mapQuery) {
+      const q = encodeURIComponent(cfg.contact.mapQuery);
+      const iframe = document.querySelector('.map-wrapper iframe');
+      if (iframe) {
+        iframe.src = 'https://maps.google.com/maps?q=' + q + '&t=&z=16&ie=UTF8&iwloc=&output=embed&hl=tr';
+      }
+      const mapsLink = document.querySelector('.map-btn[href*="google.com/maps/search"]');
+      if (mapsLink) mapsLink.href = 'https://www.google.com/maps/search/' + q;
+      const dirLink = document.querySelector('.map-btn-primary[href*="google.com/maps/dir"]');
+      if (dirLink) dirLink.href = 'https://www.google.com/maps/dir//' + q;
+      const mapInfo = document.querySelector('.map-info span');
+      if (mapInfo) mapInfo.textContent = cfg.contact.address || cfg.contact.mapQuery;
+    }
+
+    // Formspree form ID
+    if (cfg.contact?.formspreeId) {
+      const form = document.getElementById('contactForm');
+      if (form) form.action = 'https://formspree.io/f/' + cfg.contact.formspreeId;
+    }
+
     // Footer copyright
     if (cfg.footer?.copyright) {
       const fb = document.querySelector('.footer-bottom p');
@@ -86,7 +134,14 @@ async function loadConfig() {
     // SEO tags
     if (cfg.seo?.tags && Array.isArray(cfg.seo.tags)) {
       const tagsEl = document.querySelector('.seo-tags');
-      if (tagsEl) tagsEl.textContent = cfg.seo.tags.join(' ');
+      if (tagsEl) {
+        tagsEl.innerHTML = '';
+        cfg.seo.tags.forEach(tag => {
+          const span = document.createElement('span');
+          span.textContent = tag;
+          tagsEl.appendChild(span);
+        });
+      }
     }
 
   } catch (e) {
