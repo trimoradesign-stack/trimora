@@ -922,6 +922,15 @@ async function loadConfigFromGitHub() {
 }
 
 async function saveConfigToGitHub(message) {
+  if (!configSha) {
+    // SHA yok — önce GitHub API'den config'i çek
+    const token = localStorage.getItem('trimora_gh_token');
+    if (!token) {
+      throw new Error('Kaydetmek için GitHub Token gerekli. Token bölümünden ekleyin.');
+    }
+    const data = await ghFetch('config.json');
+    configSha = data.sha;
+  }
   const content = btoa(unescape(encodeURIComponent(JSON.stringify(currentConfig, null, 2))));
   const res = await ghFetch('config.json', {
     method: 'PUT',
@@ -1593,18 +1602,37 @@ async function initDashboard() {
   const loadText = document.getElementById('loadingText');
   overlay.classList.add('show');
   try {
-    loadText.textContent = 'GitHub\'dan config.json yükleniyor...';
-    const cfg = await loadConfigFromGitHub();
-    currentConfig = cfg;
-    populateForms(cfg);
-    toast('Config başarıyla yüklendi ✓', 'success');
-  } catch (e) {
-    toast('GitHub\'dan yükleme başarısız: ' + e.message, 'error', 6000);
-    // Show token section on auth errors
-    if (e.message.includes('401') || e.message.includes('Bad credentials')) {
-      toast('Token geçersiz. Lütfen GitHub Token bölümünden güncelleyin.', 'error', 8000);
-      showSection('token');
+    loadText.textContent = 'Config yükleniyor...';
+    // Önce GitHub API ile dene (token varsa)
+    const token = localStorage.getItem('trimora_gh_token');
+    if (token) {
+      try {
+        const cfg = await loadConfigFromGitHub();
+        currentConfig = cfg;
+        populateForms(cfg);
+        toast('Config GitHub\'dan yüklendi ✓', 'success');
+        overlay.classList.remove('show');
+        return;
+      } catch(e) {
+        console.warn('GitHub API başarısız, public fetch deneniyor...', e.message);
+      }
     }
+    // Fallback: public fetch (token olmadan da çalışır)
+    const res = await fetch('https://trimoradesign.com/config.json?v=' + Date.now());
+    if (res.ok) {
+      currentConfig = await res.json();
+      populateForms(currentConfig);
+      // SHA olmadan kaydetme yapılamaz, uyarı ver
+      if (!configSha) {
+        toast('Config yüklendi. Kaydetmek için GitHub Token gerekli.', 'warning', 5000);
+        if (!token) showSection('token');
+      }
+    } else {
+      throw new Error('Config yüklenemedi');
+    }
+  } catch (e) {
+    toast('Yükleme başarısız: ' + e.message, 'error', 6000);
+    showSection('token');
   } finally {
     overlay.classList.remove('show');
   }
