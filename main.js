@@ -96,6 +96,19 @@ async function loadConfig() {
       }
     }
 
+    // Çalışma saatleri
+    if (cfg.contact?.workingHours) {
+      const wh = cfg.contact.workingHours;
+      const el = document.getElementById('workingHoursText');
+      if (el) {
+        const parts = [];
+        if (wh.weekdays) parts.push('Hafta içi: ' + wh.weekdays);
+        if (wh.saturday) parts.push('Cmt: ' + wh.saturday);
+        if (wh.sunday) parts.push('Paz: ' + wh.sunday);
+        el.textContent = parts.join(' | ');
+      }
+    }
+
     // WhatsApp mesaj şablonu
     if (cfg.contact?.whatsapp) {
       const msg = encodeURIComponent(cfg.contact.whatsappMessage || 'Merhaba, teklif almak istiyorum.');

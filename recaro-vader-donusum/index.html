@@ -111,6 +111,12 @@
         });
         if (empty) empty.style.display = 'none';
         window.galleryData = galleryData;
+        // WhatsApp linkini config'den guncelle
+        if (cfg.contact && cfg.contact.whatsapp) {
+          var waMsg = encodeURIComponent(cfg.contact.whatsappMessage || 'Merhaba, teklif almak istiyorum.');
+          var waLinks = document.querySelectorAll('a[href*="wa.me"]');
+          waLinks.forEach(function(el) { el.href = 'https://wa.me/' + cfg.contact.whatsapp + '?text=' + waMsg; });
+        }
       })
       .catch(function() {});
 
