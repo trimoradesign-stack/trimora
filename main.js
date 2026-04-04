@@ -1,3 +1,16 @@
+// ---- SLUG → GORSEL MAPPING ----
+const SERVICE_IMAGES = {
+  'oto-koltuk-doseme': 'service-oto-doseme.webp',
+  'recaro-vader-donusum': 'service-recaro-vader.webp',
+  'direksiyon-kaplama': 'service-direksiyon.webp',
+  'vites-topuzu': 'service-vites.webp',
+  'torpido-kaplama': 'service-torpido.webp',
+  'kapi-ici-doseme': 'service-kapi.webp',
+  'taban-halisi-doseme': 'service-taban.webp',
+  'tavan-doseme': 'service-tavan.webp',
+  'tirim-kaplama': 'service-tirim.webp'
+};
+
 // ---- CONFIG.JSON'DAN VERİLERİ YÜKLE ----
 async function loadConfig() {
   try {
@@ -59,16 +72,54 @@ async function loadConfig() {
       if (cfg.nav.gallery && navLinks[2]) navLinks[2].textContent = cfg.nav.gallery;
     }
 
-    // Hizmet kartları
+    // Hizmet kartlarini dinamik olustur
     if (cfg.services && Array.isArray(cfg.services)) {
-      const cards = document.querySelectorAll('.service-card');
-      cfg.services.forEach((svc, i) => {
-        if (!cards[i]) return;
-        const h3 = cards[i].querySelector('h3');
-        const p = cards[i].querySelector('p');
-        if (h3 && svc.name) h3.textContent = svc.name;
-        if (p && svc.desc) p.textContent = svc.desc;
-      });
+      const track = document.getElementById('servicesTrack');
+      if (track) {
+        track.innerHTML = '';
+        cfg.services.forEach(svc => {
+          const imgFile = SERVICE_IMAGES[svc.slug] || 'service-default.webp';
+          const a = document.createElement('a');
+          a.href = svc.slug;
+          a.className = 'service-card';
+          a.innerHTML = '<div class="service-img"><img src="' + imgFile + '" alt="' + escH(svc.name) + '" loading="lazy" /></div>' +
+            '<h3>' + escH(svc.name) + '</h3>' +
+            '<p>' + escH(svc.desc) + '</p>';
+          track.appendChild(a);
+        });
+        initSlider();
+      }
+
+      // Footer hizmet listesi
+      const footerList = document.getElementById('footerServicesList');
+      if (footerList) {
+        footerList.innerHTML = '';
+        cfg.services.forEach(svc => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = svc.slug;
+          a.textContent = svc.name.charAt(0).toUpperCase() + svc.name.slice(1).toLowerCase();
+          li.appendChild(a);
+          footerList.appendChild(li);
+        });
+      }
+    }
+
+    // Marka kartlarini dinamik olustur
+    if (cfg.brandGallery) {
+      const grid = document.getElementById('brandsGrid');
+      if (grid) {
+        grid.innerHTML = '';
+        Object.keys(cfg.brandGallery).forEach(slug => {
+          const label = slug.charAt(0).toUpperCase() + slug.slice(1);
+          const a = document.createElement('a');
+          a.href = slug;
+          a.className = 'brand-card';
+          a.innerHTML = '<img src="brand-' + slug + '.webp" alt="' + escH(label) + '" loading="lazy" />' +
+            '<span>' + escH(label) + '</span>';
+          grid.appendChild(a);
+        });
+      }
     }
 
     // Bölüm başlıkları
@@ -144,6 +195,15 @@ async function loadConfig() {
       if (fb) fb.textContent = cfg.footer.copyright;
     }
 
+    // Footer telefon linki
+    if (cfg.contact?.phone) {
+      const ftPhone = document.querySelector('.footer-col a[href^="tel:"]');
+      if (ftPhone) {
+        ftPhone.href = 'tel:' + cfg.contact.phone.replace(/\s/g, '');
+        ftPhone.textContent = 'Ara: ' + cfg.contact.phone;
+      }
+    }
+
     // SEO tags
     if (cfg.seo?.tags && Array.isArray(cfg.seo.tags)) {
       const tagsEl = document.querySelector('.seo-tags');
@@ -162,101 +222,114 @@ async function loadConfig() {
   }
 }
 
+function escH(str) {
+  const d = document.createElement('div');
+  d.textContent = str || '';
+  return d.innerHTML;
+}
+
 loadConfig();
 
 // ---- NAV aktif link ----
-const navLinks = document.querySelectorAll('.main-nav a:not(.nav-cta)');
-navLinks.forEach(link => {
+const navLinksAll = document.querySelectorAll('.main-nav a:not(.nav-cta)');
+navLinksAll.forEach(link => {
   link.addEventListener('click', () => {
-    navLinks.forEach(l => l.style.color = '');
+    navLinksAll.forEach(l => l.style.color = '');
     link.style.color = 'var(--gold)';
   });
 });
 
 // ---- SERVICES SLIDER ----
-const track = document.getElementById('servicesTrack');
-const dotsContainer = document.getElementById('sliderDots');
-const cards = track.querySelectorAll('.service-card');
+function initSlider() {
+  const track = document.getElementById('servicesTrack');
+  const dotsContainer = document.getElementById('sliderDots');
+  if (!track || !dotsContainer) return;
 
-let current = 0;
-const visibleCount = () => window.innerWidth >= 600 ? 4 : 2;
-const maxIndex = () => Math.max(0, cards.length - visibleCount());
+  const cards = track.querySelectorAll('.service-card');
+  if (!cards.length) return;
 
-function buildDots() {
-  const count = maxIndex() + 1;
-  dotsContainer.innerHTML = '';
-  for (let i = 0; i < count; i++) {
-    const dot = document.createElement('span');
-    dot.className = 'dot' + (i === current ? ' active' : '');
-    dot.addEventListener('click', () => goTo(i));
-    dotsContainer.appendChild(dot);
+  let current = 0;
+  const visibleCount = () => window.innerWidth >= 600 ? 4 : 2;
+  const maxIndex = () => Math.max(0, cards.length - visibleCount());
+
+  function buildDots() {
+    const count = maxIndex() + 1;
+    dotsContainer.innerHTML = '';
+    for (let i = 0; i < count; i++) {
+      const dot = document.createElement('span');
+      dot.className = 'dot' + (i === current ? ' active' : '');
+      dot.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(dot);
+    }
   }
+
+  function goTo(idx) {
+    const max = maxIndex();
+    current = Math.max(0, Math.min(idx, max));
+    const gap = 10;
+    const cardW = cards[0].offsetWidth + gap;
+    track.style.transform = 'translateX(-' + (current * cardW) + 'px)';
+    dotsContainer.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  buildDots();
+
+  const prevBtn = document.querySelector('.slider-prev');
+  const nextBtn = document.querySelector('.slider-next');
+  if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  window.addEventListener('resize', () => { buildDots(); goTo(current); });
+
+  // Swipe (dokunmatik + mouse sürükle)
+  let dragStart = null;
+  track.addEventListener('mousedown', e => { dragStart = e.clientX; });
+  track.addEventListener('mouseup', e => {
+    if (dragStart === null) return;
+    const diff = dragStart - e.clientX;
+    if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+    dragStart = null;
+  });
+  track.addEventListener('mouseleave', () => { dragStart = null; });
+  track.addEventListener('touchstart', e => { dragStart = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    if (dragStart === null) return;
+    const diff = dragStart - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+    dragStart = null;
+  });
 }
-
-function goTo(idx) {
-  const max = maxIndex();
-  current = Math.max(0, Math.min(idx, max));
-  const gap = 10;
-  const cardW = cards[0].offsetWidth + gap;
-  track.style.transform = `translateX(-${current * cardW}px)`;
-  dotsContainer.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
-}
-
-buildDots();
-document.querySelector('.slider-prev').addEventListener('click', () => goTo(current - 1));
-document.querySelector('.slider-next').addEventListener('click', () => goTo(current + 1));
-
-window.addEventListener('resize', () => { buildDots(); goTo(current); });
-
-// ---- SLIDER SWIPE (dokunmatik + mouse sürükle) ----
-let dragStart = null;
-let dragging = false;
-
-track.addEventListener('mousedown', e => { dragStart = e.clientX; dragging = false; });
-track.addEventListener('mousemove', e => { if (dragStart !== null) dragging = true; });
-track.addEventListener('mouseup', e => {
-  if (dragStart === null) return;
-  const diff = dragStart - e.clientX;
-  if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
-  dragStart = null;
-});
-track.addEventListener('mouseleave', () => { dragStart = null; });
-
-track.addEventListener('touchstart', e => { dragStart = e.touches[0].clientX; }, { passive: true });
-track.addEventListener('touchend', e => {
-  if (dragStart === null) return;
-  const diff = dragStart - e.changedTouches[0].clientX;
-  if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
-  dragStart = null;
-});
 
 // ---- CONTACT FORM (Formspree) ----
-document.getElementById('contactForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const form = e.target;
-  const btn = document.getElementById('submitBtn');
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const btn = document.getElementById('submitBtn');
 
-  btn.textContent = 'GÖNDERİLİYOR...';
-  btn.disabled = true;
+    btn.textContent = 'GÖNDERİLİYOR...';
+    btn.disabled = true;
 
-  try {
-    const res = await fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { Accept: 'application/json' }
-    });
-    if (res.ok) {
-      btn.textContent = 'GÖNDERİLDİ ✓';
-      form.reset();
-    } else {
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      });
+      if (res.ok) {
+        btn.textContent = 'GÖNDERİLDİ ✓';
+        form.reset();
+      } else {
+        btn.textContent = 'HATA — TEKRAR DENEYİN';
+        btn.disabled = false;
+      }
+    } catch {
       btn.textContent = 'HATA — TEKRAR DENEYİN';
       btn.disabled = false;
     }
-  } catch {
-    btn.textContent = 'HATA — TEKRAR DENEYİN';
-    btn.disabled = false;
-  }
-});
+  });
+}
 
 // ---- SMOOTH SCROLL for anchor links ----
 document.querySelectorAll('a[href^="#"]').forEach(a => {
