@@ -790,6 +790,9 @@ let ghToken = '';
 let configSha = '';
 let currentConfig = null;
 let currentTags = [];
+const BRANDS = ['ford','volvo','honda','audi','bmw','mercedes','volkswagen','peugeot','togg','opel'];
+const BRAND_LABELS = ['Ford','Volvo','Honda','Audi','BMW','Mercedes','Volkswagen','Peugeot','Togg','Opel'];
+const SERVICE_SLUGS = ['oto-koltuk-doseme','recaro-vader-donusum','direksiyon-kaplama','vites-topuzu','torpido-kaplama','kapi-ici-doseme','taban-halisi-doseme','tavan-doseme','tirim-kaplama'];
 // Pending gallery uploads (images added but not yet saved to GitHub)
 const pendingGallery = { brand: {}, service: {} };
 
@@ -854,6 +857,7 @@ async function doLogin() {
   }
 
   sessionStorage.setItem('trimora_auth', '1');
+  sessionStorage.setItem('trimora_gh_token_session', ghToken);
   document.getElementById('loginScreen').style.display = 'none';
   document.getElementById('dashboard').style.display = 'block';
   await initDashboard();
@@ -861,6 +865,7 @@ async function doLogin() {
 
 function doLogout() {
   sessionStorage.removeItem('trimora_auth');
+  sessionStorage.removeItem('trimora_gh_token_session');
   ghToken = '';
   currentConfig = null;
   document.getElementById('dashboard').style.display = 'none';
@@ -870,16 +875,16 @@ function doLogout() {
   document.getElementById('loginErr').textContent = '';
 }
 
-document.getElementById('passInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter') document.getElementById('tokenInput').focus();
+document.getElementById('userInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('passInput').focus();
 });
-document.getElementById('tokenInput').addEventListener('keydown', e => {
+document.getElementById('passInput').addEventListener('keydown', e => {
   if (e.key === 'Enter') doLogin();
 });
 
-// Auto-login if session active and token stored
-if (sessionStorage.getItem('trimora_auth') === '1' && localStorage.getItem('trimora_gh_token')) {
-  ghToken = localStorage.getItem('trimora_gh_token');
+// Auto-login if session active
+if (sessionStorage.getItem('trimora_auth') === '1' && sessionStorage.getItem('trimora_gh_token_session')) {
+  ghToken = sessionStorage.getItem('trimora_gh_token_session');
   document.getElementById('loginScreen').style.display = 'none';
   document.getElementById('dashboard').style.display = 'block';
   window.addEventListener('DOMContentLoaded', initDashboard);
@@ -1261,8 +1266,6 @@ async function saveHizmetler() {
 }
 
 // ==================== BRAND GALLERY ====================
-const BRANDS = ['ford','volvo','honda','audi','bmw','mercedes','volkswagen','peugeot','togg','opel'];
-const BRAND_LABELS = ['Ford','Volvo','Honda','Audi','BMW','Mercedes','Volkswagen','Peugeot','Togg','Opel'];
 
 function loadBrandGallery(cfg) {
   const grid = document.getElementById('brandsGrid');
@@ -1589,7 +1592,7 @@ async function initDashboard() {
   try {
     loadText.textContent = 'Config yükleniyor...';
     // Önce GitHub API ile dene (token varsa)
-    const token = localStorage.getItem('trimora_gh_token');
+    const token = ghToken || sessionStorage.getItem('trimora_gh_token_session');
     if (token) {
       try {
         const cfg = await loadConfigFromGitHub();
