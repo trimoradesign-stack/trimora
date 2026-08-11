@@ -101,26 +101,8 @@
     "recaro-vader-donusum": [],
     "direksiyon-kaplama": [],
     "vites-topuzu": [],
-    "torpido-kaplama": [
-      {
-        "src": "gallery/torpido-kaplama/1775271960552_38958.jpg",
-        "caption": ""
-      }
-    ],
-    "kapi-ici-doseme": [
-      {
-        "src": "gallery/kapi-ici-doseme/1775261843179_audi.png",
-        "caption": "c"
-      },
-      {
-        "src": "gallery/kapi-ici-doseme/1775261844837_bmw.png",
-        "caption": "Bwm döşemesi bu şekilde "
-      },
-      {
-        "src": "gallery/kapi-ici-doseme/1775261968159_peugeot.png",
-        "caption": "b"
-      }
-    ],
+    "torpido-kaplama": [],
+    "kapi-ici-doseme": [],
     "taban-halisi-doseme": [],
     "tavan-doseme": [],
     "tirim-kaplama": []
